@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Core
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
@@ -18,10 +17,11 @@ gem 'kaminari', '~> 0.17.0'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'enum_help'
 gem 'friendly_id'
+gem 'banken'
 # gem 'virtus'
 
 # Auhtenticate
-gem 'devise'
+gem 'sorcery'
 
 # Support
 gem 'chronic'
