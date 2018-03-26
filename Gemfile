@@ -21,7 +21,7 @@ gem 'banken'
 # gem 'virtus'
 
 # Auhtenticate
-gem 'sorcery'
+gem 'devise'
 
 # Support
 gem 'chronic'
