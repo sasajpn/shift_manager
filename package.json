@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@rails/webpacker": "^3.4.1",
+    "axios": "^0.18.0",
+    "element-ui": "^2.3.3",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.5.16"
