@@ -2,7 +2,7 @@ class Admins::OwnersController < Admins::ApplicationController
   before_action :set_owner, only: [:show, :edit, :update]
 
   def index
-    @owners = Owner.order(created_at: :desc).page(params[:page]).per(10)
+    @owners = Owner.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
