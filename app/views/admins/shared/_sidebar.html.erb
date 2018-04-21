@@ -6,6 +6,7 @@
       <li class="header">MAIN NAVIGATION</li>
       </li>
       <li><%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %></li>
+      <li><%= link_to 'オーナー一覧', admins_owners_path %></li>
       <li><%= link_to 'オーナー登録', new_admins_owner_path %></li>
     </ul>
   </section>

@@ -1,5 +1,6 @@
 class Admins::OwnersController < Admins::ApplicationController
   def index
+    @owners = Owner.all
   end
 
   def show
