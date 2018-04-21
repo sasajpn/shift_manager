@@ -1,4 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
+  before_action :set_team, only: [:show]
   before_action :set_owner, only: [:new, :create]
 
   def index
@@ -21,6 +22,7 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -35,6 +37,10 @@ class Admins::TeamsController < Admins::ApplicationController
     params.fetch(:team, {}).permit(
       :name
     )
+  end
+
+  def set_team
+    @team = Team.find(params[:id])
   end
 
   def set_owner
