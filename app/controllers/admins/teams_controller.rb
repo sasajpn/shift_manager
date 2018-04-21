@@ -1,5 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
-  before_action :set_owner, only: [:new]
+  before_action :set_owner, only: [:new, :create]
 
   def index
   end
@@ -12,6 +12,12 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def create
+    @team = @owner.teams.build(team_params)
+    if @team.save
+      redirect_to admins_owner_url(@owner)
+    else
+      render :new
+    end
   end
 
   def edit
