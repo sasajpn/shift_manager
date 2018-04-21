@@ -16,7 +16,9 @@
     <div class="wrapper">
       <%= render 'admins/shared/header' %>
       <%= render 'admins/shared/sidebar' %>
-      <%= yield %>
+      <div class="content-wrapper" style="min-height: 1080px;">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
