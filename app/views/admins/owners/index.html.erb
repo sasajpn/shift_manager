@@ -21,7 +21,7 @@
           </tr>
           <% @owners.each do |owner| %>
             <tr>
-              <td><%= owner.name %></td>
+              <td><%= link_to owner.name, admins_owner_path(owner) %></td>
               <td></td>
             </tr>
           <% end %>

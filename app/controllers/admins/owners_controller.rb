@@ -1,4 +1,6 @@
 class Admins::OwnersController < Admins::ApplicationController
+  before_action :set_owner, only: [:show]
+
   def index
     @owners = Owner.all
   end
@@ -35,5 +37,9 @@ class Admins::OwnersController < Admins::ApplicationController
       :first_name_kana, :last_name_kana, :first_name, :last_name,
       :email, :password
     )
+  end
+
+  def set_owner
+    @owner = Owner.find(params[:id])
   end
 end
