@@ -4,7 +4,7 @@ class Admins::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
-    admins_dashboard_url
+    admins_home_index_url
   end
 
   def after_sign_out_path_for(resource)
