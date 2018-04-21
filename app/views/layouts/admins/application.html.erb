@@ -13,7 +13,10 @@
   </head>
 
   <body class="skin-blue wysihtml5-supported">
-    <%= render 'admins/shared/header' %>
-    <%= yield %>
+    <div class="wrapper">
+      <%= render 'admins/shared/header' %>
+      <%= render 'admins/shared/sidebar' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
