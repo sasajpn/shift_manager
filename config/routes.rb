@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resources :home, only: [:index]
-    resources :owners
+    resources :owners do
+      resources :teams
+    end
   end
 
 end
