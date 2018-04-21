@@ -1,5 +1,5 @@
 class Admins::OwnersController < Admins::ApplicationController
-  before_action :set_owner, only: [:show, :edit]
+  before_action :set_owner, only: [:show, :edit, :update]
 
   def index
     @owners = Owner.all
@@ -13,7 +13,7 @@ class Admins::OwnersController < Admins::ApplicationController
   end
 
   def create
-    @owner = Owner.new(owner_params)
+    @owner = Owner.new(create_params)
     if @owner.save
       redirect_to admins_owners_url
     else
@@ -25,6 +25,11 @@ class Admins::OwnersController < Admins::ApplicationController
   end
 
   def update
+    if @owner.update(update_params)
+      redirect_to admins_owner_url(@owner)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -32,10 +37,16 @@ class Admins::OwnersController < Admins::ApplicationController
 
   private
 
-  def owner_params
+  def create_params
     params.fetch(:owner, {}).permit(
       :first_name_kana, :last_name_kana, :first_name, :last_name,
       :email, :password
+    )
+  end
+
+  def update_params
+    params.fetch(:owner, {}).permit(
+      :first_name_kana, :last_name_kana, :first_name, :last_name, :email
     )
   end
 
