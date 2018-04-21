@@ -32,7 +32,7 @@ class Admins::OwnersController < Admins::ApplicationController
 
   def owner_params
     params.fetch(:owner, {}).permit(
-      :firstname_kana, :lastname_kana, :firstname, :lastname,
+      :first_name_kana, :last_name_kana, :first_name, :last_name,
       :email, :password
     )
   end

@@ -19,10 +19,12 @@
             <th>名前</th>
             <th>チーム数</th>
           </tr>
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
+          <% @owners.each do |owner| %>
+            <tr>
+              <td><%= owner.last_name %></td>
+              <td></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
