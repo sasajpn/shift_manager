@@ -1,5 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
-  before_action :set_team, only: [:show]
+  before_action :set_team, only: [:show, :edit]
   before_action :set_owner, only: [:new, :create]
 
   def index
