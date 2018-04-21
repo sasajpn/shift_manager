@@ -63,7 +63,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'hirb'
   gem 'hirb-unicode'
-  gem 'rubocop'
+  gem 'rubocop', require: false
   gem 'letter_opener'
   gem 'letter_opener_web'
 end
