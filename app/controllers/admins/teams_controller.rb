@@ -1,5 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
-  before_action :set_team, only: [:show, :edit]
+  before_action :set_team, only: [:show, :edit, :update]
   before_action :set_owner, only: [:new, :create]
 
   def index
@@ -22,10 +22,14 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def edit
-
   end
 
   def update
+    if @team.update(team_params)
+      redirect_to admins_team_url(@team)
+    else
+      render :edit
+    end
   end
 
   def destroy
