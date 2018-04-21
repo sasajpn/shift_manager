@@ -1,5 +1,5 @@
 class Admins::OwnersController < Admins::ApplicationController
-  before_action :set_owner, only: [:show]
+  before_action :set_owner, only: [:show, :edit]
 
   def index
     @owners = Owner.all
