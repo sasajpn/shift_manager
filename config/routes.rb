@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :home, only: [:index]
     resources :owners do
-      resources :teams
+      resources :teams, shallow: true
     end
   end
 
