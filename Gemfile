@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 # Core
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
@@ -11,7 +16,8 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari'
+gem 'active_decorator'
 
 # DB/Model
 gem 'mysql2', '>= 0.3.18', '< 0.5'

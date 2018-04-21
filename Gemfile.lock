@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/rails/webpacker.git
+  remote: https://github.com/rails/webpacker.git
   revision: 9f72b88f12e8638ae939318ba47a28da19c9f80b
   specs:
     webpacker (4.0.0.pre.pre.2)
@@ -33,6 +33,7 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_decorator (1.0.0)
     activejob (5.0.6)
       activesupport (= 5.0.6)
       globalid (>= 0.3.6)
@@ -336,6 +337,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_decorator
   annotate
   autoprefixer-rails
   awesome_print
@@ -362,7 +364,7 @@ DEPENDENCIES
   hirb-unicode
   jbuilder (~> 2.5)
   jquery-rails
-  kaminari (~> 0.17.0)
+  kaminari
   letter_opener
   letter_opener_web
   listen (~> 3.0.5)
