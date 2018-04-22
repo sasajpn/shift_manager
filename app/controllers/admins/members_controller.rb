@@ -1,5 +1,5 @@
 class Admins::MembersController < Admins::ApplicationController
-  before_action :set_member, only: [:show]
+  before_action :set_member, only: [:show, :edit, :update]
   before_action :set_team, only: [:new, :create]
 
   def index
@@ -25,8 +25,8 @@ class Admins::MembersController < Admins::ApplicationController
   end
 
   def update
-    if @owner.update(update_params)
-      redirect_to admins_owner_url(@owner)
+    if @member.update(update_params)
+      redirect_to admins_member_url(@member)
     else
       render :edit
     end
