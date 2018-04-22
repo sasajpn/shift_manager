@@ -6,6 +6,7 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def show
+    @members = @team.members.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def new
