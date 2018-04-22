@@ -8,7 +8,9 @@
       <div class="icon">
         <span class="ion-person"></span>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <%= link_to admins_owners_path, class: 'small-box-footer' do %>
+        オーナー一覧 <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
     </div>
   </div>
   <div class="col-lg-3 col-xs-6">
@@ -32,7 +34,9 @@
       <div class="icon">
         <span class="ion-person-stalker"></span>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <%= link_to admins_users_path, class: 'small-box-footer' do %>
+        ユーザー一覧 <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
     </div>
   </div>
 </div>
