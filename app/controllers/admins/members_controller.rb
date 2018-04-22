@@ -8,6 +8,7 @@ class Admins::MembersController < Admins::ApplicationController
   end
 
   def new
+    @member = @team.members.build
   end
 
   def create
@@ -31,7 +32,7 @@ class Admins::MembersController < Admins::ApplicationController
   end
 
   def destroy
-    
+
   end
 
   private
