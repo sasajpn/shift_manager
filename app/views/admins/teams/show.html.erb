@@ -34,7 +34,7 @@
               </tr>
               <% @members.each do |member| %>
                 <tr>
-                  <td><%= member.user.name %></td>
+                  <td><%= link_to member.user.name, admins_member_path(member) %></td>
                   <td><%= member.role_i18n %></td>
                 </tr>
               <% end %>
