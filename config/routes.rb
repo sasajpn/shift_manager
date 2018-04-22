@@ -18,11 +18,12 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :home, only: [:index]
     resources :owners do
-      resources :teams, shallow: true do
+      resources :teams, except: [:index], shallow: true do
         patch :update_identifier, on: :member
         resources :members
       end
     end
+    resources :teams, only: [:index]
     resources :users
   end
 

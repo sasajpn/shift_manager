@@ -3,6 +3,7 @@ class Admins::TeamsController < Admins::ApplicationController
   before_action :set_owner, only: [:new, :create]
 
   def index
+    @teams = Team.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
