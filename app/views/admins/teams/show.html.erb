@@ -34,7 +34,7 @@
               </tr>
               <% @members.each do |member| %>
                 <tr>
-                  <td><%= member.name %></td>
+                  <td><%= member.user.name %></td>
                   <td><%= member.role %></td>
                 </tr>
               <% end %>
