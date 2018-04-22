@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422020322) do
+ActiveRecord::Schema.define(version: 20180422034041) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 20180422020322) do
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "shift_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "member_id"
+    t.time     "start_time", null: false
+    t.time     "end_time",   null: false
+    t.integer  "status",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_shift_submissions_on_member_id", using: :btree
+  end
+
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.string   "name"
@@ -102,5 +112,6 @@ ActiveRecord::Schema.define(version: 20180422020322) do
 
   add_foreign_key "members", "teams"
   add_foreign_key "members", "users"
+  add_foreign_key "shift_submissions", "members"
   add_foreign_key "teams", "owners"
 end
