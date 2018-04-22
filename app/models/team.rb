@@ -1,6 +1,9 @@
 class Team < ApplicationRecord
   belongs_to :owner
 
+  has_many :members, dependent: :destroy
+  has_many :users, through: :member
+
   validates :name,
     presence: true
 
