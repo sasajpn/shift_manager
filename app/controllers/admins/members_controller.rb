@@ -1,4 +1,5 @@
 class Admins::MembersController < Admins::ApplicationController
+  before_action :set_member, only: [:show]
   before_action :set_team, only: [:new, :create]
 
   def index
@@ -47,6 +48,10 @@ class Admins::MembersController < Admins::ApplicationController
     params.fetch(:member, {}).permit(
       :role
     )
+  end
+
+  def set_member
+    @member = Member.find(params[:id])
   end
 
   def set_team
