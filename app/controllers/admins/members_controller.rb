@@ -1,5 +1,5 @@
 class Admins::MembersController < Admins::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update]
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :set_team, only: [:new, :create]
 
   def index
@@ -33,7 +33,8 @@ class Admins::MembersController < Admins::ApplicationController
   end
 
   def destroy
-
+    @member.destroy
+    redirect_to admins_team_url(@member.team)
   end
 
   private

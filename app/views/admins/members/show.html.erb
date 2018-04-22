@@ -11,6 +11,8 @@
           </li>
         </ul>
         <%= link_to '役職変更', edit_admins_member_path(@member), class: "btn btn-success btn-block" %>
+        <%= link_to '削除', admins_member_path(@member), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
       </div>
     </div>
   </div>
