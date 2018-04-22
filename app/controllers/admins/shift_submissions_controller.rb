@@ -1,4 +1,5 @@
 class Admins::ShiftSubmissionsController < Admins::ApplicationController
+  before_action :set_member, only: [:new]
 
   def index
   end
@@ -7,6 +8,7 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
   end
 
   def new
+    @shift_submission = @member.shift_submissions.build
   end
 
   def create
@@ -20,5 +22,27 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
 
   def destroy
   end
-  
+
+  private
+
+  def shift_submission_params
+    params.fetch(:shift_submission, {}).permit(
+      :start_time, :end_time
+    )
+  end
+
+  def update_params
+    params.fetch(:shift_submission, {}).permit(
+      :status
+    )
+  end
+
+  def set_member
+    @member = Member.find(params[:member_id])
+  end
+
+  def set_shift_submission
+    @shift_submission = ShiftSubmission.find(params[:id])
+  end
+
 end

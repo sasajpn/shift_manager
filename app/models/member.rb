@@ -2,6 +2,8 @@ class Member < ApplicationRecord
   belongs_to :team
   belongs_to :user
 
+  has_many :shift_submissions, dependent: :destroy
+
   validates :user_id, :role,
     presence: true
   validates :user_id,
