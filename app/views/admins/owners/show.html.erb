@@ -7,7 +7,7 @@
         <p class="text-muted text-center"><%= @owner.email %></p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>登録チーム数</b> <a class="pull-right">0</a>
+            <b>登録チーム数</b> <a class="pull-right"><%= @owner.teams.count %></a>
           </li>
         </ul>
         <%= link_to 'プロフィール編集', edit_admins_owner_path(@owner), class: "btn btn-success btn-block" %>
