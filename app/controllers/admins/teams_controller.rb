@@ -1,5 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
-  before_action :set_team, only: [:show, :edit, :update]
+  before_action :set_team, only: [:show, :edit, :update, :update_identifier]
   before_action :set_owner, only: [:new, :create]
 
   def index
@@ -33,6 +33,14 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def destroy
+  end
+
+  def update_identifier
+    if @team.update(identifier: SecureRandom.hex(5))
+      redirect_to admins_team_url(@team)
+    else
+      render :new
+    end
   end
 
   private
