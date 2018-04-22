@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         patch :update_identifier, on: :member
       end
     end
+    resources :users
   end
 
 end
