@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-form :model="shiftSubmission" method="post" action="/admins/members/1/shift_submissions" label-width="120px">
+      <csrf></csrf>
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
@@ -48,17 +49,22 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      shiftSubmission: {
-        date: '',
-        startTime: '',
-        endTime: ''
+  import CSRF from 'components/shared/csrf.vue';
+
+  export default {
+    components: {
+      csrf: CSRF
+    },
+    data() {
+      return {
+        shiftSubmission: {
+          date: '',
+          startTime: '',
+          endTime: ''
+        }
       }
     }
   }
-}
 </script>
 
 <style scoped>
