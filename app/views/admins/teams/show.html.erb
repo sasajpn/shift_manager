@@ -8,7 +8,7 @@
           data: { confirm: '認証コードを更新してもよろしいですか？' }, class: 'btn btn-block btn-warning btn-sm' %>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>従業員数</b> <a class="pull-right">0</a>
+            <b>従業員数</b> <span class="pull-right"><%= @team.members.count %></span>
           </li>
         </ul>
         <%= link_to '登録内容変更', edit_admins_team_path(@team), class: "btn btn-success btn-block" %>
