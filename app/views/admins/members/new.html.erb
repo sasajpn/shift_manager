@@ -7,6 +7,7 @@
         </div>
         <div class="box-body">
           <%= f.alert_message "以下のエラー内容を修正してください" %>
+          <%= f.select :role, Member.roles_i18n.invert %>
         </div>
         <div class="box-footer">
           <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
