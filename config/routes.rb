@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :owners do
       resources :teams, shallow: true do
         patch :update_identifier, on: :member
+        resources :members
       end
     end
     resources :users
