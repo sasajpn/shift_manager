@@ -13,8 +13,8 @@ class Admins::MembersController < Admins::ApplicationController
 
   def create
     @member = @team.members.build(create_params)
-    if @owner.save
-      redirect_to admins_owners_url
+    if @member.save
+      redirect_to admins_team_url(@team)
     else
       render :new
     end

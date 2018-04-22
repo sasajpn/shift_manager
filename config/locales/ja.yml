@@ -20,12 +20,15 @@ ja:
         first_name: 名
       team:
         name: 会社名
-    enums:
       member:
-        role:
-          manager: 店長
-          full_timer: 正社員
-          part_timer: パートタイマー
+        user_id: ユーザー
+        role: 役職
+  enums:
+    member:
+      role:
+        manager: 店長
+        full_timer: 正社員
+        part_timer: パートタイマー
   date:
     abbr_day_names:
     - 日
