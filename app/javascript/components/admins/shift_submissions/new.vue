@@ -1,8 +1,9 @@
 <template>
   <div>
-    <el-form :model="shiftSubmission" method="post" action="/users" label-width="120px">
+    <el-form :model="shiftSubmission" method="post" action="/admins/members/1/shift_submissions" label-width="120px">
       <el-form-item label="希望日" required>
         <el-date-picker
+          name="shift_submission[submitted_date]"
           v-model="shiftSubmission.date"
           type="date"
           placeholder="日付を選択してください">
@@ -40,7 +41,7 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登録</el-button>
+        <el-button native-type="submit" type="primary">登録</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -55,11 +56,6 @@ export default {
         startTime: '',
         endTime: ''
       }
-    }
-  },
-  methods: {
-    onSubmit() {
-      console.log('submit!');
     }
   }
 }
