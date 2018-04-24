@@ -67,12 +67,12 @@ ActiveRecord::Schema.define(version: 20180422034041) do
 
   create_table "shift_submissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "member_id"
-    t.date     "submitted_date", null: false
-    t.string   "start_time",     null: false
-    t.string   "end_time",       null: false
-    t.integer  "status",         null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.date     "submitted_date",             null: false
+    t.string   "start_time",                 null: false
+    t.string   "end_time",                   null: false
+    t.integer  "status",         default: 0, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["member_id"], name: "index_shift_submissions_on_member_id", using: :btree
   end
 

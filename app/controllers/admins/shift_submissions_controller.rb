@@ -1,5 +1,5 @@
 class Admins::ShiftSubmissionsController < Admins::ApplicationController
-  before_action :set_member, only: [:new]
+  before_action :set_member, only: [:new, :create]
 
   def index
   end
@@ -12,9 +12,16 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
   end
 
   def create
+    @shift_submission = @member.shift_submissions.build(shift_submission_params)
+    if @shift_submission.save
+      redirect_to admins_member_url(@member)
+    else
+      render :new
+    end
   end
 
   def edit
+
   end
 
   def update
@@ -27,7 +34,7 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
 
   def shift_submission_params
     params.fetch(:shift_submission, {}).permit(
-      :start_time, :end_time
+      :submitted_date, :start_time, :end_time
     )
   end
 

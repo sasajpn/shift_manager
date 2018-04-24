@@ -5,7 +5,7 @@ class CreateShiftSubmissions < ActiveRecord::Migration[5.0]
       t.date :submitted_date, null: false
       t.string :start_time, null: false
       t.string :end_time, null: false
-      t.integer :status, defalut: 0, null: false
+      t.integer :status, default: 0, null: false
 
       t.timestamps
     end
