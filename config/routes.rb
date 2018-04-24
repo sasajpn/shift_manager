@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
-        resources :shift_submissions, only: [:edit]
+        resources :shift_submissions, only: [:edit, :update]
       end
     end
   end
