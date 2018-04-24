@@ -1,18 +1,15 @@
+<%= javascript_pack_tag 'admins/shift_adjustments/new' %>
+<%= stylesheet_pack_tag 'admins/shift_adjustments/new' %>
+
 <div class="row">
   <div class="col-md-8">
     <div class="box box-default">
-      <%= bootstrap_form_for [:admins, @member, @shift_submission] do |f| %>
         <div class="box-header with-border">
           <h3 class="box-title">シフト登録</h3>
         </div>
         <div class="box-body">
-          <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <div id="shift_submissions_new"></div>
+          <div id="shift_adjustments_new" data-shift_submission_id="<%= @shift_submission.id %>"></div>
         </div>
-        <div class="box-footer">
-          <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
