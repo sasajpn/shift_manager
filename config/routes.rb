@@ -29,4 +29,12 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      namespace :admins do
+        resources :shift_submissions, only: [:edit]
+      end
+    end
+  end
+
 end
