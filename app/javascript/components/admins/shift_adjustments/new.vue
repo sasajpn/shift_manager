@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import { new } from 'api/admins/shift_adjustments.js'
+  import { getShiftSubmission } from 'api/admins/shift_adjustments.js'
   import CSRF from 'components/shared/csrf.vue';
 
   export default {
@@ -78,6 +78,7 @@
         this.form.end_time = res.end_time
       })
       this.form.action = '/admins/shift_submissions/' + this.shiftSubmissionId + '/shift_adjustments'
+    }
   }
 </script>
 
