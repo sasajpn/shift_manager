@@ -1,13 +1,15 @@
 <template>
   <div>
     <el-form
-      :model="shiftSubmission"
+      :model="form"
+      method="patch"
+      :action="form.action"
       label-width="120px">
       <csrf></csrf>
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
-          v-model="shiftSubmission.submitted_date"
+          v-model="form.submitted_date"
           type="date"
           placeholder="日付を選択してください">
         </el-date-picker>
@@ -18,7 +20,7 @@
             <el-time-select
               placeholder="開始時刻"
               name="shift_submission[start_time]"
-              v-model="shiftSubmission.start_time"
+              v-model="form.start_time"
               :picker-options="{
                 start: '00:00',
                 step: '00:10',
@@ -32,28 +34,26 @@
             <el-time-select
               placeholder="終了時刻"
               name="shift_submission[end_time]"
-              v-model="shiftSubmission.end_time"
+              v-model="form.end_time"
               :picker-options="{
                 start: '00:00',
                 step: '00:15',
                 end: '36:00',
-                minTime: shiftSubmission.start_time
+                minTime: form.start_time
               }">
             </el-time-select>
           </el-form-item>
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button
-          @click="onSubmit"
-          type="primary">更新</el-button>
+        <el-button native-type="submit" type="primary">更新</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import { edit, update } from 'api/admins/shift_submissions.js'
+  import { edit } from 'api/admins/shift_submissions.js'
   import CSRF from 'components/shared/csrf.vue'
 
   export default {
@@ -62,26 +62,21 @@
     },
     data() {
       return {
-        shiftSubmission: {
-          id: document.getElementById('shift_submission_id').value,
+        form: {
+          id: document.getElementById('shift_submissions_edit').dataset.shift_submission_id,
           submitted_date: '',
           start_time: '',
-          end_time: ''
+          end_time: '',
+          action: ''
         }
       }
     },
-    methods: {
-      onSubmit() {
-        let csrf = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        update(this.shiftSubmission.id, this.shiftSubmission, csrf).then((res) => {
-        })
-      }
-    },
     created () {
-      edit(this.shiftSubmission.id).then((res) => {
-        this.shiftSubmission.submitted_date = res.shift_submission.submitted_date
-        this.shiftSubmission.start_time = res.shift_submission.start_time
-        this.shiftSubmission.end_time = res.shift_submission.end_time
+      edit(this.form.id).then((res) => {
+        this.form.submitted_date = res.submitted_date
+        this.form.start_time = res.start_time
+        this.form.end_time = res.end_time
+        this.form.action = '/admins/shift_submissions/' + this.form.id
       })
     }
   }

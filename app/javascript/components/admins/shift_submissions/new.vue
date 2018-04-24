@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-form :model="shiftSubmission" method="post" action="/admins/members/1/shift_submissions" label-width="120px">
+    <el-form :model="shiftSubmission" method="post" :action="shiftSubmission.action" label-width="120px">
       <csrf></csrf>
       <el-form-item label="希望日" required>
         <el-date-picker
@@ -60,7 +60,8 @@
         shiftSubmission: {
           date: '',
           startTime: '',
-          endTime: ''
+          endTime: '',
+          action: ''
         }
       }
     }

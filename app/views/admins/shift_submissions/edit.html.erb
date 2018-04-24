@@ -5,17 +5,12 @@
 <div class="row">
   <div class="col-md-8">
     <div class="box box-default">
-      <%= bootstrap_form_for [:admins, @shift_submission] do |f| %>
-        <div class="box-header with-border">
-          <h3 class="box-title">シフト希望変更</h3>
-        </div>
-        <div class="box-body">
-          <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.hidden_field :id, value: @shift_submission.id %>
-          <div id="shift_submissions_edit">
-          </div>
-        </div>
-      <% end %>
+      <div class="box-header with-border">
+        <h3 class="box-title">シフト希望変更</h3>
+      </div>
+      <div class="box-body">
+        <div id="shift_submissions_edit" data-shift_submission_id="<%= @shift_submission.id %>"></div>
+      </div>
     </div>
   </div>
 </div>
