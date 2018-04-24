@@ -53,6 +53,7 @@
 </template>
 
 <script>
+  import { new } from 'api/admins/shift_adjustments.js'
   import CSRF from 'components/shared/csrf.vue';
 
   export default {
@@ -61,8 +62,8 @@
     },
     data() {
       return {
+        shiftSubmissionId: document.getElementById('shift_adjustments_new').dataset.shift_submission_id,
         form: {
-          shift_submission_id: document.getElementById('shift_adjustments_new').dataset.shift_submission_id,
           submittedDate: '',
           startTime: '',
           endTime: '',
@@ -71,7 +72,12 @@
       }
     },
     created () {
-      this.form.action = '/admins/shift_submissions/' + this.form.shift_submission_id + '/shift_adjustments'
+      edit(this.shiftSubmissionId).then((res) => {
+        this.form.submitted_date = res.submitted_date
+        this.form.start_time = res.start_time
+        this.form.end_time = res.end_time
+      })
+      this.form.action = '/admins/shift_submissions/' + this.shiftSubmissionId + '/shift_adjustments'
   }
 </script>
 

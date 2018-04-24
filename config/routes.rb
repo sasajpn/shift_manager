@@ -34,7 +34,9 @@ Rails.application.routes.draw do
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
-        resources :shift_submissions, only: [:edit, :update]
+        resources :shift_submissions, only: [:edit], shallow: true do
+          resources :shift_adjustments, only: [:new]
+        end
       end
     end
   end
