@@ -6,6 +6,7 @@ class Admins::MembersController < Admins::ApplicationController
   end
 
   def show
+    @shift_submissions = @member.shift_submissions.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
