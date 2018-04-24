@@ -2,8 +2,8 @@
   <div>
     <el-form
       :model="form"
-      method="patch"
       :action="form.action"
+      method="patch"
       label-width="120px">
       <csrf></csrf>
       <el-form-item label="希望日" required>

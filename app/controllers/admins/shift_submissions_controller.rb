@@ -14,7 +14,6 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
   end
 
   def create
-    raise
     @shift_submission = @member.shift_submissions.build(shift_submission_params)
     if @shift_submission.save
       redirect_to admins_member_url(@member)
