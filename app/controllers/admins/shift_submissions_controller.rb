@@ -1,10 +1,12 @@
 class Admins::ShiftSubmissionsController < Admins::ApplicationController
+  before_action :set_shift_submission, only: [:show, :edit, :update, :destroy]
   before_action :set_member, only: [:new, :create]
 
   def index
   end
 
   def show
+    @member = @shift_submission.member
   end
 
   def new
@@ -44,12 +46,11 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
     )
   end
 
-  def set_member
-    @member = Member.find(params[:member_id])
-  end
-
   def set_shift_submission
     @shift_submission = ShiftSubmission.find(params[:id])
   end
 
+  def set_member
+    @member = Member.find(params[:member_id])
+  end
 end

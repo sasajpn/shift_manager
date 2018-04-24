@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>提出者</b> <span class="pull-right"><%= @member.user.name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>希望日</b> <span class="pull-right"><%= @shift_submission.submitted_date_format %></span>
+          </li>
+          <li class="list-group-item">
+            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+          </li>
+        </ul>
+        <%= link_to 'シフト登録', new_admins_member_shift_submission_path(@member), class: "btn btn-primary btn-block" %>
+        <%= link_to '希望日時変更', edit_admins_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" %>
+        <%= link_to '削除', admins_shift_submission_path(@shift_submission), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>

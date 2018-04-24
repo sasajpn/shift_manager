@@ -36,7 +36,7 @@
               </tr>
               <% @shift_submissions.each do |shift_submission| %>
                 <tr>
-                  <td><%= shift_submission.submitted_date %></td>
+                  <td><%= link_to shift_submission.submitted_date, admins_shift_submission_path(shift_submission) %></td>
                   <td><%= shift_submission.start_time %></td>
                   <td><%= shift_submission.end_time %></td>
                 </tr>
