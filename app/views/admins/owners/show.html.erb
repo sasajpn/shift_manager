@@ -35,7 +35,7 @@
               <% @teams.each do |team| %>
                 <tr>
                   <td><%= link_to team.name, admins_team_path(team) %></td>
-                  <td></td>
+                  <td><%= team.members.count %></td>
                   <td><%= team.identifier %></td>
                 </tr>
               <% end %>
