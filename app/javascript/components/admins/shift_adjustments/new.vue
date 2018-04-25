@@ -6,12 +6,13 @@
       method="post"
       label-width="120px">
       <csrf></csrf>
-      <el-form-item label="希望日" required>
+      <el-form-item label="調整日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
-          v-model="form.submittedDate"
+          v-model="shiftSubmission.submittedDate"
           type="date"
-          placeholder="日付を選択してください">
+          placeholder="日付を選択してください"
+          disabled>
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
@@ -22,9 +23,9 @@
               name="shift_adjustment[start_time]"
               v-model="form.startTime"
               :picker-options="{
-                start: '00:00',
+                start: shiftSubmission.startTime,
                 step: '00:10',
-                end: '36:00'
+                end: shiftSubmission.endTime
               }">
             </el-time-select>
           </el-form-item>
@@ -36,9 +37,9 @@
               name="shift_adjustment[end_time]"
               v-model="form.endTime"
               :picker-options="{
-                start: '00:00',
-                step: '00:15',
-                end: '36:00',
+                start: shiftSubmission.startTime,
+                step: '00:10',
+                end: shiftSubmission.endTime,
                 minTime: form.startTime
               }">
             </el-time-select>
@@ -62,7 +63,12 @@
     },
     data() {
       return {
-        shiftSubmissionId: document.getElementById('shift_adjustments_new').dataset.shift_submission_id,
+        shiftSubmission: {
+          id: document.getElementById('shift_adjustments_new').dataset.shift_submission_id,
+          submittedDate: '',
+          startTime: '',
+          endTime: ''
+        },
         form: {
           submittedDate: '',
           startTime: '',
@@ -72,12 +78,12 @@
       }
     },
     created () {
-      edit(this.shiftSubmissionId).then((res) => {
-        this.form.submitted_date = res.submitted_date
-        this.form.start_time = res.start_time
-        this.form.end_time = res.end_time
+      getShiftSubmission(this.shiftSubmission.id).then((res) => {
+        this.shiftSubmission.submittedDate = res.submitted_date
+        this.shiftSubmission.startTime = res.start_time
+        this.shiftSubmission.endTime = res.end_time
       })
-      this.form.action = '/admins/shift_submissions/' + this.shiftSubmissionId + '/shift_adjustments'
+      this.form.action = '/admins/shift_submissions/' + this.shiftSubmission.id + '/shift_adjustments'
     }
   }
 </script>
