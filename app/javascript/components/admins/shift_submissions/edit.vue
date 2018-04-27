@@ -3,7 +3,7 @@
     <el-form
       :model="form"
       :action="form.action"
-      :method="form.method"
+      method="post"
       label-width="120px">
       <input type="hidden" name="_method" value="patch" />
       <csrf></csrf>
@@ -68,8 +68,7 @@
           submittedDate: '',
           startTime: '',
           endTime: '',
-          action: '',
-          method: 'post'
+          action: ''
         }
       }
     },
