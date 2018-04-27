@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-form
-      :model="form"
+      :model="shiftAdjustment"
       :action="form.action"
       method="post"
       label-width="120px">
@@ -22,7 +22,7 @@
             <el-time-select
               placeholder="開始時刻"
               name="shift_adjustment[start_time]"
-              v-model="form.start_time"
+              v-model="shiftAdjustment.startTime"
               :picker-options="{
                 start: shiftSubmission.startTime,
                 step: '00:10',
@@ -36,12 +36,12 @@
             <el-time-select
               placeholder="終了時刻"
               name="shift_adjustment[end_time]"
-              v-model="form.end_time"
+              v-model="shiftAdjustment.endTime"
               :picker-options="{
                 start: shiftSubmission.startTime,
                 step: '00:10',
                 end: shiftSubmission.endTime,
-                minTime: form.start_time
+                minTime: shiftAdjustment.startTime
               }">
             </el-time-select>
           </el-form-item>
@@ -69,23 +69,25 @@
           startTime: '',
           endTime: ''
         },
-        form: {
+        shiftAdjustment: {
           id: document.getElementById('shift_adjustments_edit').dataset.shift_adjustment_id,
-          start_time: '',
-          end_time: '',
+          startTime: '',
+          endTime: '',
+        },
+        form: {
           action: ''
         }
       }
     },
     created () {
-      getShiftAdjustment(this.form.id).then((res) => {
-        this.form.start_time = res.shift_adjustment.start_time
-        this.form.end_time = res.shift_adjustment.end_time
+      getShiftAdjustment(this.shiftAdjustment.id).then((res) => {
+        this.shiftAdjustment.startTime = res.shift_adjustment.start_time
+        this.shiftAdjustment.endTime = res.shift_adjustment.end_time
         this.shiftSubmission.submittedDate = res.shift_submission.submitted_date
         this.shiftSubmission.startTime = res.shift_submission.start_time
         this.shiftSubmission.endTime = res.shift_submission.end_time
       })
-      this.form.action = '/admins/shift_adjustments/' + this.form.id
+      this.form.action = '/admins/shift_adjustments/' + this.shiftAdjustment.id
     }
   }
 </script>
