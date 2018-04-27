@@ -31,6 +31,8 @@ class Admins::ShiftAdjustmentsController < Admins::ApplicationController
   end
 
   def destroy
+    @shift_adjustment.destroy
+    redirect_to admins_shift_submission_url(@shift_adjustment.shift_submission)
   end
 
   private
