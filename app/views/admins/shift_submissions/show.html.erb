@@ -38,9 +38,9 @@
                 <th>終了時間</th>
               </tr>
               <tr>
-                <td><%= link_to @shift_submission.submitted_date_format, '#' %></td>
+                <td><%= link_to @shift_submission.submitted_date_format, admins_shift_adjustment_path(@shift_adjustment) %></td>
                 <td><%= @shift_adjustment.start_time %></td>
-                <td><%= @shift_submission.end_time %></td>
+                <td><%= @shift_adjustment.end_time %></td>
               </tr>
             </tbody>
           </table>
