@@ -1,6 +1,8 @@
 class ShiftAdjustment < ApplicationRecord
   belongs_to :shift_submission
 
+  has_one :member, through: :shift_submission
+
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
 

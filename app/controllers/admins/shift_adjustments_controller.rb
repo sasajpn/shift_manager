@@ -1,5 +1,10 @@
 class Admins::ShiftAdjustmentsController < Admins::ApplicationController
+  before_action :set_shift_adjustment, only: [:show]
   before_action :set_shift_submission, only: [:new, :create]
+
+  def show
+    @member = @shift_adjustment.member
+  end
 
   def new
     @shift_adjustment = @shift_submission.build_shift_adjustment
@@ -20,6 +25,10 @@ class Admins::ShiftAdjustmentsController < Admins::ApplicationController
     params.fetch(:shift_adjustment, {}).permit(
       :start_time, :end_time
     )
+  end
+
+  def set_shift_adjustment
+    @shift_adjustment = ShiftAdjustment.find(params[:id])
   end
 
   def set_shift_submission
