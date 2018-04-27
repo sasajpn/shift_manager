@@ -15,6 +15,6 @@ class Api::V1::Admins::ShiftAdjustmentsController < Api::V1::Admins::Application
   end
 
   def set_shift_submission
-    @shift_submission = ShiftSubmission.find(params[:shift_submission_id]) || @shift_adjustment.shift_submission
+    @shift_submission = @shift_adjustment.shift_submission || ShiftSubmission.find(params[:shift_submission_id])
   end
 end

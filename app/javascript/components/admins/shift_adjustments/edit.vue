@@ -9,9 +9,10 @@
       <el-form-item label="調整日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
-          v-model="form.submitted_date"
+          v-model="shiftSubmission.submittedDate"
           type="date"
-          placeholder="日付を選択してください">
+          placeholder="日付を選択してください"
+          disabled>
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
@@ -77,9 +78,11 @@
     },
     created () {
       getShiftAdjustment(this.form.id).then((res) => {
-        console.log(res)
-        this.form.start_time = res.start_time
-        this.form.end_time = res.end_time
+        this.form.start_time = res.shift_adjustment.start_time
+        this.form.end_time = res.shift_adjustment.end_time
+        this.shiftSubmission.submittedDate = res.shift_submission.submitted_date
+        this.shiftSubmission.startTime = res.shift_submission.start_time
+        this.shiftSubmission.endTime = res.shift_submission.end_time
       })
       this.form.action = '/admins/shift_adjustments/' + this.form.id
     }

@@ -9,10 +9,9 @@
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
-          v-model="shiftSubmission.submittedDate"
+          v-model="form.submittedDate"
           type="date"
-          placeholder="日付を選択してください
-          disabled>
+          placeholder="日付を選択してください">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
