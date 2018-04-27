@@ -2,8 +2,8 @@
   <div>
     <el-form
       :model="form"
-      :action="form.action"
       method="patch"
+      :action="form.action"
       label-width="120px">
       <csrf></csrf>
       <el-form-item label="調整日" required>
@@ -40,7 +40,7 @@
                 start: shiftSubmission.startTime,
                 step: '00:10',
                 end: shiftSubmission.endTime,
-                minTime: form.startTime
+                minTime: form.start_time
               }">
             </el-time-select>
           </el-form-item>

@@ -23,6 +23,11 @@ class Admins::ShiftAdjustmentsController < Admins::ApplicationController
   end
 
   def update
+    if @shift_adjustment.update(shift_adjustment_params)
+      redirect_to admins_shift_adjustment_url(@shift_adjustment)
+    else
+      render :edit
+    end
   end
 
   def destroy
