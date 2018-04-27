@@ -24,10 +24,14 @@ class Admins::ShiftSubmissionsController < Admins::ApplicationController
   end
 
   def edit
-
   end
 
   def update
+    if @shift_submission.update(shift_submission_params)
+      redirect_to admins_shift_submission_url(@shift_submission)
+    else
+      render :edit
+    end
   end
 
   def destroy
