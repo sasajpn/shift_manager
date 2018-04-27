@@ -77,6 +77,7 @@
     },
     created () {
       getShiftAdjustment(this.form.id).then((res) => {
+        console.log(res)
         this.form.start_time = res.start_time
         this.form.end_time = res.end_time
       })
