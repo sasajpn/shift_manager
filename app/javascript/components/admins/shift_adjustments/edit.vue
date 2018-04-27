@@ -2,9 +2,10 @@
   <div>
     <el-form
       :model="form"
-      method="patch"
       :action="form.action"
+      method="post"
       label-width="120px">
+      <input type="hidden" name="_method" value="patch" />
       <csrf></csrf>
       <el-form-item label="調整日" required>
         <el-date-picker
