@@ -70,7 +70,6 @@
           endTime: ''
         },
         form: {
-          submittedDate: '',
           startTime: '',
           endTime: '',
           action: ''
