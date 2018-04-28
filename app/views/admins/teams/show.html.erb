@@ -10,6 +10,12 @@
           <li class="list-group-item">
             <b>従業員数</b> <span class="pull-right"><%= @team.members.count %></span>
           </li>
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
         </ul>
         <%= link_to 'シフト希望一覧', admins_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
         <%= link_to 'シフト調整済一覧', admins_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
