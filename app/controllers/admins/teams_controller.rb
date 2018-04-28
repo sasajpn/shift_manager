@@ -49,7 +49,7 @@ class Admins::TeamsController < Admins::ApplicationController
 
   def team_params
     params.fetch(:team, {}).permit(
-      :name
+      :name, :open_time, :close_time
     )
   end
 
