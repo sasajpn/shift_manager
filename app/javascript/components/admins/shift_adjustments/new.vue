@@ -1,14 +1,13 @@
 <template>
   <div>
     <el-form
-      :model="form"
+      :model="shiftAdjustment"
       :action="form.action"
       method="post"
       label-width="120px">
       <csrf></csrf>
       <el-form-item label="調整日" required>
         <el-date-picker
-          name="shift_submission[submitted_date]"
           v-model="shiftSubmission.submittedDate"
           type="date"
           placeholder="日付を選択してください"
@@ -21,7 +20,7 @@
             <el-time-select
               placeholder="開始時刻"
               name="shift_adjustment[start_time]"
-              v-model="form.startTime"
+              v-model="shiftAdjustment.startTime"
               :picker-options="{
                 start: shiftSubmission.startTime,
                 step: '00:10',
@@ -35,12 +34,12 @@
             <el-time-select
               placeholder="終了時刻"
               name="shift_adjustment[end_time]"
-              v-model="form.endTime"
+              v-model="shiftAdjustment.endTime"
               :picker-options="{
                 start: shiftSubmission.startTime,
                 step: '00:10',
                 end: shiftSubmission.endTime,
-                minTime: form.startTime
+                minTime: shiftAdjustment.startTime
               }">
             </el-time-select>
           </el-form-item>
@@ -69,9 +68,11 @@
           startTime: '',
           endTime: ''
         },
-        form: {
+        shiftAdjustment: {
           startTime: '',
-          endTime: '',
+          endTime: ''
+        },
+        form: {
           action: ''
         }
       }

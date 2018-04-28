@@ -67,7 +67,6 @@ ActiveRecord::Schema.define(version: 20180424105943) do
 
   create_table "shift_adjustments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "shift_submission_id"
-    t.date     "adjusted_date",       null: false
     t.string   "start_time",          null: false
     t.string   "end_time",            null: false
     t.datetime "created_at",          null: false
