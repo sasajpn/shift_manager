@@ -15,3 +15,7 @@ end
     last_name: '従業員', first_name: '太郎'
   )
 end
+
+Owner.first.teams.create(name: 'ABC株式会社')
+
+Team.first.members.create(user_id: User.first.id, role: 'part_timer')
