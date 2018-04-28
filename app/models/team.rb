@@ -3,6 +3,8 @@ class Team < ApplicationRecord
 
   has_many :members, dependent: :destroy
   has_many :users, through: :member
+  has_many :shift_submissions, through: :members
+  has_many :shift_adjustments, through: :shift_submissions
 
   validates :name,
     presence: true
