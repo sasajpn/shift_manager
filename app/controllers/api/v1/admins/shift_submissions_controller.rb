@@ -1,5 +1,10 @@
 class Api::V1::Admins::ShiftSubmissionsController < Api::V1::Admins::ApplicationController
   before_action :set_submission, only: [:edit]
+  before_action :set_member, only: [:new]
+
+  def new
+    @team = @member.team
+  end
 
   def edit
   end
@@ -14,5 +19,9 @@ class Api::V1::Admins::ShiftSubmissionsController < Api::V1::Admins::Application
 
   def set_submission
     @shift_submission = ShiftSubmission.find(params[:id])
+  end
+
+  def set_member
+    @member = Member.find(params[:member_id])
   end
 end
