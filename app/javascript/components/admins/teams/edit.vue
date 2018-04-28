@@ -46,7 +46,7 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button native-type="submit" type="primary">登録</el-button>
+        <el-button native-type="submit" type="primary">更新</el-button>
       </el-form-item>
     </el-form>
   </div>
