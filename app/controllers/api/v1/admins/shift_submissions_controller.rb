@@ -7,6 +7,7 @@ class Api::V1::Admins::ShiftSubmissionsController < Api::V1::Admins::Application
   end
 
   def edit
+    @team = @shift_submission.team
   end
 
   private
