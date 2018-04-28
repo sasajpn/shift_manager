@@ -16,6 +16,6 @@ end
   )
 end
 
-Owner.first.teams.create(name: 'ABC株式会社')
+Owner.first.teams.create(name: 'ABC株式会社', open_time: '08:00', close_time: '18:00')
 
 Team.first.members.create(user_id: User.first.id, role: 'part_timer')
