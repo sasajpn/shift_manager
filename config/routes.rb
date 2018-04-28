@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admins do
         resources :shift_submissions, only: [:edit], shallow: true do
-          resources :shift_adjustments, only: [:show, :new]
+          resources :shift_adjustments, only: [:show, :new, :edit]
         end
       end
     end

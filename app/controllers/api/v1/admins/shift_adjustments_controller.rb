@@ -1,11 +1,14 @@
 class Api::V1::Admins::ShiftAdjustmentsController < Api::V1::Admins::ApplicationController
-  before_action :set_shift_adjustment, only: [:show]
-  before_action :set_shift_submission, only: [:show, :new]
+  before_action :set_shift_adjustment, only: [:show, :edit]
 
   def show
   end
 
   def new
+  end
+
+  def edit
+    @shift_submission = @shift_adjustment.shift_submission
   end
 
   private
@@ -15,6 +18,6 @@ class Api::V1::Admins::ShiftAdjustmentsController < Api::V1::Admins::Application
   end
 
   def set_shift_submission
-    @shift_submission = @shift_adjustment.shift_submission || ShiftSubmission.find(params[:shift_submission_id])
+    @shift_submission = ShiftSubmission.find(params[:shift_submission_id])
   end
 end

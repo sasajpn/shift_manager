@@ -6,8 +6,8 @@ export function getShiftSubmission (shift_submission_id) {
   })
 }
 
-export function getShiftAdjustment (shift_adjustment_id) {
+export function editShiftAdjustment (shift_adjustment_id) {
   return apiClient({
-    url: '/shift_adjustments/' + shift_adjustment_id
+    url: '/shift_adjustments/' + shift_adjustment_id + '/edit'
   })
 }
