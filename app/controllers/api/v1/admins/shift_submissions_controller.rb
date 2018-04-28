@@ -1,13 +1,7 @@
 class Api::V1::Admins::ShiftSubmissionsController < Api::V1::Admins::ApplicationController
-  before_action :set_submission, only: [:edit, :update]
+  before_action :set_submission, only: [:edit]
 
   def edit
-  end
-
-  def update
-    if @shift_submission.update(shift_submission_params)
-      head :ok
-    end
   end
 
   private
