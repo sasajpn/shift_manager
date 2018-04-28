@@ -12,11 +12,15 @@
           <tr>
             <th>名前</th>
             <th>従業員数</th>
+            <th>営業開始時間</th>
+            <th>営業終了時間</th>
           </tr>
           <% @teams.each do |team| %>
             <tr>
               <td><%= link_to team.name, admins_team_path(team) %></td>
               <td><%= team.members.count %></td>
+              <td><%= team.open_time %></td>
+              <td><%= team.close_time %></td>
             </tr>
           <% end %>
         </tbody>
