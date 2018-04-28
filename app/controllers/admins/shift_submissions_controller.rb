@@ -1,9 +1,10 @@
 class Admins::ShiftSubmissionsController < Admins::ApplicationController
   before_action :set_shift_submission, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:index]
   before_action :set_member, only: [:new, :create]
 
   def index
-    @shift_submissions = @team.shift_submissions.order(created_at: :desc).page(params[:page]).per(15)
+    @shift_submissions = @team.shift_submissions.order(submitted_date: :desc).page(params[:page]).per(15)
   end
 
   def show
