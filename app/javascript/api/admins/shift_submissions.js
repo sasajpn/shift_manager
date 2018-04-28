@@ -1,18 +1,7 @@
 import apiClient from 'helpers/api_client'
 
-export function editShiftSubmission (id) {
+export function editShiftSubmission (shift_submission_id) {
   return apiClient({
-    url: 'shift_submissions/' + id + '/edit'
-  })
-}
-
-export function update (id, shiftSubmission, csrf) {
-  return apiClient({
-    url: 'shift_submissions/' + id,
-    headers: {
-      'X-CSRF-Token': csrf
-    },
-    method: 'PATCH',
-    data: { shift_submission: shiftSubmission }
+    url: 'shift_submissions/' + shift_submission_id + '/edit'
   })
 }
