@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import { getShiftSubmission } from 'api/admins/shift_adjustments.js'
+  import { newShiftAdjustment } from 'api/admins/shift_adjustments.js'
   import CSRF from 'components/shared/csrf.vue';
 
   export default {
@@ -77,7 +77,7 @@
       }
     },
     created () {
-      getShiftSubmission(this.shiftSubmission.id).then((res) => {
+      newShiftAdjustment(this.shiftSubmission.id).then((res) => {
         this.shiftSubmission.submittedDate = res.submitted_date
         this.shiftSubmission.startTime = res.start_time
         this.shiftSubmission.endTime = res.end_time

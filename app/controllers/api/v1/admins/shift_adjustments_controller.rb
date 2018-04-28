@@ -1,5 +1,6 @@
 class Api::V1::Admins::ShiftAdjustmentsController < Api::V1::Admins::ApplicationController
   before_action :set_shift_adjustment, only: [:show, :edit]
+  before_action :set_shift_submission, only: [:new]
 
   def show
   end
