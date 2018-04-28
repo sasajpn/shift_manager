@@ -1,6 +1,6 @@
 import apiClient from 'helpers/api_client'
 
-export function edit (id) {
+export function editShiftSubmission (id) {
   return apiClient({
     url: 'shift_submissions/' + id + '/edit'
   })

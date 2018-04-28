@@ -38,7 +38,7 @@
               v-model="shiftSubmission.endTime"
               :picker-options="{
                 start: '00:00',
-                step: '00:15',
+                step: '00:10',
                 end: '36:00',
                 minTime: shiftSubmission.startTime
               }">
@@ -54,7 +54,7 @@
 </template>
 
 <script>
-  import { edit } from 'api/admins/shift_submissions.js'
+  import { editShiftSubmission } from 'api/admins/shift_submissions.js'
   import CSRF from 'components/shared/csrf.vue'
 
   export default {
@@ -76,7 +76,7 @@
       }
     },
     created () {
-      edit(this.shiftSubmission.id).then((res) => {
+      editShiftSubmission(this.shiftSubmission.id).then((res) => {
         this.shiftSubmission.submittedDate = res.submitted_date
         this.shiftSubmission.startTime = res.start_time
         this.shiftSubmission.endTime = res.end_time
