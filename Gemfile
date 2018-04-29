@@ -36,6 +36,9 @@ gem 'chronic'
 gem 'config'
 gem 'dotenv-rails'
 
+# LINE
+gem 'line-bot-api'
+
 gem 'webpacker', github: 'rails/webpacker'
 
 group :development, :test do
