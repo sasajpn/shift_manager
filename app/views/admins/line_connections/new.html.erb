@@ -1,0 +1,16 @@
+<div class="login-box">
+  <div class="login-logo">
+  </div>
+  <div class="login-box-body">
+    <p class="login-box-msg">システム管理者ログイン画面</p>
+    <%= form_for(@admin) do |f| %>
+      <div class="form-group has-feedback">
+        <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true, class: 'form-control' %>
+      </div>
+      <div class="form-group has-feedback">
+        <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
+      </div>
+      <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
+    <% end %>
+  </div>
+</div>
