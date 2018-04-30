@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
   }
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
     passwords:     'users/passwords',
     registrations: 'users/registrations'
   }
+
+  namespace :line do
+    post '/callback', to: 'webhook#callback'
+  end
 
   namespace :admins do
     resources :home, only: [:index]
