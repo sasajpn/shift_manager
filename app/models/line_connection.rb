@@ -1,0 +1,2 @@
+class LineConnection < ApplicationRecord
+end
