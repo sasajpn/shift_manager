@@ -10,9 +10,10 @@ class Line::WebhookController < ApplicationController
       when Line::Bot::Event::Postback
         case event['postback']['data']
         when 'connecting'
+          link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
           message = {
             type: 'text',
-            text: 'Connecting'
+            text: "https://c190a479.ngrok.io/admins/sign_in?#{link_token}"
           }
           client.reply_message(event['replyToken'], message)
         end
