@@ -26,7 +26,7 @@ class Admins::LineRichmenusController < Admins::ApplicationController
   private
 
   def line_richmenu_params
-    params.fetch(:team, {}).permit(
+    params.fetch(:line_richmenu, {}).permit(
       :type, :image
     )
   end
