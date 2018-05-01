@@ -24,6 +24,8 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'enum_help'
 gem 'friendly_id'
 gem 'banken'
+gem 'redis'
+gem 'redis-rails'
 # gem 'virtus'
 
 # Auhtenticate
