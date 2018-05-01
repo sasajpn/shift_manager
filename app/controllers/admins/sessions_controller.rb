@@ -4,7 +4,12 @@ class Admins::SessionsController < Devise::SessionsController
   private
 
   def after_sign_in_path_for(resource)
-    admins_home_index_url
+    if params[:linkToken]
+      @line_connection = current_admin.create_line_connection
+      redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{params[:linkToken]}&nonce=#{@line_connection.nonce}"
+    else
+      admins_home_index_url
+    end
   end
 
   def after_sign_out_path_for(resource)

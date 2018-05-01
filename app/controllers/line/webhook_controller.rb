@@ -6,6 +6,15 @@ class Line::WebhookController < ApplicationController
     events = client.parse_events_from(body)
 
     events.each do |event|
+      case event['type']
+      when 'accountLink'
+        case event['link']['result']
+        when 'ok'
+          if line_connection = LineConnection.find_by(nonce: event['link']['nonce'])
+            line_connection.update(line_user_id: event['source']['userId'])
+          end
+        end
+      end
       case event
       when Line::Bot::Event::Postback
         case event['postback']['data']
