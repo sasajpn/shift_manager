@@ -35,10 +35,24 @@ class Line::WebhookController < ApplicationController
           Line::ReplyEndTimeSelectService.new(event['replyToken'], start_time).reply
         when 'shift_submission[end_time]'
           line_user_id = event['source']['userId']
-          if start_time = Redis.current.hget(line_user_id, 'start_time')
-            submitted_date = start_time.to_date
-            User.first.members.first.shift_submissions.create(submitted_date: submitted_date, start_time: start_time.to_time.strftime('%H:%M'), end_time: event['postback']['params']['datetime'].to_time.strftime('%H:%M'))
-          end
+          start_time = Redis.current.hget(line_user_id, 'start_time')
+          end_time = event['postback']['params']['datetime']
+          Redis.current.hset(line_user_id, 'end_time', end_time)
+          # if start_time = Redis.current.hget(line_user_id, 'start_time')
+          #   submitted_date = start_time.to_date
+          #   User.first.members.first.shift_submissions.create(submitted_date: submitted_date, start_time: start_time.to_time.strftime('%H:%M'), end_time: event['postback']['params']['datetime'].to_time.strftime('%H:%M'))
+          # end
+          Line::ConfirmShiftSubmissionService.new(event['replyToken'], start_time, end_time).confirm
+        when 'shift_submission[regist]'
+          line_user_id = event['source']['userId']
+          start_time = Redis.current.hget(line_user_id, 'start_time')
+          end_time = Redis.current.hget(line_user_id, 'end_time')
+          Line::RegistShiftSubmissionService.new(event['replyToken'], start_time, end_time).regist
+        when 'shift_submission[cancel]'
+          line_user_id = event['source']['userId']
+          start_time = Redis.current.hget(line_user_id, 'start_time')
+          end_time = Redis.current.hget(line_user_id, 'end_time')
+          Line::CancelShiftSubmissionService.new(event['replyToken'], start_time, end_time).cancel
         end
       when Line::Bot::Event::Message
         case event.type
