@@ -10,13 +10,15 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>タイトル</th>
             <th>リッチメニューのID</th>
             <th>リッチメニューの画像</th>
             <th>表示タイプ</th>
           </tr>
           <% @line_richmenus.each do |line_richmenu| %>
             <tr>
-              <td><%= link_to line_richmenu.richmenu_id, '#' %></td>
+              <td><%= line_richmenu.title %></td>
+              <td><%= line_richmenu.richmenu_id %></td>
               <td><%= line_richmenu.image %></td>
               <td><%= line_richmenu.type %></td>
             </tr>
