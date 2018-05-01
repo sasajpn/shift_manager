@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   namespace :line do
     post '/callback', to: 'webhook#callback'
-    resources :richmenu
   end
 
   namespace :admins do
