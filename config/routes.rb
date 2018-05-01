@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :home, only: [:index]
     resources :line_connections, only: [:new]
+    resources :line_richmenu
     resources :owners do
       resources :teams, except: [:index], shallow: true do
         patch :update_identifier, on: :member
