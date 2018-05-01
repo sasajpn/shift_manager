@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180430154658) do
     t.string   "account_type"
     t.integer  "account_id"
     t.string   "nonce"
+    t.string   "line_user_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

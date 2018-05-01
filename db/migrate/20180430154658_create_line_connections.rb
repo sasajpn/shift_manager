@@ -4,6 +4,7 @@ class CreateLineConnections < ActiveRecord::Migration[5.0]
       t.string :account_type
       t.integer :account_id
       t.string :nonce
+      t.string :line_user_id
 
       t.timestamps
     end
