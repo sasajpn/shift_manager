@@ -23,9 +23,21 @@ class Line::WebhookController < ApplicationController
           link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
           message = {
             type: 'text',
-            text: "https://567a3b2f.ngrok.io/admins/line_connections/new?linkToken=#{link_token}"
+            text: "#{ENV['NGROK_URL']}/admins/line_connections/new?linkToken=#{link_token}"
           }
           client.reply_message(event['replyToken'], message)
+        when 'shift_submission'
+          Line::ReplyStartTimeSelectService.new(event['replyToken']).reply
+        when 'shift_submission[start_time]'
+          if member = User.first.members.first
+            submitted_date = event['postback']['params']['datetime'].to_date
+            start_time = event['postback']['params']['datetime'].to_time('%H:%M')
+            @shift_submission = member.shift_submissions.build(submitted_date: submitted_date, start_time: start_time)
+            Line::ReplyEndTimeSelectService.new(event['replyToken'], event['postback']['params']['datetime']).reply
+          end
+        when 'shift_submission[end_time]'
+          end_time = event['postback']['params']['datetime'].to_time('%H:%M')
+          @shift_submission.update(end_time: end_time)
         end
       when Line::Bot::Event::Message
         case event.type
