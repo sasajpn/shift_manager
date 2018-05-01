@@ -29,15 +29,16 @@ class Line::WebhookController < ApplicationController
         when 'shift_submission'
           Line::ReplyStartTimeSelectService.new(event['replyToken']).reply
         when 'shift_submission[start_time]'
-          if member = User.first.members.first
-            submitted_date = event['postback']['params']['datetime'].to_date
-            start_time = event['postback']['params']['datetime'].to_time('%H:%M')
-            @shift_submission = member.shift_submissions.build(submitted_date: submitted_date, start_time: start_time)
-            Line::ReplyEndTimeSelectService.new(event['replyToken'], event['postback']['params']['datetime']).reply
-          end
+          line_user_id = event['source']['userId']
+          start_time = event['postback']['params']['datetime']
+          Redis.current.hset(line_user_id, 'start_time', start_time)
+          Line::ReplyEndTimeSelectService.new(event['replyToken'], start_time).reply
         when 'shift_submission[end_time]'
-          end_time = event['postback']['params']['datetime'].to_time('%H:%M')
-          @shift_submission.update(end_time: end_time)
+          line_user_id = event['source']['userId']
+          if start_time = Redis.current.hget(line_user_id, 'start_time')
+            submitted_date = start_time.to_date
+            User.first.members.first.shift_submissions.create(submitted_date: submitted_date, start_time: start_time.to_time.strftime('%H:%M'), end_time: event['postback']['params']['datetime'].to_time.strftime('%H:%M'))
+          end
         end
       when Line::Bot::Event::Message
         case event.type
