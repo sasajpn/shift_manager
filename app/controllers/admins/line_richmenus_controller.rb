@@ -1,6 +1,7 @@
 class Admins::LineRichmenusController < Admins::ApplicationController
 
   def index
+    @line_richmenus = LineRichmenu.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
