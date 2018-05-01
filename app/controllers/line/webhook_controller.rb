@@ -12,13 +12,14 @@ class Line::WebhookController < ApplicationController
         when 'ok'
           if line_connection = LineConnection.find_by(nonce: event['link']['nonce'])
             line_connection.update(line_user_id: event['source']['userId'])
+            Line::UpdateRichmenuService.new(line_connection).update
           end
         end
       end
       case event
       when Line::Bot::Event::Postback
         case event['postback']['data']
-        when 'connecting'
+        when 'connected'
           link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
           message = {
             type: 'text',
