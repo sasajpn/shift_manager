@@ -1,5 +1,5 @@
 class Admins::LineRichmenuController < Admins::ApplicationController
-  
+
   def index
   end
 

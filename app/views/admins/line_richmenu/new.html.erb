@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-default">
+      <%= bootstrap_form_for([:admins, @line_richmenu], as: :line_richmenu) do |f| %>
+        <div class="box-header with-border">
+          <h3 class="box-title">LINEリッチメニュー登録</h3>
+        </div>
+        <div class="box-body">
+          <%= f.alert_message "以下のエラー内容を修正してください" %>
+          <%= f.collection_select :user_id, User.all, :id, :email %>
+          <%= f.select :role, Member.roles_i18n.invert %>
+        </div>
+        <div class="box-footer">
+          <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
