@@ -33,6 +33,8 @@ class Admins::LineRichmenusController < Admins::ApplicationController
   end
 
   def destroy
+    @line_richmenu.destroy
+    redirect_to admins_line_richmenus_url
   end
 
   private
