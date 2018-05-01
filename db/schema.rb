@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20180501154629) do
   create_table "line_richmenus", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "type"
     t.string   "richmenu_id"
+    t.string   "title"
     t.string   "image"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

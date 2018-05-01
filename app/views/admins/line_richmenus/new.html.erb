@@ -7,7 +7,8 @@
         </div>
         <div class="box-body">
           <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.select :type, { "未連携" => "LineUnconnectedRichmenu", "連携" => "LineConnectedRichmenu" } %>
+          <%= f.select :type, { "未連携時" => "LineUnconnectedRichmenu", "連携時" => "LineConnectedRichmenu" } %>
+          <%= f.text_field :richmenu_id %>
           <%= f.text_field :image %>
         </div>
         <div class="box-footer">
