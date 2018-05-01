@@ -3,7 +3,7 @@
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">システム管理者ログイン画面</p>
-    <%= form_for(@admin) do |f| %>
+    <%= form_for([:admin, @admin]) do |f| %>
       <div class="form-group has-feedback">
         <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true, class: 'form-control' %>
       </div>

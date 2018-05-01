@@ -13,7 +13,7 @@ class Line::WebhookController < ApplicationController
           link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
           message = {
             type: 'text',
-            text: "https://5cbaa43f.ngrok.io/admins/line_connections/new?#{link_token}"
+            text: "https://567a3b2f.ngrok.io/admins/line_connections/new?linkToken=#{link_token}"
           }
           client.reply_message(event['replyToken'], message)
         end
