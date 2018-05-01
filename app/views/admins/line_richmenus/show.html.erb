@@ -1,0 +1,19 @@
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= @line_richmenu.title %></h3>
+  </div>
+  <div class="box-body">
+    <strong>リッチメニューのID</strong>
+    <p class="text-muted"><%= @line_richmenu.richmenu_id %></p>
+    <hr>
+    <strong>リッチメニューの画像</strong>
+    <p class="text-muted"><%= @line_richmenu.image %></p>
+    <hr>
+    <strong>表示タイプ</strong>
+    <p class="text-muted"><%= @line_richmenu.type %></p>
+    <hr>
+    <%= link_to '登録内容変更', edit_admins_line_richmenu_path(@line_richmenu), class: "btn btn-success btn-block" %>
+    <%= link_to '削除', admins_line_richmenu_path(@line_richmenu), method: :delete,
+      data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+  </div>
+</div>

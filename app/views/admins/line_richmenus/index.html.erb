@@ -17,7 +17,7 @@
           </tr>
           <% @line_richmenus.each do |line_richmenu| %>
             <tr>
-              <td><%= line_richmenu.title %></td>
+              <td><%= link_to line_richmenu.title, admins_line_richmenu_path(line_richmenu) %></td>
               <td><%= line_richmenu.richmenu_id %></td>
               <td><%= line_richmenu.image %></td>
               <td><%= line_richmenu.type %></td>

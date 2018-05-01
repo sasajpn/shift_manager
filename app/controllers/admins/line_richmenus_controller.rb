@@ -1,4 +1,5 @@
 class Admins::LineRichmenusController < Admins::ApplicationController
+  before_action :set_line_richmenu, only: [:show, :edit, :update, :destroy]
 
   def index
     @line_richmenus = LineRichmenu.order(created_at: :desc).page(params[:page]).per(15)
@@ -20,6 +21,17 @@ class Admins::LineRichmenusController < Admins::ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @line_richmenu.update(line_richmenu_params)
+      redirect_to admins_line_richmenu_url(@line_richmenu)
+    else
+      render :edit
+    end
+  end
+
   def destroy
   end
 
@@ -29,5 +41,9 @@ class Admins::LineRichmenusController < Admins::ApplicationController
     params.fetch(:line_richmenu, {}).permit(
       :type, :richmenu_id, :title, :image
     )
+  end
+
+  def set_line_richmenu
+    @line_richmenu = LineRichmenu.find(params[:id])
   end
 end
