@@ -1,7 +1,7 @@
 <% if @line_richmenus.any? %>
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">チーム一覧</h3>
+      <h3 class="box-title">LINEのリッチメニュー一覧</h3>
       <div class="box-tools">
         <%= paginate @line_richmenus, theme: 'admins' %>
       </div>
@@ -20,7 +20,7 @@
               <td><%= link_to line_richmenu.title, admins_line_richmenu_path(line_richmenu) %></td>
               <td><%= line_richmenu.richmenu_id %></td>
               <td><%= line_richmenu.image %></td>
-              <td><%= line_richmenu.type %></td>
+              <td><%= line_richmenu.type.constantize.model_name.human %></td>
             </tr>
           <% end %>
         </tbody>

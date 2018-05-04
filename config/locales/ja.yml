@@ -1,6 +1,9 @@
 ja:
   activerecord:
     models:
+      line_richmenu: LINEリッチメニュー
+      line_unconnected_richmenu: 未連携時用リッチメニュー
+      line_connected_richmenu: 連携時用リッチメニュー
     attributes:
       owner:
         email: メールアドレス
