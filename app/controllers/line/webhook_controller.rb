@@ -8,7 +8,7 @@ class Line::WebhookController < ApplicationController
     events.each do |event|
       case event['type']
       when 'follow'
-        Line::CreateRichmenuService.new(event['source']['userId']).create
+        Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'accountLink'
         case event['link']['result']
         when 'ok'
@@ -17,17 +17,22 @@ class Line::WebhookController < ApplicationController
             Line::UpdateRichmenuService.new(line_connection).update
           end
         end
+      when 'postback'
+        case event['postback']['data']
+        when 'connected'
+          Line::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
+        end
       end
       case event
       when Line::Bot::Event::Postback
         case event['postback']['data']
-        when 'connected'
-          link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
-          message = {
-            type: 'text',
-            text: "#{ENV['NGROK_URL']}/admins/line_connections/new?linkToken=#{link_token}"
-          }
-          client.reply_message(event['replyToken'], message)
+        # when 'connected'
+        #   link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
+        #   message = {
+        #     type: 'text',
+        #     text: "#{ENV['NGROK_URL']}/admins/line_connections/new?linkToken=#{link_token}"
+        #   }
+        #   client.reply_message(event['replyToken'], message)
         when 'shift_submission'
           Line::ReplyStartTimeSelectService.new(event['replyToken']).reply
         when 'shift_submission[start_time]'

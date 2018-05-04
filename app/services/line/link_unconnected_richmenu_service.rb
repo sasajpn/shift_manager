@@ -1,13 +1,13 @@
 require 'net/https'
 
 module Line
-  class CreateRichmenuService
+  class LinkUnconnectedRichmenuService
     def initialize(line_user_id)
       @line_user_id = line_user_id
     end
 
-    def create
-      get_connected_richmenus.each do |richmenu|
+    def link
+      get_unconnected_richmenus.each do |richmenu|
         request_link_richmenu(richmenu.richmenu_id)
       end
     end
@@ -16,7 +16,7 @@ module Line
 
     attr_reader :line_user_id
 
-    def get_connected_richmenus
+    def get_unconnected_richmenus
       LineUnconnectedRichmenu.all
     end
 
