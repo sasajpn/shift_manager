@@ -8,7 +8,7 @@ module Line
 
     def link
       get_unconnected_richmenus.each do |richmenu|
-        request_link_richmenu(richmenu.richmenu_id)
+        request_link_unconnected_richmenu(richmenu.richmenu_id)
       end
     end
 
@@ -20,7 +20,7 @@ module Line
       LineUnconnectedRichmenu.all
     end
 
-    def request_link_richmenu(richmenu_id)
+    def request_link_unconnected_richmenu(richmenu_id)
       uri = URI.parse("https://api.line.me/v2/bot/user/#{line_user_id}/richmenu/#{richmenu_id}")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true

@@ -11,8 +11,10 @@ class Admins::LineConnectionsController < Admins::ApplicationController
   def create
     admin = Admin.find_by(email: params[:email])
     if admin && admin.valid_password?(params[:password])
-      @line_connection = admin.create_line_connection
-      redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{params[:linkToken]}&nonce=#{@line_connection.nonce}"
+      nonce = SecureRandom.urlsafe_base64
+      Redis.current.hset(nonce, 'type', 'Admin')
+      Redis.current.hset(nonce, 'id', admin.id)
+      redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{params[:linkToken]}&nonce=#{nonce}"
     else
       render :new
     end

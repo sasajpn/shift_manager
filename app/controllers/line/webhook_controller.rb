@@ -9,6 +9,7 @@ class Line::WebhookController < ApplicationController
       case event['type']
       when 'follow'
         Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+      when 'unfollow'
       when 'postback'
         case event['postback']['data']
         when 'connected'
@@ -17,10 +18,8 @@ class Line::WebhookController < ApplicationController
       when 'accountLink'
         case event['link']['result']
         when 'ok'
-          if line_connection = LineConnection.find_by(nonce: event['link']['nonce'])
-            line_connection.update(line_user_id: event['source']['userId'])
-            Line::UpdateRichmenuService.new(line_connection).update
-          end
+          Line::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
+          Line::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
         end
       end
       case event
