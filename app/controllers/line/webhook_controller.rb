@@ -7,6 +7,8 @@ class Line::WebhookController < ApplicationController
 
     events.each do |event|
       case event['type']
+      when 'follow'
+        Line::CreateRichmenuService.new(event['source']['userId']).create
       when 'accountLink'
         case event['link']['result']
         when 'ok'
