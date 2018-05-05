@@ -9,6 +9,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
 
   def show
     @member = @shift_submission.member
+    @shift_adjustment = @shift_submission.shift_adjustment
   end
 
   def new

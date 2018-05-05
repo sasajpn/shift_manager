@@ -9,7 +9,7 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   def create
     @shift_adjustment = @shift_submission.build_shift_adjustment(shift_adjustment_params)
     if @shift_adjustment.save
-      redirect_to admins_shift_submission_url(@shift_submission)
+      redirect_to users_shift_submission_url(@shift_submission)
     else
       render :new
     end
