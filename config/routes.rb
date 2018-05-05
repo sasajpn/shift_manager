@@ -40,6 +40,11 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :users do
+    resources :home, only: [:index]
+    resources :teams, only: [:index]
+  end
+
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
