@@ -1,4 +1,9 @@
 Admin.create(email: 'admin@example.com', password: 'password')
+User.create(
+  email: "user@example.com", password: 'password',
+  last_name_kana: 'タナカ', first_name_kana: 'タロウ',
+  last_name: '田中', first_name: '太郎'
+)
 
 1.upto(50) do |n|
   Owner.create(
