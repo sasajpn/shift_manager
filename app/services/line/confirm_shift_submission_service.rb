@@ -31,7 +31,7 @@ module Line
             "altText": "This is a confirm template",
             "template": {
               "type": "confirm",
-              "text": "#{start_time}~#{end_time}で希望を提出しますか？",
+              "text": "#{start_time.to_time.strftime('%Y年%m月%d日%H:%M')}~#{end_time.to_time.strftime('%Y年%m月%d日%H:%M')}で希望を提出しますか？",
               "actions": [
                 {
                   "type": "postback",
