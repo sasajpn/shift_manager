@@ -42,7 +42,9 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :home, only: [:index]
-    resources :teams, only: [:index, :show]
+    resources :teams, only: [:index, :show] do
+      resources :shift_submissions
+    end
   end
 
   namespace :api, { format: 'json' } do
