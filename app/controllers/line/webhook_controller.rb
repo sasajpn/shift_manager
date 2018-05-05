@@ -26,26 +26,16 @@ class Line::WebhookController < ApplicationController
         when 'shift_submission'
           Line::ReplyStartTimeSelectService.new(event['replyToken']).reply
         when 'shift_submission[start_time]'
-          line_user_id = event['source']['userId']
-          start_time = event['postback']['params']['datetime']
-          Redis.current.hset(line_user_id, 'start_time', start_time)
-          Line::ReplyEndTimeSelectService.new(event['replyToken'], start_time).reply
+          Line::StoreStartTimeService.new(event['source']['userId'], event['postback']['params']['datetime']).store
+          Line::ReplyEndTimeSelectService.new(event['replyToken'], event['postback']['params']['datetime']).reply
         when 'shift_submission[end_time]'
-          line_user_id = event['source']['userId']
-          start_time = Redis.current.hget(line_user_id, 'start_time')
-          end_time = event['postback']['params']['datetime']
-          Redis.current.hset(line_user_id, 'end_time', end_time)
-          Line::ConfirmShiftSubmissionService.new(event['replyToken'], start_time, end_time).confirm
+          start_time = Redis.current.hget(event['source']['userId'], 'start_time')
+          Line::StoreEndTimeService.new(event['source']['userId'], event['postback']['params']['datetime']).store
+          Line::ConfirmShiftSubmissionService.new(event['replyToken'], start_time, event['postback']['params']['datetime']).confirm
         when 'shift_submission[regist]'
-          line_user_id = event['source']['userId']
-          start_time = Redis.current.hget(line_user_id, 'start_time')
-          end_time = Redis.current.hget(line_user_id, 'end_time')
-          Line::RegistShiftSubmissionService.new(event['replyToken'], start_time, end_time).regist
+          Line::RegistShiftSubmissionService.new(event['replyToken'], event['source']['userId']).regist
         when 'shift_submission[cancel]'
-          line_user_id = event['source']['userId']
-          start_time = Redis.current.hget(line_user_id, 'start_time')
-          end_time = Redis.current.hget(line_user_id, 'end_time')
-          Line::CancelShiftSubmissionService.new(event['replyToken'], start_time, end_time).cancel
+          Line::CancelShiftSubmissionService.new(event['replyToken'], event['source']['userId']).cancel
         end
       when 'accountLink'
         case event['link']['result']

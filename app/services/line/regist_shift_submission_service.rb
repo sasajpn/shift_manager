@@ -2,10 +2,9 @@ require 'net/https'
 
 module Line
   class RegistShiftSubmissionService
-    def initialize(reply_token, start_time, end_time)
+    def initialize(reply_token, line_user_id)
       @reply_token = reply_token
-      @start_time = start_time
-      @end_time = end_time
+      @line_user_id = line_user_id
     end
 
     def regist
@@ -14,7 +13,15 @@ module Line
 
     private
 
-    attr_reader :reply_token, :start_time, :end_time
+    attr_reader :reply_token, :line_user_id
+
+    def get_start_time
+      Redis.current.hget(line_user_id, 'start_time')
+    end
+
+    def get_end_time
+      Redis.current.hget(line_user_id, 'end_time')
+    end
 
     def request_regist
       uri = URI.parse("https://api.line.me/v2/bot/message/reply")
