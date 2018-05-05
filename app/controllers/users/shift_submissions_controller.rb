@@ -1,6 +1,10 @@
 class Users::ShiftSubmissionsController < Users::ApplicationController
-  before_action :set_team, only: [:new, :create]
-  before_action :set_member, only: [:new, :create]
+  before_action :set_team, only: [:index, :new, :create]
+  before_action :set_member, only: [:index, :new, :create]
+
+  def index
+    @shift_submissions = @member.shift_submissions.order(submitted_date: :desc).page(params[:page]).per(15)
+  end
 
   def new
     @shift_submission = @member.shift_submissions.build
