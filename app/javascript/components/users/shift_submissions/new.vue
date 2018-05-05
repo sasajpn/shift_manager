@@ -63,11 +63,9 @@
     data() {
       return {
         team: {
+          id: document.getElementById('shift_submissions_new').dataset.team_id,
           openTime: '',
           closeTime: ''
-        },
-        team: {
-          id: document.getElementById('shift_submissions_new').dataset.team_id
         },
         shiftSubmission: {
           submittedDate: '',

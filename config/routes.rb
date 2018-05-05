@@ -59,6 +59,11 @@ Rails.application.routes.draw do
           resources :shift_adjustments, only: [:show, :new, :edit]
         end
       end
+      namespace :users do
+        resources :teams, only: [:show], shallow: true do
+          resources :shift_submissions, only: [:new, :edit]
+        end
+      end
     end
   end
 

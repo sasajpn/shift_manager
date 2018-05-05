@@ -1,7 +1,7 @@
-import apiClient from 'helpers/api_client'
+import apiClient from 'helpers/users/api_client'
 
-export function newShiftSubmission (memberId) {
+export function newShiftSubmission (teamId) {
   return apiClient({
-    url: '/members/' + memberId + '/shift_submissions/new'
+    url: '/teams/' + teamId + '/shift_submissions/new'
   })
 }
