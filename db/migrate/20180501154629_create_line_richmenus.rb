@@ -3,7 +3,6 @@ class CreateLineRichmenus < ActiveRecord::Migration[5.0]
     create_table :line_richmenus do |t|
       t.string :type
       t.string :richmenu_id
-      t.string :title
       t.string :image
 
       t.timestamps
