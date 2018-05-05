@@ -2,17 +2,28 @@ require 'net/https'
 
 module Line
   class ReplyStartTimeSelectService
-    def initialize(reply_token)
+    def initialize(reply_token, line_user_id)
       @reply_token = reply_token
+      @line_user_id = line_user_id
     end
 
     def reply
+      delete_start_time
+      delete_end_time
       request_start_time_select
     end
 
     private
 
-    attr_reader :reply_token
+    attr_reader :reply_token, :line_user_id
+
+    def delete_start_time
+      Redis.current.del(line_user_id, 'start_time')
+    end
+
+    def delete_end_time
+      Redis.current.del(line_user_id, 'end_time')
+    end
 
     def request_start_time_select
       uri = URI.parse("https://api.line.me/v2/bot/message/reply")
