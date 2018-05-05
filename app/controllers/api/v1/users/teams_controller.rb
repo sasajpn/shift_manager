@@ -4,6 +4,7 @@ class Api::V1::Users::TeamsController < Api::V1::Users::ApplicationController
 
   def show
     @shift_submissions = @member.shift_submissions.non_approved
+    @shift_adjustments = @member.shift_adjustments
   end
 
   private

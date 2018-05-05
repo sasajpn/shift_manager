@@ -3,6 +3,7 @@ class Member < ApplicationRecord
   belongs_to :user
 
   has_many :shift_submissions, dependent: :destroy
+  has_many :shift_adjustments, through: :shift_submissions
 
   validates :user_id, :role,
     presence: true
