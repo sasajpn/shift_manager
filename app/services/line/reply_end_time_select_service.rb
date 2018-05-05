@@ -31,7 +31,7 @@ module Line
             "template": {
               "type": "buttons",
               "title": "シフト希望の提出",
-              "text": "希望の終了日時を選択してください",
+              "text": "開始時間は#{start_time.to_time.strftime('%Y年%m月%d日 %H:%M')}です\n希望の終了日時を選択してください",
               "actions": [
                 {
                   "type": "datetimepicker",
