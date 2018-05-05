@@ -18,7 +18,6 @@ gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 gem 'kaminari'
 gem 'active_decorator'
-gem 'fast_jsonapi'
 
 # DB/Model
 gem 'mysql2', '>= 0.3.18', '< 0.5'
