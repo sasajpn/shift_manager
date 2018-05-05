@@ -10,6 +10,7 @@ class Line::WebhookController < ApplicationController
       when 'follow'
         Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'unfollow'
+        Line::UnlinkRichmenuService.new(event['source']['userId']).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
