@@ -10,11 +10,14 @@ class Line::WebhookController < ApplicationController
       when 'follow'
         Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'unfollow'
+        Line::DestroyConnectionService.new(event['source']['userId']).destroy
         Line::UnlinkRichmenuService.new(event['source']['userId']).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
           Line::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
+        when 'disconnected'
+          
         end
       when 'accountLink'
         case event['link']['result']
