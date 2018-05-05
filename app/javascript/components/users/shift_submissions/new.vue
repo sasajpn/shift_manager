@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import { newShiftSubmission } from 'api/admins/shift_submissions.js'
+  import { newShiftSubmission } from 'api/users/shift_submissions.js'
   import CSRF from 'components/shared/csrf.vue'
 
   export default {
@@ -66,8 +66,8 @@
           openTime: '',
           closeTime: ''
         },
-        member: {
-          id: document.getElementById('shift_submissions_new').dataset.member_id
+        team: {
+          id: document.getElementById('shift_submissions_new').dataset.team_id
         },
         shiftSubmission: {
           submittedDate: '',
@@ -80,11 +80,11 @@
       }
     },
     created () {
-      newShiftSubmission(this.member.id).then((res) => {
+      newShiftSubmission(this.team.id).then((res) => {
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
       })
-      this.form.action = '/admins/members/' + this.member.id + '/shift_submissions'
+      this.form.action = '/users/teams/' + this.team.id + '/shift_submissions'
     }
   }
 </script>

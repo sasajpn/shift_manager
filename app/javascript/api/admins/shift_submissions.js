@@ -1,4 +1,4 @@
-import apiClient from 'helpers/api_client'
+import apiClient from 'helpers/admins/api_client'
 
 export function newShiftSubmission (memberId) {
   return apiClient({
