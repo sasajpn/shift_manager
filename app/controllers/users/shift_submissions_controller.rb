@@ -1,8 +1,18 @@
 class Users::ShiftSubmissionsController < Users::ApplicationController
-  before_action :set_team, only: [:new]
-  before_action :set_member, only: [:new]
+  before_action :set_team, only: [:new, :create]
+  before_action :set_member, only: [:new, :create]
 
   def new
+    @shift_submission = @member.shift_submissions.build
+  end
+
+  def create
+    @shift_submission = @member.shift_submissions.build(shift_submission_params)
+    if @shift_submission.save
+      redirect_to users_team_url(@team)
+    else
+      render :new
+    end
   end
 
   private
