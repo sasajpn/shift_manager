@@ -1,22 +1,20 @@
 require 'net/https'
 
 module Line
-  class RegistShiftSubmissionService
-    def initialize(reply_token, start_time, end_time)
+  class CancelDestroyedConnectionService
+    def initialize(reply_token)
       @reply_token = reply_token
-      @start_time = start_time
-      @end_time = end_time
     end
 
-    def regist
-      request_regist
+    def cancel
+      message_cancel_destroyed_connection
     end
 
     private
 
-    attr_reader :reply_token, :start_time, :end_time
+    attr_reader :reply_token
 
-    def request_regist
+    def message_cancel_destroyed_connection
       uri = URI.parse("https://api.line.me/v2/bot/message/reply")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -28,7 +26,7 @@ module Line
         "messages": [
           {
             "type": "text",
-            "text": "シフト希望を提出しました。"
+            "text": "アカウントの連携解除をキャンセルしました"
           }
         ]
       }.to_json

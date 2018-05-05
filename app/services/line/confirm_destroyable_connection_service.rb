@@ -1,22 +1,20 @@
 require 'net/https'
 
 module Line
-  class ConfirmShiftSubmissionService
-    def initialize(reply_token, start_time, end_time)
+  class ConfirmDestroyableConnectionService
+    def initialize(reply_token)
       @reply_token = reply_token
-      @start_time = start_time
-      @end_time = end_time
     end
 
     def confirm
-      request_confirm_message
+      message_confirm_destroyable_connection
     end
 
     private
 
-    attr_reader :reply_token, :start_time, :end_time
+    attr_reader :reply_token
 
-    def request_confirm_message
+    def message_confirm_destroyable_connection
       uri = URI.parse("https://api.line.me/v2/bot/message/reply")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -31,17 +29,17 @@ module Line
             "altText": "This is a confirm template",
             "template": {
               "type": "confirm",
-              "text": "#{start_time}~#{end_time}で希望を提出しますか？",
+              "text": "アカウントの連携を解除しますか？",
               "actions": [
                 {
                   "type": "postback",
                   "label": "はい",
-                  "data": "shift_submission[regist]"
+                  "data": "destroy_connection[OK]"
                 },
                 {
                   "type": "postback",
                   "label": "いいえ",
-                  "data": "shift_submission[cancel]"
+                  "data": "destroy_connection[NG]"
                 }
               ]
             }

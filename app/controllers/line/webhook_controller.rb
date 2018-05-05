@@ -10,32 +10,19 @@ class Line::WebhookController < ApplicationController
       when 'follow'
         Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'unfollow'
-        Line::DestroyConnectionService.new(event['source']['userId']).destroy
+        Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
         Line::UnlinkRichmenuService.new(event['source']['userId']).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
           Line::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
         when 'disconnected'
-          
-        end
-      when 'accountLink'
-        case event['link']['result']
-        when 'ok'
-          Line::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
-          Line::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
-        end
-      end
-      case event
-      when Line::Bot::Event::Postback
-        case event['postback']['data']
-        # when 'connected'
-        #   link_token = Line::CreateLinkTokenService.new(event['source']['userId']).create
-        #   message = {
-        #     type: 'text',
-        #     text: "#{ENV['NGROK_URL']}/admins/line_connections/new?linkToken=#{link_token}"
-        #   }
-        #   client.reply_message(event['replyToken'], message)
+          Line::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
+        when 'destroy_connection[OK]'
+          Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
+          Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+        when 'destroy_connection[NG]'
+          Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
         when 'shift_submission'
           Line::ReplyStartTimeSelectService.new(event['replyToken']).reply
         when 'shift_submission[start_time]'
@@ -48,10 +35,6 @@ class Line::WebhookController < ApplicationController
           start_time = Redis.current.hget(line_user_id, 'start_time')
           end_time = event['postback']['params']['datetime']
           Redis.current.hset(line_user_id, 'end_time', end_time)
-          # if start_time = Redis.current.hget(line_user_id, 'start_time')
-          #   submitted_date = start_time.to_date
-          #   User.first.members.first.shift_submissions.create(submitted_date: submitted_date, start_time: start_time.to_time.strftime('%H:%M'), end_time: event['postback']['params']['datetime'].to_time.strftime('%H:%M'))
-          # end
           Line::ConfirmShiftSubmissionService.new(event['replyToken'], start_time, end_time).confirm
         when 'shift_submission[regist]'
           line_user_id = event['source']['userId']
@@ -64,6 +47,14 @@ class Line::WebhookController < ApplicationController
           end_time = Redis.current.hget(line_user_id, 'end_time')
           Line::CancelShiftSubmissionService.new(event['replyToken'], start_time, end_time).cancel
         end
+      when 'accountLink'
+        case event['link']['result']
+        when 'ok'
+          Line::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
+          Line::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
+        end
+      end
+      case event
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text

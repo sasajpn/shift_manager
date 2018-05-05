@@ -55,7 +55,6 @@ module Line
         ]
       }.to_json
       res = http.request(req)
-      puts res.body
     end
   end
 end

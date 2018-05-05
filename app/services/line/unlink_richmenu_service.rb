@@ -14,7 +14,7 @@ module Line
 
     attr_reader :line_user_id
 
-    def request_unlink_unconnected_richmenu
+    def request_unlink_richmenu
       uri = URI.parse("https://api.line.me/v2/bot/user/#{line_user_id}/richmenu")
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
