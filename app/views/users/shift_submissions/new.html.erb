@@ -1,0 +1,17 @@
+<%= javascript_pack_tag 'users/shift_submissions/new' %>
+<%= stylesheet_pack_tag 'users/shift_submissions/new' %>
+
+
+<div class="row">
+  <div class="col-md-8">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">シフト登録</h3>
+      </div>
+      <div class="box-body">
+        <div id="shift_submissions_new" data-member_id="<%= @member.id %>">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
