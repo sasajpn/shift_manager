@@ -10,12 +10,14 @@
       <table class="table">
         <tbody>
           <tr>
+            <th>提出者</th>
             <th>希望日</th>
             <th>開始時間</th>
             <th>終了時間</th>
           </tr>
           <% @shift_submissions.each do |shift_submission| %>
             <tr>
+              <td><%= shift_submission.member.user.name %></td>
               <td><%= link_to shift_submission.submitted_date_format, users_shift_submission_path(shift_submission) %></td>
               <td><%= shift_submission.start_time %></td>
               <td><%= shift_submission.end_time %></td>
