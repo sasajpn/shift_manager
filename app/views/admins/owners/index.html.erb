@@ -1,0 +1,30 @@
+<% if @owners.any? %>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">オーナー一覧</h3>
+      <div class="box-tools">
+        <%= paginate @owners, theme: 'admins' %>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <th>チーム数</th>
+          </tr>
+          <% @owners.each do |owner| %>
+            <tr>
+              <td><%= link_to owner.name, admins_owner_path(owner) %></td>
+              <td><%= owner.teams.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout-danger">
+    <p>オーナーが登録されていません</p>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-default">
+      <%= bootstrap_form_for [:admins, @line_richmenu.becomes(LineRichmenu)] do |f| %>
+        <div class="box-header with-border">
+          <h3 class="box-title">LINEのリッチメニュー登録内容変更</h3>
+        </div>
+        <div class="box-body">
+          <%= f.alert_message "以下のエラー内容を修正してください" %>
+          <%= f.select :type, { "未連携時" => "LineUnconnectedRichmenu", "連携時" => "LineConnectedRichmenu" } %>
+          <%= f.text_field :richmenu_id %>
+          <%= f.text_field :title %>
+          <%= f.text_field :image %>
+        </div>
+        <div class="box-footer">
+          <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<% if @line_richmenus.any? %>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">LINEのリッチメニュー一覧</h3>
+      <div class="box-tools">
+        <%= paginate @line_richmenus, theme: 'admins' %>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>リッチメニューのID</th>
+            <th>リッチメニューの画像</th>
+            <th>表示タイプ</th>
+          </tr>
+          <% @line_richmenus.each do |line_richmenu| %>
+            <tr>
+              <td><%= link_to line_richmenu.richmenu_id, admins_line_richmenu_path(line_richmenu) %></td>
+              <td><%= line_richmenu.image %></td>
+              <td><%= line_richmenu.type.constantize.model_name.human %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout-danger">
+    <p>LINEのリッチメニューが登録されていません</p>
+  </div>
+<% end %>

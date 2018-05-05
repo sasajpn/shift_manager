@@ -1,0 +1,2 @@
+class LineUnconnectedRichmenu < LineRichmenu
+end

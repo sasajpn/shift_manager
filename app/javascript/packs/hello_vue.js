@@ -1,4 +1,5 @@
 import Vue from 'vue/dist/vue.esm'
+import ShiftSubmissionsEdit from 'components/admins/shift_submissions/edit.vue'
 import App from '../app.vue'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'

@@ -12,6 +12,7 @@ require "action_cable/engine"
 require "sprockets/railtie"
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
 
 module ShiftManager
   class Application < Rails::Application
