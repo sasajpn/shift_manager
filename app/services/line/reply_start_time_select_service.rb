@@ -25,6 +25,10 @@ module Line
       Redis.current.del(line_user_id, 'end_time')
     end
 
+    def delete_reply_token
+      Redis.current.del(line_user_id, 'reply_token')
+    end
+
     def request_start_time_select
       uri = URI.parse("https://api.line.me/v2/bot/message/reply")
       http = Net::HTTP.new(uri.host, uri.port)

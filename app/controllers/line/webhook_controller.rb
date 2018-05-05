@@ -26,12 +26,11 @@ class Line::WebhookController < ApplicationController
         when 'shift_submission'
           Line::ReplyStartTimeSelectService.new(event['replyToken'], event['source']['userId']).reply
         when 'shift_submission[start_time]'
-          Line::StoreStartTimeService.new(event['source']['userId'], event['postback']['params']['datetime']).store
+          Line::StoreStartTimeService.new(event['replyToken'], event['source']['userId'], event['postback']['params']['datetime']).store
           Line::ReplyEndTimeSelectService.new(event['replyToken'], event['postback']['params']['datetime']).reply
         when 'shift_submission[end_time]'
-          start_time = Redis.current.hget(event['source']['userId'], 'start_time')
           Line::StoreEndTimeService.new(event['source']['userId'], event['postback']['params']['datetime']).store
-          Line::ConfirmShiftSubmissionService.new(event['replyToken'], start_time, event['postback']['params']['datetime']).confirm
+          Line::ConfirmShiftSubmissionService.new(event['replyToken'], event['source']['userId']).confirm
         when 'shift_submission[regist]'
           Line::RegistShiftSubmissionService.new(event['replyToken'], event['source']['userId']).regist
         when 'shift_submission[cancel]'

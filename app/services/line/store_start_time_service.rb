@@ -1,6 +1,7 @@
 module Line
   class StoreStartTimeService
-    def initialize(line_user_id, start_time)
+    def initialize(reply_token, line_user_id, start_time)
+      @reply_token = reply_token
       @line_user_id = line_user_id
       @start_time = start_time
     end
@@ -11,7 +12,7 @@ module Line
 
     private
 
-    attr_reader :line_user_id, :start_time
+    attr_reader :reply_token, :line_user_id, :start_time
 
     def set_start_time
       Redis.current.hset(line_user_id, 'start_time', start_time)
