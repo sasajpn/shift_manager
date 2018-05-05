@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3><%= current_user.teams.count %></h3>
+        <p>参加チーム数</p>
+      </div>
+      <div class="icon">
+        <span class="ion-home"></span>
+      </div>
+      <%= link_to admins_owners_path, class: 'small-box-footer' do %>
+        参加チーム一覧 <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
