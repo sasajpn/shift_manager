@@ -16,9 +16,7 @@
         <%= link_to 'パスワード変更', edit_user_registration_path, class: "btn bg-maroon btn-block" %>
       </div>
     </div>
-  </div>
-  <% if current_user.teams.any? %>
-    <div class="col-md-3">
+    <% if current_user.teams.any? %>
       <div class="box">
         <div class="box-header">
           <h4 class="box-title">参加チーム</h4>
@@ -36,19 +34,19 @@
           </table>
         </div>
       </div>
-    </div>
-    <div class="col-md-9">
+    <% end %>
+  </div>
+  <div class="col-md-9">
+    <% if current_user.teams.any? %>
       <div class="box box-primary">
         <div class="box-body no-padding">
           <div id="shift_calendars"></div>
         </div>
       </div>
-    </div>
-  <% else %>
-    <div class="col-md-9">
+    <% else %>
       <div class="callout callout-danger">
         <p>参加しているチームがありません</p>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
