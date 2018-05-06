@@ -91,7 +91,6 @@
       })
       this.form.action = '/users/teams/' + this.team.id + '/shift_submissions'
       this.form.errors = document.getElementById('shift_submissions_new').dataset.error_messages.split(',')
-      console.log(this.form.errors)
     }
   }
 </script>
