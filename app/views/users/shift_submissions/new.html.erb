@@ -3,6 +3,24 @@
 
 
 <div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
+        </ul>
+        <%= link_to 'シフトカレンダー', users_team_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
+  </div>
   <div class="col-md-8">
     <div class="box box-default">
       <div class="box-header with-border">
