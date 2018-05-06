@@ -63,6 +63,7 @@ Rails.application.routes.draw do
         end
       end
       namespace :users do
+        resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
           resources :shift_submissions, only: [:new, :edit] do
             resources :shift_adjustments, only: [:show, :new, :edit]
