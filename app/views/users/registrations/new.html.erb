@@ -20,7 +20,8 @@
       <%= f.password_field :password, autocomplete: "off", placeholder: "パスワード（#{@minimum_password_length}文字以上）" %>
       <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'パスワード（確認用）' %>
       <%= f.submit "登録", class: 'btn btn-primary btn-block' %>
-      <a href="login.html" class="text-center">I already have a membership</a>
+      <br>
+      <p><%= link_to 'アカウントをお持ちですか？', new_user_session_path %></p>
     </div>
   <% end %>
 </div>
