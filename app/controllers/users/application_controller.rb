@@ -2,6 +2,11 @@ class Users::ApplicationController < ApplicationController
   layout 'users/application'
   before_action :authenticate_user!
 
+  def current_user
+    ActiveDecorator::Decorator.instance.decorate(super) if super.present?
+    super
+  end
+
   private
 
   def set_team
