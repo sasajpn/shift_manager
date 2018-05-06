@@ -17,6 +17,7 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認用）
+        current_password: 現在のパスワード
         last_name_kana: セイ
         first_name_kana: メイ
         last_name: 姓
