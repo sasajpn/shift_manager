@@ -13,6 +13,15 @@ class Users::MembersController < Users::ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
   private
 
   def join_team_form_params

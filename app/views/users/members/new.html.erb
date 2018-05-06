@@ -7,7 +7,7 @@
         </div>
         <div class="box-body">
           <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.text_field :identifier, placeholder: '参加するチームの認証コード', autocomplete: "off" %>
+          <%= f.text_field :identifier, placeholder: '参加するチームの認証コードを入力してください', label: "認証コード", autocomplete: "off" %>
         </div>
         <div class="box-footer">
           <%= f.submit '参加する', class: 'btn btn-primary btn-block' %>
