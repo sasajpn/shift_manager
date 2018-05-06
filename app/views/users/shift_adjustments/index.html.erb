@@ -1,0 +1,32 @@
+<% if @shift_adjustments.any? %>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">シフト調整済一覧</h3>
+      <div class="box-tools">
+        <%= paginate @shift_adjustments, theme: 'users' %>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>勤務日</th>
+            <th>開始時間</th>
+            <th>終了時間</th>
+          </tr>
+          <% @shift_adjustments.each do |shift_adjustment| %>
+            <tr>
+              <td><%= shift_adjustment.shift_submission.submitted_date_format %></td>
+              <td><%= shift_adjustment.start_time %></td>
+              <td><%= shift_adjustment.end_time %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout-danger">
+    <p>調整済のシフトがありません</p>
+  </div>
+<% end %>
