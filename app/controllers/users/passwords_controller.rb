@@ -1,6 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
   layout 'users/register'
-  
+
   # GET /resource/password/new
   # def new
   #   super
@@ -23,9 +23,9 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # protected
 
-  # def after_resetting_password_path_for(resource)
-  #   super(resource)
-  # end
+  def after_resetting_password_path_for(resource)
+    users_home_index_url
+  end
 
   # The path used after sending reset password instructions
   # def after_sending_reset_password_instructions_path_for(resource_name)
