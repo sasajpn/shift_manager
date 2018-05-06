@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6">
     <div class="box box-default">
-      <%= bootstrap_form_tag url: '/users/members' do|f| %>
+      <%= bootstrap_form_for(@member, url: users_members_path, method: :post, inline_errors: false) do|f| %>
         <div class="box-header with-border">
           <h3 class="box-title">チームに参加する</h3>
         </div>

@@ -1,12 +1,12 @@
 class Users::MembersController < Users::ApplicationController
 
   def new
+    @member = JoinTeamForm.new
   end
 
   def create
-    team = Team.find_by(identifier: params[:identifier])
-    if team
-      current_user.members.create(team_id: team)
+    @member = JoinTeamForm.new(join_team_form_params)
+    if @member.save(current_user)
       redirect_to users_teams_url
     else
       render :new
@@ -14,5 +14,9 @@ class Users::MembersController < Users::ApplicationController
   end
 
   private
+
+  def join_team_form_params
+    params.require(:join_team_form).permit(:identifier)
+  end
 
 end
