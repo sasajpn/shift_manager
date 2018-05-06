@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :home, only: [:index]
+    resources :users, only: [:edit, :update, :destroy]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions do
