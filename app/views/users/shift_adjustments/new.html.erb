@@ -2,6 +2,23 @@
 <%= stylesheet_pack_tag 'users/shift_adjustments/new' %>
 
 <div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>提出者</b> <span class="pull-right"><%= @shift_submission.user.name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>希望日</b> <span class="pull-right"><%= @shift_submission.submitted_date_format %></span>
+          </li>
+          <li class="list-group-item">
+            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <div class="col-md-8">
     <div class="box box-default">
         <div class="box-header with-border">

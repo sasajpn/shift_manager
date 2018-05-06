@@ -2,6 +2,7 @@ class ShiftSubmission < ApplicationRecord
   belongs_to :member
 
   has_one :team, through: :member
+  has_one :user, through: :member
   has_one :shift_adjustment, dependent: :destroy
 
   scope :non_approved, -> {

@@ -13,11 +13,16 @@
             <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
           </li>
         </ul>
-        <%= link_to 'シフト調整', new_users_shift_submission_shift_adjustment_path(@shift_submission),
-          class: "btn btn-primary btn-block" if @member.manager? && !@shift_adjustment %>
-        <%= link_to '希望日時変更', edit_users_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" unless @shift_adjustment%>
-        <%= link_to '削除', users_shift_submission_path(@shift_submission), method: :delete,
-          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" unless @shift_adjustment %>
+        <% if @member.manager? && !@shift_adjustment %>
+          <%= link_to 'シフト調整', new_users_shift_submission_shift_adjustment_path(@shift_submission),
+            class: "btn btn-primary btn-block" %>
+          <hr>
+        <% end %>
+        <% if @member.user == current_user && !@shift_adjustment %>
+          <%= link_to '希望日時変更', edit_users_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" %>
+          <%= link_to '削除', users_shift_submission_path(@shift_submission), method: :delete,
+            data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+        <% end %>
       </div>
     </div>
   </div>
