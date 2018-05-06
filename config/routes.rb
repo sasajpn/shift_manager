@@ -47,6 +47,7 @@ Rails.application.routes.draw do
         resources :shift_adjustments
       end
     end
+    resources :members, only: [:new, :create]
   end
 
   namespace :api, { format: 'json' } do

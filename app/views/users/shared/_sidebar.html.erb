@@ -1,0 +1,12 @@
+<aside class="main-sidebar">
+  <section class="sidebar" style="height: auto;">
+    <div class="user-panel">
+    </div>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header">メニュー</li>
+      </li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to 'チームに参加する', new_users_member_path %></li>
+    </ul>
+  </section>
+</aside>
