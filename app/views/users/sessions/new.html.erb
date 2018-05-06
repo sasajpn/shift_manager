@@ -1,5 +1,6 @@
 <div class="login-box">
   <div class="login-logo">
+    <a href="#"><b>シフトマネージャー</b></a>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">ログイン画面</p>
@@ -12,5 +13,8 @@
       </div>
       <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
     <% end %>
+    <br>
+    <p><%= link_to 'パスワードを忘れましたか？', new_user_password_path %></p>
+    <p><%= link_to 'アカウントを登録しますか？', new_user_registration_path %></p>
   </div>
 </div>
