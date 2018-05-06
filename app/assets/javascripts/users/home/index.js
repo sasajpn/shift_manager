@@ -4,8 +4,8 @@
 //= require AdminLTE/fullcalendar/ja
 
 $(function() {
-
-  $('#shift_calendar').fullCalendar({
+  
+  $('#shift_calendars').fullCalendar({
     timezone: 'Asia/Tokyo',
     displayEventTime: false,
     eventSources: [
