@@ -24,9 +24,15 @@ ja:
         first_name: 名
       team:
         name: 会社名
+        identifier: 認証コード
       member:
         user_id: ユーザー
         role: 役職
+  activemodel:
+    models:
+    attributes:
+      join_team_form:
+        identifier: 認証コード
   enums:
     member:
       role:
