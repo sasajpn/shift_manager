@@ -5,6 +5,9 @@ class ShiftSubmission < ApplicationRecord
   has_one :user, through: :member
   has_one :shift_adjustment, dependent: :destroy
 
+  validates :submitted_date, :start_time, :end_time,
+    presence: true
+
   scope :non_approved, -> {
     where(approve: false)
   }

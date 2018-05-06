@@ -3,6 +3,9 @@ class ShiftAdjustment < ApplicationRecord
 
   has_one :member, through: :shift_submission
 
+  validates :start_time, :end_time,
+    presence: true
+
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
 
