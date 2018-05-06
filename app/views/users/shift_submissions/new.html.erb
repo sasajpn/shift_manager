@@ -27,7 +27,7 @@
         <h3 class="box-title">シフト希望の提出</h3>
       </div>
       <div class="box-body">
-        <div id="shift_submissions_new" data-team_id="<%= @team.id %>">
+        <div id="shift_submissions_new" data-team_id="<%= @team.id %>" data-error_messages="<%= @shift_submission.errors.full_messages.join(', ') %>">
         </div>
       </div>
     </div>

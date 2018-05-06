@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="alert alert-danger" v-if="this.form.errors[0] !== ''">
+      <p>以下のエラー内容を修正してください</p>
+      <ul class="rails-bootstrap-forms-error-summary">
+        <li v-for="error in this.form.errors">{{ error }}</li>
+      </ul>
+    </div>
     <el-form
       :model="shiftSubmission"
       :action="form.action"
@@ -73,7 +79,8 @@
           endTime: ''
         },
         form: {
-          action: ''
+          action: '',
+          errors: []
         }
       }
     },
@@ -83,6 +90,8 @@
         this.team.closeTime = res.close_time
       })
       this.form.action = '/users/teams/' + this.team.id + '/shift_submissions'
+      this.form.errors = document.getElementById('shift_submissions_new').dataset.error_messages.split(',')
+      console.log(this.form.errors)
     }
   }
 </script>
