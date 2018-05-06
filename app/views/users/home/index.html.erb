@@ -1,16 +1,21 @@
 <div class="row">
-  <div class="col-lg-3 col-xs-6">
-    <div class="small-box bg-yellow">
-      <div class="inner">
-        <h3><%= current_user.teams.count %></h3>
-        <p>参加チーム数</p>
+  <div class="col-md-3">
+    <div class="box">
+      <div class="box-header">
+        <h4 class="box-title">参加チーム</h4>
       </div>
-      <div class="icon">
-        <span class="ion-home"></span>
+      <div class="box-body no-padding">
+        <table class="table">
+          <tbody>
+            <% current_user.teams.each do |team| %>
+              <tr>
+                <td><%= team.name %></td>
+                <td><span class="text-aqua"><i class="fa fa-square"></i></span></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
-      <%= link_to users_teams_path, class: 'small-box-footer' do %>
-        参加チーム一覧 <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
     </div>
   </div>
 </div>
