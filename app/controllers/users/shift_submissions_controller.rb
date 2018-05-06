@@ -1,5 +1,5 @@
 class Users::ShiftSubmissionsController < Users::ApplicationController
-  before_action :set_shift_submission, only: [:show]
+  before_action :set_shift_submission, only: [:show, :edit, :update]
   before_action :set_team, only: [:index, :new, :create]
   before_action :set_member, only: [:index, :new, :create]
 
@@ -22,6 +22,17 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
       redirect_to users_team_url(@team)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @shift_submission.update(shift_submission_params)
+      redirect_to users_shift_submission_url(@shift_submission)
+    else
+      render :edit
     end
   end
 

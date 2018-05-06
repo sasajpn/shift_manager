@@ -5,3 +5,9 @@ export function newShiftSubmission (teamId) {
     url: '/teams/' + teamId + '/shift_submissions/new'
   })
 }
+
+export function editShiftSubmission (shiftSubmissionId) {
+  return apiClient({
+    url: 'shift_submissions/' + shiftSubmissionId + '/edit'
+  })
+}
