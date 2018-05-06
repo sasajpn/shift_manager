@@ -4,6 +4,7 @@
 //= require AdminLTE/fullcalendar/ja
 
 $(function() {
+  var team_id = document.getElementById('shift_calendar').dataset.team_id
 
   $('#shift_calendar').fullCalendar({
     timezone: 'Asia/Tokyo',
