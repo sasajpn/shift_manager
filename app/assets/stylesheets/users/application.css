@@ -7,3 +7,5 @@
  *= require AdminLTE/_all-skins.min
  *= require rails_bootstrap_forms
  */
+
+@import url("../icon-font.css");
