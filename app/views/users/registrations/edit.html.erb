@@ -1,4 +1,7 @@
 <div class="register-box">
+  <div class="register-logo">
+    <b>パスワードの変更</b>
+  </div>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), inline_errors: false) do |f| %>
     <%= f.alert_message "以下のエラー内容を修正してください" %>
     <div class="register-box-body">
@@ -8,15 +11,9 @@
         placeholder: "新しいパスワード（#{@minimum_password_length}文字以上）", label: '新しいパスワード' %>
       <%= f.password_field :password_confirmation, autocomplete: "off",
         placeholder: '新しいパスワード（確認用）', label: '新しいパスワード（確認用）' %>
-      <div class="row">
-        <div class="col-md-6">
-          <%= f.submit "変更する", class: 'btn btn-primary btn-block' %>
-        </div>
-        <div class="col-md-6">
-          <%= link_to "キャンセル", :back, class: 'btn btn-default btn-block' %>
-        </div>
-      </div>
-
+      <%= f.submit "変更する", class: 'btn btn-primary btn-block' %>
+      <br>
+      <p><%= link_to 'キャンセル', users_home_index_path %></p>
     </div>
   <% end %>
 </div>

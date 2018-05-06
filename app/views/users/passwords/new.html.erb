@@ -7,6 +7,8 @@
     <div class="register-box-body">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: '登録しているメールアドレスを入力してください' %>
       <%= f.submit "リセットする", class: 'btn btn-primary btn-block' %>
+      <br>
+      <p><%= link_to 'ログインする', new_user_session_path %></p>
     </div>
   <% end %>
 </div>
