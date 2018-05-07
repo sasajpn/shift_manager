@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="alert alert-danger" v-if="this.form.errorMessages">
-      <p>以下のエラー内容を修正してください</p>
-      <ul class="rails-bootstrap-forms-error-summary">
-        <li v-for="errorMessage in this.form.errorMessages">{{ errorMessage }}</li>
-      </ul>
-    </div>
+    <error-messages :errorMessages='this.form.errorMessages'></error-messages>
     <el-form
       :model="shiftSubmission"
       label-width="120px">
@@ -57,8 +52,12 @@
 
 <script>
   import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_submissions.js'
+  import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
+    components: {
+      ErrorMessages
+    },
     data() {
       return {
         team: {
@@ -96,7 +95,6 @@
         this.team.closeTime = res.close_time
       })
       this.form.action = '/users/teams/' + this.team.id + '/shift_submissions'
-      this.form.errors = document.getElementById('shift_submissions_new').dataset.error_messages.split(',')
     }
   }
 </script>
