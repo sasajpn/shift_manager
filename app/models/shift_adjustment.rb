@@ -5,6 +5,8 @@ class ShiftAdjustment < ApplicationRecord
 
   validates :start_time, :end_time,
     presence: true
+  validates :start_time,
+    time_order: { attr: 'end_time' }
 
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
