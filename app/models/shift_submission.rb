@@ -9,11 +9,13 @@ class ShiftSubmission < ApplicationRecord
     presence: true
 
   validates :start_time,
+    time_format: true,
     time_order: { attr: 'end_time' },
-    time_format: true
-    
+    outside_business_hours: true
+
   validates :end_time,
-    time_format: true
+    time_format: true,
+    outside_business_hours: true
 
   scope :non_approved, -> {
     where(approve: false)
