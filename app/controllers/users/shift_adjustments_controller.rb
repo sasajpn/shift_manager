@@ -13,6 +13,7 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   end
 
   def edit
+    @shift_submission = @shift_adjustment.shift_submission
   end
 
   private
