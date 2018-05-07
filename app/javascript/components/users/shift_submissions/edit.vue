@@ -82,7 +82,7 @@
         updateShiftSubmission(this.shiftSubmission).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/teams/' + this.team.id
+              window.location.href = '/users/shift_submissions/' + this.shiftSubmission.id
               break;
             case '400':
               this.form.errorMessages = res.error_messages
