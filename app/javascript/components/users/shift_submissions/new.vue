@@ -14,8 +14,9 @@
       </el-form-item>
       <el-form-item label="時刻" required>
         <el-col :span="11">
+          <el-input name="shift_submission[start_time]" v-model="shiftSubmission.startTime"></el-input>
           <el-form-item>
-            <el-time-select
+            <!-- <el-time-select
               placeholder="開始時刻"
               name="shift_submission[start_time]"
               v-model="shiftSubmission.startTime"
@@ -24,7 +25,7 @@
                 step: '00:10',
                 end: team.closeTime
               }">
-            </el-time-select>
+            </el-time-select> -->
           </el-form-item>
         </el-col>
         <el-col :span="11">
