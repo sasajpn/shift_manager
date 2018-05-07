@@ -16,6 +16,11 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
     @shift_submission = @shift_adjustment.shift_submission
   end
 
+  def destroy
+    @shift_adjustment.destroy
+    redirect_to users_shift_submission_url(@shift_adjustment.shift_submission)
+  end
+
   private
 
   def shift_adjustment_params
