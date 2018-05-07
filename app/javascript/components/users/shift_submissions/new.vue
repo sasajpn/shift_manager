@@ -1,17 +1,14 @@
 <template>
   <div>
-    <div class="alert alert-danger" v-if="this.form.errors[0] !== ''">
+    <div class="alert alert-danger" v-if="this.form.errorMessages">
       <p>以下のエラー内容を修正してください</p>
       <ul class="rails-bootstrap-forms-error-summary">
-        <li v-for="error in this.form.errors">{{ error }}</li>
+        <li v-for="errorMessage in this.form.errorMessages">{{ errorMessage }}</li>
       </ul>
     </div>
     <el-form
       :model="shiftSubmission"
-      :action="form.action"
-      method="post"
       label-width="120px">
-      <csrf></csrf>
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
@@ -52,20 +49,16 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button native-type="submit" type="primary">登録</el-button>
+        <el-button type="primary" @click="onSubmit">登録</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import { newShiftSubmission } from 'api/users/shift_submissions.js'
-  import CSRF from 'components/shared/csrf.vue'
+  import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_submissions.js'
 
   export default {
-    components: {
-      csrf: CSRF
-    },
     data() {
       return {
         team: {
@@ -79,9 +72,22 @@
           endTime: ''
         },
         form: {
-          action: '',
-          errors: []
+          errorMessages: ''
         }
+      }
+    },
+    methods: {
+      onSubmit() {
+        createShiftSubmission(this.team.id, this.shiftSubmission).then((res) => {
+          switch (res.status) {
+            case '200':
+              window.location.href = '/users/teams/' + this.team.id
+              break;
+            case '400':
+              this.form.errorMessages = res.error_messages
+              break;
+          }
+        })
       }
     },
     created () {
