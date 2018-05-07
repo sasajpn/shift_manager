@@ -18,3 +18,22 @@ export function createShiftAdjustment (shiftSubmission, shiftAdjustment) {
     url: 'shift_submissions/' + shiftSubmission.id + '/shift_adjustments'
   })
 }
+
+export function editShiftAdjustment (shiftAdjustmentId) {
+  return apiClient({
+    url: '/shift_adjustments/' + shiftAdjustmentId + '/edit'
+  })
+}
+
+export function updateShiftAdjustment (shiftAdjustment) {
+  return apiClient({
+    method: 'patch',
+    data: {
+      shift_adjustment: {
+        start_time: shiftAdjustment.startTime,
+        end_time: shiftAdjustment.endTime
+      }
+    },
+    url: 'shift_adjustments/' + shiftAdjustment.id
+  })
+}

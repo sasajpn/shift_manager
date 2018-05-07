@@ -13,9 +13,14 @@
             <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
           </li>
         </ul>
-        <% if @member.manager? && !@shift_adjustment %>
-          <%= link_to 'シフト調整', new_users_shift_submission_shift_adjustment_path(@shift_submission),
-            class: "btn btn-primary btn-block" %>
+        <% if @member.manager? %>
+          <% if @shift_adjustment %>
+            <%= link_to 'シフト調整内容変更', edit_users_shift_adjustment_path(@shift_adjustment),
+              class: "btn btn-success btn-block" %>
+          <% else %>
+            <%= link_to 'シフト調整', new_users_shift_submission_shift_adjustment_path(@shift_submission),
+              class: "btn btn-primary btn-block" %>
+          <% end %>
           <hr>
         <% end %>
         <% if @member.user == current_user && !@shift_adjustment %>
@@ -41,7 +46,7 @@
                 <th>終了時間</th>
               </tr>
               <tr>
-                <td><%= link_to @shift_submission.submitted_date_format, users_shift_adjustment_path(@shift_adjustment) %></td>
+                <td><%= @shift_submission.submitted_date_format %></td>
                 <td><%= @shift_adjustment.start_time %></td>
                 <td><%= @shift_adjustment.end_time %></td>
               </tr>

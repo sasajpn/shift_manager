@@ -12,6 +12,9 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
     @shift_adjustment = @shift_submission.build_shift_adjustment
   end
 
+  def edit
+  end
+
   private
 
   def shift_adjustment_params
