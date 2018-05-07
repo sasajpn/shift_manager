@@ -7,11 +7,13 @@ class ShiftAdjustment < ApplicationRecord
     presence: true
 
   validates :start_time,
+    time_format: true,
     time_order: { attr: 'end_time' },
-    time_format: true
+    outside_shift_submission_time: true
 
   validates :end_time,
-    time_format: true
+    time_format: true,
+    outside_shift_submission_time: true
 
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
