@@ -1,7 +1,7 @@
 class Users::ShiftSubmissionsController < Users::ApplicationController
-  before_action :set_shift_submission, only: [:show, :edit, :update, :destroy]
-  before_action :set_team, only: [:index, :new, :create]
-  before_action :set_member, only: [:index, :new, :create]
+  before_action :set_shift_submission, only: [:show, :edit, :destroy]
+  before_action :set_team, only: [:index, :new]
+  before_action :set_member, only: [:index, :new]
 
   def index
     @shift_submissions = @member.shift_submissions.order(submitted_date: :desc).page(params[:page]).per(15)
@@ -16,24 +16,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
     @shift_submission = @member.shift_submissions.build
   end
 
-  def create
-    @shift_submission = @member.shift_submissions.build(shift_submission_params)
-    if @shift_submission.save
-      redirect_to users_team_url(@team)
-    else
-      render :new
-    end
-  end
-
   def edit
-  end
-
-  def update
-    if @shift_submission.update(shift_submission_params)
-      redirect_to users_shift_submission_url(@shift_submission)
-    else
-      render :edit
-    end
   end
 
   def destroy
