@@ -20,8 +20,6 @@
         <% end %>
         <% if @member.user == current_user && !@shift_adjustment %>
           <%= link_to '希望日時変更', edit_users_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" %>
-          <%= link_to '削除', users_shift_submission_path(@shift_submission), method: :delete,
-            data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
         <% end %>
       </div>
     </div>

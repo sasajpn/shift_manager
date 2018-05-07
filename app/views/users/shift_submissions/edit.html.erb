@@ -17,6 +17,9 @@
             <b>終了時間</b> <span class="pull-right"><%= @shift_submission.end_time %></span>
           </li>
         </ul>
+        <%= link_to '削除', users_shift_submission_path(@shift_submission), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+        <hr>
         <%= link_to 'キャンセル', users_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
       </div>
     </div>
