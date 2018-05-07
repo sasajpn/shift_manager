@@ -1,5 +1,5 @@
 class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationController
-  before_action :set_submission, only: [:edit]
+  before_action :set_submission, only: [:edit, :update]
   before_action :set_team, only: [:new, :create]
   before_action :set_member, only: [:create]
 
@@ -18,6 +18,15 @@ class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationCo
 
   def edit
     @team = @shift_submission.team
+  end
+
+  def update
+    if @shift_submission.update(shift_submission_params)
+      render :update
+    else
+      @error_messages = @shift_submission.errors.full_messages
+      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+    end
   end
 
   private

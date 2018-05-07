@@ -25,3 +25,17 @@ export function editShiftSubmission (shiftSubmissionId) {
     url: 'shift_submissions/' + shiftSubmissionId + '/edit'
   })
 }
+
+export function updateShiftSubmission (shiftSubmission) {
+  return apiClient({
+    method: 'patch',
+    data: {
+      shift_submission: {
+        submitted_date: shiftSubmission.submittedDate,
+        start_time: shiftSubmission.startTime,
+        end_time: shiftSubmission.endTime
+      }
+    },
+    url: 'shift_submissions/' + shiftSubmission.id
+  })
+}

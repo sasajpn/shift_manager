@@ -1,12 +1,10 @@
 <template>
   <div>
+    <error-messages :errorMessages='this.form.errorMessages'></error-messages>
     <el-form
       :model="shiftSubmission"
-      :action="form.action"
-      method="post"
       label-width="120px">
       <input type="hidden" name="_method" value="patch" />
-      <csrf></csrf>
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"
@@ -47,19 +45,19 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button native-type="submit" type="primary">更新</el-button>
+        <el-button type="primary" @click="onSubmit">更新</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import { editShiftSubmission } from 'api/users/shift_submissions.js'
-  import CSRF from 'components/shared/csrf.vue'
+  import { editShiftSubmission, updateShiftSubmission } from 'api/users/shift_submissions.js'
+  import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
     components: {
-      csrf: CSRF
+      ErrorMessages
     },
     data() {
       return {
@@ -75,8 +73,22 @@
           action: ''
         },
         form: {
-          action: ''
+          errorMessages: ''
         }
+      }
+    },
+    methods: {
+      onSubmit() {
+        updateShiftSubmission(this.shiftSubmission).then((res) => {
+          switch (res.status) {
+            case '200':
+              window.location.href = '/users/teams/' + this.team.id
+              break;
+            case '400':
+              this.form.errorMessages = res.error_messages
+              break;
+          }
+        })
       }
     },
     created () {
