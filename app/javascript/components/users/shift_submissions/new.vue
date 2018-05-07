@@ -71,7 +71,7 @@
           endTime: ''
         },
         form: {
-          errorMessages: ''
+          errorMessages: []
         }
       }
     },

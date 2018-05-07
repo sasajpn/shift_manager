@@ -1,11 +1,9 @@
 <template>
   <div>
+    <error-messages :errorMessages='this.form.errorMessages'></error-messages>
     <el-form
       :model="shiftAdjustment"
-      :action="form.action"
-      method="post"
       label-width="120px">
-      <csrf></csrf>
       <el-form-item label="調整日" required>
         <el-date-picker
           v-model="shiftSubmission.submittedDate"
@@ -46,19 +44,19 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button native-type="submit" type="primary">登録</el-button>
+        <el-button type="primary" @click="onSubmit">登録</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import { newShiftAdjustment } from 'api/users/shift_adjustments.js'
-  import CSRF from 'components/shared/csrf.vue'
+  import { newShiftAdjustment, createShiftAdjustment } from 'api/users/shift_adjustments.js'
+  import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
     components: {
-      csrf: CSRF
+      ErrorMessages
     },
     data() {
       return {
@@ -73,8 +71,22 @@
           endTime: ''
         },
         form: {
-          action: ''
+          errorMessages: []
         }
+      }
+    },
+    methods: {
+      onSubmit() {
+        createShiftAdjustment(this.shiftSubmission, this.shiftAdjustment).then((res) => {
+          switch (res.status) {
+            case '200':
+              window.location.href = '/users/shift_submissions/' + this.shiftSubmission.id
+              break;
+            case '400':
+              this.form.errorMessages = res.error_messages
+              break;
+          }
+        })
       }
     },
     created () {
@@ -83,7 +95,6 @@
         this.shiftSubmission.startTime = res.start_time
         this.shiftSubmission.endTime = res.end_time
       })
-      this.form.action = '/users/shift_submissions/' + this.shiftSubmission.id + '/shift_adjustments'
     }
   }
 </script>

@@ -73,7 +73,7 @@
           action: ''
         },
         form: {
-          errorMessages: ''
+          errorMessages: []
         }
       }
     },
@@ -99,7 +99,6 @@
         this.shiftSubmission.startTime = res.shift_submission.start_time
         this.shiftSubmission.endTime = res.shift_submission.end_time
       })
-      this.form.action = '/users/shift_submissions/' + this.shiftSubmission.id
     }
   }
 </script>

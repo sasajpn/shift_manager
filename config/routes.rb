@@ -69,7 +69,7 @@ Rails.application.routes.draw do
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
           resources :shift_submissions, except: [:index, :destroy] do
-            resources :shift_adjustments, only: [:show, :new, :edit]
+            resources :shift_adjustments, except: [:index, :destroy]
           end
         end
       end
