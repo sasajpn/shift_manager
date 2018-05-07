@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions do
-        resources :shift_adjustments, except: [:index]
+        resources :shift_adjustments, except: [:index, :create]
       end
     end
     resources :members, only: [:new, :create]
