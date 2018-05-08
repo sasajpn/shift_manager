@@ -9,7 +9,8 @@
           name="shift_submission[submitted_date]"
           v-model="shiftSubmission.submittedDate"
           type="date"
-          placeholder="日付を選択してください">
+          placeholder="日付を選択してください"
+          :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
@@ -60,6 +61,11 @@
     },
     data() {
       return {
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() < new Date().getTime() - 3600 * 1000 * 24
+          }
+        },
         team: {
           id: document.getElementById('shift_submissions_new').dataset.team_id,
           openTime: '',
