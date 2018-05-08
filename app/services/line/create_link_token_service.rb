@@ -47,7 +47,7 @@ module Line
                 {
                   "type": "uri",
                   "label": "アカウントを連携する",
-                  "uri": "#{ENV['NGROK_URL']}/admins/line_connections/new?linkToken=#{link_token}"
+                  "uri": "#{ENV['NGROK_URL']}/users/line_connections/new?linkToken=#{link_token}"
                 }
               ]
             }
