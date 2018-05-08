@@ -3,9 +3,6 @@ class Admins::LineConnectionsController < Admins::ApplicationController
   skip_before_action :authenticate_admin!
 
   def new
-    # @line_connection = current_admin.build_line_connection
-    # @line_connection = current_admin.create_line_connection
-    # redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{params[:linkToken]}&nonce=#{@line_connection.nonce}"
   end
 
   def create
