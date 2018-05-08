@@ -40,6 +40,9 @@ ja:
     attributes:
       join_team_form:
         identifier: 認証コード
+      create_line_connection_form:
+        email: メールアドレス
+        password: パスワード
   enums:
     member:
       role:
