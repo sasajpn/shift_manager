@@ -3,15 +3,12 @@
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">LINE公式アカウント連携用ログイン画面</p>
-    <%= form_tag(admins_line_connections_path, method: :post) do %>
-      <%= hidden_field_tag 'linkToken', params[:linkToken] %>
-      <div class="form-group has-feedback">
-        <%= email_field_tag 'email', '', placeholder: 'メールアドレス', autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form-group has-feedback">
-        <%= password_field_tag 'password', '', placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
-      </div>
-      <%= submit_tag 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
+    <%= bootstrap_form_for(@line_connection, url: users_line_connections_path, method: :post, inline_errors: false) do|f| %>
+      <%= f.alert_message "以下のエラー内容を修正してください" %>
+      <%= f.hidden_field :link_token, value: params[:linkToken] %>
+      <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
+      <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off" %>
+      <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
     <% end %>
   </div>
 </div>
