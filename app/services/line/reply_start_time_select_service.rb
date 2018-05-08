@@ -10,6 +10,7 @@ module Line
     def reply
       delete_start_time
       delete_end_time
+      set_before_action
       request_start_time_select
     end
 
@@ -25,8 +26,8 @@ module Line
       Redis.current.del(line_user_id, 'end_time')
     end
 
-    def delete_reply_token
-      Redis.current.del(line_user_id, 'reply_token')
+    def set_before_action
+      Redis.current.hset(line_user_id, 'before_action', 'shift_submission')
     end
 
     def request_start_time_select
