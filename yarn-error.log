@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.9.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js remove admin-lte
+  /usr/local/Cellar/node/9.9.0/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add momen
 
 PATH: 
   /Users/kazuki/.exenv/shims:/Users/kazuki/.pyenv/shims:/Users/kazuki/.rbenv/shims:/Users/kazuki/.exenv/bin:/usr/local/opt/openssl/bin:/Users/kazuki/.pyenv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/kazuki/.nodebrew/current/bin
@@ -17,8 +17,13 @@ npm manifest:
   {
     "dependencies": {
       "@rails/webpacker": "^3.4.1",
+      "axios": "^0.18.0",
+      "element-ui": "^2.3.4",
+      "lodash": "^4.17.10",
+      "rails-ujs": "^5.2.0",
       "vue": "^2.5.16",
       "vue-loader": "^14.2.2",
+      "vue-router": "^3.0.1",
       "vue-template-compiler": "^2.5.16"
     },
     "devDependencies": {
@@ -271,6 +276,12 @@ Lockfile:
     version "0.1.3"
     resolved "https://registry.yarnpkg.com/async-foreach/-/async-foreach-0.1.3.tgz#36121f845c0578172de419a97dbeb1d16ec34542"
   
+  async-validator@~1.8.1:
+    version "1.8.2"
+    resolved "https://registry.yarnpkg.com/async-validator/-/async-validator-1.8.2.tgz#b77597226e96242f8d531c0d46ae295f62422ba4"
+    dependencies:
+      babel-runtime "6.x"
+  
   async@^1.5.2:
     version "1.5.2"
     resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
@@ -322,6 +333,13 @@ Lockfile:
   aws4@^1.2.1, aws4@^1.6.0:
     version "1.6.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
+  
+  axios@^0.18.0:
+    version "0.18.0"
+    resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
+    dependencies:
+      follow-redirects "^1.3.0"
+      is-buffer "^1.1.5"
   
   babel-code-frame@^6.26.0:
     version "6.26.0"
@@ -461,6 +479,10 @@ Lockfile:
       babel-template "^6.24.1"
       babel-traverse "^6.24.1"
       babel-types "^6.24.1"
+  
+  babel-helper-vue-jsx-merge-props@^2.0.0:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
   
   babel-helpers@^6.24.1:
     version "6.24.1"
@@ -781,7 +803,7 @@ Lockfile:
       mkdirp "^0.5.1"
       source-map-support "^0.4.15"
   
-  babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
+  babel-runtime@6.x, babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
     version "6.26.0"
     resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
     dependencies:
@@ -1454,7 +1476,11 @@ Lockfile:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   
-  core-js@^2.4.0, core-js@^2.5.0:
+  core-js@^2.4.0:
+    version "2.5.5"
+    resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
+  
+  core-js@^2.5.0:
     version "2.5.3"
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
   
@@ -1694,6 +1720,10 @@ Lockfile:
     version "0.4.2"
     resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
   
+  deepmerge@^1.2.0:
+    version "1.5.2"
+    resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
+  
   define-properties@^1.1.2:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/define-properties/-/define-properties-1.1.2.tgz#83a73f2fea569898fb737193c8f873caf6d45c94"
@@ -1827,6 +1857,17 @@ Lockfile:
   electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
     version "1.3.40"
     resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.40.tgz#1fbd6d97befd72b8a6f921dc38d22413d2f6fddf"
+  
+  element-ui@^2.3.4:
+    version "2.3.7"
+    resolved "https://registry.yarnpkg.com/element-ui/-/element-ui-2.3.7.tgz#ae6f9987a30dcd2f2dd9f151eea53927b45670c9"
+    dependencies:
+      async-validator "~1.8.1"
+      babel-helper-vue-jsx-merge-props "^2.0.0"
+      deepmerge "^1.2.0"
+      normalize-wheel "^1.0.1"
+      resize-observer-polyfill "^1.5.0"
+      throttle-debounce "^1.0.1"
   
   elliptic@^6.0.0:
     version "6.4.0"
@@ -2238,6 +2279,12 @@ Lockfile:
     dependencies:
       inherits "^2.0.1"
       readable-stream "^2.0.4"
+  
+  follow-redirects@^1.3.0:
+    version "1.4.1"
+    resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.4.1.tgz#d8120f4518190f55aac65bb6fc7b85fcd666d6aa"
+    dependencies:
+      debug "^3.1.0"
   
   for-in@^0.1.3:
     version "0.1.8"
@@ -3296,6 +3343,10 @@ Lockfile:
     version "4.17.5"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
   
+  lodash@^4.17.10:
+    version "4.17.10"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+  
   loglevel@^1.4.1:
     version "1.6.1"
     resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.6.1.tgz#e0fc95133b6ef276cdc8887cdaf24aa6f156f8fa"
@@ -3710,6 +3761,10 @@ Lockfile:
       prepend-http "^1.0.0"
       query-string "^4.1.0"
       sort-keys "^1.0.0"
+  
+  normalize-wheel@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/normalize-wheel/-/normalize-wheel-1.0.1.tgz#aec886affdb045070d856447df62ecf86146ec45"
   
   npm-run-path@^2.0.0:
     version "2.0.2"
@@ -4658,6 +4713,10 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-1.0.0.tgz#6286242112c5b712fa654e526652bf6a13ff05cb"
   
+  rails-ujs@^5.2.0:
+    version "5.2.0"
+    resolved "https://registry.yarnpkg.com/rails-ujs/-/rails-ujs-5.2.0.tgz#d93f7a969a226c0ae67044172955be8c1cdf49fc"
+  
   randomatic@^1.1.3:
     version "1.1.7"
     resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
@@ -4956,6 +5015,10 @@ Lockfile:
   requires-port@1.0.x, requires-port@1.x.x, requires-port@~1.0.0:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
+  
+  resize-observer-polyfill@^1.5.0:
+    version "1.5.0"
+    resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.0.tgz#660ff1d9712a2382baa2cad450a4716209f9ca69"
   
   resolve-cwd@^2.0.0:
     version "2.0.0"
@@ -5563,6 +5626,10 @@ Lockfile:
       fstream "^1.0.2"
       inherits "2"
   
+  throttle-debounce@^1.0.1:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-1.0.1.tgz#dad0fe130f9daf3719fdea33dc36a8e6ba7f30b5"
+  
   through2@^2.0.0:
     version "2.0.3"
     resolved "https://registry.yarnpkg.com/through2/-/through2-2.0.3.tgz#0004569b37c7c74ba39c43f3ced78d1ad94140be"
@@ -5869,6 +5936,10 @@ Lockfile:
       vue-style-loader "^4.0.1"
       vue-template-es2015-compiler "^1.6.0"
   
+  vue-router@^3.0.1:
+    version "3.0.1"
+    resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"
+  
   vue-style-loader@^4.0.1:
     version "4.1.0"
     resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.0.tgz#7588bd778e2c9f8d87bfc3c5a4a039638da7a863"
@@ -6146,10 +6217,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: This module isn't specified in a manifest.
+  Error: No valid versions found for "momen". The package may be unpublished.
       at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:60445:15)
+      at Function.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51415:15)
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
-      at <anonymous>
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:116:14
+      at new Promise (<anonymous>)
+      at new F (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:23451:28)
+      at Function.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:95:12)
+      at Function.findVersionInRegistryResponse (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51461:19)
+      at NpmResolver.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51479:28)
