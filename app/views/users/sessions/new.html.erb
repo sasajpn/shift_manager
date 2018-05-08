@@ -5,7 +5,9 @@
   <div class="login-box-body">
     <p class="login-box-msg">ログイン画面</p>
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), inline_errors: false) do |f| %>
-      <%= f.alert_message "以下のエラー内容を修正してください" %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
       <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
       <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off" %>
       <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>

@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       end
     end
     resources :members, only: [:new, :create]
+    resources :line_connections, only: [:new, :create]
   end
 
   namespace :api, { format: 'json' } do

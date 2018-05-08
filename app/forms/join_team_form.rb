@@ -5,7 +5,7 @@ class JoinTeamForm
                 :team, :user
 
   validates :identifier, presence: true
-  validate :check_existence_of_team, :already_joined
+  validate :existence_of_team, :already_joined
 
   def save(user)
     @user = user
@@ -16,7 +16,7 @@ class JoinTeamForm
 
   private
 
-  def check_existence_of_team
+  def existence_of_team
     if identifier.present?
       unless @team = Team.find_by(identifier: identifier)
         errors.add(:identifier, "からチームが見つかりません")
