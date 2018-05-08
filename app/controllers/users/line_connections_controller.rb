@@ -9,7 +9,7 @@ class Users::LineConnectionsController < Users::ApplicationController
   def create
     @line_connection = CreateLineConnectionForm.new(create_line_connection_form_params)
     if @line_connection.save
-      redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{params[:linkToken]}&nonce=#{@line_connection.nonce}"
+      redirect_to "https://access.line.me/dialog/bot/accountLink?linkToken=#{@line_connection.link_token}&nonce=#{@line_connection.nonce}"
     else
       render :new
     end

@@ -11,6 +11,7 @@ class CreateLineConnectionForm
     set_user
     return false if invalid?
     create_nonce
+    set_nonce
     true
   end
 
