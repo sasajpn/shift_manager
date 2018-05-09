@@ -8,10 +8,10 @@ class Line::WebhookController < ApplicationController
     events.each do |event|
       case event['type']
       when 'follow'
-        Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+        Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'unfollow'
         Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-        Line::UnlinkRichmenuService.new(event['source']['userId']).unlink
+        Line::Richmenus::UnlinkRichmenuService.new(event['source']['userId']).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
@@ -20,7 +20,7 @@ class Line::WebhookController < ApplicationController
           Line::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
         when 'destroy_connection[OK]'
           Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-          Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+          Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
         when 'destroy_connection[NG]'
           Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
         when 'shift_submission'
