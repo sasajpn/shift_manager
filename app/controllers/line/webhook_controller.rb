@@ -8,21 +8,40 @@ class Line::WebhookController < ApplicationController
     events.each do |event|
       case event['type']
       when 'follow'
-        Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+        Line::Richmenus::LinkUnconnectedRichmenuService.new(
+          line_user_id: event['source']['userId']
+        ).link
       when 'unfollow'
-        Line::Accounts::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-        Line::Richmenus::UnlinkRichmenuService.new(event['source']['userId']).unlink
+        Line::Accounts::DestroyConnectionService.new(
+          reply_token: event['replyToken'],
+          line_user_id: event['source']['userId']
+        ).destroy
+        Line::Richmenus::UnlinkRichmenuService.new(
+          line_user_id: event['source']['userId']
+        ).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
-          Line::Accounts::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
+          Line::Accounts::CreateLinkTokenService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).create
         when 'disconnected'
-          Line::Accounts::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
+          Line::Accounts::ConfirmDestroyableConnectionService.new(
+            reply_token: event['replyToken']
+          ).confirm
         when 'destroy_connection[OK]'
-          Line::Accounts::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-          Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+          Line::Accounts::DestroyConnectionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).destroy
+          Line::Richmenus::LinkUnconnectedRichmenuService.new(
+            line_user_id: event['source']['userId']
+          ).link
         when 'destroy_connection[NG]'
-          Line::Accounts::CancelDestroyedConnectionService.new(event['replyToken']).cancel
+          Line::Accounts::CancelDestroyedConnectionService.new(
+            reply_token: event['replyToken']
+          ).cancel
         when 'shift_submission'
           Line::ShiftSubmissions::ReplyTeamSelectService.new(
             reply_token: event['replyToken'],
@@ -60,8 +79,14 @@ class Line::WebhookController < ApplicationController
       when 'accountLink'
         case event['link']['result']
         when 'ok'
-          Line::Accounts::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
-          Line::Richmenus::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
+          Line::Accounts::CreateConnectionService.new(
+            line_user_id: event['source']['userId'],
+            nonce: event['link']['nonce']
+          ).create
+          Line::Richmenus::LinkConnectedRichmenuService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).link
         end
       end
       case event

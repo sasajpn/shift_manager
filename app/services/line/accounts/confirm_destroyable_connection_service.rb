@@ -33,5 +33,7 @@ module Line
         ]
         reply_message(body)
       end
+
+    end
   end
 end
