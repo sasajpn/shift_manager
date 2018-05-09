@@ -2,7 +2,7 @@ require 'net/https'
 
 module Line
   class BaseService
-    attr_accessor :reply_token, :line_user_id, :start_time, :end_time
+    attr_accessor :reply_token, :line_user_id, :start_time, :end_time, :team_id
 
     def initialize(attributes = nil)
       attributes.each do |key, value|
@@ -12,7 +12,7 @@ module Line
 
     private
 
-    attr_reader :reply_token, :line_user_id, :start_time, :end_time
+    attr_reader :reply_token, :line_user_id, :start_time, :end_time, :team_id
 
     def header(req)
       req["Content-Type"] = "application/json"

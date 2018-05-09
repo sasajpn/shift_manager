@@ -4,10 +4,12 @@ module Line
 
       def regist
         if get_before_action == 'shift_submission[end_time]'
+          team_id = get_team_id
+          puts team_id
           start_time = get_start_time
           end_time = get_end_time
           if account = get_line_connection&.account
-            member = account.members.first
+            member = account.members.find_by(team_id: team_id)
             shift_submission = member.shift_submissions.build(
               submitted_date: start_time&.to_date,
               start_time: start_time&.strftime('%H:%M'),

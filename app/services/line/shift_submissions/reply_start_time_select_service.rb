@@ -3,10 +3,13 @@ module Line
     class ReplyStartTimeSelectService < Line::ShiftSubmissions::BaseService
 
       def reply
-        delete_start_time
-        delete_end_time
-        set_before_action('shift_submission')
-        request_start_time_select
+        if get_before_action == 'shift_submission'
+          set_before_action('shift_submission[team]')
+          set_team_id
+          request_start_time_select
+        else
+          request_invalid_action_message
+        end
       end
 
       private

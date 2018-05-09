@@ -3,7 +3,7 @@ module Line
     class ReplyEndTimeSelectService < Line::ShiftSubmissions::BaseService
 
       def reply
-        if get_before_action == 'shift_submission'
+        if get_before_action == 'shift_submission[team]'
           set_before_action('shift_submission[start_time]')
           set_start_time
           request_end_time_select

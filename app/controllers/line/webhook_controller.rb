@@ -24,9 +24,15 @@ class Line::WebhookController < ApplicationController
         when 'destroy_connection[NG]'
           Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
         when 'shift_submission'
-          Line::ShiftSubmissions::ReplyStartTimeSelectService.new(
+          Line::ShiftSubmissions::ReplyTeamSelectService.new(
             reply_token: event['replyToken'],
             line_user_id: event['source']['userId']
+          ).reply
+        when /shift_submission\[team\]/
+          Line::ShiftSubmissions::ReplyStartTimeSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            team_id: event['postback']['data']&.split('=')[1]
           ).reply
         when 'shift_submission[start_time]'
           Line::ShiftSubmissions::ReplyEndTimeSelectService.new(

@@ -24,24 +24,36 @@ module Line
         Redis.current.hget(line_user_id, 'before_action')
       end
 
-      def set_start_time
-        Redis.current.hset(line_user_id, 'start_time', start_time)
+      def set_team_id
+        Redis.current.hset(line_user_id, 'team_id', team_id)
       end
 
-      def set_end_time
-        Redis.current.hset(line_user_id, 'end_time', end_time)
+      def get_team_id
+        Redis.current.hget(line_user_id, 'team_id')
+      end
+
+      def delete_team_id
+        Redis.current.del(line_user_id, 'team_id')
+      end
+
+      def set_start_time
+        Redis.current.hset(line_user_id, 'start_time', start_time)
       end
 
       def get_start_time
         Redis.current.hget(line_user_id, 'start_time')&.to_time
       end
 
-      def get_end_time
-        Redis.current.hget(line_user_id, 'end_time')&.to_time
-      end
-
       def delete_start_time
         Redis.current.del(line_user_id, 'start_time')
+      end
+
+      def set_end_time
+        Redis.current.hset(line_user_id, 'end_time', end_time)
+      end
+
+      def get_end_time
+        Redis.current.hget(line_user_id, 'end_time')&.to_time
       end
 
       def delete_end_time
@@ -52,7 +64,7 @@ module Line
         body = [
           {
             type: 'text',
-            text: 'シフト希望のリクエストが順番通りに行われていません。\nシフト希望の提出をやり直してください。'
+            text: "シフト希望のリクエストが順番通りに行われていません。\nシフト希望の提出をやり直してください。"
           }
         ]
         reply_message(body)
