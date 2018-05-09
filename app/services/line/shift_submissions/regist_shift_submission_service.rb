@@ -28,28 +28,22 @@ module Line
       private
 
       def request_success_message
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "シフト希望を提出しました。"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: 'シフト希望を提出しました。'
+          }
+        ]
         reply_message(body)
       end
 
       def request_error_message(error_messages)
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "#{error_messages.join("\n")}\nもう一度やり直してください"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: "#{error_messages.join("\n")}\nもう一度やり直してください。"
+          }
+        ]
         reply_message(body)
       end
 

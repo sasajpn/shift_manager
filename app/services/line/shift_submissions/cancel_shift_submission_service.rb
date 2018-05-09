@@ -16,15 +16,12 @@ module Line
       private
 
       def request_cancel_message
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "シフト希望の提出を取り消しました。"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: 'シフト希望の提出を取り消しました。'
+          }
+        ]
         reply_message(body)
       end
 

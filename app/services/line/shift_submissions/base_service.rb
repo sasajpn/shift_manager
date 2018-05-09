@@ -1,17 +1,8 @@
 module Line
   module ShiftSubmissions
     class BaseService < Line::BaseService
-      attr_accessor :reply_token, :line_user_id, :start_time, :end_time
-
-      def initialize(attributes = nil)
-        attributes.each do |key, value|
-          public_send("#{key}=", value) if respond_to?("#{key}=")
-        end
-      end
 
       private
-
-      attr_reader :reply_token, :line_user_id, :start_time, :end_time
 
       def line_time_format(time)
         time.strftime('%Y-%m-%dt%H:%M')
@@ -69,6 +60,7 @@ module Line
         }.to_json
         reply_message(body)
       end
+      
     end
   end
 end

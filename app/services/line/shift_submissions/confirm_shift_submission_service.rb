@@ -20,57 +20,49 @@ module Line
       private
 
       def request_time_order_error_message
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "開始時間が終了時間を超えています\nシフト希望の提出をやり直してください"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: '開始時間が終了時間を超えています\nシフト希望の提出をやり直してください'
+          }
+        ]
         reply_message(body)
       end
 
       def request_blank_error_message
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "開始時間あるいは終了時間が選択されていません\nシフト希望の提出をやり直してください"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: '開始時間あるいは終了時間が選択されていません\nシフト希望の提出をやり直してください'
+          }
+        ]
         reply_message(body)
       end
 
       def request_confirm_message(start_time, end_time)
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "template",
-              "altText": "This is a confirm template",
-              "template": {
-                "type": "confirm",
-                "text": "#{japanese_time_format(start_time)}~#{japanese_time_format(end_time)}でシフトの希望を提出しますか？",
-                "actions": [
-                  {
-                    "type": "postback",
-                    "label": "はい",
-                    "data": "shift_submission[regist]"
-                  },
-                  {
-                    "type": "postback",
-                    "label": "いいえ",
-                    "data": "shift_submission[cancel]"
-                  }
-                ]
-              }
+        body = [
+          {
+            type: 'template',
+            altText: 'This is a confirm template',
+            template: {
+              type: 'confirm',
+              title: 'シフト希望の提出',
+              text: "#{japanese_time_format(start_time)}~#{japanese_time_format(end_time)}でシフトの希望を提出しますか？",
+              actions: [
+                {
+                  type: 'postback',
+                  label: 'はい',
+                  data: 'shift_submission[regist]'
+                },
+                {
+                  type: 'postback',
+                  label: 'いいえ',
+                  data: 'shift_submission[cancel]'
+                }
+              ]
             }
-          ]
-        }.to_json
+          }
+        ]
         reply_message(body)
       end
     end
