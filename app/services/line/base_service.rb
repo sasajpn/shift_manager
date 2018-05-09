@@ -28,7 +28,7 @@ module Line
       }.to_json
     end
 
-    def reply_message(body, path = 'message/reply')
+    def reply_message(body = '', path = 'message/reply')
       uri = URI.parse(LINE_API_ENDPOINT + path)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -37,5 +37,6 @@ module Line
       payload(req, body)
       http.request(req)
     end
+
   end
 end

@@ -15,7 +15,7 @@ module Line
       end
 
       def request_link_unconnected_richmenu(richmenu_id)
-        reply_message(body, "user/#{line_user_id}/richmenu/#{richmenu_id}")
+        reply_message('', "user/#{line_user_id}/richmenu/#{richmenu_id}")
       end
 
     end
