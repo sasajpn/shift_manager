@@ -49,18 +49,15 @@ module Line
       end
 
       def request_invalid_action_message
-        body = {
-          "replyToken": "#{reply_token}",
-          "messages": [
-            {
-              "type": "text",
-              "text": "シフト希望のリクエストが順番通りに行われていません。\nシフト希望の提出をやり直してください"
-            }
-          ]
-        }.to_json
+        body = [
+          {
+            type: 'text',
+            text: 'シフト希望のリクエストが順番通りに行われていません。\nシフト希望の提出をやり直してください。'
+          }
+        ]
         reply_message(body)
       end
-      
+
     end
   end
 end
