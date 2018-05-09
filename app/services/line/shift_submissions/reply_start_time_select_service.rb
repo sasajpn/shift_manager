@@ -15,6 +15,7 @@ module Line
       private
 
       def request_start_time_select
+        team = Team.find(team_id)
         time = Time.current
         body = [
           {
@@ -23,7 +24,7 @@ module Line
             template: {
               type: 'buttons',
               title: 'シフト希望の提出',
-              text: '希望の開始日時を選択してください',
+              text: "提出先は#{team.name}です\n希望の開始日時を選択してください",
               actions: [
                 type: 'datetimepicker',
                 label: 'タップしてください',

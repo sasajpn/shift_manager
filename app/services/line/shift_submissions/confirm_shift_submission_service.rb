@@ -40,6 +40,7 @@ module Line
       end
 
       def request_confirm_message(start_time, end_time)
+        team = Team.find(get_team_id)
         body = [
           {
             type: 'template',
@@ -47,7 +48,7 @@ module Line
             template: {
               type: 'confirm',
               title: 'シフト希望の提出',
-              text: "#{japanese_time_format(start_time)}~#{japanese_time_format(end_time)}でシフトの希望を提出しますか？",
+              text: "#{team.name}\n#{japanese_time_format(start_time)}~#{japanese_time_format(end_time)}\nこちらでシフトの希望を提出しますか？",
               actions: [
                 {
                   type: 'postback',
