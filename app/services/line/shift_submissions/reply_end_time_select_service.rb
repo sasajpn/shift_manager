@@ -24,16 +24,16 @@ module Line
               "template": {
                 "type": "buttons",
                 "title": "シフト希望の提出",
-                "text": "開始時間は#{start_time.to_time.strftime('%Y年%m月%d日 %H:%M')}です\n希望の終了日時を選択してください",
+                "text": "開始時間は#{japanese_time_format(start_time)}です\n希望の終了日時を選択してください",
                 "actions": [
                   {
                     "type": "datetimepicker",
                     "label": "タップしてください",
                     "data": "shift_submission[end_time]",
                     "mode": "datetime",
-                    "initial": start_time,
-                    "max": start_time.to_time.tomorrow.strftime('%Y-%m-%dt%H:%M'),
-                    "min": start_time
+                    "initial": line_time_format(start_time.since(1.minutes)),
+                    "max": line_time_format(start_time.tomorrow),
+                    "min": line_time_format(start_time.since(1.minutes))
                   },
                 ]
               }

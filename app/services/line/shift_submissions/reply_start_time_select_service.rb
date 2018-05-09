@@ -12,6 +12,7 @@ module Line
       private
 
       def request_start_time_select
+        time = Time.current
         body = {
           "replyToken": "#{reply_token}",
           "messages": [
@@ -28,9 +29,9 @@ module Line
                     "label": "タップしてください",
                     "data": "shift_submission[start_time]",
                     "mode": "datetime",
-                    "initial": Time.current.strftime('%Y-%m-%dt%H:%M'),
-                    "max": Time.current.next_year.strftime('%Y-%m-%dt%H:%M'),
-                    "min": Time.current.strftime('%Y-%m-%dt%H:%M')
+                    "initial": line_time_format(time),
+                    "max": line_time_format(time.next_year),
+                    "min": line_time_format(time)
                   }
                 ]
               }

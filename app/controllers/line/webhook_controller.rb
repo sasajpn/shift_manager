@@ -32,13 +32,13 @@ class Line::WebhookController < ApplicationController
           Line::ShiftSubmissions::ReplyEndTimeSelectService.new(
             reply_token: event['replyToken'],
             line_user_id: event['source']['userId'],
-            start_time: event['postback']['params']['datetime']
+            start_time: event['postback']['params']['datetime']&.to_time
           ).reply
         when 'shift_submission[end_time]'
           Line::ShiftSubmissions::ConfirmShiftSubmissionService.new(
             reply_token: event['replyToken'],
             line_user_id: event['source']['userId'],
-            end_time: event['postback']['params']['datetime']
+            end_time: event['postback']['params']['datetime']&.to_time
           ).confirm
         when 'shift_submission[regist]'
           Line::ShiftSubmissions::RegistShiftSubmissionService.new(

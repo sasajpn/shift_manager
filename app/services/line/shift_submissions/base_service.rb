@@ -13,6 +13,14 @@ module Line
 
       attr_reader :reply_token, :line_user_id, :start_time, :end_time
 
+      def line_time_format(time)
+        time.strftime('%Y-%m-%dt%H:%M')
+      end
+
+      def japanese_time_format(time)
+        time.strftime('%Y年%m月%d日 %H:%M')
+      end
+
       def get_line_connection
         LineConnection.find_by(line_user_id: line_user_id)
       end
@@ -34,11 +42,11 @@ module Line
       end
 
       def get_start_time
-        Redis.current.hget(line_user_id, 'start_time')
+        Redis.current.hget(line_user_id, 'start_time')&.to_time
       end
 
       def get_end_time
-        Redis.current.hget(line_user_id, 'end_time')
+        Redis.current.hget(line_user_id, 'end_time')&.to_time
       end
 
       def delete_start_time
