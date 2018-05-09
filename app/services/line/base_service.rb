@@ -4,7 +4,7 @@ module Line
   class BaseService
     LINE_API_ENDPOINT = 'https://api.line.me/v2/bot/'
 
-    attr_accessor :reply_token, :line_user_id, :start_time, :end_time, :team_id
+    attr_accessor :reply_token, :line_user_id, :start_time, :end_time, :team_id, :nonce
 
     def initialize(attributes = nil)
       attributes.each do |key, value|
@@ -14,7 +14,7 @@ module Line
 
     private
 
-    attr_reader :reply_token, :line_user_id, :start_time, :end_time, :team_id
+    attr_reader :reply_token, :line_user_id, :start_time, :end_time, :team_id, :nonce
 
     def header(req)
       req["Content-Type"] = "application/json"
@@ -35,7 +35,7 @@ module Line
       req = Net::HTTP::Post.new(uri.request_uri)
       header(req)
       payload(req, body)
-      res = http.request(req)
+      http.request(req)
     end
   end
 end
