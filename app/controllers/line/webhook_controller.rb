@@ -10,19 +10,19 @@ class Line::WebhookController < ApplicationController
       when 'follow'
         Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
       when 'unfollow'
-        Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
+        Line::Accounts::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
         Line::Richmenus::UnlinkRichmenuService.new(event['source']['userId']).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
-          Line::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
+          Line::Accounts::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
         when 'disconnected'
-          Line::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
+          Line::Accounts::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
         when 'destroy_connection[OK]'
-          Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
+          Line::Accounts::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
           Line::Richmenus::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
         when 'destroy_connection[NG]'
-          Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
+          Line::Accounts::CancelDestroyedConnectionService.new(event['replyToken']).cancel
         when 'shift_submission'
           Line::ShiftSubmissions::ReplyTeamSelectService.new(
             reply_token: event['replyToken'],
@@ -60,8 +60,8 @@ class Line::WebhookController < ApplicationController
       when 'accountLink'
         case event['link']['result']
         when 'ok'
-          Line::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
-          Line::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
+          Line::Accounts::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
+          Line::Richmenus::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
         end
       end
       case event
