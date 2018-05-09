@@ -24,15 +24,32 @@ class Line::WebhookController < ApplicationController
         when 'destroy_connection[NG]'
           Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
         when 'shift_submission'
-          Line::ReplyStartTimeSelectService.new(event['replyToken'], event['source']['userId']).reply
+          Line::ShiftSubmissions::ReplyStartTimeSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).reply
         when 'shift_submission[start_time]'
-          Line::ReplyEndTimeSelectService.new(event['replyToken'], event['source']['userId'], event['postback']['params']['datetime']).reply
+          Line::ShiftSubmissions::ReplyEndTimeSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            start_time: event['postback']['params']['datetime']
+          ).reply
         when 'shift_submission[end_time]'
-          Line::ConfirmShiftSubmissionService.new(event['replyToken'], event['source']['userId'], event['postback']['params']['datetime']).confirm
+          Line::ShiftSubmissions::ConfirmShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            end_time: event['postback']['params']['datetime']
+          ).confirm
         when 'shift_submission[regist]'
-          Line::RegistShiftSubmissionService.new(event['replyToken'], event['source']['userId']).regist
+          Line::ShiftSubmissions::RegistShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).regist
         when 'shift_submission[cancel]'
-          Line::CancelShiftSubmissionService.new(event['replyToken'], event['source']['userId']).cancel
+          Line::ShiftSubmissions::CancelShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).cancel
         end
       when 'accountLink'
         case event['link']['result']
