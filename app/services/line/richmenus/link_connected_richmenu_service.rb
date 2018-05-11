@@ -16,11 +16,11 @@ module Line
       end
 
       def request_unlink_unconnected_richmenu
-        reply_message(body, "user/#{line_user_id}/richmenu")
+        post(path: "user/#{line_user_id}/richmenu")
       end
 
       def request_link_connected_richmenu(richmenu_id)
-        reply_message(body, "user/#{line_user_id}/richmenu/#{richmenu_id}")
+        post(path: "user/#{line_user_id}/richmenu/#{richmenu_id}")
       end
 
     end

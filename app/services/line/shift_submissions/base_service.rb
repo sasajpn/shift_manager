@@ -61,13 +61,13 @@ module Line
       end
 
       def request_invalid_action_message
-        body = [
+        data = [
           {
             type: 'text',
             text: "シフト希望のリクエストが順番通りに行われていません。\nシフト希望の提出をやり直してください。"
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

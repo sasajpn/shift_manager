@@ -21,15 +21,15 @@ module Line
       end
 
       def message_destroyed_connection
-        body = [
+        data = [
           {
             type: 'text',
             text: 'アカウントの連携を解除しました'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
-      
+
     end
   end
 end

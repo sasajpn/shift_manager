@@ -16,13 +16,13 @@ module Line
       private
 
       def request_cancel_message
-        body = [
+        data = [
           {
             type: 'text',
             text: 'シフト希望の提出を取り消しました。'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

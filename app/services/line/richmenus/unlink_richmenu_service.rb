@@ -9,7 +9,7 @@ module Line
       private
 
       def request_unlink_richmenu
-        reply_message(body, "user/#{line_user_id}/richmenu")
+        post(path: "user/#{line_user_id}/richmenu")
       end
 
     end

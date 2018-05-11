@@ -17,7 +17,7 @@ module Line
       def request_start_time_select
         team = Team.find(team_id)
         time = Time.current
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a buttons template',
@@ -37,7 +37,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
     end
   end

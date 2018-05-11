@@ -15,7 +15,7 @@ module Line
       private
 
       def request_end_time_select
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a buttons template',
@@ -35,7 +35,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
     end
   end

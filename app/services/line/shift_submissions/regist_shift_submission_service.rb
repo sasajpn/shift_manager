@@ -30,23 +30,23 @@ module Line
       private
 
       def request_success_message
-        body = [
+        data = [
           {
             type: 'text',
             text: 'シフト希望を提出しました。'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
       def request_error_message(error_messages)
-        body = [
+        data = [
           {
             type: 'text',
             text: "#{error_messages.join("\n")}\nもう一度やり直してください。"
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

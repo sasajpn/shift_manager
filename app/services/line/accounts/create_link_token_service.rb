@@ -15,7 +15,7 @@ module Line
       end
 
       def message_account_link_url(link_token)
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a buttons template',
@@ -33,7 +33,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

@@ -21,20 +21,22 @@ module Line
       req["Authorization"] = "Bearer #{ENV["LINE_CHANNEL_TOKEN"]}"
     end
 
-    def payload(req, body)
-      req.body = {
+    def payload(body)
+      payload = {
         replyToken: "#{reply_token}",
         messages: body
-      }.to_json
+      }
+
+      payload.delete_if{|k, v| v.nil?}.to_json
     end
 
-    def reply_message(body = '', path = 'message/reply')
+    def post(path: 'message/reply', data: '')
       uri = URI.parse(LINE_API_ENDPOINT + path)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       req = Net::HTTP::Post.new(uri.request_uri)
       header(req)
-      payload(req, body)
+      req.body = payload(body)
       http.request(req)
     end
 

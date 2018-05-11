@@ -9,7 +9,7 @@ module Line
       private
 
       def message_confirm_destroyable_connection
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a confirm template',
@@ -31,7 +31,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

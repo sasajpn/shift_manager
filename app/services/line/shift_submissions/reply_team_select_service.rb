@@ -31,7 +31,7 @@ module Line
       end
 
       def request_team_select
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a buttons template',
@@ -43,7 +43,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end

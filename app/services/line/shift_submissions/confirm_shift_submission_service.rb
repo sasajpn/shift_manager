@@ -20,28 +20,28 @@ module Line
       private
 
       def request_time_order_error_message
-        body = [
+        data = [
           {
             type: 'text',
             text: '開始時間が終了時間を超えています\nシフト希望の提出をやり直してください'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
       def request_blank_error_message
-        body = [
+        data = [
           {
             type: 'text',
             text: '開始時間あるいは終了時間が選択されていません\nシフト希望の提出をやり直してください'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
       def request_confirm_message(start_time, end_time)
         team = Team.find(get_team_id)
-        body = [
+        data = [
           {
             type: 'template',
             altText: 'This is a confirm template',
@@ -64,7 +64,7 @@ module Line
             }
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
     end
   end

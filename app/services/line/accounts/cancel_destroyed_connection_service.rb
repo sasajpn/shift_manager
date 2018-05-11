@@ -9,13 +9,13 @@ module Line
       private
 
       def message_cancel_destroyed_connection
-        body = [
+        data = [
           {
             type: 'text',
             text: 'アカウントの連携解除をキャンセルしました'
           }
         ]
-        reply_message(body)
+        post(data: data)
       end
 
     end
