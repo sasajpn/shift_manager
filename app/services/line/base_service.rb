@@ -1,4 +1,4 @@
-require 'net/https'
+require 'net/http'
 
 module Line
   class BaseService
