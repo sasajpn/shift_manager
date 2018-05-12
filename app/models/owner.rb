@@ -1,9 +1,9 @@
 class Owner < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_one :line_connection, as: :account
-  
+
   has_many :teams
 
   validates :last_name_kana, :first_name_kana, :last_name, :first_name,

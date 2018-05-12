@@ -1,5 +1,12 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @email %>さん</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>シフトマネージャーにご登録いただきありがとうございます</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p>以下のリンクをクリックすることで登録が完了します</p>
+
+<p>
+  <%= link_to 'アカウントの登録を完了させる',
+  controller: 'owners/confirmations',
+  action: 'create',
+  confirmation_token: @token %>
+</p>

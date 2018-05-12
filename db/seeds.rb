@@ -7,6 +7,12 @@ user = User.new(
 user.skip_confirmation!
 user.save
 
+owner = Owner.new(
+  email: "owner@example.com", password: 'password',
+  last_name_kana: 'ナカタ', first_name_kana: 'タロウ',
+  last_name: '中田', first_name: '太郎'
+)
+
 1.upto(50) do |n|
   Owner.create(
     email: "owner#{n}@example.com", password: 'password',
