@@ -1,9 +1,11 @@
 Admin.create(email: 'admin@example.com', password: 'password')
-User.create(
+user = User.new(
   email: "user@example.com", password: 'password',
   last_name_kana: 'タナカ', first_name_kana: 'タロウ',
   last_name: '田中', first_name: '太郎'
 )
+user.skip_confirmation!
+user.save
 
 1.upto(50) do |n|
   Owner.create(
@@ -14,13 +16,15 @@ User.create(
 end
 
 1.upto(50) do |n|
-  User.create(
+  user = User.new(
     email: "user#{n}@example.com", password: 'password',
     last_name_kana: 'ジュウギョウイン', first_name_kana: 'タロウ',
     last_name: '従業員', first_name: '太郎'
   )
+  user.skip_confirmation!
+  user.save
 end
 
 Owner.first.teams.create(name: 'ABC株式会社', open_time: '08:00', close_time: '18:00')
 
-Team.first.members.create(user_id: User.first.id, role: 'part_timer')
+Team.first.members.create(user_id: User.first.id, role: 'part_timer', calendar_color: '#FFFFFF')
