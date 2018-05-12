@@ -1,4 +1,5 @@
 require 'net/http'
+require 'uri'
 
 module Line
   class BaseService
@@ -16,15 +17,26 @@ module Line
 
     attr_reader :reply_token, :line_user_id, :start_time, :end_time, :team_id, :nonce
 
-    def header(req)
-      req["Content-Type"] = "application/json"
-      req["Authorization"] = "Bearer #{ENV["LINE_CHANNEL_TOKEN"]}"
+    def http(uri)
+      http = Net::HTTP.new(uri.host, uri.port)
+        if uri.scheme == "https"
+          http.use_ssl = true
+        end
+
+        http
     end
 
-    def payload(body)
+    def header
+      {
+        'Content-Type': 'application/json',
+        'Authorization': "Bearer #{ENV["LINE_CHANNEL_TOKEN"]}"
+      }
+    end
+
+    def payload(data)
       payload = {
         replyToken: "#{reply_token}",
-        messages: body
+        messages: data
       }
 
       payload.delete_if{|k, v| v.nil?}.to_json
@@ -32,12 +44,7 @@ module Line
 
     def post(path: 'message/reply', data: '')
       uri = URI.parse(LINE_API_ENDPOINT + path)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      req = Net::HTTP::Post.new(uri.request_uri)
-      header(req)
-      req.body = payload(body)
-      http.request(req)
+      http(uri).post(uri.request_uri, payload(data), header)
     end
 
   end

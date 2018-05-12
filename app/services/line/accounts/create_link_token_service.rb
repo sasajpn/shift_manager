@@ -10,7 +10,7 @@ module Line
       private
 
       def request_link_token
-        res = reply_message(body, "user/#{line_user_id}/linkToken")
+        res = post(path: "user/#{line_user_id}/linkToken")
         ActiveSupport::JSON.decode(res.body)['linkToken']
       end
 
