@@ -27,7 +27,7 @@ class Line::WebhookController < ApplicationController
             line_user_id: event['source']['userId']
           ).create
         when 'disconnected'
-          Line::Accounts::ConfirmDestroyableConnectionService.new(
+          Line::Accounts::ConfirmDestroyConnectionService.new(
             reply_token: event['replyToken']
           ).confirm
         when 'destroy_connection[OK]'

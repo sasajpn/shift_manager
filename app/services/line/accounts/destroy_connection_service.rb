@@ -6,8 +6,10 @@ module Line
         line_connection = get_line_connection
         if line_connection
           destroy_connection(line_connection)
+          message_destroyed_connection
+        else
+          message_account_not_link
         end
-        message_destroyed_connection
       end
 
       private
@@ -25,6 +27,16 @@ module Line
           {
             type: 'text',
             text: 'アカウントの連携を解除しました'
+          }
+        ]
+        post(data: data)
+      end
+
+      def message_account_not_link
+        data = [
+          {
+            type: 'text',
+            text: 'アカウントは連携されていません'
           }
         ]
         post(data: data)

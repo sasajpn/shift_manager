@@ -1,14 +1,14 @@
 module Line
   module Accounts
-    class ConfirmDestroyableConnectionService < Line::BaseService
+    class ConfirmDestroyConnectionService < Line::BaseService
 
       def confirm
-        message_confirm_destroyable_connection
+        message_confirm_destroy_connection
       end
 
       private
 
-      def message_confirm_destroyable_connection
+      def message_confirm_destroy_connection
         data = [
           {
             type: 'template',
