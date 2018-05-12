@@ -5,7 +5,7 @@
     <p class="login-box-msg">LINE公式アカウント連携用ログイン画面</p>
     <%= bootstrap_form_for(@line_connection, url: users_line_connections_path, method: :post, inline_errors: false) do|f| %>
       <%= f.alert_message "以下のエラー内容を修正してください" %>
-      <%= f.hidden_field :link_token, value: params[:linkToken] %>
+      <%= f.hidden_field :link_token, value: params[:linkToken] || @line_connection.link_token %>
       <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
       <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off" %>
       <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
