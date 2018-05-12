@@ -3,9 +3,10 @@
     json.title "#{shift_submission.start_time}~#{shift_submission.end_time}"
     json.start Chronic.parse("#{shift_submission.submitted_date} #{shift_submission.start_time}")
     json.end Chronic.parse("#{shift_submission.submitted_date} #{shift_submission.end_time}")
+    json.className 'shift-submission-source'
     json.textColor '#444'
-    json.backgroundColor '#f4f4f4'
-    json.borderColor '#ddd'
+    json.backgroundColor "##{member.calendar_color}"
+    json.borderColor "##{member.calendar_color}"
     json.editable false
   end
 
@@ -13,8 +14,9 @@
     json.title "#{shift_adjustment.start_time}~#{shift_adjustment.end_time}"
     json.start Chronic.parse("#{shift_adjustment.shift_submission.submitted_date} #{shift_adjustment.start_time}")
     json.end Chronic.parse("#{shift_adjustment.shift_submission.submitted_date} #{shift_adjustment.end_time}")
-    json.backgroundColor '#dd4b39'
-    json.borderColor '#d73925'
+    json.textColor '#444'
+    json.backgroundColor "##{member.calendar_color}"
+    json.borderColor "##{member.calendar_color}"
     json.editable false
   end
 end
