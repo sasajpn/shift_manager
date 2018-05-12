@@ -1,16 +1,19 @@
 <div class="login-box">
   <div class="login-logo">
+    <b><%= Settings.title %></b>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">ログイン画面</p>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="form-group has-feedback">
-        <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true, class: 'form-control' %>
-      </div>
-      <div class="form-group has-feedback">
-        <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off", class: 'form-control' %>
-      </div>
+    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), inline_errors: false) do |f| %>
+    <% if alert %>
+      <p class="alert alert-error"><%= alert %></p>
+    <% end %>
+      <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
+      <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off" %>
       <%= f.submit 'ログイン', class: 'btn btn-primary btn-block btn-flat' %>
     <% end %>
+    <br>
+    <p><%= link_to 'パスワードを忘れましたか？', new_user_password_path %></p>
+    <p><%= link_to 'アカウントを登録しますか？', new_user_registration_path %></p>
   </div>
 </div>

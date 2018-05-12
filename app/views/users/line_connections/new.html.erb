@@ -1,0 +1,15 @@
+<div class="login-box">
+  <div class="login-logo">
+  </div>
+  <div class="login-box-body">
+    <p class="login-box-msg">LINE公式アカウントと連携</p>
+    <p><%= Settings.title %>のアカウント情報を入力してください</p>
+    <%= bootstrap_form_for(@line_connection, url: users_line_connections_path, method: :post, inline_errors: false) do|f| %>
+      <%= f.alert_message "以下のエラー内容を修正してください" %>
+      <%= f.hidden_field :link_token, value: params[:linkToken] || @line_connection.link_token %>
+      <%= f.email_field :email, placeholder: 'メールアドレス', autofocus: true %>
+      <%= f.password_field :password, placeholder: 'パスワード', autocomplete: "off" %>
+      <%= f.submit 'LINEアカウントと連携する', class: 'btn btn-primary btn-block btn-flat' %>
+    <% end %>
+  </div>
+</div>

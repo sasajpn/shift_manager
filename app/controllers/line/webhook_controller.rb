@@ -8,39 +8,85 @@ class Line::WebhookController < ApplicationController
     events.each do |event|
       case event['type']
       when 'follow'
-        Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+        Line::Richmenus::LinkUnconnectedRichmenuService.new(
+          line_user_id: event['source']['userId']
+        ).link
       when 'unfollow'
-        Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-        Line::UnlinkRichmenuService.new(event['source']['userId']).unlink
+        Line::Accounts::DestroyConnectionService.new(
+          reply_token: event['replyToken'],
+          line_user_id: event['source']['userId']
+        ).destroy
+        Line::Richmenus::UnlinkRichmenuService.new(
+          line_user_id: event['source']['userId']
+        ).unlink
       when 'postback'
         case event['postback']['data']
         when 'connected'
-          Line::CreateLinkTokenService.new(event['replyToken'], event['source']['userId']).create
+          Line::Accounts::CreateLinkTokenService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).create
         when 'disconnected'
-          Line::ConfirmDestroyableConnectionService.new(event['replyToken']).confirm
+          Line::Accounts::ConfirmDestroyConnectionService.new(
+            reply_token: event['replyToken']
+          ).confirm
         when 'destroy_connection[OK]'
-          Line::DestroyConnectionService.new(event['replyToken'], event['source']['userId']).destroy
-          Line::LinkUnconnectedRichmenuService.new(event['source']['userId']).link
+          Line::Accounts::DestroyConnectionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).destroy
+          Line::Richmenus::LinkUnconnectedRichmenuService.new(
+            line_user_id: event['source']['userId']
+          ).link
         when 'destroy_connection[NG]'
-          Line::CancelDestroyedConnectionService.new(event['replyToken']).cancel
+          Line::Accounts::CancelDestroyedConnectionService.new(
+            reply_token: event['replyToken']
+          ).cancel
         when 'shift_submission'
-          Line::ReplyStartTimeSelectService.new(event['replyToken'], event['source']['userId']).reply
+          Line::ShiftSubmissions::ReplyTeamSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).reply
+        when /shift_submission\[team\]/
+          Line::ShiftSubmissions::ReplyStartTimeSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            team_id: event['postback']['data']&.split('=')[1]
+          ).reply
         when 'shift_submission[start_time]'
-          Line::StoreStartTimeService.new(event['replyToken'], event['source']['userId'], event['postback']['params']['datetime']).store
-          Line::ReplyEndTimeSelectService.new(event['replyToken'], event['postback']['params']['datetime']).reply
+          Line::ShiftSubmissions::ReplyEndTimeSelectService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            start_time: event['postback']['params']['datetime']&.to_time
+          ).reply
         when 'shift_submission[end_time]'
-          Line::StoreEndTimeService.new(event['source']['userId'], event['postback']['params']['datetime']).store
-          Line::ConfirmShiftSubmissionService.new(event['replyToken'], event['source']['userId']).confirm
+          Line::ShiftSubmissions::ConfirmShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId'],
+            end_time: event['postback']['params']['datetime']&.to_time
+          ).confirm
         when 'shift_submission[regist]'
-          Line::RegistShiftSubmissionService.new(event['replyToken'], event['source']['userId']).regist
+          Line::ShiftSubmissions::RegistShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).regist
         when 'shift_submission[cancel]'
-          Line::CancelShiftSubmissionService.new(event['replyToken'], event['source']['userId']).cancel
+          Line::ShiftSubmissions::CancelShiftSubmissionService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).cancel
         end
       when 'accountLink'
         case event['link']['result']
         when 'ok'
-          Line::CreateConnectionService.new(event['source']['userId'], event['link']['nonce']).create
-          Line::LinkConnectedRichmenuService.new(event['replyToken'], event['source']['userId']).link
+          Line::Accounts::CreateConnectionService.new(
+            line_user_id: event['source']['userId'],
+            nonce: event['link']['nonce']
+          ).create
+          Line::Richmenus::LinkConnectedRichmenuService.new(
+            reply_token: event['replyToken'],
+            line_user_id: event['source']['userId']
+          ).link
         end
       end
       case event

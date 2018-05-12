@@ -1,4 +1,11 @@
 Admin.create(email: 'admin@example.com', password: 'password')
+user = User.new(
+  email: "user@example.com", password: 'password',
+  last_name_kana: 'タナカ', first_name_kana: 'タロウ',
+  last_name: '田中', first_name: '太郎'
+)
+user.skip_confirmation!
+user.save
 
 1.upto(50) do |n|
   Owner.create(
@@ -9,13 +16,24 @@ Admin.create(email: 'admin@example.com', password: 'password')
 end
 
 1.upto(50) do |n|
-  User.create(
+  user = User.new(
     email: "user#{n}@example.com", password: 'password',
     last_name_kana: 'ジュウギョウイン', first_name_kana: 'タロウ',
     last_name: '従業員', first_name: '太郎'
   )
+  user.skip_confirmation!
+  user.save
 end
 
 Owner.first.teams.create(name: 'ABC株式会社', open_time: '08:00', close_time: '18:00')
 
-Team.first.members.create(user_id: User.first.id, role: 'part_timer')
+member = Team.first.members.create(user_id: User.first.id, role: 'part_timer', calendar_color: '#00c0ef')
+shift_submission = member.shift_submissions.create(
+  submitted_date: Date.tomorrow,
+  start_time: '10:00',
+  end_time: '15:00'
+)
+shift_submission.create_shift_adjustment(
+  start_time: '12:00',
+  end_time: '15:00'
+)

@@ -3,8 +3,32 @@ class ShiftAdjustment < ApplicationRecord
 
   has_one :member, through: :shift_submission
 
+  validates :start_time, :end_time,
+    presence: true
+
+  validates :start_time,
+    time_format: true,
+    time_order: { attr: 'end_time' },
+    outside_shift_submission_time: true
+
+  validates :end_time,
+    time_format: true,
+    outside_shift_submission_time: true
+
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
+
+  scope :futures, -> {
+    all.select(&:future?)
+  }
+
+  def adjusted_end_time
+    Chronic.parse("#{shift_submission.submitted_date} #{end_time}")
+  end
+
+  def future?
+    adjusted_end_time > Time.current
+  end
 
   private
 

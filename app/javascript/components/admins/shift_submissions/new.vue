@@ -54,7 +54,7 @@
 
 <script>
   import { newShiftSubmission } from 'api/admins/shift_submissions.js'
-  import CSRF from 'components/shared/csrf.vue';
+  import CSRF from 'components/shared/csrf.vue'
 
   export default {
     components: {

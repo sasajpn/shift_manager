@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag 'users/fullcalendar' %>
+<%= javascript_include_tag 'users/teams/show' %>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
+          </li>
+        </ul>
+        <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
+        <hr>
+        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '設定変更', edit_users_member_path(@member), class: 'btn btn-success btn-block' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <div id="shift_calendar" data-team_id="<%= @team.id %>"></div>
+      </div>
+    </div>
+  </div>
+</div>

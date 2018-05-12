@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
   }
 
   namespace :line do
@@ -40,6 +41,19 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :users do
+    resources :home, only: [:index]
+    resources :users, only: [:edit, :update, :destroy]
+    resources :teams, only: [:index, :show], shallow: true do
+      resources :shift_adjustments, only: [:index]
+      resources :shift_submissions, except: [:create, :update] do
+        resources :shift_adjustments, except: [:index, :create, :update]
+      end
+    end
+    resources :members, except: [:index]
+    resources :line_connections, only: [:new, :create]
+  end
+
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
@@ -51,6 +65,15 @@ Rails.application.routes.draw do
         resources :shift_submissions, only: [:new, :edit], shallow: true do
           resources :shift_adjustments, only: [:show, :new, :edit]
         end
+      end
+      namespace :users do
+        resources :home, only: [:index]
+        resources :teams, only: [:show], shallow: true do
+          resources :shift_submissions, except: [:index, :destroy] do
+            resources :shift_adjustments, except: [:index, :destroy]
+          end
+        end
+        resources :members, only: [:edit, :update]
       end
     end
   end

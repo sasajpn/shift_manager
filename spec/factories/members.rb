@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :member do
-    team nil
-    user nil
-    role 1
+    team { create(:team) }
+    user { create(:user) }
+    calendar_color '#FFFFFF'
   end
 end

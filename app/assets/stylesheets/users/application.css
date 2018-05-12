@@ -1,7 +1,8 @@
 /*
- *= require_tree .
- *= require AdminLTE/AdminLTE.min
  *= require AdminLTE/bootstrap.min
+ *= require AdminLTE/AdminLTE.min
+ *= require AdminLTE/AdminLTE-fullcalendar
+ *= require AdminLTE/fullcalendar.min.css
  *= require AdminLTE/_all-skins.min
  *= require rails_bootstrap_forms
  */

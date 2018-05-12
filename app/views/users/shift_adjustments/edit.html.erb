@@ -1,0 +1,40 @@
+<%= javascript_pack_tag 'users/shift_adjustments/edit' %>
+<%= stylesheet_pack_tag 'users/shift_adjustments/edit' %>
+
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>勤務者</b> <span class="pull-right"><%= @shift_submission.user.name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>調整日</b> <span class="pull-right"><%= @shift_submission.submitted_date %></span>
+          </li>
+          <li class="list-group-item">
+            <b>開始時間</b> <span class="pull-right"><%= @shift_adjustment.start_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>終了時間</b> <span class="pull-right"><%= @shift_adjustment.end_time %></span>
+          </li>
+        </ul>
+        <%= link_to 'キャンセル', users_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '削除', users_shift_adjustment_path(@shift_adjustment), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">シフト調整変更</h3>
+      </div>
+      <div class="box-body">
+        <div id="shift_adjustments_edit" data-shift_adjustment_id="<%= @shift_adjustment.id %>"></div>
+      </div>
+    </div>
+  </div>
+</div>

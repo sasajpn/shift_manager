@@ -1,0 +1,17 @@
+<aside class="main-sidebar">
+  <section class="sidebar" style="height: auto;">
+    <div class="user-panel">
+    </div>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header"><%= current_user.name %></li>
+      </li>
+      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% if current_user.teams.any? %>
+        <li><%= link_to 'チーム一覧', users_teams_path %></li>
+      <% end %>
+      <li><%= link_to 'チームに参加する', new_users_member_path %></li>
+      <li><%= link_to '登録内容変更', edit_users_user_path(current_user) %></li>
+      <li><%= link_to 'パスワード変更', edit_user_registration_path %></li>
+    </ul>
+  </section>
+</aside>

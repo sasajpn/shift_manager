@@ -1,8 +1,8 @@
-import apiClient from 'helpers/api_client'
+import apiClient from 'helpers/admins/api_client'
 
-export function newShiftAdjustment (shift_submission_id) {
+export function newShiftAdjustment (shiftSubmissionId) {
   return apiClient({
-    url: '/shift_submissions/' + shift_submission_id + '/shift_adjustments/new'
+    url: '/shift_submissions/' + shiftSubmissionId + '/shift_adjustments/new'
   })
 }
 

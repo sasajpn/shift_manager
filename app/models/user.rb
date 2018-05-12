@@ -1,17 +1,27 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   has_one :line_connection, as: :account
-  
+
   has_many :members, dependent: :destroy
   has_many :teams, through: :members
+  has_many :shift_submissions, through: :members
+  has_many :shift_adjustments, through: :shift_submissions
 
   validates :last_name_kana, :first_name_kana, :last_name, :first_name,
     presence: true
   validates :last_name_kana, katakana_format: true
   validates :first_name_kana, katakana_format: true
 
+  before_destroy :remain_future_shift_adjustment, prepend: true
+
+  private
+
+  def remain_future_shift_adjustment
+    if self.shift_adjustments.futures.any?
+      errors.add(:base, '未来に調整済みのシフトが残っているため、退会できません')
+      throw :abort
+    end
+  end
 end
