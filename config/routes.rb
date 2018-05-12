@@ -41,6 +41,10 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :owners do
+    resources :home, only: [:index]
+  end
+
   namespace :users do
     resources :home, only: [:index]
     resources :users, only: [:edit, :update, :destroy]
