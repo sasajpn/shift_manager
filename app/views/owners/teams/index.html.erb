@@ -1,0 +1,34 @@
+<% if @teams.any? %>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">チーム一覧</h3>
+      <div class="box-tools">
+        <%= paginate @teams, theme: 'users' %>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <th>従業員数</th>
+            <th>営業開始時間</th>
+            <th>営業終了時間</th>
+          </tr>
+          <% @teams.each do |team| %>
+            <tr>
+              <td><%= link_to team.name, users_team_path(team) %></td>
+              <td><%= team.members.count %></td>
+              <td><%= team.open_time %></td>
+              <td><%= team.close_time %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout-danger">
+    <p>チームに参加していません</p>
+  </div>
+<% end %>
