@@ -5,3 +5,15 @@ export function editMember (memberId) {
     url: '/members/' + memberId + '/edit'
   })
 }
+
+export function updateMember (member) {
+  return apiClient({
+    method: 'patch',
+    data: {
+      member: {
+        calendar_color: member.calendarColor,
+      }
+    },
+    url: '/members/' + member.id
+  })
+}

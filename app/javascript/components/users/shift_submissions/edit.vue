@@ -4,7 +4,6 @@
     <el-form
       :model="shiftSubmission"
       label-width="120px">
-      <input type="hidden" name="_method" value="patch" />
       <el-form-item label="希望日" required>
         <el-date-picker
           name="shift_submission[submitted_date]"

@@ -1,3 +1,6 @@
+<%= javascript_pack_tag 'users/members/edit' %>
+<%= stylesheet_pack_tag 'users/members/edit' %>
+
 <div class="row">
   <div class="col-md-3">
     <div class="box box-primary">
@@ -25,18 +28,12 @@
   </div>
   <div class="col-md-8">
     <div class="box box-default">
-      <%= bootstrap_form_for [:users, @member] do |f| %>
-        <div class="box-header with-border">
-          <h3 class="box-title">設定変更</h3>
-        </div>
-        <div class="box-body">
-          <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.color_field :calendar_color %>
-        </div>
-        <div class="box-footer">
-          <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
+      <div class="box-header with-border">
+        <h3 class="box-title">設定変更</h3>
+      </div>
+      <div class="box-body">
+        <div id="members_edit" data-member_id="<%= @member.id %>"></div>
+      </div>
     </div>
   </div>
 </div>

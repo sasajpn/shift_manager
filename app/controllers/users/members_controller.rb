@@ -23,7 +23,8 @@ class Users::MembersController < Users::ApplicationController
       redirect_to users_team_url(@member.team)
     else
       @team = @member.team
-      render :edit end
+      render :edit
+    end
   end
 
   def destroy
