@@ -1,6 +1,6 @@
 <div class="register-box">
   <div class="register-logo">
-    <b>シフトマネージャー</b>
+    <b><%= Setting.title %></b>
   </div>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), inline_errors: false) do |f| %>
     <%= f.alert_message "以下のエラー内容を修正してください" %>
