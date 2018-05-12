@@ -3,7 +3,7 @@
     <div class="user-panel">
     </div>
     <ul class="sidebar-menu tree" data-widget="tree">
-      <li class="header">メニュー</li>
+      <li class="header"><%= current_user.name %></li>
       </li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
       <% if current_user.teams.any? %>
