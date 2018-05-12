@@ -18,6 +18,18 @@ class ShiftAdjustment < ApplicationRecord
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
 
+  scope :futures, -> {
+    all.select(&:future?)
+  }
+
+  def adjusted_end_time
+    Chronic.parse("#{shift_submission.submitted_date} #{end_time}")
+  end
+
+  def future?
+    adjusted_end_time > Time.current
+  end
+
   private
 
   def submission_is_approved

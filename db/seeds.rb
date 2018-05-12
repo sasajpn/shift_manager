@@ -27,4 +27,13 @@ end
 
 Owner.first.teams.create(name: 'ABC株式会社', open_time: '08:00', close_time: '18:00')
 
-Team.first.members.create(user_id: User.first.id, role: 'part_timer', calendar_color: '#00c0ef')
+member = Team.first.members.create(user_id: User.first.id, role: 'part_timer', calendar_color: '#00c0ef')
+shift_submission = member.shift_submissions.create(
+  submitted_date: Date.tomorrow,
+  start_time: '10:00',
+  end_time: '15:00'
+)
+shift_submission.create_shift_adjustment(
+  start_time: '12:00',
+  end_time: '15:00'
+)

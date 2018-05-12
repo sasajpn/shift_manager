@@ -10,7 +10,7 @@ class JoinTeamForm
   def save(user)
     @user = user
     return false if invalid?
-    Member.create(team_id: @team.id, user_id: @user.id)
+    Member.create(team_id: @team.id, user_id: @user.id, calendar_color: '#FFFFFF')
     true
   end
 
