@@ -3,7 +3,7 @@
     <div class="box-header">
       <h3 class="box-title">チーム一覧</h3>
       <div class="box-tools">
-        <%= paginate @teams, theme: 'users' %>
+        <%= paginate @teams, theme: 'owners' %>
       </div>
     </div>
     <div class="box-body no-padding">
@@ -17,7 +17,7 @@
           </tr>
           <% @teams.each do |team| %>
             <tr>
-              <td><%= link_to team.name, users_team_path(team) %></td>
+              <td><%= link_to team.name, owners_team_path(team) %></td>
               <td><%= team.members.count %></td>
               <td><%= team.open_time %></td>
               <td><%= team.close_time %></td>
