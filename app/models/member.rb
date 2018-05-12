@@ -5,7 +5,7 @@ class Member < ApplicationRecord
   has_many :shift_submissions, dependent: :destroy
   has_many :shift_adjustments, through: :shift_submissions
 
-  validates :user_id, :role,
+  validates :user_id, :role, :calendar_color,
     presence: true
   validates :user_id,
     uniqueness: { scope: [:team_id], message: 'は既に従業員に登録されています' }
