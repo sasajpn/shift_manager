@@ -28,6 +28,7 @@ ja:
       member:
         user_id: ユーザー
         role: 役職
+        calendar_color: カレンダー表示色
       shift_submission:
         submitted_date: 希望日
         start_time: 開始時間
