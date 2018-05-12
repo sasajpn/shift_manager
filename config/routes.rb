@@ -73,6 +73,7 @@ Rails.application.routes.draw do
             resources :shift_adjustments, except: [:index, :destroy]
           end
         end
+        resources :members, only: [:edit, :update]
       end
     end
   end
