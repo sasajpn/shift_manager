@@ -22,10 +22,10 @@
         <div class="box-body no-padding">
           <table class="table">
             <tbody>
-              <% current_user.teams.each do |team| %>
+              <% current_user.members.each do |member| %>
                 <tr>
-                  <td><%= team.name %></td>
-                  <td><span class="text-aqua"><i class="fa fa-square"></i></span></td>
+                  <td><%= member.team.name %></td>
+                  <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
                 </tr>
               <% end %>
             </tbody>
