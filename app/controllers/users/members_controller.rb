@@ -1,4 +1,5 @@
 class Users::MembersController < Users::ApplicationController
+  before_action :set_member, only: [:edit, :update]
 
   def new
     @member = JoinTeamForm.new
@@ -14,9 +15,15 @@ class Users::MembersController < Users::ApplicationController
   end
 
   def edit
+    @team = @member.team
   end
 
   def update
+    if @member.update(member_params)
+      redirect_to users_team_url(@member.team)
+    else
+      @team = @member.team
+      render :edit end
   end
 
   def destroy
@@ -26,6 +33,16 @@ class Users::MembersController < Users::ApplicationController
 
   def join_team_form_params
     params.require(:join_team_form).permit(:identifier)
+  end
+
+  def member_params
+    params.fetch(:member, {}).permit(
+      :calendar_color
+    )
+  end
+
+  def set_member
+    @member = Member.find(params[:id])
   end
 
 end

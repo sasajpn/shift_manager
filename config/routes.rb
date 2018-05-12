@@ -50,7 +50,7 @@ Rails.application.routes.draw do
         resources :shift_adjustments, except: [:index, :create, :update]
       end
     end
-    resources :members, only: [:new, :create]
+    resources :members, except: [:index]
     resources :line_connections, only: [:new, :create]
   end
 
