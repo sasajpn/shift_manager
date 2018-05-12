@@ -12,8 +12,6 @@
             <b>参加チーム数</b> <span class="pull-right"><%= current_user.members.count %></span>
           </li>
         </ul>
-        <%= link_to '登録内容変更', edit_users_user_path(current_user), class: "btn btn-success btn-block" %>
-        <%= link_to 'パスワード変更', edit_user_registration_path, class: "btn bg-maroon btn-block" %>
       </div>
     </div>
     <% if current_user.teams.any? %>
