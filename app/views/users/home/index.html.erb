@@ -25,7 +25,7 @@
               <% current_user.members.each do |member| %>
                 <tr>
                   <td><%= member.team.name %></td>
-                  <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
+                  <td><span style="color: #<%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
                 </tr>
               <% end %>
             </tbody>
