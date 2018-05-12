@@ -1,4 +1,5 @@
 class Owners::SessionsController < Devise::SessionsController
+  layout 'owners/login'
 
   private
 
