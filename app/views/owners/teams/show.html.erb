@@ -1,5 +1,5 @@
-<%= stylesheet_link_tag 'users/fullcalendar' %>
-<%= javascript_include_tag 'users/teams/show' %>
+<%= stylesheet_link_tag 'owners/fullcalendar' %>
+<%= javascript_include_tag 'owners/teams/show' %>
 
 <div class="row">
   <div class="col-md-3">
@@ -17,19 +17,19 @@
             <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
         </ul>
-        <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
+        <%= link_to 'シフト希望の提出', new_owners_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
         <hr>
-        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト希望一覧', owners_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト調整済一覧', owners_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
         <hr>
-        <%= link_to '設定変更', edit_users_member_path(@member), class: 'btn btn-success btn-block' %>
+        <%= link_to '登録内容変更', edit_owenrs_team_path(@member), class: 'btn btn-success btn-block' %>
       </div>
     </div>
   </div>
   <div class="col-md-9">
     <div class="box box-primary">
       <div class="box-body no-padding">
-        <div id="users_shift_calendar" data-team_id="<%= @team.id %>"></div>
+        <div id="owners_shift_calendar" data-team_id="<%= @team.id %>"></div>
       </div>
     </div>
   </div>

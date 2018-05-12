@@ -3,14 +3,14 @@
 //= require AdminLTE/fullcalendar/ja
 
 $(function() {
-  var team_id = document.getElementById('users_shift_calendar').dataset.team_id
+  var team_id = document.getElementById('owners_shift_calendar').dataset.team_id
 
-  $('#users_shift_calendar').fullCalendar({
+  $('#owners_shift_calendar').fullCalendar({
     timezone: 'Asia/Tokyo',
     displayEventTime: false,
     eventSources: [
       {
-        url: "/api/v1/users/teams/" + team_id
+        url: "/api/v1/owners/teams/" + team_id
       }
     ]
   })

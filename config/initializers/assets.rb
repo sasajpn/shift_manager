@@ -7,4 +7,7 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( users/teams/show.js users/home/index.js users/fullcalendar.scss )
+Rails.application.config.assets.precompile += %w(
+  users/teams/show.js users/home/index.js users/fullcalendar.scss
+  owners/teams/show.js owners/fullcalendar.scss
+)
