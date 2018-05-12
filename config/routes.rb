@@ -43,11 +43,19 @@ Rails.application.routes.draw do
 
   namespace :owners do
     resources :home, only: [:index]
+    resources :owners, only: [:edit, :update]
+    resources :teams, only: [:index, :show], shallow: true do
+      resources :shift_adjustments, only: [:index]
+      resources :shift_submissions, except: [:create, :update] do
+        resources :shift_adjustments, except: [:index, :create, :update]
+      end
+    end
+    resources :members, except: [:index]
   end
 
   namespace :users do
     resources :home, only: [:index]
-    resources :users, only: [:edit, :update, :destroy]
+    resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update] do

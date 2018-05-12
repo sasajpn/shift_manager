@@ -1,0 +1,17 @@
+<aside class="main-sidebar">
+  <section class="sidebar" style="height: auto;">
+    <div class="user-panel">
+    </div>
+    <ul class="sidebar-menu tree" data-widget="tree">
+      <li class="header"><%= current_owner.name %></li>
+      </li>
+      <li><%= link_to 'ログアウト', destroy_owner_session_path, method: :delete %></li>
+      <% if current_owner.teams.any? %>
+        <li><%= link_to 'チーム一覧', owners_teams_path %></li>
+      <% end %>
+      <li><%= link_to 'チームに参加する', new_owners_member_path %></li>
+      <li><%= link_to '登録内容変更', edit_owners_owner_path(current_owner) %></li>
+      <li><%= link_to 'パスワード変更', edit_owner_registration_path %></li>
+    </ul>
+  </section>
+</aside>
