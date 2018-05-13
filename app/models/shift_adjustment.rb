@@ -17,6 +17,7 @@ class ShiftAdjustment < ApplicationRecord
 
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
+  after_destroy :destroy_shift_submission
 
   scope :futures, -> {
     all.select(&:future?)
@@ -38,5 +39,11 @@ class ShiftAdjustment < ApplicationRecord
 
   def submission_is_unapproved
     shift_submission.is_unapproved
+  end
+
+  def destroy_shift_submission
+    unless shift_submission.myself
+      shift_submission.destroy
+    end
   end
 end
