@@ -17,6 +17,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   end
 
   def edit
+    @team = @shift_submission.team
   end
 
   def destroy
