@@ -18,6 +18,10 @@
           </li>
         </ul>
         <%= link_to 'シフト希望の提出', new_owners_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
+        <%= link_to owners_team_members_unapprovals_path(@team), class: 'btn btn-primary btn-block' do %>
+          未承認の従業員一覧
+          <small class="label pull-right bg-red"><%= @unapproved_members.count %></small>
+        <% end %>
         <hr>
         <%= link_to '従業員一覧', owners_team_members_path(@team), class: 'btn btn-default btn-block' %>
         <%= link_to 'シフト希望一覧', owners_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>

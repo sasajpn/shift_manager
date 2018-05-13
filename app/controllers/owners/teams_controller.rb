@@ -6,6 +6,7 @@ class Owners::TeamsController < Owners::ApplicationController
   end
 
   def show
+    @unapproved_members = @team.members.unapprovals
   end
 
   def edit

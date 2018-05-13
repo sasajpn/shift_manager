@@ -50,10 +50,11 @@ ActiveRecord::Schema.define(version: 20180501154629) do
   create_table "members", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "team_id"
     t.integer  "user_id"
-    t.integer  "role",           default: 0, null: false
-    t.string   "calendar_color",             null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.integer  "role",           default: 0,     null: false
+    t.string   "calendar_color",                 null: false
+    t.boolean  "approve",        default: false, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["team_id"], name: "index_members_on_team_id", using: :btree
     t.index ["user_id"], name: "index_members_on_user_id", using: :btree
   end
