@@ -1,5 +1,10 @@
 class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
-  before_action :set_team, only: [:edit, :update]
+  before_action :set_team, only: [:show, :edit, :update]
+
+  def show
+    @shift_submissions = @team.shift_submissions.unapprovals
+    @shift_adjustments = @team.shift_adjustments
+  end
 
   def create
     @team = current_owner.teams.build(team_params)
