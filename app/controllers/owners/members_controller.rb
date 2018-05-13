@@ -1,5 +1,5 @@
 class Owners::MembersController < Owners::ApplicationController
-  before_action :set_team, only: [:index]
+  before_action :set_team, only: [:index, :new, :create]
 
   def index
     @members = @team.members.order(created_at: :desc).page(params[:page]).per(15)
