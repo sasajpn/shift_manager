@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <p class="text-muted text-center"><%= @member.user.name_kana %></p>
+        <h3 class="profile-username text-center"><%= @member.user.name %></h3>
+        <p class="text-muted text-center"><%= @member.user.email %></p>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
+          </li>
+        </ul>
+        <%= link_to 'シフト登録', new_owners_team_shift_submission_path(@member), class: "btn btn-primary btn-block" %>
+        <%= link_to '役職変更', edit_owners_member_path(@member), class: "btn btn-success btn-block" %>
+        <hr>
+        <%= link_to '削除', admins_member_path(@member), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
+    <% if @shift_submissions.any? %>
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">シフト希望一覧</h3>
+          <div class="box-tools">
+            <%= paginate @shift_submissions, theme: 'admins' %>
+          </div>
+        </div>
+        <div class="box-body no-padding">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>日付</th>
+                <th>開始時間</th>
+                <th>終了時間</th>
+              </tr>
+              <% @shift_submissions.each do |shift_submission| %>
+                <tr>
+                  <td><%= link_to shift_submission.submitted_date, admins_shift_submission_path(shift_submission) %></td>
+                  <td><%= shift_submission.start_time %></td>
+                  <td><%= shift_submission.end_time %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% else %>
+      <div class="callout callout-danger">
+        <p>シフト希望が提出されていません</p>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -14,8 +14,6 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
-        <%= link_to '従業員登録', new_owners_team_member_path(@team), class: "btn btn-primary btn-block" %>
-        <hr>
         <%= link_to 'シフトカレンダー', owners_team_path(@team), class: 'btn btn-default btn-block' %>
         <%= link_to 'シフト希望一覧', owners_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
         <%= link_to 'シフト調整済一覧', owners_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
