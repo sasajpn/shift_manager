@@ -1,4 +1,4 @@
-import TeamsNew from 'components/admins/teams/new.vue'
+import TeamsNew from 'components/owners/teams/new.vue'
 
 Vue.use(ElementUI, { locale })
 

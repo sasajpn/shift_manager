@@ -8,6 +8,7 @@ class DeviseCreateOwners < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :first_name_kana
       t.string :first_name
+      t.integer :max_team_count, null: false, default: 0
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

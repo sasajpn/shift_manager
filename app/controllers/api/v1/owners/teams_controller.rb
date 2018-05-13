@@ -1,6 +1,16 @@
 class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   before_action :set_team, only: [:edit, :update]
 
+  def create
+    @team = current_owner.teams.build(team_params)
+    if @team.save
+      render :create
+    else
+      @error_messages = @team.errors.full_messages
+      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+    end
+  end
+
   def edit
   end
 

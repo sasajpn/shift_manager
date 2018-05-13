@@ -6,8 +6,10 @@ class Team < ApplicationRecord
   has_many :shift_submissions, through: :members
   has_many :shift_adjustments, through: :shift_submissions
 
-  validates :name,
+  validates :name, :open_time, :close_time,
     presence: true
+
+  validates_with TeamMaxCountValidator
 
   before_create :create_identifier
 

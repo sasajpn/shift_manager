@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   namespace :owners do
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
-    resources :teams, only: [:index, :show, :edit], shallow: true do
+    resources :teams, except: [:update], shallow: true do
       patch :update_identifier, on: :member
       resources :members, except: [:new, :create]
       namespace :members do
@@ -85,7 +85,7 @@ Rails.application.routes.draw do
       end
 
       namespace :owners do
-        resources :teams, only: [:edit, :update], shallow: true do
+        resources :teams, only: [:create, :edit, :update], shallow: true do
           resources :shift_submissions, except: [:index, :destroy] do
             resources :shift_adjustments, except: [:index, :destroy]
           end

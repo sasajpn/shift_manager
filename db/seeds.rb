@@ -10,7 +10,8 @@ user.save
 owner = Owner.new(
   email: "owner@example.com", password: 'password',
   last_name_kana: 'ナカタ', first_name_kana: 'タロウ',
-  last_name: '中田', first_name: '太郎'
+  last_name: '中田', first_name: '太郎',
+  max_team_count: 1
 )
 owner.skip_confirmation!
 owner.save
