@@ -34,7 +34,7 @@
               </tr>
               <% @shift_adjustments.each do |shift_adjustment| %>
                 <tr>
-                  <td><%= shift_adjustment.shift_submission.submitted_date_format %></td>
+                  <td><%= link_to shift_adjustment.shift_submission.submitted_date_format, owners_shift_adjustment_path(shift_adjustment) %></td>
                   <td><%= shift_adjustment.start_time %></td>
                   <td><%= shift_adjustment.end_time %></td>
                 </tr>

@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>勤務者</b> <span class="pull-right"><%= @member.user.name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>勤務日</b> <span class="pull-right"><%= @shift_adjustment.shift_submission.submitted_date_format %></span>
+          </li>
+          <li class="list-group-item">
+            <b>勤務時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
+          </li>
+        </ul>
+        <%= link_to '勤務時間変更', edit_owners_shift_adjustment_path(@shift_adjustment), class: "btn btn-success btn-block" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import apiClient from 'helpers/users/api_client'
+import apiClient from 'helpers/owners/api_client'
 
 export function newShiftAdjustment (shiftSubmissionId) {
   return apiClient({

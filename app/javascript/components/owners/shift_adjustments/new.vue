@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import { newShiftAdjustment, createShiftAdjustment } from 'api/users/shift_adjustments.js'
+  import { newShiftAdjustment, createShiftAdjustment } from 'api/owners/shift_adjustments.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
