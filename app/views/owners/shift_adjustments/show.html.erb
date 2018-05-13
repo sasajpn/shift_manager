@@ -14,6 +14,8 @@
           </li>
         </ul>
         <%= link_to '勤務時間変更', edit_owners_shift_adjustment_path(@shift_adjustment), class: "btn btn-success btn-block" %>
+        <hr>
+        <%= link_to 'シフト調整済一覧', owners_team_shift_adjustments_path(@member.team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

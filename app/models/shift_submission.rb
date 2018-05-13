@@ -22,7 +22,7 @@ class ShiftSubmission < ApplicationRecord
     time_format: true,
     outside_business_hours: true
 
-  scope :non_approved, -> {
+  scope :unapprovals, -> {
     where(approve: false)
   }
 
