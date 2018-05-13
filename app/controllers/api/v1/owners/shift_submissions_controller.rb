@@ -8,6 +8,10 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
   def create
     @shift_submission = @member.shift_submissions.build(shift_submission_params)
     if @shift_submission.save
+      @shift_submission.shift_adjustment.update(
+        account_type: current_owner.model_name.name,
+        account_id: current_owner.id
+      )
       render :create
     else
       @error_messages = @shift_submission.errors.full_messages

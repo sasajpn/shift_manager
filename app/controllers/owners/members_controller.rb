@@ -7,7 +7,7 @@ class Owners::MembersController < Owners::ApplicationController
   end
 
   def show
-    @shift_submissions = @member.shift_submissions.non_approved.order(submitted_date: :desc).page(params[:page]).per(15)
+    @shift_submissions = @member.shift_submissions.unapprovals.order(submitted_date: :desc).page(params[:page]).per(15)
   end
 
   def edit
