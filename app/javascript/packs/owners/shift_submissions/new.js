@@ -1,4 +1,4 @@
-import ShiftSubmissionsNew from 'components/users/shift_submissions/new.vue'
+import ShiftSubmissionsNew from 'components/owners/shift_submissions/new.vue'
 
 Vue.use(ElementUI, { locale })
 

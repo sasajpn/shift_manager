@@ -13,10 +13,10 @@
           :picker-options="pickerOptions">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="時刻" required>
+      <el-form-item label="時間" required>
         <el-form-item>
           <el-time-select
-            placeholder="開始時刻"
+            placeholder="開始時間"
             name="shift_submission[start_time]"
             v-model="shiftSubmission.startTime"
             :picker-options="{
@@ -28,7 +28,7 @@
         </el-form-item>
         <el-form-item>
           <el-time-select
-            placeholder="終了時刻"
+            placeholder="終了時間"
             name="shift_submission[end_time]"
             v-model="shiftSubmission.endTime"
             :picker-options="{
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_submissions.js'
+  import { newShiftSubmission, createShiftSubmission } from 'api/owners/shift_submissions.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -63,9 +63,11 @@
           }
         },
         team: {
-          id: document.getElementById('shift_submissions_new').dataset.team_id,
           openTime: '',
           closeTime: ''
+        },
+        member: {
+          id: document.getElementById('shift_submissions_new').dataset.member_id
         },
         shiftSubmission: {
           submittedDate: '',
@@ -79,10 +81,10 @@
     },
     methods: {
       onSubmit() {
-        createShiftSubmission(this.team.id, this.shiftSubmission).then((res) => {
+        createShiftSubmission(this.member.id, this.shiftSubmission).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/teams/' + this.team.id
+              window.location.href = '/owners/members/' + this.member.id
               break;
             case '400':
               this.form.errorMessages = res.error_messages
@@ -92,7 +94,7 @@
       }
     },
     created () {
-      newShiftSubmission(this.team.id).then((res) => {
+      newShiftSubmission(this.member.id).then((res) => {
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
       })
