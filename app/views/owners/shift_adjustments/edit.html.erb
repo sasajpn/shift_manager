@@ -16,9 +16,12 @@
           <li class="list-group-item">
             <b>調整時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
           </li>
-          <li class="list-group-item">
-            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
-          </li>
+          <% if @shift_adjustment.myself %>
+            <li class="list-group-item">
+              <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+            </li>
+          <% end %>
+
         </ul>
         <%= link_to 'キャンセル', owners_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
         <hr>

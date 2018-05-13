@@ -2,6 +2,7 @@ class ShiftAdjustment < ApplicationRecord
   belongs_to :shift_submission
 
   has_one :member, through: :shift_submission
+  has_one :team, through: :member
 
   validates :start_time, :end_time,
     presence: true
@@ -42,7 +43,7 @@ class ShiftAdjustment < ApplicationRecord
   end
 
   def destroy_shift_submission
-    unless shift_submission.myself
+    unless myself
       shift_submission.destroy
     end
   end
