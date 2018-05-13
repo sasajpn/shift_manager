@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20180501154629) do
     t.integer  "shift_submission_id"
     t.string   "start_time",                         null: false
     t.string   "end_time",                           null: false
+    t.string   "account_type"
+    t.integer  "account_id"
     t.boolean  "myself",              default: true, null: false
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false

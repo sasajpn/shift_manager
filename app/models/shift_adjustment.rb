@@ -1,5 +1,6 @@
 class ShiftAdjustment < ApplicationRecord
   belongs_to :shift_submission
+  belongs_to :account, polymorphic: true, optional: true
 
   has_one :member, through: :shift_submission
   has_one :team, through: :member
