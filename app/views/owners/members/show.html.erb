@@ -15,6 +15,7 @@
         <%= link_to '役職変更', edit_owners_member_path(@member), class: "btn btn-success btn-block" %>
         <hr>
         <%= link_to '従業員一覧', owners_team_members_path(@member.team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'ホーム', owners_team_path(@member.team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

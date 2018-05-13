@@ -29,6 +29,25 @@
         <%= link_to '登録内容変更', edit_owners_team_path(@team), class: 'btn btn-success btn-block' %>
       </div>
     </div>
+    <% if @members.any? %>
+      <div class="box">
+        <div class="box-header">
+          <h4 class="box-title">従業員一覧</h4>
+        </div>
+        <div class="box-body no-padding">
+          <table class="table">
+            <tbody>
+              <% @members.each do |member| %>
+                <tr>
+                  <td><%= link_to member.user.name, owners_member_path(member) %></td>
+                  <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="col-md-9">
     <div class="box box-primary">
