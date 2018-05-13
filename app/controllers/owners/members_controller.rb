@@ -21,6 +21,11 @@ class Owners::MembersController < Owners::ApplicationController
     end
   end
 
+  def destroy
+    @member.destroy
+    redirect_to owners_team_members_url(@member.team)
+  end
+
   private
 
   def member_params

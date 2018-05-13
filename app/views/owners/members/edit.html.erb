@@ -12,7 +12,7 @@
         </ul>
         <%= link_to '戻る', owners_member_path(@member), class: 'btn btn-default btn-block' %>
         <hr>
-        <%= link_to '削除', admins_member_path(@member), method: :delete,
+        <%= link_to '削除', owners_member_path(@member), method: :delete,
           data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
       </div>
     </div>
