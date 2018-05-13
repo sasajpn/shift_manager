@@ -35,19 +35,14 @@
           <h4 class="box-title">従業員一覧</h4>
         </div>
         <div class="box-body no-padding">
-          <table class="table">
-            <tbody>
-              <% @members.each do |member| %>
-                <tr>
-                  <td><%= link_to member.user.name, owners_member_path(member) %></td>
-                  <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <div id="members_pagination">
+            <%= render 'members_pagination' %>
+          </div>
         </div>
         <div class="box-footer clearfix">
-          <%= paginate @members, theme: 'owners' %>
+          <div id="paginator">
+            <%= paginate @members, theme: 'owners', remote: true %>
+          </div>
         </div>
       </div>
     <% end %>

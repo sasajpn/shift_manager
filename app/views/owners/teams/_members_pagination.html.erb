@@ -1,0 +1,10 @@
+<table class="table">
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= link_to member.user.name, owners_member_path(member) %></td>
+        <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
