@@ -1,19 +1,6 @@
 class Users::MembersController < Users::ApplicationController
   before_action :set_member, only: [:edit, :update]
 
-  def new
-    @member = JoinTeamForm.new
-  end
-
-  def create
-    @member = JoinTeamForm.new(join_team_form_params)
-    if @member.save(current_user)
-      redirect_to users_teams_url
-    else
-      render :new
-    end
-  end
-
   def edit
     @team = @member.team
   end
@@ -31,10 +18,6 @@ class Users::MembersController < Users::ApplicationController
   end
 
   private
-
-  def join_team_form_params
-    params.require(:join_team_form).permit(:identifier)
-  end
 
   def member_params
     params.fetch(:member, {}).permit(

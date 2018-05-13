@@ -43,6 +43,7 @@ ja:
     attributes:
       join_team_form:
         identifier: 認証コード
+        calendar_color: カレンダー表示色
       create_line_connection_form:
         email: メールアドレス
         password: パスワード

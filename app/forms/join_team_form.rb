@@ -1,16 +1,16 @@
 class JoinTeamForm
   include ActiveModel::Model
 
-  attr_accessor :identifier,
+  attr_accessor :identifier, :calendar_color,
                 :team, :user
 
-  validates :identifier, presence: true
+  validates :identifier, :calendar_color, presence: true
   validate :not_exist_team, :already_joined_team
 
   def save(user)
     @user = user
     return false if invalid?
-    Member.create(team_id: @team.id, user_id: @user.id, calendar_color: '#FFFFFF')
+    Member.create(team_id: @team.id, user_id: @user.id, calendar_color: calendar_color)
     true
   end
 
