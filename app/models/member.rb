@@ -29,12 +29,14 @@ class Member < ApplicationRecord
   private
 
   def set_calendar_font_color
-    rgb = calendar_color.delete('#').scan(/../).map(&:hex)
-    luminance = 0.3 * rgb[0] + 0.6 * rgb[1] + 0.1 * rgb[2]
-    if luminance > 127
-      self.calendar_font_color = '#000000'
-    else
-      self.calendar_font_color = '#FFFFFF'
+    if calendar_color_changed?
+      rgb = calendar_color.delete('#').scan(/../).map(&:hex)
+      luminance = 0.3 * rgb[0] + 0.6 * rgb[1] + 0.1 * rgb[2]
+      if luminance > 127
+        self.calendar_font_color = '#000000'
+      else
+        self.calendar_font_color = '#FFFFFF'
+      end
     end
   end
 end
