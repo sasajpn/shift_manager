@@ -14,9 +14,20 @@ class Owners::MembersController < Owners::ApplicationController
   end
 
   def update
+    if @member.update(member_params)
+      redirect_to owners_member_url(@member)
+    else
+      render :edit
+    end
   end
 
   private
+
+  def member_params
+    params.fetch(:member, {}).permit(
+      :role
+    )
+  end
 
   def set_member
     @member = Member.find(params[:id])
