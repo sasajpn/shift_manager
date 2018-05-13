@@ -32,7 +32,7 @@ class Member < ApplicationRecord
 
   def set_calendar_font_color
     if calendar_color_changed?
-      self.set_calendar_font_color = font_color
+      self.calendar_font_color = font_color
     end
   end
 end
