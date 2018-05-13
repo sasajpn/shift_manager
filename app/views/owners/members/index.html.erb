@@ -15,8 +15,6 @@
           </li>
         </ul>
         <%= link_to '戻る', owners_team_path(@team), class: 'btn btn-default btn-block' %>
-        <hr>
-        <%= link_to '登録内容変更', edit_owners_team_path(@team), class: "btn btn-success btn-block" %>
       </div>
     </div>
   </div>
@@ -24,7 +22,7 @@
     <% if @members.any? %>
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><%= @team.name %>：従業員一覧</h3>
+          <h3 class="box-title">従業員一覧</h3>
           <div class="box-tools">
             <%= paginate @members, theme: 'owners' %>
           </div>
@@ -48,7 +46,7 @@
       </div>
     <% else %>
       <div class="callout callout-danger">
-        <p><%= @team.name %>には従業員が登録されていません</p>
+        <p>従業員が登録されていません</p>
       </div>
     <% end %>
   </div>
