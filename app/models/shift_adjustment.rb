@@ -1,7 +1,9 @@
 class ShiftAdjustment < ApplicationRecord
   belongs_to :shift_submission
+  belongs_to :account, polymorphic: true, optional: true
 
   has_one :member, through: :shift_submission
+  has_one :team, through: :member
 
   validates :start_time, :end_time,
     presence: true
@@ -17,6 +19,7 @@ class ShiftAdjustment < ApplicationRecord
 
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
+  after_destroy :destroy_shift_submission
 
   scope :futures, -> {
     all.select(&:future?)
@@ -38,5 +41,11 @@ class ShiftAdjustment < ApplicationRecord
 
   def submission_is_unapproved
     shift_submission.is_unapproved
+  end
+
+  def destroy_shift_submission
+    unless myself
+      shift_submission.destroy
+    end
   end
 end

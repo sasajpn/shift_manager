@@ -3,7 +3,9 @@ class ShiftSubmission < ApplicationRecord
 
   has_one :team, through: :member
   has_one :user, through: :member
-  has_one :shift_adjustment, dependent: :destroy
+  has_one :shift_adjustment, dependent: :destroy, inverse_of: :shift_submission
+
+  accepts_nested_attributes_for :shift_adjustment
 
   validates :submitted_date, :start_time, :end_time,
     presence: true
@@ -20,7 +22,7 @@ class ShiftSubmission < ApplicationRecord
     time_format: true,
     outside_business_hours: true
 
-  scope :non_approved, -> {
+  scope :unapprovals, -> {
     where(approve: false)
   }
 

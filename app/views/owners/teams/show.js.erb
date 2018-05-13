@@ -1,0 +1,2 @@
+$("#members_pagination").html("<%= j(render partial: 'members_pagination') %>")
+$("#paginator").html("<%= j(paginate(@members, theme: 'owners', remote: true)) %>");

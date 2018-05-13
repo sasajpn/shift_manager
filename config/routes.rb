@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   devise_for :owners, controllers: {
     sessions:      'owners/sessions',
     passwords:     'owners/passwords',
-    registrations: 'owners/registrations'
+    registrations: 'owners/registrations',
+    confirmations: 'owners/confirmations'
   }
 
   devise_for :users, controllers: {
@@ -41,9 +42,27 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  namespace :owners do
+    resources :home, only: [:index]
+    resources :owners, only: [:edit, :update]
+    resources :teams, except: [:update], shallow: true do
+      patch :update_identifier, on: :member
+      resources :members, except: [:new, :create] do
+        resources :shift_submissions, only: [:new]
+      end
+      namespace :members do
+        resources :unapprovals
+      end
+      resources :shift_adjustments, only: [:index]
+      resources :shift_submissions, except: [:new, :create, :update] do
+        resources :shift_adjustments, except: [:index, :create, :update]
+      end
+    end
+  end
+
   namespace :users do
     resources :home, only: [:index]
-    resources :users, only: [:edit, :update, :destroy]
+    resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update] do
@@ -66,6 +85,18 @@ Rails.application.routes.draw do
           resources :shift_adjustments, only: [:show, :new, :edit]
         end
       end
+
+      namespace :owners do
+        resources :teams, only: [:show, :create, :edit, :update], shallow: true do
+          resources :shift_submissions, except: [:index, :new, :create, :destroy] do
+            resources :shift_adjustments, except: [:index, :destroy]
+          end
+        end
+        resources :members, only: [:edit, :update], shallow: true do
+          resources :shift_submissions, only: [:new, :create]
+        end
+      end
+
       namespace :users do
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
@@ -75,6 +106,7 @@ Rails.application.routes.draw do
         end
         resources :members, only: [:edit, :update]
       end
+
     end
   end
 

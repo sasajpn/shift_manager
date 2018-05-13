@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= Settings.title %></title>
+    <%= csrf_meta_tags %>
+
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.6/css/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+    <%= stylesheet_link_tag    'owners/application', media: 'all' %>
+    <%= javascript_include_tag 'owners/application' %>
+    <%= javascript_pack_tag 'owners/application' %>
+  </head>
+
+  <body class="skin-blue wysihtml5-supported">
+    <div class="wrapper">
+      <%= render 'owners/shared/header' %>
+      <%= render 'owners/shared/sidebar' %>
+      <div class="content-wrapper" style="min-height: 1080px;">
+        <section class="content">
+          <%= yield %>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>

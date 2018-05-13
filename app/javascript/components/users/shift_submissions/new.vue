@@ -14,35 +14,31 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
-        <el-col :span="11">
-          <el-form-item>
-            <el-time-select
-              placeholder="開始時刻"
-              name="shift_submission[start_time]"
-              v-model="shiftSubmission.startTime"
-              :picker-options="{
-                start: team.openTime,
-                step: '00:10',
-                end: team.closeTime
-              }">
-            </el-time-select>
-          </el-form-item>
-        </el-col>
-        <el-col :span="11">
-          <el-form-item>
-            <el-time-select
-              placeholder="終了時刻"
-              name="shift_submission[end_time]"
-              v-model="shiftSubmission.endTime"
-              :picker-options="{
-                start: team.openTime,
-                step: '00:10',
-                end: team.closeTime,
-                minTime: shiftSubmission.startTime
-              }">
-            </el-time-select>
-          </el-form-item>
-        </el-col>
+        <el-form-item>
+          <el-time-select
+            placeholder="開始時刻"
+            name="shift_submission[start_time]"
+            v-model="shiftSubmission.startTime"
+            :picker-options="{
+              start: team.openTime,
+              step: '00:10',
+              end: team.closeTime
+            }">
+          </el-time-select>
+        </el-form-item>
+        <el-form-item>
+          <el-time-select
+            placeholder="終了時刻"
+            name="shift_submission[end_time]"
+            v-model="shiftSubmission.endTime"
+            :picker-options="{
+              start: team.openTime,
+              step: '00:10',
+              end: team.closeTime,
+              minTime: shiftSubmission.startTime
+            }">
+          </el-time-select>
+        </el-form-item>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">登録</el-button>
@@ -100,7 +96,6 @@
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
       })
-      this.form.action = '/users/teams/' + this.team.id + '/shift_submissions'
     }
   }
 </script>

@@ -11,4 +11,16 @@ class Member < ApplicationRecord
     uniqueness: { scope: [:team_id], message: 'は既に従業員に登録されています' }
 
   enum role: { part_timer: 0, full_timer: 1, manager: 2 }
+
+  scope :approvals, -> {
+    where(approve: true)
+  }
+
+  scope :unapprovals, -> {
+    where(approve: false)
+  }
+
+  def is_approved
+    self.update(approve: true)
+  end
 end
