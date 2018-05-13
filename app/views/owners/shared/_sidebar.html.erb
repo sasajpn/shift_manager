@@ -9,7 +9,6 @@
       <% if current_owner.teams.any? %>
         <li><%= link_to 'チーム一覧', owners_teams_path %></li>
       <% end %>
-      <li><%= link_to 'チームに参加する', new_owners_member_path %></li>
       <li><%= link_to '登録内容変更', edit_owners_owner_path(current_owner) %></li>
       <li><%= link_to 'パスワード変更', edit_owner_registration_path %></li>
     </ul>
