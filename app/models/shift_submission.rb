@@ -1,4 +1,6 @@
 class ShiftSubmission < ApplicationRecord
+  include TimeParser
+
   belongs_to :member
 
   has_one :team, through: :member
@@ -21,6 +23,8 @@ class ShiftSubmission < ApplicationRecord
   validates :end_time,
     time_format: true,
     outside_business_hours: true
+
+  validates_with OverlapShiftSubmissionValidator
 
   scope :unapprovals, -> {
     where(approve: false)
