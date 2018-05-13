@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
+        </ul>
+        <%= link_to '参加申請の取り消し', users_members_unapproval_path(@member), method: :delete,
+          data: { confirm: 'この操作は取り消すことができません。本当に参加申請を取り消してもよろしいですか？' }, class: 'btn btn-danger btn-block' %>
+      </div>
+    </div>
+  </div>
+</div>

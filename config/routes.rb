@@ -69,7 +69,7 @@ Rails.application.routes.draw do
         resources :shift_adjustments, except: [:index, :create, :update]
       end
     end
-    resources :members, except: [:index, :show]
+    resources :members, except: [:index, :new, :create, :show]
     namespace :members do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
