@@ -13,6 +13,8 @@
         <%= link_to 'シフト登録', new_owners_team_shift_submission_path(@member), class: "btn btn-primary btn-block" %>
         <hr>
         <%= link_to '役職変更', edit_owners_member_path(@member), class: "btn btn-success btn-block" %>
+        <hr>
+        <%= link_to '従業員一覧', owners_team_members_path(@member.team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

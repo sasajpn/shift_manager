@@ -14,7 +14,9 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
-        <%= link_to '戻る', owners_team_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフトの登録', new_owners_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
+        <hr>
+        <%= link_to 'ホーム', owners_team_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>
