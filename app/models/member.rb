@@ -20,7 +20,7 @@ class Member < ApplicationRecord
     where(approve: false)
   }
 
-  before_create :set_calendar_font_color
+  before_save :set_calendar_font_color
 
   def is_approved
     self.update(approve: true)
