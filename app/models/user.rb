@@ -4,8 +4,9 @@ class User < ApplicationRecord
 
   has_one :line_connection, as: :account
 
-  has_many :members, dependent: :destroy
-  has_many :teams, through: :members
+  has_many :approval_members, -> { where(approve: true) }, dependent: :destroy, class_name: 'Member'
+  has_many :unapproval_members, -> { where(approve: false) }, dependent: :destroy, class_name: 'Member'
+  has_many :teams, through: :approval_members
   has_many :shift_submissions, through: :members
   has_many :shift_adjustments, through: :shift_submissions
 

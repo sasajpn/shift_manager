@@ -14,6 +14,6 @@ class Users::ApplicationController < ApplicationController
   end
 
   def set_member
-    @member = current_user.members.find_by(team_id: @team.id)
+    @member = current_user.approval_members.find_by(team_id: @team.id)
   end
 end

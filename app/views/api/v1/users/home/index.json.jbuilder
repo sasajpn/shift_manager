@@ -1,5 +1,5 @@
 @members.each do |member|
-  json.array! member.shift_submissions.non_approved do |shift_submission|
+  json.array! member.shift_submissions.unapprovals do |shift_submission|
     json.title "#{shift_submission.start_time}~#{shift_submission.end_time}"
     json.start Chronic.parse("#{shift_submission.submitted_date} #{shift_submission.start_time}")
     json.end Chronic.parse("#{shift_submission.submitted_date} #{shift_submission.end_time}")
