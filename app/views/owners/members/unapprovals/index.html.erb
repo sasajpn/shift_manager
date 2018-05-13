@@ -38,7 +38,7 @@
               </tr>
               <% @members.each do |member| %>
                 <tr>
-                  <td><%= link_to member.user.name, owners_member_path(member) %></td>
+                  <td><%= link_to member.user.name, owners_members_unapproval_path(member) %></td>
                   <td><%= member.role_i18n %></td>
                 </tr>
               <% end %>
