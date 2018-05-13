@@ -6,14 +6,19 @@ export function newShiftSubmission (memberId) {
   })
 }
 
-export function createShiftSubmission (memberId, shiftSubmission) {
+export function createShiftSubmission (memberId, shiftSubmission, shiftAdjustment) {
   return apiClient({
     method: 'post',
     data: {
       shift_submission: {
         submitted_date: shiftSubmission.submittedDate,
         start_time: shiftSubmission.startTime,
-        end_time: shiftSubmission.endTime
+        end_time: shiftSubmission.endTime,
+        shift_adjustment_attributes: {
+          start_time: shiftAdjustment.startTime,
+          end_time: shiftAdjustment.endTime,
+          myself: false
+        }
       }
     },
     url: 'members/' + memberId + '/shift_submissions'
