@@ -10,7 +10,7 @@ class OverlapShiftSubmissionValidator < ActiveModel::Validator
         overlap_shift_submission.each do |shift_submission|
           record.errors.add(
             :base,
-            "#{shift_submission.start_time_format}〜#{shift_submission.end_time_format}はすでにシフトの希望が提出されているか、もしくはすでにシフトが調整されています"
+            "#{shift_submission.start_time_format}〜#{shift_submission.end_time_format}はすでにシフトの希望もしくは調整がされています"
           )
         end
       end
