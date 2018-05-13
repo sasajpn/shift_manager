@@ -7,7 +7,7 @@ class Owners::TeamsController < Owners::ApplicationController
 
   def show
     @unapproved_members = @team.members.unapprovals
-    @members = @team.members.approvals
+    @members = @team.members.approvals.order(created_at: :asc).page(params[:page]).per(10)
   end
 
   def edit

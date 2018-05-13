@@ -38,8 +38,15 @@ end
 
 Owner.first.teams.create(name: 'ABC株式会社', open_time: '08:00', close_time: '18:00')
 
-member = Team.first.members.create(user_id: User.first.id, role: 'part_timer', calendar_color: '#00c0ef')
-shift_submission = member.shift_submissions.create(
+1.upto(50) do |n|
+  Team.first.members.create(
+    user_id: User.find(n).id,
+    role: 'part_timer',
+    calendar_color: '#00c0ef',
+    approve: true
+  )
+end
+shift_submission = Member.first.shift_submissions.create(
   submitted_date: Date.tomorrow,
   start_time: '10:00',
   end_time: '15:00'
