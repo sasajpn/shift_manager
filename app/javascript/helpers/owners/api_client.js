@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { csrfToken } from 'rails-ujs'
 
-axios.defaults.baseURL = '/api/v1/users/'
+axios.defaults.baseURL = '/api/v1/owners/'
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 export default (params = {}) => {

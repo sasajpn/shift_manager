@@ -79,6 +79,17 @@ Rails.application.routes.draw do
           resources :shift_adjustments, only: [:show, :new, :edit]
         end
       end
+
+      namespace :owners do
+        resources :home, only: [:index]
+        resources :teams, only: [:edit, :update], shallow: true do
+          resources :shift_submissions, except: [:index, :destroy] do
+            resources :shift_adjustments, except: [:index, :destroy]
+          end
+        end
+        resources :members, only: [:edit, :update]
+      end
+
       namespace :users do
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
@@ -88,6 +99,7 @@ Rails.application.routes.draw do
         end
         resources :members, only: [:edit, :update]
       end
+
     end
   end
 

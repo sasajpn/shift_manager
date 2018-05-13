@@ -1,4 +1,4 @@
-import TeamsEdit from 'components/admins/teams/edit.vue'
+import TeamsEdit from 'components/owners/teams/edit.vue'
 
 Vue.use(ElementUI, { locale })
 
