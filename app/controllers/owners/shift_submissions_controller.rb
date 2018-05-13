@@ -1,6 +1,8 @@
 class Owners::ShiftSubmissionsController < Owners::ApplicationController
-  before_action :set_team, only: [:index, :new, :create]
   before_action :set_shift_submission, only: [:show]
+  before_action :set_team, only: [:index, :create]
+  before_action :set_member, only: [:new]
+
 
   def index
     @shift_submissions = @team.shift_submissions.order(created_at: :desc).page(params[:page]).per(15)
@@ -12,6 +14,7 @@ class Owners::ShiftSubmissionsController < Owners::ApplicationController
   end
 
   def new
+    @team = @member.team
   end
 
   def edit
@@ -34,5 +37,9 @@ class Owners::ShiftSubmissionsController < Owners::ApplicationController
 
   def set_team
     @team = Team.find(params[:team_id])
+  end
+
+  def set_member
+    @member = Member.find(params[:member_id])
   end
 end
