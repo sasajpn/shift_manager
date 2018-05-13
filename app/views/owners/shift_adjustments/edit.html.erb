@@ -14,15 +14,15 @@
             <b>調整日</b> <span class="pull-right"><%= @shift_submission.submitted_date %></span>
           </li>
           <li class="list-group-item">
-            <b>開始時間</b> <span class="pull-right"><%= @shift_adjustment.start_time %></span>
+            <b>調整時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
           </li>
           <li class="list-group-item">
-            <b>終了時間</b> <span class="pull-right"><%= @shift_adjustment.end_time %></span>
+            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
           </li>
         </ul>
-        <%= link_to 'キャンセル', users_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
+        <%= link_to 'キャンセル', owners_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
         <hr>
-        <%= link_to '削除', users_shift_adjustment_path(@shift_adjustment), method: :delete,
+        <%= link_to '削除', owners_shift_adjustment_path(@shift_adjustment), method: :delete,
           data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
       </div>
     </div>
