@@ -20,10 +20,14 @@
             <li class="list-group-item">
               <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
             </li>
+          <% else %>
+            <li class="list-group-item">
+              <b>作成者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
+            </li>
           <% end %>
 
         </ul>
-        <%= link_to 'キャンセル', owners_shift_submission_path(@shift_submission), class: 'btn btn-default btn-block' %>
+        <%= link_to 'キャンセル', owners_shift_adjustment_path(@shift_adjustment), class: 'btn btn-default btn-block' %>
         <hr>
         <%= link_to '削除', owners_shift_adjustment_path(@shift_adjustment), method: :delete,
           data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>

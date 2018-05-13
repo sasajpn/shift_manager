@@ -10,11 +10,9 @@
           <li class="list-group-item">
             <b>希望日</b> <span class="pull-right"><%= @shift_submission.submitted_date_format %></span>
           </li>
-          <% if @shift_adjustment&.myself %>
-            <li class="list-group-item">
-              <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
-            </li>
-          <% end %>
+          <li class="list-group-item">
+            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+          </li>
         </ul>
         <% if @shift_adjustment %>
           <%= link_to 'シフトの調整内容変更', edit_owners_shift_adjustment_path(@shift_adjustment),
