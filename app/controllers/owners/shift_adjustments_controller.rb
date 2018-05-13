@@ -1,4 +1,5 @@
 class Owners::ShiftAdjustmentsController < Owners::ApplicationController
+  before_action :set_shift_adjustment, only: [:edit]
   before_action :set_shift_submission, only: [:new]
 
   def index
@@ -11,9 +12,7 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
   end
 
   def edit
-  end
-
-  def update
+    @shift_submission = @shift_adjustment.shift_submission
   end
 
   def destroy
