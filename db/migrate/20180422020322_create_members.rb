@@ -6,6 +6,7 @@ class CreateMembers < ActiveRecord::Migration[5.0]
       t.integer :role, null: false, default: 0
       t.string :calendar_color, null: false
       t.string :calendar_font_color, null: false
+      t.boolean :shift_coordinator, null: false, default: false
       t.boolean :approve, null: false, default: false
 
       t.timestamps

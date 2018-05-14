@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20180501154629) do
     t.integer  "role",                default: 0,     null: false
     t.string   "calendar_color",                      null: false
     t.string   "calendar_font_color",                 null: false
+    t.boolean  "shift_coordinator",   default: false, null: false
     t.boolean  "approve",             default: false, null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
