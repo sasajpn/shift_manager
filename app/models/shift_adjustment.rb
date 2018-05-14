@@ -44,7 +44,7 @@ class ShiftAdjustment < ApplicationRecord
   end
 
   def destroy_shift_submission
-    unless myself
+    if account
       shift_submission.destroy
     end
   end

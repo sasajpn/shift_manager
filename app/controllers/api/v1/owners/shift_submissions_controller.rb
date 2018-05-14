@@ -24,7 +24,7 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
   def shift_submission_params
     params.fetch(:shift_submission, {}).permit(
       :submitted_date, :start_time, :end_time,
-      shift_adjustment_attributes: [:start_time, :end_time, :myself]
+      shift_adjustment_attributes: [:start_time, :end_time]
     )
   end
 

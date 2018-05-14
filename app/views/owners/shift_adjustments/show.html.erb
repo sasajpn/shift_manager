@@ -12,7 +12,7 @@
           <li class="list-group-item">
             <b>勤務時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
           </li>
-          <% unless @shift_adjustment.myself %>
+          <% if @shift_adjustment.myself %>
             <li class="list-group-item">
               <b>作成者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
             </li>
