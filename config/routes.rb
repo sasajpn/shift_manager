@@ -43,15 +43,15 @@ Rails.application.routes.draw do
   end
 
   namespace :owners do
+    namespace :members do
+      resources :unapprovals
+    end
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
     resources :teams, except: [:update], shallow: true do
       patch :update_identifier, on: :member
       resources :members, except: [:new, :create] do
         resources :shift_submissions, only: [:new]
-      end
-      namespace :members do
-        resources :unapprovals
       end
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:new, :create, :update] do
@@ -61,6 +61,14 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
+    namespace :members do
+      resources :unapprovals, only: [:index, :show, :new, :destroy]
+    end
+    namespace :shift_coordinators do
+      resources :shift_submissions, only: [], shallow: true do
+        resources :shift_adjustments
+      end
+    end
     resources :home, only: [:index]
     resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
@@ -70,9 +78,6 @@ Rails.application.routes.draw do
       end
     end
     resources :members, except: [:index, :new, :create, :show]
-    namespace :members do
-      resources :unapprovals, only: [:index, :show, :new, :destroy]
-    end
     resources :line_connections, only: [:new, :create]
   end
 
@@ -101,6 +106,14 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
+        namespace :members do
+          resources :unapprovals, only: [:create]
+        end
+        namespace :shift_coordinators do
+          resources :shift_submissions, only: [], shallow: true do
+            resources :shift_adjustments, only: [:new, :create, :edit, :update]
+          end
+        end
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
           resources :shift_submissions, except: [:index, :destroy] do
@@ -108,9 +121,7 @@ Rails.application.routes.draw do
           end
         end
         resources :members, only: [:edit, :update]
-        namespace :members do
-          resources :unapprovals, only: [:create]
-        end
+
       end
 
     end

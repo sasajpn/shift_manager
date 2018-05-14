@@ -6,6 +6,7 @@
       label-width="120px">
       <el-form-item label="調整日" required>
         <el-date-picker
+          name="shift_submission[submitted_date]"
           v-model="shiftSubmission.submittedDate"
           type="date"
           placeholder="日付を選択してください"
@@ -45,14 +46,14 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登録</el-button>
+        <el-button type="primary" @click="onSubmit">更新</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-  import { newShiftAdjustment, createShiftAdjustment } from 'api/users/shift_adjustments.js'
+  import { editShiftAdjustment, updateShiftAdjustment } from 'api/users/shift_coordinators/shift_adjustments.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -62,14 +63,15 @@
     data() {
       return {
         shiftSubmission: {
-          id: document.getElementById('shift_adjustments_new').dataset.shift_submission_id,
+          id: '',
           submittedDate: '',
           startTime: '',
           endTime: ''
         },
         shiftAdjustment: {
+          id: document.getElementById('shift_adjustments_edit').dataset.shift_adjustment_id,
           startTime: '',
-          endTime: ''
+          endTime: '',
         },
         form: {
           errorMessages: []
@@ -78,7 +80,7 @@
     },
     methods: {
       onSubmit() {
-        createShiftAdjustment(this.shiftSubmission, this.shiftAdjustment).then((res) => {
+        updateShiftAdjustment(this.shiftAdjustment).then((res) => {
           switch (res.status) {
             case '200':
               window.location.href = '/users/shift_submissions/' + this.shiftSubmission.id
@@ -91,10 +93,13 @@
       }
     },
     created () {
-      newShiftAdjustment(this.shiftSubmission.id).then((res) => {
-        this.shiftSubmission.submittedDate = res.submitted_date
-        this.shiftSubmission.startTime = res.start_time
-        this.shiftSubmission.endTime = res.end_time
+      editShiftAdjustment(this.shiftAdjustment.id).then((res) => {
+        this.shiftAdjustment.startTime = res.shift_adjustment.start_time
+        this.shiftAdjustment.endTime = res.shift_adjustment.end_time
+        this.shiftSubmission.id = res.shift_submission.id
+        this.shiftSubmission.submittedDate = res.shift_submission.submitted_date
+        this.shiftSubmission.startTime = res.shift_submission.start_time
+        this.shiftSubmission.endTime = res.shift_submission.end_time
       })
     }
   }
