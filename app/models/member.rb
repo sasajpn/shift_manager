@@ -23,6 +23,7 @@ class Member < ApplicationRecord
   }
 
   before_save :set_calendar_font_color
+  before_save :become_shift_coordinator
 
   def is_approved
     self.update(approve: true)
@@ -33,6 +34,12 @@ class Member < ApplicationRecord
   def set_calendar_font_color
     if calendar_color_changed?
       self.calendar_font_color = font_color
+    end
+  end
+
+  def become_shift_coordinator
+    if manager?
+      self.shift_coordinator = true
     end
   end
 end
