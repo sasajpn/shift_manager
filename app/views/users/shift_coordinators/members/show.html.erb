@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'users/fullcalendar' %>
+<%= javascript_include_tag 'users/shift_coordinators/members/show' %>
+
 <div class="row">
   <div class="col-md-3">
     <div class="box box-primary">
@@ -15,5 +18,10 @@
     </div>
   </div>
   <div class="col-md-9">
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <div id="users_shift_coordinators_shift_calendar" data-member_id="<%= @member.id %>"></div>
+      </div>
+    </div>
   </div>
 </div>
