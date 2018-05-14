@@ -64,6 +64,11 @@ Rails.application.routes.draw do
     namespace :members do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
+    namespace :managers do
+      resources :teams, only: [], shallow: true do
+        resources :members, only: [:index, :show, :edit]
+      end
+    end
     namespace :shift_coordinators do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show] do
@@ -113,6 +118,9 @@ Rails.application.routes.draw do
       namespace :users do
         namespace :members do
           resources :unapprovals, only: [:create]
+        end
+        namespace :managers do
+          resources :members, only: [:edit, :update]
         end
         namespace :shift_coordinators do
           resources :members, only: [:show], shallow: true do

@@ -20,6 +20,8 @@
         <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
         <hr>
         <% if @member.manager? %>
+          <%= link_to 'メンバー一覧', users_managers_team_members_path(@team), class: 'btn btn-default btn-block' %>
+        <% elsif @member.shift_coordinator %>
           <%= link_to 'メンバー一覧', users_shift_coordinators_team_members_path(@team), class: 'btn btn-default btn-block' %>
         <% end %>
         <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
