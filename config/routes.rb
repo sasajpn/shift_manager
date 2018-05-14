@@ -50,7 +50,7 @@ Rails.application.routes.draw do
         resources :unapprovals
       end
       patch :update_identifier, on: :member
-      resources :members, except: [:new, :create] do
+      resources :members, except: [:new, :create, :update] do
         resources :shift_submissions, only: [:new]
       end
       resources :shift_adjustments, only: [:index]
