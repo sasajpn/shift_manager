@@ -3,7 +3,6 @@ class Users::ShiftCoordinators::ShiftAdjustmentsController < Users::ApplicationC
   before_action :set_shift_submission, only: [:new]
 
   def new
-    @shift_adjustment = @shift_submission.build_shift_adjustment
   end
 
   def edit
