@@ -2,6 +2,7 @@ class Users::ShiftCoordinators::ShiftSubmissionsController < Users::ApplicationC
   before_action :set_member, only: [:new]
 
   def new
+    @team = @member.team
   end
 
   def destroy

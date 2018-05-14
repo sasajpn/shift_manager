@@ -13,7 +13,7 @@ class Users::ApplicationController < ApplicationController
     @team = Team.find(params[:team_id])
   end
 
-  def set_member
+  def set_current_member
     @member = current_user.approval_members.find_by(team_id: @team.id)
   end
 end

@@ -1,4 +1,4 @@
-class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::ApplicationController
+class Api::V1::Users::ShiftCoordinators::ShiftSubmissionsController < Api::V1::Users::ApplicationController
   before_action :set_member, only: [:new, :create]
 
   def new
@@ -9,8 +9,8 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
     @shift_submission = @member.shift_submissions.build(shift_submission_params)
     if @shift_submission.save
       @shift_submission.shift_adjustment.update(
-        account_type: current_owner.model_name.name,
-        account_id: current_owner.id
+        account_type: current_user.model_name.name,
+        account_id: current_user.id
       )
       @success_message = 'シフトを登録しました。'
       render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
