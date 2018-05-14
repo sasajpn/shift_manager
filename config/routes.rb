@@ -73,9 +73,7 @@ Rails.application.routes.draw do
     resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
-      resources :shift_submissions, except: [:create, :update] do
-        resources :shift_adjustments, except: [:index, :create, :update]
-      end
+      resources :shift_submissions, except: [:create, :update]
     end
     resources :members, except: [:index, :new, :create, :show]
     resources :line_connections, only: [:new, :create]
@@ -116,9 +114,7 @@ Rails.application.routes.draw do
         end
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
-          resources :shift_submissions, except: [:index, :destroy] do
-            resources :shift_adjustments, except: [:index, :destroy]
-          end
+          resources :shift_submissions, except: [:index, :destroy]
         end
         resources :members, only: [:edit, :update]
 
