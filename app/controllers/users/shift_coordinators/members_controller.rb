@@ -1,5 +1,6 @@
 class Users::ShiftCoordinators::MembersController < Users::ApplicationController
   before_action :set_team, only: [:index]
+  before_action :set_member, only: [:index]
 
   def index
     @members = @team.members.order(created_at: :desc).page(params[:page]).per(15)
