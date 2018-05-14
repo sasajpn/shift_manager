@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     end
     namespace :shift_coordinators do
       resources :shift_submissions, only: [], shallow: true do
-        resources :shift_adjustments
+        resources :shift_adjustments, only: [:new, :edit, :destroy]
       end
     end
     resources :home, only: [:index]
