@@ -9,10 +9,13 @@
           <li class="list-group-item">
             <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
+          <li class="list-group-item">
+            <b>シフト調整権限</b> <span class="pull-right"><%= @member.shift_coordinator %></span>
+          </li>
         </ul>
         <%= link_to 'シフト登録', new_owners_member_shift_submission_path(@member), class: "btn btn-primary btn-block" %>
         <hr>
-        <%= link_to '役職変更', edit_owners_member_path(@member), class: "btn btn-success btn-block" %>
+        <%= link_to '設定変更', edit_owners_member_path(@member), class: "btn btn-success btn-block" %>
         <hr>
         <%= link_to '従業員一覧', owners_team_members_path(@member.team), class: 'btn btn-default btn-block' %>
         <%= link_to 'ホーム', owners_team_path(@member.team), class: 'btn btn-default btn-block' %>

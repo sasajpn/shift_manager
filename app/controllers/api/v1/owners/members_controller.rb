@@ -1,4 +1,4 @@
-class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
+class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationController
   before_action :set_member, only: [:edit, :update]
 
   def edit
@@ -18,7 +18,7 @@ class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
 
   def member_params
     params.fetch(:member, {}).permit(
-      :calendar_color
+      :role, :shift_coordinator
     )
   end
 
