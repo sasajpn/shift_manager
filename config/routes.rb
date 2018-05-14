@@ -43,12 +43,12 @@ Rails.application.routes.draw do
   end
 
   namespace :owners do
-    namespace :members do
-      resources :unapprovals
-    end
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
     resources :teams, except: [:update], shallow: true do
+      namespace :members do
+        resources :unapprovals
+      end
       patch :update_identifier, on: :member
       resources :members, except: [:new, :create] do
         resources :shift_submissions, only: [:new]
