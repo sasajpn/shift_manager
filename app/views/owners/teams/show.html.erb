@@ -1,7 +1,14 @@
 <%= stylesheet_link_tag 'owners/fullcalendar' %>
 <%= javascript_include_tag 'owners/teams/show' %>
+<%= javascript_pack_tag 'owners/teams/show' %>
+
 
 <div class="row">
+  <div class="box box-primary">
+    <div class="box-body no-padding">
+      <div id="teams_show" data-team_id="<%= @team.id %>"></div>
+    </div>
+  </div>
   <div class="col-md-4">
     <div class="box box-primary">
       <div class="box-body box-profile">
@@ -48,6 +55,11 @@
     <% end %>
   </div>
   <div class="col-md-8">
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <div id="teams_show" data-team_id="<%= @team.id %>"></div>
+      </div>
+    </div>
     <div class="box box-primary">
       <div class="box-body no-padding">
         <div id="owners_shift_calendar" data-team_id="<%= @team.id %>"></div>
