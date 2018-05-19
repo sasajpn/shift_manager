@@ -30,13 +30,13 @@
 </template>
 
 <script>
-  import { chart } from 'api/owners/teams.js'
+  import { indexShiftTable } from 'api/owners/shift_tables.js'
   import { find, padStart } from 'lodash'
   export default {
     data() {
       return {
         team: {
-          id: document.getElementById('teams_show').dataset.team_id,
+          id: document.getElementById('shift_tables').dataset.team_id,
           business_hours: ''
         },
         members: ''
@@ -53,7 +53,7 @@
       }
     },
     created () {
-      chart(this.team.id).then((res) => {
+      indexShiftTable(this.team.id).then((res) => {
         this.team.business_hours = res.team.business_hours
         this.members = res.members
       })

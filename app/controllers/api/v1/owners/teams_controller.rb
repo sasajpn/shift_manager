@@ -1,5 +1,5 @@
 class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :chart]
+  before_action :set_team, only: [:show, :edit, :update]
 
   def show
     @shift_submissions = @team.shift_submissions.unapprovals
@@ -27,10 +27,6 @@ class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
       @error_messages = @team.errors.full_messages
       render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
     end
-  end
-
-  def chart
-    @members = @team.members
   end
 
   private

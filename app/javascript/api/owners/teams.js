@@ -1,11 +1,5 @@
 import apiClient from 'helpers/owners/api_client'
 
-export function chart (teamId) {
-  return apiClient({
-    url: 'teams/' + teamId + '/chart'
-  })
-}
-
 export function createTeam (team) {
   return apiClient({
     method: 'post',
