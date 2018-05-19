@@ -11,7 +11,7 @@ const getters = {
 const mutations = {
   SET_CURRENT_DATE (state, date) {
     state.currentDate = date
-    state.formattedDate = state.currentDate.format('YYYY年MM月DD日')
+    state.formattedDate = state.currentDate.format('YYYY/MM/DD')
   }
 }
 

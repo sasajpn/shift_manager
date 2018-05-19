@@ -5,7 +5,7 @@ json.members @members do |member|
   if member.shift_submissions.any?
     json.id member.id
     json.name member.user.last_name + member.user.first_name
-    json.shift_submissions member.shift_submissions.unapprovals do |shift_submission|
+    json.shift_submissions member.shift_submissions.unapprovals.where(submitted_date: @date) do |shift_submission|
       start_min_of_day = shift_submission.start_time.split(':').map(&:to_i)
       end_min_of_day = shift_submission.end_time.split(':').map(&:to_i)
       json.start_time start_min_of_day[0] * 60 + start_min_of_day[1]

@@ -30,9 +30,13 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import { indexShiftTable } from 'api/owners/shift_tables.js'
   import { find, padStart } from 'lodash'
   export default {
+    computed: {
+      ...mapGetters(['currentDate', 'formattedDate'])
+    },
     data() {
       return {
         team: {
@@ -52,8 +56,15 @@
         return padStart(min_of_day % 60, 2, 0)
       }
     },
+    watch: {
+      formattedDate: function (newFormattedDate) {
+        indexShiftTable(this.team.id, this.formattedDate).then((res) => {
+          this.members = res.members
+        })
+      }
+    },
     created () {
-      indexShiftTable(this.team.id).then((res) => {
+      indexShiftTable(this.team.id, this.formattedDate).then((res) => {
         this.team.business_hours = res.team.business_hours
         this.members = res.members
       })

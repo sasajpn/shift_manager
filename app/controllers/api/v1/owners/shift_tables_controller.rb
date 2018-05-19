@@ -3,6 +3,7 @@ class Api::V1::Owners::ShiftTablesController < Api::V1::Owners::ApplicationContr
 
   def index
     @members = @team.members
+    @date = params[:date]
   end
 
   private

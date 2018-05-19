@@ -19,6 +19,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
+
   export default {
     computed: {
       ...mapGetters(['currentDate', 'formattedDate'])
@@ -37,7 +38,7 @@
         this.$store.dispatch('updateCurrentDate', this.moment())
       },
       isToday() {
-        return this.formattedDate === this.moment().format('YYYY年MM月DD日')
+        return this.formattedDate === this.moment().format('YYYY/MM/DD')
       }
     },
     created() {
