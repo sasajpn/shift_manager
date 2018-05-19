@@ -2,6 +2,8 @@
 
 import Vue from 'vue/dist/vue.esm'
 
+import Vuex from 'vuex'
+
 import * as _ from 'lodash'
 
 import ElementUI from 'element-ui'
@@ -11,6 +13,7 @@ import moment from 'moment'
 
 const library = {
   Vue: Vue,
+  Vuex: Vuex,
   '_': _,
   ElementUI: ElementUI,
   locale: locale,

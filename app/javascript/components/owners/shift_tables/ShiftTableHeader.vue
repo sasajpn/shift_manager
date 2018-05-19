@@ -18,35 +18,30 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    data() {
-      return {
-        currentDate: this.moment(),
-        formattedDate: ''
-      }
+    computed: {
+      ...mapGetters(['currentDate', 'formattedDate'])
     },
     methods: {
       moment() {
         return moment()
       },
       addDate() {
-        this.currentDate.add(1, 'days')
-        this.formattedDate = this.currentDate.format('YYYY年MM月DD日')
+        this.$store.dispatch('updateCurrentDate', this.currentDate.add(1, 'days'))
       },
       subtractDate() {
-        this.currentDate.subtract(1, 'days')
-        this.formattedDate = this.currentDate.format('YYYY年MM月DD日')
+        this.$store.dispatch('updateCurrentDate', this.currentDate.subtract(1, 'days'))
       },
       returnToday() {
-        this.currentDate = this.moment()
-        this.formattedDate = this.currentDate.format('YYYY年MM月DD日')
+        this.$store.dispatch('updateCurrentDate', this.moment())
       },
       isToday() {
         return this.formattedDate === this.moment().format('YYYY年MM月DD日')
       }
     },
     created() {
-      this.formattedDate = this.currentDate.format('YYYY年MM月DD日')
+      this.$store.dispatch('updateCurrentDate', moment())
     }
   }
 
