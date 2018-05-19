@@ -17,12 +17,11 @@
         <template v-for="hour in tableColumns.hours">
           <template v-for="minute in tableColumns.minutes">
             <td
-              v-if="findBy(member.shift_submissions, hour + ':' + minute)"
+              v-if="findBy(member.shift_submissions, hour * 60 + minute)"
               v-bind:style="{ backgroundColor: 'black' }"
-              :colspan="doColSpan(member.shift_submissions, hour + ':' + minute)" rowspan="1"
-              >
+              colspan="1" rowspan="1">
             </td>
-            <td v-else colspan="1" rowspan="1"></td>
+            <td v-else colspan="1" rowspan="1">{{ hour * 60 + minute }}</td>
           </template>
         </template>
       </tr>
@@ -32,13 +31,13 @@
 
 <script>
   import { chart } from 'api/owners/teams.js'
-  import { find } from 'lodash'
+  import { forEach, find, inRange } from 'lodash'
   export default {
     data() {
       return {
         tableColumns: {
-          hours: ['10', '11', '12'],
-          minutes: ['00', '10', '20', '30', '40', '50']
+          hours: [10, 11, 12],
+          minutes: [0, 10, 20, 30, 40, 50]
         },
         team: {
           id: document.getElementById('teams_show').dataset.team_id
@@ -47,18 +46,15 @@
       }
     },
     methods: {
-      findBy(shift_submissions, startTime) {
-        return find(shift_submissions, { 'start_time': startTime })
-      },
-      doColSpan(shift_submissions, startTime) {
-        return this.findBy(shift_submissions, startTime).colSpan
+      findBy(shift_submissions, time) {
+        return find(shift_submissions, function(shiftSubmission) {
+          return time >= shiftSubmission.start_time && time <= shiftSubmission.end_time
+        })
       }
     },
     created () {
       chart(this.team.id).then((res) => {
         this.members = res.members
-        console.log(find(this.members[0].shift_submissions, { 'start_time': '10:00' }))
-        console.log(this.findBy(this.members[0].shift_submissions, '10:00'))
       })
     }
   }
