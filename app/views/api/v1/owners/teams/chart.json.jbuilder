@@ -1,4 +1,6 @@
-json.set! :hours, ['9', '10', '11', '12', '13', '14', '15', '16', '17', '18']
+json.team do
+  json.business_hours @team.business_hours_group_by_hour
+end
 json.members @members do |member|
   json.id member.id
   json.name member.user.last_name + member.user.first_name

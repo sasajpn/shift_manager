@@ -3,25 +3,25 @@
     <thead>
       <tr>
         <th colspan="1" rowspan="2">名前</th>
-        <th colspan="6" rowspan="1" v-for="hour in tableColumns.hours">{{ hour }}時</th>
+        <th colspan="6" rowspan="1" v-for="(min_of_days, hour) in team.business_hours">{{ hour }}時</th>
       </tr>
       <tr>
-        <template v-for="hour in tableColumns.hours">
-          <th colspan="1" rowspan="1" v-for="minute in tableColumns.minutes" v-bind:data-time="hour + ':' + minute">{{ minute }}</th>
+        <template v-for="(min_of_days, hour) in team.business_hours">
+          <th colspan="1" rowspan="1" v-for="min_of_day in min_of_days">{{ calcMinute(min_of_day) }}</th>
         </template>
       </tr>
     </thead>
     <tbody>
       <tr v-for="member in members">
-        <td>{{ member.name }}</td>
-        <template v-for="hour in tableColumns.hours">
-          <template v-for="minute in tableColumns.minutes">
+        <td style="white-space: nowrap">{{ member.name }}</td>
+        <template v-for="(min_of_days, hour) in team.business_hours">
+          <template v-for="min_of_day in min_of_days">
             <td
-              v-if="findBy(member.shift_submissions, hour * 60 + minute)"
+              v-if="findBy(member.shift_submissions, min_of_day)"
               v-bind:style="{ backgroundColor: 'black' }"
               colspan="1" rowspan="1">
             </td>
-            <td v-else colspan="1" rowspan="1">{{ hour * 60 + minute }}</td>
+            <td v-else colspan="1" rowspan="1"></td>
           </template>
         </template>
       </tr>
@@ -31,29 +31,30 @@
 
 <script>
   import { chart } from 'api/owners/teams.js'
-  import { forEach, find, inRange } from 'lodash'
+  import { find, padStart } from 'lodash'
   export default {
     data() {
       return {
-        tableColumns: {
-          hours: [10, 11, 12],
-          minutes: [0, 10, 20, 30, 40, 50]
-        },
         team: {
-          id: document.getElementById('teams_show').dataset.team_id
+          id: document.getElementById('teams_show').dataset.team_id,
+          business_hours: ''
         },
         members: ''
       }
     },
     methods: {
-      findBy(shift_submissions, time) {
+      findBy(shift_submissions, min_of_day) {
         return find(shift_submissions, function(shiftSubmission) {
-          return time >= shiftSubmission.start_time && time <= shiftSubmission.end_time
+          return min_of_day >= shiftSubmission.start_time && min_of_day <= shiftSubmission.end_time
         })
+      },
+      calcMinute(min_of_day) {
+        return padStart(min_of_day % 60, 2, 0)
       }
     },
     created () {
       chart(this.team.id).then((res) => {
+        this.team.business_hours = res.team.business_hours
         this.members = res.members
       })
     }

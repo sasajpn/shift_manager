@@ -37,8 +37,4 @@ class ShiftSubmission < ApplicationRecord
   def is_unapproved
     self.update(approve: false)
   end
-
-  def colspan
-    (end_time_parse - start_time_parse) / 600
-  end
 end
