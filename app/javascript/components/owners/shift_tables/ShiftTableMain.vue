@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-bordered" v-if="members.length !== 0">
+  <table class="table table-bordered shift_table" v-if="members.length !== 0">
     <thead>
       <tr>
         <th colspan="1" rowspan="2">名前</th>
@@ -13,22 +13,32 @@
     </thead>
     <tbody>
       <tr v-for="member in members">
-        <td style="white-space: nowrap">{{ member.name }}</td>
+        <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
+        <template v-for="(min_of_days, hour) in team.business_hours">
+          <template v-for="min_of_day in min_of_days">
+            <td
+              v-if="findBy(member.shift_adjustments, min_of_day)"
+              v-bind:style="{ backgroundColor: '#000000' }"
+              colspan="1" rowspan="1"></td>
+            <td v-else colspan="1" rowspan="1"></td>
+          </template>
+        </template>
+      </tr>
+      <tr v-for="member in members">
         <template v-for="(min_of_days, hour) in team.business_hours">
           <template v-for="min_of_day in min_of_days">
             <td
               v-if="findBy(member.shift_submissions, min_of_day)"
-              v-bind:style="{ backgroundColor: 'black' }"
-              colspan="1" rowspan="1">
-            </td>
+              v-bind:style="{ backgroundColor: '#808080', opacity: '0.5' }"
+              colspan="1" rowspan="1"></td>
             <td v-else colspan="1" rowspan="1"></td>
           </template>
         </template>
       </tr>
     </tbody>
   </table>
-  <div v-else class="callout callout-danger">
-    <p>シフト希望が提出されていません</p>
+  <div v-else class="callout callout-danger" v-cloak>
+    <p>データがありません</p>
   </div>
 </template>
 
@@ -46,7 +56,7 @@
           id: document.getElementById('shift_tables').dataset.team_id,
           business_hours: ''
         },
-        members: ''
+        members: []
       }
     },
     methods: {
@@ -63,6 +73,7 @@
       formattedDate: function (newFormattedDate) {
         indexShiftTable(this.team.id, this.formattedDate).then((res) => {
           this.members = res.members
+          console.log(this.members)
         })
       }
     },
@@ -70,8 +81,20 @@
       indexShiftTable(this.team.id, this.formattedDate).then((res) => {
         this.team.business_hours = res.team.business_hours
         this.members = res.members
-        console.log(this.members)
       })
     }
   }
 </script>
+
+<style scoped>
+  [v-cloak] {
+    display:none;
+  }
+
+  .shift_table tr, .shift_table th, .shift_table td {
+    text-align: center;
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+  }
+</style>

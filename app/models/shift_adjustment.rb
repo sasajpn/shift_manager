@@ -1,4 +1,6 @@
 class ShiftAdjustment < ApplicationRecord
+  include TimeParser
+
   belongs_to :shift_submission
   belongs_to :account, polymorphic: true, optional: true
 
@@ -25,8 +27,20 @@ class ShiftAdjustment < ApplicationRecord
     all.select(&:future?)
   }
 
+  scope :adjusted_date, -> date {
+    joins(:shift_submission).where("shift_submissions.submitted_date = ?", date)
+  }
+
   def adjusted_end_time
-    Chronic.parse("#{shift_submission.submitted_date} #{end_time}")
+    time_parse(shift_submission.submitted_date, end_time)
+  end
+
+  def start_min_of_day
+    min_of_day(start_time)
+  end
+
+  def end_min_of_day
+    min_of_day(end_time)
   end
 
   def future?

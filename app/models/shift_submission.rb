@@ -37,4 +37,20 @@ class ShiftSubmission < ApplicationRecord
   def is_unapproved
     self.update(approve: false)
   end
+
+  def start_time_parse
+    time_parse(submitted_date, start_time)
+  end
+
+  def end_time_parse
+    time_parse(submitted_date, end_time)
+  end
+
+  def start_min_of_day
+    min_of_day(start_time)
+  end
+
+  def end_min_of_day
+    min_of_day(end_time)
+  end
 end

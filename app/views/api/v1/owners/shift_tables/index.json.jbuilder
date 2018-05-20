@@ -2,14 +2,18 @@ json.team do
   json.business_hours @team.business_hours_group_by_hour
 end
 json.members @members do |member|
-  if member.shift_submissions.where(submitted_date: @date).any?
+  shift_submissions = member.shift_submissions.where(submitted_date: @date)
+  shift_adjustments = member.shift_adjustments.adjusted_date(@date)
+  if shift_submissions.any? || shift_adjustments.any?
     json.id member.id
     json.name member.user.last_name + member.user.first_name
-    json.shift_submissions member.shift_submissions.unapprovals.where(submitted_date: @date) do |shift_submission|
-      start_min_of_day = shift_submission.start_time.split(':').map(&:to_i)
-      end_min_of_day = shift_submission.end_time.split(':').map(&:to_i)
-      json.start_time start_min_of_day[0] * 60 + start_min_of_day[1]
-      json.end_time end_min_of_day[0] * 60 + end_min_of_day[1]
+    json.shift_submissions shift_submissions do |shift_submission|
+      json.start_time shift_submission.start_min_of_day
+      json.end_time shift_submission.end_min_of_day
+    end
+    json.shift_adjustments shift_adjustments do |shift_adjustment|
+      json.start_time shift_adjustment.start_min_of_day
+      json.end_time shift_adjustment.end_min_of_day
     end
   end
 end

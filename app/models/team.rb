@@ -1,4 +1,6 @@
 class Team < ApplicationRecord
+  include TimeParser
+
   belongs_to :owner
 
   has_many :members, dependent: :destroy
@@ -13,13 +15,16 @@ class Team < ApplicationRecord
 
   before_create :create_identifier
 
-  def min_of_day(time)
-    times = time.split(':').map(&:to_i)
-    times[0] * 60 + times[1]
+  def open_min_of_day
+    min_of_day(open_time)
+  end
+
+  def close_min_of_day
+    min_of_day(close_time)
   end
 
   def business_hours_every_ten_minutes
-    (min_of_day(open_time)...min_of_day(close_time))
+    (open_min_of_day...close_min_of_day)
     .to_a
     .select { |time| time % 10 == 0 }
   end
