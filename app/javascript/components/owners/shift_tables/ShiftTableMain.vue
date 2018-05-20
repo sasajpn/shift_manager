@@ -1,13 +1,5 @@
 <template>
-  <div class="shift_table">
-    <table class="table">
-      <tbody>
-          <tr>
-            <td><a href="/owners/members/10">従業員 太郎</a></td>
-            <td><span style="color: #00c0ef"><i class="fa fa-square"></i></span></td>
-          </tr>
-      </tbody>
-    </table>
+  <div class="shift-table">
     <table
       v-if="members.length !== 0"
       class="table table-bordered">
@@ -106,12 +98,12 @@
     display:none;
   }
 
-  .shift_table {
+  .shift-table {
     max-height: 500px;
     overflow-x: auto;
   }
 
-  .shift_table tr, .shift_table th, .shift_table td {
+  .shift-table tr, .shift-table th, .shift-table td {
     text-align: center;
     vertical-align: middle;
     height: 30px;
