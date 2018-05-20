@@ -1,5 +1,13 @@
 <template>
   <div class="shift_table">
+    <table class="table">
+      <tbody>
+          <tr>
+            <td><a href="/owners/members/10">従業員 太郎</a></td>
+            <td><span style="color: #00c0ef"><i class="fa fa-square"></i></span></td>
+          </tr>
+      </tbody>
+    </table>
     <table
       v-if="members.length !== 0"
       class="table table-bordered">
@@ -21,11 +29,10 @@
             <template v-for="min_of_day in min_of_days">
               <td
                 v-if="findBy(member.shift_adjustments, min_of_day)"
-                v-bind:style="{ backgroundColor: '#000000' }"
+                v-bind:style="{ backgroundColor: '#303133' }"
                 colspan="1" rowspan="1"></td>
               <td
                 v-else
-                v-bind:style="{ backgroundColor: '#FF0000', opacity: '0.2' }"
                 colspan="1" rowspan="1"></td>
             </template>
           </template>
@@ -35,7 +42,7 @@
             <template v-for="min_of_day in min_of_days">
               <td
                 v-if="findBy(member.shift_submissions, min_of_day)"
-                v-bind:style="{ backgroundColor: '#808080', opacity: '0.6' }"
+                v-bind:style="{ backgroundColor: '#909399', opacity: '0.6' }"
                 colspan="1" rowspan="1"></td>
               <td v-else colspan="1" rowspan="1"></td>
             </template>
@@ -61,7 +68,8 @@
       return {
         team: {
           id: document.getElementById('shift_tables').dataset.team_id,
-          business_hours: ''
+          business_hours: {},
+          shiftInCounts: []
         },
         members: []
       }
@@ -86,6 +94,7 @@
     created () {
       indexShiftTable(this.team.id, this.formattedDate).then((res) => {
         this.team.business_hours = res.team.business_hours
+        this.team.shiftInCounts = res.team.shift_in_counts
         this.members = res.members
       })
     }

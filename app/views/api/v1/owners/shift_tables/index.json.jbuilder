@@ -1,5 +1,7 @@
 json.team do
-  json.business_hours @team.business_hours_group_by_hour
+  business_hours_group_by_hour = @team.business_hours_group_by_hour
+  json.business_hours business_hours_group_by_hour
+  json.shift_in_counts Array.new(business_hours_group_by_hour.values.flatten.count, 0)
 end
 json.members @members do |member|
   shift_submissions = member.shift_submissions.where(submitted_date: @date)
