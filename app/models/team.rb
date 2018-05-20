@@ -11,7 +11,7 @@ class Team < ApplicationRecord
   validates :name, :open_time, :close_time,
     presence: true
 
-  validates_with TeamMaxCountValidator
+  validates_with TeamMaxCountValidator, on: :create
 
   before_create :create_identifier
 
