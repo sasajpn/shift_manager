@@ -1,44 +1,48 @@
 <template>
-  <table class="table table-bordered shift_table" v-if="members.length !== 0">
-    <thead>
-      <tr>
-        <th colspan="1" rowspan="2">名前</th>
-        <th colspan="6" rowspan="1" v-for="(min_of_days, hour) in team.business_hours">{{ hour }}時</th>
-      </tr>
-      <tr>
-        <template v-for="(min_of_days, hour) in team.business_hours">
-          <th colspan="1" rowspan="1" v-for="min_of_day in min_of_days">{{ calcMinute(min_of_day) }}</th>
-        </template>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="member in members">
-        <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
-        <template v-for="(min_of_days, hour) in team.business_hours">
-          <template v-for="min_of_day in min_of_days">
-            <td
-              v-if="findBy(member.shift_adjustments, min_of_day)"
-              v-bind:style="{ backgroundColor: '#000000' }"
-              colspan="1" rowspan="1"></td>
-            <td v-else colspan="1" rowspan="1"></td>
+  <div class="shift_table">
+    <table
+      v-if="members.length !== 0"
+      class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="1" rowspan="2">名前</th>
+          <th colspan="6" rowspan="1" v-for="(min_of_days, hour) in team.business_hours">{{ hour }}時</th>
+        </tr>
+        <tr>
+          <template v-for="(min_of_days, hour) in team.business_hours">
+            <th colspan="1" rowspan="1" v-for="min_of_day in min_of_days">{{ calcMinute(min_of_day) }}</th>
           </template>
-        </template>
-      </tr>
-      <tr v-for="member in members">
-        <template v-for="(min_of_days, hour) in team.business_hours">
-          <template v-for="min_of_day in min_of_days">
-            <td
-              v-if="findBy(member.shift_submissions, min_of_day)"
-              v-bind:style="{ backgroundColor: '#808080', opacity: '0.5' }"
-              colspan="1" rowspan="1"></td>
-            <td v-else colspan="1" rowspan="1"></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="member in members">
+          <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
+          <template v-for="(min_of_days, hour) in team.business_hours">
+            <template v-for="min_of_day in min_of_days">
+              <td
+                v-if="findBy(member.shift_adjustments, min_of_day)"
+                v-bind:style="{ backgroundColor: '#000000' }"
+                colspan="1" rowspan="1"></td>
+              <td v-else colspan="1" rowspan="1"></td>
+            </template>
           </template>
-        </template>
-      </tr>
-    </tbody>
-  </table>
-  <div v-else class="callout callout-danger" v-cloak>
-    <p>データがありません</p>
+        </tr>
+        <tr v-for="member in members">
+          <template v-for="(min_of_days, hour) in team.business_hours">
+            <template v-for="min_of_day in min_of_days">
+              <td
+                v-if="findBy(member.shift_submissions, min_of_day)"
+                v-bind:style="{ backgroundColor: '#808080', opacity: '0.5' }"
+                colspan="1" rowspan="1"></td>
+              <td v-else colspan="1" rowspan="1"></td>
+            </template>
+          </template>
+        </tr>
+      </tbody>
+    </table>
+    <div v-else class="callout callout-danger" v-cloak>
+      <p>データがありません</p>
+    </div>
   </div>
 </template>
 
@@ -73,7 +77,6 @@
       formattedDate: function (newFormattedDate) {
         indexShiftTable(this.team.id, this.formattedDate).then((res) => {
           this.members = res.members
-          console.log(this.members)
         })
       }
     },
@@ -89,6 +92,11 @@
 <style scoped>
   [v-cloak] {
     display:none;
+  }
+
+  .shift_table {
+    max-height: 500px;
+    overflow-x: auto;
   }
 
   .shift_table tr, .shift_table th, .shift_table td {
