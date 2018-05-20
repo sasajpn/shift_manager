@@ -23,7 +23,10 @@
                 v-if="findBy(member.shift_adjustments, min_of_day)"
                 v-bind:style="{ backgroundColor: '#000000' }"
                 colspan="1" rowspan="1"></td>
-              <td v-else colspan="1" rowspan="1"></td>
+              <td
+                v-else
+                v-bind:style="{ backgroundColor: '#FF0000', opacity: '0.2' }"
+                colspan="1" rowspan="1"></td>
             </template>
           </template>
         </tr>
@@ -32,7 +35,7 @@
             <template v-for="min_of_day in min_of_days">
               <td
                 v-if="findBy(member.shift_submissions, min_of_day)"
-                v-bind:style="{ backgroundColor: '#808080', opacity: '0.5' }"
+                v-bind:style="{ backgroundColor: '#808080', opacity: '0.6' }"
                 colspan="1" rowspan="1"></td>
               <td v-else colspan="1" rowspan="1"></td>
             </template>
