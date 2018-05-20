@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-bordered">
+  <table class="table table-bordered" v-if="members.length !== 0">
     <thead>
       <tr>
         <th colspan="1" rowspan="2">名前</th>
@@ -27,6 +27,9 @@
       </tr>
     </tbody>
   </table>
+  <div v-else class="callout callout-danger">
+    <p>シフト希望が提出されていません</p>
+  </div>
 </template>
 
 <script>
@@ -67,6 +70,7 @@
       indexShiftTable(this.team.id, this.formattedDate).then((res) => {
         this.team.business_hours = res.team.business_hours
         this.members = res.members
+        console.log(this.members)
       })
     }
   }

@@ -2,7 +2,7 @@ json.team do
   json.business_hours @team.business_hours_group_by_hour
 end
 json.members @members do |member|
-  if member.shift_submissions.any?
+  if member.shift_submissions.where(submitted_date: @date).any?
     json.id member.id
     json.name member.user.last_name + member.user.first_name
     json.shift_submissions member.shift_submissions.unapprovals.where(submitted_date: @date) do |shift_submission|

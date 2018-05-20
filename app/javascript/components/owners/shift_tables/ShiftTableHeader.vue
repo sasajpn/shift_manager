@@ -11,8 +11,6 @@
         <el-button type="primary" icon="el-icon-arrow-right" v-on:click="addDate"></el-button>
       </el-button-group>
     </div>
-    <div class="fc-center">
-    </div>
     <div class="fc-clear"></div>
   </div>
 </template>
