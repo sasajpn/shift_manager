@@ -68,7 +68,11 @@ Rails.application.routes.draw do
 
     namespace :managers do
       resources :teams, only: [], shallow: true do
-        resources :members, only: [:index, :show, :edit]
+        resources :members, only: [:index, :show, :edit] do
+          resources :shift_submissions, only: [:new, :destroy] do
+            resources :shift_adjustments, only: [:new, :edit, :destroy]
+          end
+        end
         resources :shift_submissions, only: [:index]
         resources :shift_adjustments, only: [:index]
       end
