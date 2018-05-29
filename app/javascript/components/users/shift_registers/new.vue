@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_coordinators/shift_submissions.js'
+  import { newShiftRegister, createShiftRegister } from 'api/users/shift_registers.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -68,7 +68,7 @@
           closeTime: ''
         },
         member: {
-          id: document.getElementById('shift_submissions_new').dataset.member_id
+          id: document.getElementById('shift_registers_new').dataset.member_id
         },
         shiftSubmission: {
           submittedDate: '',
@@ -86,7 +86,7 @@
     },
     methods: {
       onSubmit() {
-        createShiftSubmission(this.member.id, this.shiftSubmission, this.shiftAdjustment).then((res) => {
+        createShiftRegister(this.member.id, this.shiftSubmission, this.shiftAdjustment).then((res) => {
           switch (res.status) {
             case '200':
               window.location.href = '/users/shift_coordinators/members/' + this.member.id
@@ -99,7 +99,7 @@
       }
     },
     created () {
-      newShiftSubmission(this.member.id).then((res) => {
+      newShiftRegister(this.member.id).then((res) => {
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
         this.shiftSubmission.startTime = res.open_time
