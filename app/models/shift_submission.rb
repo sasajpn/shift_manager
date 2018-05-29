@@ -46,6 +46,14 @@ class ShiftSubmission < ApplicationRecord
     time_parse(submitted_date, end_time)
   end
 
+  def start_time_format
+    time_format(submitted_date, start_time)
+  end
+
+  def end_time_format
+    time_format(submitted_date, end_time)
+  end
+
   def start_min_of_day
     min_of_day(start_time)
   end
