@@ -16,7 +16,7 @@
             <b>シフト調整権限</b> <span class="pull-right"><%= @member.adjustment_ability %></span>
           </li>
         </ul>
-        <%= link_to 'シフトの登録', new_users_shift_coordinators_member_shift_submission_path(@member), class: "btn btn-primary btn-block" %>
+        <%= link_to 'シフトの登録', new_users_managers_member_shift_registration_path(@member), class: "btn btn-primary btn-block" %>
         <hr>
         <%= link_to '設定変更', edit_users_managers_member_path(@member), class: "btn btn-success btn-block" %>
       </div>

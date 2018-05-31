@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501154629) do
+ActiveRecord::Schema.define(version: 20180531121947) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -110,6 +110,22 @@ ActiveRecord::Schema.define(version: 20180501154629) do
     t.index ["member_id"], name: "index_shift_submissions_on_member_id", using: :btree
   end
 
+  create_table "shifts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "member_id"
+    t.integer  "shift_submission_id"
+    t.date     "registered_date"
+    t.string   "start_time",          null: false
+    t.string   "end_time",            null: false
+    t.string   "type",                null: false
+    t.string   "account_type"
+    t.integer  "account_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["member_id"], name: "index_shifts_on_member_id", using: :btree
+    t.index ["shift_submission_id"], name: "index_shifts_on_shift_submission_id", using: :btree
+    t.index ["type"], name: "index_shifts_on_type", using: :btree
+  end
+
   create_table "teams", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "owner_id"
     t.string   "name"
@@ -152,5 +168,7 @@ ActiveRecord::Schema.define(version: 20180501154629) do
   add_foreign_key "members", "users"
   add_foreign_key "shift_adjustments", "shift_submissions"
   add_foreign_key "shift_submissions", "members"
+  add_foreign_key "shifts", "members"
+  add_foreign_key "shifts", "shift_submissions"
   add_foreign_key "teams", "owners"
 end
