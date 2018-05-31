@@ -6,7 +6,7 @@ class Member < ApplicationRecord
 
   has_many :shift_submissions, dependent: :destroy
   has_many :shift_registrations, class_name: 'Shift::Registration'
-  has_many :shift_adjustments, through: :shift_submissions
+  has_many :shift_adjustments, through: :shift_submissions, class_name: 'Shift::Adjustment'
 
   validates :user_id, :role, :calendar_color,
     presence: true

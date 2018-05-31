@@ -5,7 +5,9 @@ class ShiftSubmission < ApplicationRecord
 
   has_one :team, through: :member
   has_one :user, through: :member
-  has_one :shift_adjustment, dependent: :destroy, inverse_of: :shift_submission
+  has_one :shift_adjustment, class_name: 'Shift::Adjustment',
+    dependent: :destroy,
+    inverse_of: :shift_submission
 
   accepts_nested_attributes_for :shift_adjustment
 
