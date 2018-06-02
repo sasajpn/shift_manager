@@ -1,9 +1,6 @@
 class Api::V1::Users::ShiftRegistrationsController < Api::V1::Users::ApplicationController
-  before_action :set_member, only: [:new, :create]
+  before_action :set_member, only: [:create]
 
-  def new
-    @team = @member.team
-  end
 
   def create
     @shift_registration = @member.shift_registrations.build(shift_registration_params)
