@@ -52,6 +52,7 @@
   import { mapGetters } from 'vuex'
   import { indexShiftTable } from 'api/owners/shift_tables.js'
   import { find, padStart } from 'lodash'
+  
   export default {
     computed: {
       ...mapGetters(['currentDate', 'formattedDate'])

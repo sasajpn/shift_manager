@@ -1,5 +1,5 @@
-<%= javascript_pack_tag 'users/shift_registrations/new' %>
-<%= stylesheet_pack_tag 'users/shift_registrations/new' %>
+<%= javascript_pack_tag 'users/managers/shift_registrations/new' %>
+<%= stylesheet_pack_tag 'users/managers/shift_registrations/new' %>
 
 <div class="row">
   <div class="col-md-3">
@@ -30,7 +30,7 @@
         <h3 class="box-title">シフト希望の提出</h3>
       </div>
       <div class="box-body">
-        <div id="shift_registrations_new" data-member_id="<%= @member.id %>">
+        <div id="shift_registrations_new" data-team_id="<%= @team.id %>" data-member_id="<%= @member.id %>">
         </div>
       </div>
     </div>

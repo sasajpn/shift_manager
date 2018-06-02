@@ -144,6 +144,9 @@ Rails.application.routes.draw do
         end
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
+          scope module: :teams do
+            resources :calendars, only: [:index]
+          end
           resources :members, only: [:edit, :update] do
             resources :shift_registers, only: [:new, :create]
             resources :shift_registrations, only: [:new, :create]
