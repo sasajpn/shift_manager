@@ -108,7 +108,6 @@ Rails.application.routes.draw do
     namespace :shift_coordinators do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show] do
-          resources :shift_registers, only: [:new]
           resources :shift_submissions, only: [] do
             resources :shift_adjustments, only: [:new, :edit, :destroy]
           end
