@@ -95,7 +95,7 @@ Rails.application.routes.draw do
     namespace :part_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
-          resources :shift_registrations, only: [:new]
+          resources :shift_registrations, only: [:new, :edit]
           resources :shift_submissions, only: [:show] do
             resources :shift_adjustments, only: [:new, :edit, :destroy]
           end
@@ -161,7 +161,8 @@ Rails.application.routes.draw do
           resources :members, only: [:edit, :update]
         end
         namespace :part_timers do
-          resources :teams, only: [] do
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
             resources :shift_submissions, only: [:index]
             resources :shift_adjustments, only: [:index]
           end
