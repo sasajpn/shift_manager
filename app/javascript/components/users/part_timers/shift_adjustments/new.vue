@@ -1,5 +1,5 @@
 <template>
-  <shift-adjustments-form v-on:onSubmit="onSubmit"></shift-adjustments-form>
+  <shift-adjustments-form v-on:onSubmit="onSubmit" :btnName="btnName"></shift-adjustments-form>
 </template>
 
 <script>
