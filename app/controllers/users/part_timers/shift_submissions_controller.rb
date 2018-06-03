@@ -4,10 +4,6 @@ class Users::PartTimers::ShiftSubmissionsController < Users::ApplicationControll
   before_action :set_current_member, only: [:index, :show]
 
   def index
-    @shift_submissions = @team
-      .shift_submissions
-      .joins(:member)
-      .merge(Member.where(role: :part_timer))
   end
 
   def show

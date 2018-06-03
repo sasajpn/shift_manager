@@ -1,9 +1,9 @@
-class Api::V1::Users::PartTimers::ShiftSubmissionsController < Api::V1::Users::ApplicationController
+class Api::V1::Users::PartTimers::ShiftAdjustmentsController < Api::V1::Users::ApplicationController
   before_action :set_team, only: [:index]
 
   def index
-    @shift_submissions = @team
-      .shift_submissions
+    @shift_adjustments = @team
+      .shift_adjustments
       .joins(:member)
       .merge(Member.where(role: :part_timer))
   end

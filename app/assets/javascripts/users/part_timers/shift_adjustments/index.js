@@ -3,9 +3,9 @@
 //= require AdminLTE/fullcalendar/ja
 
 $(function() {
-  var team_id = document.getElementById('shift_submissions_calendar').dataset.team_id
+  var team_id = document.getElementById('shift_adjustments_calendar').dataset.team_id
 
-  $('#shift_submissions_calendar').fullCalendar({
+  $('#shift_adjustments_calendar').fullCalendar({
     header: {
       center: '',
       right:  'month today prev,next'
@@ -16,11 +16,11 @@ $(function() {
     displayEventTime: false,
     eventSources: [
       {
-        url: '/api/v1/users/part_timers/teams/' + team_id + '/shift_submissions'
+        url: '/api/v1/users/part_timers/teams/' + team_id + '/shift_adjustments'
       }
     ],
     select: function(start, end, jsEvent, view) {
-      $('#shift_submissions_calendar').fullCalendar('changeView', 'listDay', start);
+      $('#shift_adjustments_calendar').fullCalendar('changeView', 'listDay', start);
     },
     eventClick: function(event, jsEvent, view) {
       if (view.type === 'listDay') {

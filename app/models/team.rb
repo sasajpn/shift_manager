@@ -6,7 +6,7 @@ class Team < ApplicationRecord
   has_many :members, dependent: :destroy
   has_many :users, through: :member
   has_many :shift_submissions, through: :members
-  has_many :shift_adjustments, through: :shift_submissions
+  has_many :shift_adjustments, through: :shift_submissions, class_name: 'Shift::Adjustment'
 
   validates :name, :open_time, :close_time,
     presence: true

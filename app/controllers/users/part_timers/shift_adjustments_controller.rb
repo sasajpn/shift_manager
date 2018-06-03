@@ -4,10 +4,6 @@ class Users::PartTimers::ShiftAdjustmentsController < Users::ApplicationControll
   before_action :set_current_member, only: [:index]
 
   def index
-    @shift_adjustments = @team
-      .shift_adjustments
-      .joins(:member)
-      .merge(Member.where(role: :part_timer))
   end
 
   def new

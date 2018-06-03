@@ -163,6 +163,7 @@ Rails.application.routes.draw do
         namespace :part_timers do
           resources :teams, only: [] do
             resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
           end
         end
         namespace :shift_coordinators do
