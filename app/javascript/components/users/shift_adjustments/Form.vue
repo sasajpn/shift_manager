@@ -1,6 +1,6 @@
 <template>
   <div>
-    <error-messages></error-messages>
+    <error-messages :errorMessages='this.errorMessages'></error-messages>
     <el-form
       label-width="120px">
       <el-form-item label="調整日" required>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -58,21 +58,26 @@
       ErrorMessages
     },
     computed: {
-      ...mapGetters(['submissionSubmittedDate', 'submissionStartTime', 'submissionEndTime']),
+      ...mapState({
+        submissionSubmittedDate: state => state.ShiftSubmission.submittedDate,
+        submissionStartTime: state => state.ShiftSubmission.startTime,
+        submissionEndTime: state => state.ShiftSubmission.endTime,
+        errorMessages: state => state.ShiftAdjustment.errorMessages
+      }),
       adjustmentStartTime: {
         get () {
-          return this.$store.state.ShiftAdjustment.adjustmentStartTime
+          return this.$store.state.ShiftAdjustment.startTime
         },
         set (value) {
-          this.$store.dispatch('updateAdjustmentStartTime', value)
+          this.$store.dispatch('ShiftAdjustment/updateStartTime', value)
         }
       },
       adjustmentEndTime: {
         get () {
-          return this.$store.state.ShiftAdjustment.adjustmentEndTime
+          return this.$store.state.ShiftAdjustment.endTime
         },
         set (value) {
-          this.$store.dispatch('updateAdjustmentEndTime', value)
+          this.$store.dispatch('ShiftAdjustment/updateEndTime', value)
         }
       }
     },
@@ -89,7 +94,7 @@
       },
     },
     created () {
-      this.$store.dispatch('loadShiftSubmission', this.shiftSubmission.id)
+      this.$store.dispatch('ShiftSubmission/loadShiftSubmission', this.shiftSubmission.id)
     }
   }
 </script>

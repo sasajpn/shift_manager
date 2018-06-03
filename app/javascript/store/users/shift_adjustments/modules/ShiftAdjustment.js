@@ -1,21 +1,21 @@
 const state = {
-  adjustmentStartTime: '',
-  adjustmentEndTime: '',
+  startTime: '',
+  endTime: '',
   errorMessages: []
 }
 
 const getters = {
-  adjustmentStartTime: ({ adjustmentStartTime }) => adjustmentStartTime,
-  adjustmentEndTime: ({ adjustmentEndTime }) => adjustmentEndTime,
+  startTime: ({ startTime }) => startTime,
+  endTime: ({ endTime }) => endTime,
   errorMessages: ({ errorMessages }) => errorMessages
 }
 
 const mutations = {
-  SET_ADJUSTMENT_START_TIME (state, time) {
-    state.adjustmentStartTime = time
+  SET_START_TIME (state, time) {
+    state.startTime = time
   },
-  SET_ADJUSTMENT_END_TIME (state, time) {
-    state.adjustmentEndTime = time
+  SET_END_TIME (state, time) {
+    state.endTime = time
   },
   SET_ERROR_MESSAGES (state, errorMessages) {
     state.errorMessages = errorMessages
@@ -23,11 +23,11 @@ const mutations = {
 }
 
 const actions = {
-  updateAdjustmentStartTime ({ commit }, time) {
-    commit('SET_ADJUSTMENT_START_TIME', time)
+  updateStartTime ({ commit }, time) {
+    commit('SET_START_TIME', time)
   },
-  updateAdjustmentEndTime ({ commit }, time) {
-    commit('SET_ADJUSTMENT_END_TIME', time)
+  updateEndTime ({ commit }, time) {
+    commit('SET_END_TIME', time)
   },
   setErrorMessages ({ commit }, errorMessages) {
     commit('SET_ERROR_MESSAGES', errorMessages)
@@ -36,6 +36,7 @@ const actions = {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,

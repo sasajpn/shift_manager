@@ -1,40 +1,41 @@
 import { getShiftSubmission } from 'api/users/shift_submissions.js'
 
 const state = {
-  submissionSubmittedDate: '',
-  submissionStartTime: '',
-  submissionEndTime: ''
+  submittedDate: '',
+  startTime: '',
+  endTime: ''
 }
 
 const getters = {
-  submissionSubmittedDate: ({ submissionSubmittedDate }) => submissionSubmittedDate,
-  submissionStartTime: ({ submissionStartTime }) => submissionStartTime,
-  submissionEndTime: ({ submissionEndTime }) => submissionEndTime,
+  submittedDate: ({ SubmittedDate }) => SubmittedDate,
+  startTime: ({ startTime }) => startTime,
+  endTime: ({ endTime }) => endTime,
 }
 
 const mutations = {
-  SET_SUBMISSION_SUBMITTED_DATE (state, date) {
-    state.submissionSubmittedDate = date
+  SET_SUBMITTED_DATE (state, date) {
+    state.submittedDate = date
   },
-  SET_SUBMISSION_START_TIME (state, time) {
-    state.submissionStartTime = time
+  SET_START_TIME (state, time) {
+    state.startTime = time
   },
-  SET_SUBMISSION_END_TIME (state, time) {
-    state.submissionEndTime = time
+  SET_END_TIME (state, time) {
+    state.endTime = time
   }
 }
 
 const actions = {
   loadShiftSubmission ({ commit }, shiftSubmissionId) {
     getShiftSubmission(shiftSubmissionId).then((res) => {
-      commit('SET_SUBMISSION_SUBMITTED_DATE', res.submitted_date)
-      commit('SET_SUBMISSION_START_TIME', res.start_time)
-      commit('SET_SUBMISSION_END_TIME', res.end_time)
+      commit('SET_SUBMITTED_DATE', res.submitted_date)
+      commit('SET_START_TIME', res.start_time)
+      commit('SET_END_TIME', res.end_time)
     })
   }
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,

@@ -18,7 +18,7 @@
               window.location.href = '/users/part_timers/shift_submissions/' + shiftSubmissionId
               break;
             case '400':
-              this.$store.dispatch('setErrorMessages', res.error_messages)
+              this.$store.dispatch('ShiftAdjustment/setErrorMessages', res.error_messages)
               break;
           }
         })

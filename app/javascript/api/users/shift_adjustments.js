@@ -5,8 +5,8 @@ export function createShiftAdjustment (shiftSubmissionId, shiftAdjustment) {
     method: 'post',
     data: {
       shift_adjustment: {
-        start_time: shiftAdjustment.adjustmentStartTime,
-        end_time: shiftAdjustment.adjustmentEndTime
+        start_time: shiftAdjustment.startTime,
+        end_time: shiftAdjustment.endTime
       }
     },
     url: 'shift_submissions/' + shiftSubmissionId + '/shift_adjustments'
