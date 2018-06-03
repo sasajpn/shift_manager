@@ -160,6 +160,11 @@ Rails.application.routes.draw do
         namespace :managers do
           resources :members, only: [:edit, :update]
         end
+        namespace :part_timers do
+          resources :teams, only: [] do
+            resources :shift_submissions, only: [:index]
+          end
+        end
         namespace :shift_coordinators do
           resources :members, only: [:show], shallow: true do
             resources :shift_submissions, only: [] do
