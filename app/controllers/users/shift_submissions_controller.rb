@@ -4,7 +4,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_member, only: [:index, :new]
 
   def index
-    @shift_submissions = @member.shift_submissions.order(submitted_date: :desc).page(params[:page]).per(15)
+    @shift_submissions = @team.shift_submissions.order(submitted_date: :desc).page(params[:page]).per(15)
   end
 
   def show

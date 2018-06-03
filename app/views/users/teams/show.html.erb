@@ -26,8 +26,9 @@
           <%= link_to 'メンバー一覧', users_full_timers_team_members_path(@team), class: 'btn btn-default btn-block' %>
         <% when 'part_timer' %>
           <%= link_to 'メンバー一覧', users_part_timers_team_members_path(@team), class: 'btn btn-default btn-block' %>
+          <%= link_to 'シフト希望一覧', users_part_timers_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
         <% end %>
-        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+
         <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
         <hr>
         <%= link_to '設定変更', edit_users_member_path(@member), class: 'btn btn-success btn-block' %>

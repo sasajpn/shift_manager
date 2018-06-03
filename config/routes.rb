@@ -96,7 +96,7 @@ Rails.application.routes.draw do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
           resources :shift_registrations, only: [:new]
-          resources :shift_submissions, only: [] do
+          resources :shift_submissions, only: [:show] do
             resources :shift_adjustments, only: [:new, :edit, :destroy]
           end
         end
@@ -173,10 +173,11 @@ Rails.application.routes.draw do
             resources :calendars, only: [:index]
           end
           resources :members, only: [:edit, :update] do
-            resources :shift_registers, only: [:new, :create]
             resources :shift_registrations, only: [:new, :create]
           end
-          resources :shift_submissions, except: [:index, :destroy]
+          resources :shift_submissions, except: [:index, :destroy] do
+            resources :shift_adjustments, only: [:create]
+          end
         end
       end
     end

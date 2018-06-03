@@ -1,10 +1,15 @@
 class Api::V1::Users::ShiftAdjustmentsController < Api::V1::Users::ApplicationController
-  
+  before_action :set_shift_submission, only: [:create]
+
   def new
   end
 
   def create
     @shift_adjustment = @shift_submission.build_shift_adjustment(shift_adjustment_params)
+    @shift_adjustment.attributes = {
+      account_type: current_user.model_name.name,
+      account_id: current_user.id
+    }
     if @shift_adjustment.save
       @success_message = 'シフトを調整しました。'
       render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]

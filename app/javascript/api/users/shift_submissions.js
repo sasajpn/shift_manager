@@ -1,5 +1,11 @@
 import apiClient from 'helpers/users/api_client'
 
+export function getShiftSubmission (shiftSubmissionId) {
+  return apiClient({
+    url: 'shift_submissions/' + shiftSubmissionId
+  })
+}
+
 export function newShiftSubmission (teamId) {
   return apiClient({
     url: 'teams/' + teamId + '/shift_submissions/new'
