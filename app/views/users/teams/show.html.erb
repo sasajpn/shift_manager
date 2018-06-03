@@ -14,12 +14,12 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
           <li class="list-group-item">
-            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
+            <b>役職</b> <span class="pull-right"><%= @current_member.role_i18n %></span>
           </li>
         </ul>
         <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
         <hr>
-        <% case @member.role %>
+        <% case @current_member.role %>
         <% when 'manager' %>
           <%= link_to 'メンバー一覧', users_managers_team_members_path(@team), class: 'btn btn-default btn-block' %>
         <% when 'full_timer' %>
@@ -31,7 +31,7 @@
 
         <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
         <hr>
-        <%= link_to '設定変更', edit_users_member_path(@member), class: 'btn btn-success btn-block' %>
+        <%= link_to '設定変更', edit_users_member_path(@current_member), class: 'btn btn-success btn-block' %>
       </div>
     </div>
   </div>

@@ -3,7 +3,12 @@ class Users::PartTimers::MembersController < Users::ApplicationController
   before_action :set_team, only: [:index]
 
   def index
-    @members = @team.members.part_timer.order(created_at: :desc).page(params[:page]).per(15)
+    @members = @team
+      .members
+      .where.not(user_id: current_user.id)
+      .part_timer
+      .order(created_at: :desc)
+      .page(params[:page]).per(15)
   end
 
   def show
