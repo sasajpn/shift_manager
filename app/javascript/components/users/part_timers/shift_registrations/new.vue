@@ -1,5 +1,5 @@
 <template>
-  <shift-registration-form v-on:onSubmit="onSubmit"></shift-registration-form>
+  <shift-registration-form v-on:onSubmit="onSubmit" :btnName="btnName"></shift-registration-form>
 </template>
 
 <script>
@@ -9,6 +9,11 @@
   export default {
     components: {
       shiftRegistrationForm
+    },
+    data() {
+      return {
+        btnName: '登録'
+      }
     },
     methods: {
       onSubmit(memberId, shiftRegistration) {
@@ -24,6 +29,12 @@
         })
       }
     },
+    created () {
+      let teamId = document.getElementById('shift_registrations_new').dataset.team_id
+      let memberId = document.getElementById('shift_registrations_new').dataset.member_id
+      this.$store.dispatch('loadTeam', teamId)
+      this.$store.dispatch('updateId', memberId)
+    }
   }
 </script>
 

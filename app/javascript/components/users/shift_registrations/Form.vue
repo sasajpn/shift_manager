@@ -41,7 +41,7 @@
         </el-form-item>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登録</el-button>
+        <el-button type="primary" @click="onSubmit">{{ btnName }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -54,6 +54,9 @@
   export default {
     components: {
       ErrorMessages
+    },
+    props: {
+      btnName: String
     },
     computed: {
       ...mapGetters(['openTime', 'closeTime', 'errorMessages']),
@@ -88,25 +91,13 @@
           disabledDate(time) {
             return time.getTime() < new Date().getTime() - 3600 * 1000 * 24
           }
-        },
-        team: {
-          id: document.getElementById('shift_registrations_new').dataset.team_id
-        },
-        member: {
-          id: document.getElementById('shift_registrations_new').dataset.member_id
-        },
-        form: {
-          errorMessages: []
         }
       }
     },
     methods: {
       onSubmit() {
-        this.$emit('onSubmit', this.member.id, this.$store.state.ShiftRegistration)
+        this.$emit('onSubmit', this.$store.state.Member.id, this.$store.state.ShiftRegistration)
       },
-    },
-    created () {
-      this.$store.dispatch('loadTeam', this.team.id)
     }
   }
 </script>
