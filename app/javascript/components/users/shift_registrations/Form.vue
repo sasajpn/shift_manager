@@ -1,6 +1,6 @@
 <template>
   <div>
-    <error-messages></error-messages>
+    <error-messages :errorMessages='this.errorMessages'></error-messages>
     <el-form
       label-width="120px">
       <el-form-item label="登録日" required>
@@ -56,7 +56,7 @@
       ErrorMessages
     },
     computed: {
-      ...mapGetters(['openTime', 'closeTime']),
+      ...mapGetters(['openTime', 'closeTime', 'errorMessages']),
       registeredDate: {
         get () {
           return this.$store.state.ShiftRegistration.registeredDate

@@ -35,7 +35,8 @@ ja:
         submitted_date: 希望日
         start_time: 開始時間
         end_time: 終了時間
-      shift_adjustment:
+      shift:
+        registered_date: 登録日
         start_time: 開始時間
         end_time: 終了時間
   activemodel:
