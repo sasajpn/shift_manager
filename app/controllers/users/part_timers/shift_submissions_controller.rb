@@ -8,8 +8,6 @@ class Users::PartTimers::ShiftSubmissionsController < Users::ApplicationControll
       .shift_submissions
       .joins(:member)
       .merge(Member.where(role: :part_timer))
-      .order(created_at: :desc)
-      .page(params[:page]).per(15)
   end
 
   def show

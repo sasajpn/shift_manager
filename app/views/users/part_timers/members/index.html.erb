@@ -14,8 +14,7 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
-        <%= link_to 'シフト希望一覧', admins_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', admins_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフトカレンダー', users_team_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>
@@ -33,12 +32,10 @@
             <tbody>
               <tr>
                 <th>名前</th>
-                <th>役職</th>
               </tr>
               <% @members.each do |member| %>
                 <tr>
                   <td><%= link_to member.user.name, users_part_timers_member_path(member) %></td>
-                  <td><%= member.role_i18n %></td>
                 </tr>
               <% end %>
             </tbody>
