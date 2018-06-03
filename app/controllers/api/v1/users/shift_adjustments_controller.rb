@@ -1,7 +1,9 @@
 class Api::V1::Users::ShiftAdjustmentsController < Api::V1::Users::ApplicationController
+  before_action :set_shift_adjustment, only: [:show, :update]
   before_action :set_shift_submission, only: [:create]
 
-  def new
+  def show
+    render json: @shift_adjustment, only: [:start_time, :end_time]
   end
 
   def create
@@ -17,10 +19,6 @@ class Api::V1::Users::ShiftAdjustmentsController < Api::V1::Users::ApplicationCo
       @error_messages = @shift_adjustment.errors.full_messages
       render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
     end
-  end
-
-  def edit
-    @shift_submission = @shift_adjustment.shift_submission
   end
 
   def update
@@ -42,7 +40,7 @@ class Api::V1::Users::ShiftAdjustmentsController < Api::V1::Users::ApplicationCo
   end
 
   def set_shift_adjustment
-    @shift_adjustment = ShiftAdjustment.find(params[:id])
+    @shift_adjustment = Shift::Adjustment.find(params[:id])
   end
 
   def set_shift_submission

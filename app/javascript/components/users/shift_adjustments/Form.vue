@@ -43,7 +43,7 @@
         </el-col>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">登録</el-button>
+        <el-button type="primary" @click="onSubmit">{{ btnName }}</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -56,6 +56,9 @@
   export default {
     components: {
       ErrorMessages
+    },
+    props: {
+      btnName: String
     },
     computed: {
       ...mapState({
@@ -81,20 +84,10 @@
         }
       }
     },
-    data() {
-      return {
-        shiftSubmission: {
-          id: document.getElementById('shift_adjustments_new').dataset.shift_submission_id
-        }
-      }
-    },
     methods: {
       onSubmit() {
-        this.$emit('onSubmit', this.shiftSubmission.id, this.$store.state.ShiftAdjustment)
+        this.$emit('onSubmit', this.$store.state.ShiftSubmission.id, this.$store.state.ShiftAdjustment)
       },
-    },
-    created () {
-      this.$store.dispatch('ShiftSubmission/loadShiftSubmission', this.shiftSubmission.id)
     }
   }
 </script>
