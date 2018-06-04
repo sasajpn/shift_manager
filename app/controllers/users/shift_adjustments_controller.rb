@@ -2,10 +2,9 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   before_action :set_shift_adjustment, only: [:edit, :destroy]
   before_action :set_shift_submission, only: [:new]
   before_action :set_team, only: [:index]
-  before_action :set_member, only: [:index]
+  before_action :set_current_member, only: [:index]
 
   def index
-    @shift_adjustments = @member.shift_adjustments.page(params[:page]).per(15)
   end
 
   def new
@@ -17,13 +16,12 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
 
   def destroy
     @shift_adjustment.destroy
-    redirect_to users_shift_submission_url(@shift_adjustment.shift_submission)
   end
 
   private
 
   def set_shift_adjustment
-    @shift_adjustment = ShiftAdjustment.find(params[:id])
+    @shift_adjustment = Shift::Adjustment.find(params[:id])
   end
 
   def set_shift_submission
