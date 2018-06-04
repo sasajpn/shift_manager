@@ -6,8 +6,6 @@ const state = {
 }
 
 const getters = {
-  openTime: ({ openTime }) => openTime,
-  closeTime: ({ closeTime }) => closeTime
 }
 
 const mutations = {
@@ -29,6 +27,7 @@ const actions = {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,

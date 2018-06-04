@@ -7,6 +7,8 @@ class Users::ShiftRegistrationsController < Users::ApplicationController
   end
 
   def edit
+    @member = @shift_registration.member
+    @team = @member.team
   end
 
   private

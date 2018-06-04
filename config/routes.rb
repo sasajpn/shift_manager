@@ -180,7 +180,7 @@ Rails.application.routes.draw do
             resources :calendars, only: [:index]
           end
           resources :members, only: [:edit, :update] do
-            resources :shift_registrations, only: [:new, :create]
+            resources :shift_registrations, only: [:show, :create, :update]
           end
           resources :shift_submissions, except: [:index, :destroy], shallow: true do
             resources :shift_adjustments, only: [:show, :create, :update]

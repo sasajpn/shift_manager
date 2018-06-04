@@ -20,9 +20,9 @@
             name="shift_registration[start_time]"
             v-model="startTime"
             :picker-options="{
-              start: openTime,
+              start: teamOpenTime,
               step: '00:10',
-              end: closeTime
+              end: teamCloseTime
             }">
           </el-time-select>
         </el-form-item>
@@ -32,9 +32,9 @@
             name="shift_registration[end_time]"
             v-model="endTime"
             :picker-options="{
-              start: openTime,
+              start: teamOpenTime,
               step: '00:10',
-              end: closeTime,
+              end: teamCloseTime,
               minTime: startTime
             }">
           </el-time-select>
@@ -49,7 +49,7 @@
 
 <script>
   import ErrorMessages from 'components/shared/error_messages.vue'
-  import { mapGetters } from 'vuex'
+  import { mapState } from 'vuex'
 
   export default {
     components: {
@@ -59,13 +59,17 @@
       btnName: String
     },
     computed: {
-      ...mapGetters(['openTime', 'closeTime', 'errorMessages']),
+      ...mapState({
+        teamOpenTime: state => state.Team.openTime,
+        teamCloseTime: state => state.Team.closeTime,
+        errorMessages: state => state.ShiftRegistration.errorMessages
+      }),
       registeredDate: {
         get () {
           return this.$store.state.ShiftRegistration.registeredDate
         },
         set (value) {
-          this.$store.dispatch('updateRegisteredDate', value)
+          this.$store.dispatch('ShiftRegistration/updateRegisteredDate', value)
         }
       },
       startTime: {
@@ -73,7 +77,7 @@
           return this.$store.state.ShiftRegistration.startTime
         },
         set (value) {
-          this.$store.dispatch('updateStartTime', value)
+          this.$store.dispatch('ShiftRegistration/updateStartTime', value)
         }
       },
       endTime: {
@@ -81,7 +85,7 @@
           return this.$store.state.ShiftRegistration.endTime
         },
         set (value) {
-          this.$store.dispatch('updateEndTime', value)
+          this.$store.dispatch('ShiftRegistration/updateEndTime', value)
         }
       }
     },

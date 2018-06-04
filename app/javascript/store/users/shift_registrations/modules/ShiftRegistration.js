@@ -1,4 +1,7 @@
+import { getShiftRegistration } from 'api/users/shift_registrations.js'
+
 const state = {
+  id: '',
   registeredDate: '',
   startTime: '',
   endTime: '',
@@ -6,13 +9,12 @@ const state = {
 }
 
 const getters = {
-  registeredDate: ({ registeredDate }) => registeredDate,
-  startTime: ({ startTime }) => startTime,
-  endTime: ({ endTime }) => endTime,
-  errorMessages: ({ errorMessages }) => errorMessages
 }
 
 const mutations = {
+  SET_ID (state, id) {
+    state.id = id
+  },
   SET_REGISTERED_DATE (state, date) {
     state.registeredDate = date
   },
@@ -37,6 +39,14 @@ const actions = {
   updateEndTime ({ commit }, time) {
     commit('SET_END_TIME', time)
   },
+  loadShiftRegistration ({ commit }, shiftRegistrationId) {
+    getShiftRegistration(shiftRegistrationId).then((res) => {
+      commit('SET_ID', shiftRegistrationId)
+      commit('SET_REGISTERED_DATE', res.registered_date)
+      commit('SET_START_TIME', res.start_time)
+      commit('SET_END_TIME', res.end_time)
+    })
+  },
   setErrorMessages ({ commit }, errorMessages) {
     commit('SET_ERROR_MESSAGES', errorMessages)
   }
@@ -44,6 +54,7 @@ const actions = {
 }
 
 export default {
+  namespaced: true,
   state,
   getters,
   mutations,
