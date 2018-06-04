@@ -105,18 +105,6 @@ Rails.application.routes.draw do
       end
     end
 
-    namespace :shift_coordinators do
-      resources :teams, only: [], shallow: true do
-        resources :members, only: [:index, :show] do
-          resources :shift_submissions, only: [] do
-            resources :shift_adjustments, only: [:new, :edit, :destroy]
-          end
-        end
-        resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
-      end
-    end
-
     resources :home, only: [:index]
     resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
@@ -154,12 +142,15 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
+
         namespace :members do
           resources :unapprovals, only: [:create]
         end
+
         namespace :managers do
           resources :members, only: [:edit, :update]
         end
+
         namespace :part_timers do
           resources :teams, only: [], shallow: true do
             resources :members, only: [:show]
@@ -167,13 +158,7 @@ Rails.application.routes.draw do
             resources :shift_adjustments, only: [:index]
           end
         end
-        namespace :shift_coordinators do
-          resources :members, only: [:show], shallow: true do
-            resources :shift_submissions, only: [] do
-              resources :shift_adjustments, only: [:new, :create, :edit, :update]
-            end
-          end
-        end
+
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
           scope module: :teams do
@@ -189,5 +174,4 @@ Rails.application.routes.draw do
       end
     end
   end
-
 end
