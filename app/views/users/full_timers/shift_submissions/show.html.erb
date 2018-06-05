@@ -1,66 +1,12 @@
-<div class="row">
-  <div class="col-md-3">
-    <div class="box box-primary">
-      <div class="box-body box-profile">
-        <h3 class="profile-username text-center"><%= @team.name %></h3>
-        <ul class="list-group list-group-unbordered">
-          <li class="list-group-item">
-            <b>提出者</b> <span class="pull-right"><%= @member.user.name %></span>
-          </li>
-          <li class="list-group-item">
-            <b>希望日</b> <span class="pull-right"><%= @shift_submission.submitted_date_format %></span>
-          </li>
-          <li class="list-group-item">
-            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
-          </li>
-        </ul>
-        <% if @current_member.shift_coordinator %>
-          <% if @shift_adjustment %>
-            <%= link_to 'シフト調整内容変更', edit_users_full_timers_shift_adjustment_path(@shift_adjustment),
-              class: "btn btn-success btn-block" %>
-          <% else %>
-            <%= link_to 'シフト調整', new_users_full_timers_shift_submission_shift_adjustment_path(@shift_submission),
-              class: "btn btn-primary btn-block" %>
-          <% end %>
-        <% end %>
-        <% if @current_member.user == current_user && !@shift_adjustment %>
-          <%= link_to '希望日時変更', edit_users_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" %>
-        <% end %>
-        <hr>
-        <%= link_to 'シフト希望一覧', users_full_timers_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', users_full_timers_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-9">
-    <% if @shift_adjustment %>
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">シフト調整</h3>
-          <div class="box-tools">
-          </div>
-        </div>
-        <div class="box-body no-padding">
-          <table class="table">
-            <tbody>
-              <tr>
-                <th>勤務日</th>
-                <th>開始時間</th>
-                <th>終了時間</th>
-              </tr>
-              <tr>
-                <td><%= @shift_submission.submitted_date_format %></td>
-                <td><%= @shift_adjustment.start_time %></td>
-                <td><%= @shift_adjustment.end_time %></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    <% else %>
-      <div class="callout callout-danger">
-        <p>シフトの希望が承認されていません</p>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render layout: 'users/shared/shift_submissions/show' do %>
+  <% if @shift_adjustment %>
+    <%= link_to 'シフト調整内容変更', edit_users_full_timers_shift_adjustment_path(@shift_adjustment),
+      class: "btn btn-success btn-block" %>
+  <% else %>
+    <%= link_to 'シフト調整', new_users_full_timers_shift_submission_shift_adjustment_path(@shift_submission),
+      class: "btn btn-primary btn-block" %>
+  <% end %>
+  <hr>
+  <%= link_to 'シフト希望一覧', users_full_timers_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+  <%= link_to 'シフト調整済一覧', users_full_timers_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+<% end %>
