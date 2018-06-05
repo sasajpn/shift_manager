@@ -1,5 +1,4 @@
-class Api::V1::Users::Managers::MembersController < Api::V1::Users::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+class Api::V1::Users::Managers::MembersController < Api::V1::Users::MembersController
 
   def edit
   end
@@ -20,9 +19,5 @@ class Api::V1::Users::Managers::MembersController < Api::V1::Users::ApplicationC
     params.fetch(:member, {}).permit(
       :role, :shift_coordinator
     )
-  end
-
-  def set_member
-    @member = Member.find(params[:id])
   end
 end
