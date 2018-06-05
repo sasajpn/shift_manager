@@ -5,7 +5,7 @@ class MemberMaxCountValidator < ActiveModel::Validator
     max_member_count = team.max_member_count
 
     if member_count >= max_member_count
-      record.errors.add(:base, "メンバーの登録上限数を超しています")
+      record.errors.add(:base, "メンバーの登録上限数を超えています")
     end
   end
 end

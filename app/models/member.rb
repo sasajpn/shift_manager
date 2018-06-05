@@ -13,7 +13,7 @@ class Member < ApplicationRecord
   validates :user_id,
     uniqueness: { scope: [:team_id], message: 'は既に従業員に登録されています' }
 
-  validates_with TeamMaxCountValidator, on: :create
+  validates_with MemberMaxCountValidator, on: :update, if: :is_approved?
 
   enum role: { part_timer: 0, full_timer: 1, manager: 2 }
 
@@ -30,6 +30,10 @@ class Member < ApplicationRecord
 
   def is_approved
     self.update(approve: true)
+  end
+
+  def is_approved?
+    approve_changed?
   end
 
   private
