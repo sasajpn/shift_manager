@@ -21,13 +21,11 @@
         <hr>
         <% case @current_member.role %>
         <% when 'manager' %>
-          <%= link_to 'メンバー一覧', users_managers_team_members_path(@team), class: 'btn btn-default btn-block' %>
+          <%= render 'link', role: 'managers' %>
         <% when 'full_timer' %>
-          <%= link_to 'メンバー一覧', users_full_timers_team_members_path(@team), class: 'btn btn-default btn-block' %>
+          <%= render 'link', role: 'full_timers' %>
         <% when 'part_timer' %>
-          <%= link_to 'メンバー一覧', users_part_timers_team_members_path(@team), class: 'btn btn-default btn-block' %>
-          <%= link_to 'シフト希望一覧', users_part_timers_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-          <%= link_to 'シフト調整済一覧', users_part_timers_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+          <%= render 'link', role: 'part_timers' %>
         <% end %>
         <hr>
         <%= link_to '設定変更', edit_users_member_path(@current_member), class: 'btn btn-success btn-block' %>

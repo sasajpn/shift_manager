@@ -149,6 +149,19 @@ Rails.application.routes.draw do
 
         namespace :managers do
           resources :members, only: [:edit, :update]
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
+          end
+        end
+
+        namespace :full_timers do
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
+          end
         end
 
         namespace :part_timers do
