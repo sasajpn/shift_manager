@@ -1,6 +1,6 @@
 class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationController
   before_action :set_submission, only: [:show, :edit, :update]
-  before_action :set_team, only: [:new, :create]
+  before_action :set_team, only: [:index, :new, :create]
   before_action :set_member, only: [:create]
 
   def show
