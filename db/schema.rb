@@ -130,11 +130,12 @@ ActiveRecord::Schema.define(version: 20180531121947) do
     t.integer  "owner_id"
     t.string   "name"
     t.string   "identifier"
-    t.string   "open_time",                  null: false
-    t.string   "close_time",                 null: false
-    t.boolean  "all_day",    default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.string   "open_time",                        null: false
+    t.string   "close_time",                       null: false
+    t.boolean  "all_day",          default: false, null: false
+    t.integer  "max_member_count", default: 0,     null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.index ["owner_id"], name: "index_teams_on_owner_id", using: :btree
   end
 
