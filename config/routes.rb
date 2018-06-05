@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+# Devise
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
   }
@@ -18,10 +19,12 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+# LINE CALLBACK
   namespace :line do
     post '/callback', to: 'webhook#callback'
   end
 
+# WEB
   namespace :admins do
     resources :home, only: [:index]
     resources :line_connections, only: [:new, :create]
@@ -61,13 +64,12 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
-
     namespace :members do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
-
     namespace :managers do
       resources :teams, only: [], shallow: true do
+        patch :update_identifier, on: :member
         resources :members, only: [:index, :show, :edit] do
           resources :shift_registrations, only: [:new, :edit]
           resources :shift_submissions, only: [:show] do
@@ -78,7 +80,6 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
-
     namespace :full_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
@@ -91,7 +92,6 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
-
     namespace :part_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
@@ -104,7 +104,6 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
-
     resources :home, only: [:index]
     resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
@@ -115,6 +114,7 @@ Rails.application.routes.draw do
     resources :line_connections, only: [:new, :create]
   end
 
+# API
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
