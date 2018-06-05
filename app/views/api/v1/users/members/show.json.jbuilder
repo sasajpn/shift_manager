@@ -20,5 +20,6 @@ json.array! @shift_registrations do |shift_registration|
   json.title "#{shift_registration.start_time}~#{shift_registration.end_time}"
   json.start Chronic.parse("#{shift_registration.registered_date} #{shift_registration.start_time}")
   json.end Chronic.parse("#{shift_registration.registered_date} #{shift_registration.end_time}")
+  json.borderColor '#000000'
   json.editable false
 end
