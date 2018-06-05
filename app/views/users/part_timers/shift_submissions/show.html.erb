@@ -1,12 +1,1 @@
-<%= render layout: 'users/shared/shift_submissions/show' do %>
-  <% if @shift_adjustment %>
-    <%= link_to 'シフト調整内容変更', edit_users_part_timers_shift_adjustment_path(@shift_adjustment),
-      class: "btn btn-success btn-block" %>
-  <% else %>
-    <%= link_to 'シフト調整', new_users_part_timers_shift_submission_shift_adjustment_path(@shift_submission),
-      class: "btn btn-primary btn-block" %>
-  <% end %>
-  <hr>
-  <%= link_to 'シフト希望一覧', users_part_timers_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-  <%= link_to 'シフト調整済一覧', users_part_timers_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
-<% end %>
+<%= render 'users/shared/shift_submissions/show', role: 'part_timers' %>

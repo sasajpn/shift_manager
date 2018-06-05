@@ -1,5 +1,9 @@
 class Users::MembersController < Users::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:index]
+
+  def show
+  end
 
   def edit
     @team = @member.team
@@ -29,4 +33,7 @@ class Users::MembersController < Users::ApplicationController
     @member = Member.find(params[:id])
   end
 
+  def set_team
+    @team = Team.find(params[:team_id])
+  end
 end
