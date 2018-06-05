@@ -78,6 +78,7 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
+
     namespace :full_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
@@ -90,6 +91,7 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
+
     namespace :part_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do

@@ -1,16 +1,24 @@
 class Users::Managers::ShiftSubmissionsController < Users::ApplicationController
-  before_action :set_member, only: [:new]
+  before_action :set_shift_submission, only: [:show]
+  before_action :set_team, only: [:index, :show]
+  before_action :set_current_member, only: [:index, :show]
 
-  def new
+  def index
   end
 
-  def create
+  def show
+    @member = @shift_submission.member
+    @shift_adjustment = @shift_submission.shift_adjustment
   end
 
-  def edit
+  private
+
+  def set_shift_submission
+    @shift_submission = ShiftSubmission.find(params[:id])
   end
 
-  def update
+  def set_team
+    super
+    @team ||= @shift_submission.team
   end
-
 end
