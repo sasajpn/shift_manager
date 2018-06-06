@@ -18,6 +18,11 @@
       <%= render 'users/shared/sidebar' %>
       <div class="content-wrapper" style="min-height: 1080px;">
         <section class="content">
+          <% if flash[:error] %>
+          <div class="callout callout-danger">
+            <p><%= flash[:error] %></p>
+          </div>
+          <% end %>
           <%= yield %>
         </section>
       </div>

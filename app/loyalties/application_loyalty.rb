@@ -33,4 +33,10 @@ class ApplicationLoyalty
   def destroy?
     false
   end
+
+  private
+
+  def current_member
+    user.approval_members.find_by(team_id: record.id)
+  end
 end

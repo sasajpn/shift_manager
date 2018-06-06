@@ -5,12 +5,15 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   before_action :set_current_member, only: [:index]
 
   def index
+    authorize! @current_member
   end
 
   def new
+    authorize! @shift_submission.team
   end
 
   def edit
+    authorize! @shift_adjustment.team
     @shift_submission = @shift_adjustment.shift_submission
   end
 
