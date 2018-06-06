@@ -2,6 +2,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_shift_submission, only: [:show, :edit, :destroy]
   before_action :set_team, only: [:index, :show, :new]
   before_action :set_current_member, only: [:index, :show, :new]
+  before_action -> { authorize! @current_member }, only: [:index, :show]
 
   def index
   end
