@@ -18,6 +18,7 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   end
 
   def destroy
+    authorize! @shift_adjustment.team
     @shift_adjustment.destroy
   end
 

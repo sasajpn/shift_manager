@@ -10,4 +10,7 @@ class Users::Managers::ShiftAdjustmentsLoyalty < ApplicationLoyalty
   def edit?
     current_member.manager?
   end
+
+  def destroy?
+  end
 end
