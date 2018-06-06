@@ -2,11 +2,17 @@ class Users::MembersController < Users::ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :set_team, only: [:index]
 
+  def index
+    authorize! @team
+  end
+
   def show
+    authorize! @member.team
   end
 
   def edit
     @team = @member.team
+    authorize! @team
   end
 
   def update
