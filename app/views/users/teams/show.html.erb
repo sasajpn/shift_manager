@@ -6,6 +6,11 @@
     <div class="box box-primary">
       <div class="box-body box-profile">
         <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <% if @current_member.manager? %>
+          <p class="text-muted text-center">認証コード：<%= @team.identifier %></p>
+          <%= link_to '認証コードを更新する', update_identifier_users_managers_team_path(@team), method: :patch,
+            data: { confirm: '認証コードを更新してもよろしいですか？' }, class: 'btn btn-block btn-warning btn-sm' %>
+        <% end %>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
             <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
@@ -14,15 +19,21 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
           <li class="list-group-item">
-            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
+            <b>役職</b> <span class="pull-right"><%= @current_member.role_i18n %></span>
           </li>
         </ul>
         <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
         <hr>
-        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+        <% case @current_member.role %>
+        <% when 'manager' %>
+          <%= render 'link', role: 'managers' %>
+        <% when 'full_timer' %>
+          <%= render 'link', role: 'full_timers' %>
+        <% when 'part_timer' %>
+          <%= render 'link', role: 'part_timers' %>
+        <% end %>
         <hr>
-        <%= link_to '設定変更', edit_users_member_path(@member), class: 'btn btn-success btn-block' %>
+        <%= link_to '設定変更', edit_users_member_path(@current_member), class: 'btn btn-success btn-block' %>
       </div>
     </div>
   </div>

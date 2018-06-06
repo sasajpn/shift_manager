@@ -1,17 +1,8 @@
 class Users::MembersController < Users::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_team, only: [:index]
 
-  def new
-    @member = JoinTeamForm.new
-  end
-
-  def create
-    @member = JoinTeamForm.new(join_team_form_params)
-    if @member.save(current_user)
-      redirect_to users_teams_url
-    else
-      render :new
-    end
+  def show
   end
 
   def edit
@@ -32,10 +23,6 @@ class Users::MembersController < Users::ApplicationController
 
   private
 
-  def join_team_form_params
-    params.require(:join_team_form).permit(:identifier)
-  end
-
   def member_params
     params.fetch(:member, {}).permit(
       :calendar_color
@@ -46,4 +33,7 @@ class Users::MembersController < Users::ApplicationController
     @member = Member.find(params[:id])
   end
 
+  def set_team
+    @team = Team.find(params[:team_id])
+  end
 end

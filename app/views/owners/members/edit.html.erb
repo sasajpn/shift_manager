@@ -1,3 +1,6 @@
+<%= javascript_pack_tag 'owners/members/edit' %>
+<%= stylesheet_pack_tag 'owners/members/edit' %>
+
 <div class="row">
   <div class="col-md-3">
     <div class="box box-primary">
@@ -9,6 +12,9 @@
           <li class="list-group-item">
             <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
+          <li class="list-group-item">
+            <b>シフト調整権限</b> <span class="pull-right"><%= @member.adjustment_ability %></span>
+          </li>
         </ul>
         <%= link_to '戻る', owners_member_path(@member), class: 'btn btn-default btn-block' %>
         <hr>
@@ -19,18 +25,12 @@
   </div>
   <div class="col-md-6">
     <div class="box box-default">
-      <%= bootstrap_form_for [:owners, @team, @member] do |f| %>
-        <div class="box-header with-border">
-          <h3 class="box-title">従業員登録</h3>
-        </div>
-        <div class="box-body">
-          <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.select :role, Member.roles_i18n.invert %>
-        </div>
-        <div class="box-footer">
-          <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
+      <div class="box-header with-border">
+        <h3 class="box-title">メンバーの登録内容変更</h3>
+      </div>
+      <div class="box-body">
+        <div id="members_edit" data-member_id="<%= @member.id %>"></div>
+      </div>
     </div>
   </div>
 </div>

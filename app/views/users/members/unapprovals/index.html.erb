@@ -1,0 +1,32 @@
+<% if @members.any? %>
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title">チーム一覧</h3>
+      <div class="box-tools">
+        <%= paginate @members, theme: 'users' %>
+      </div>
+    </div>
+    <div class="box-body no-padding">
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>名前</th>
+            <th>営業開始時間</th>
+            <th>営業終了時間</th>
+          </tr>
+          <% @members.each do |member| %>
+            <tr>
+              <td><%= link_to member.team.name, users_members_unapproval_path(member) %></td>
+              <td><%= member.team.open_time %></td>
+              <td><%= member.team.close_time %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout-danger">
+    <p>参加申請が未承認のチームは存在しません</p>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
         <p class="text-muted text-center"><%= current_user.email %></p>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>参加チーム数</b> <span class="pull-right"><%= current_user.members.count %></span>
+            <b>参加チーム数</b> <span class="pull-right"><%= current_user.approval_members.count %></span>
           </li>
         </ul>
       </div>
@@ -23,7 +23,7 @@
         <div class="box-body no-padding">
           <table class="table">
             <tbody>
-              <% current_user.members.each do |member| %>
+              <% current_user.approval_members.each do |member| %>
                 <tr>
                   <td><%= link_to member.team.name, users_team_path(member.team) %></td>
                   <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>

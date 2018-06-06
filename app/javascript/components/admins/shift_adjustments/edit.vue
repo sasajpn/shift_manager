@@ -12,6 +12,7 @@
           name="shift_submission[submitted_date]"
           v-model="shiftSubmission.submittedDate"
           type="date"
+          value-format="yyyy-MM-dd"
           placeholder="日付を選択してください"
           disabled>
         </el-date-picker>

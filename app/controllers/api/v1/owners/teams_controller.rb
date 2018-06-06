@@ -9,7 +9,8 @@ class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   def create
     @team = current_owner.teams.build(team_params)
     if @team.save
-      render :create
+      @success_message = 'チームの登録内容を変更しました。'
+      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
     else
       @error_messages = @team.errors.full_messages
       render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]

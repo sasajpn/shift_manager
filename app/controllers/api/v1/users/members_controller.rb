@@ -1,12 +1,19 @@
 class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+  before_action :set_member, only: [:show, :edit, :update]
+
+  def show
+    @shift_submissions = @member.shift_submissions.unapprovals
+    @shift_adjustments = @member.shift_adjustments
+    @shift_registrations = @member.shift_registrations
+  end
 
   def edit
   end
 
   def update
     if @member.update(member_params)
-      render :update
+      @success_message = 'メンバーの設定内容を変更しました。'
+      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
     else
       @error_messages = @member.errors.full_messages
       render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]

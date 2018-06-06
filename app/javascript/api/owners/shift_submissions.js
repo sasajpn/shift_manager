@@ -16,8 +16,7 @@ export function createShiftSubmission (memberId, shiftSubmission, shiftAdjustmen
         end_time: shiftSubmission.endTime,
         shift_adjustment_attributes: {
           start_time: shiftAdjustment.startTime,
-          end_time: shiftAdjustment.endTime,
-          myself: false
+          end_time: shiftAdjustment.endTime
         }
       }
     },

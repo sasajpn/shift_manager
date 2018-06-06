@@ -1,19 +1,13 @@
 class Api::V1::Users::TeamsController < Api::V1::Users::ApplicationController
   before_action :set_team, only: [:show]
-  before_action :set_member, only: [:show]
 
   def show
-    @shift_submissions = @member.shift_submissions.unapprovals
-    @shift_adjustments = @member.shift_adjustments
+    render json: @team, only: [:open_time, :close_time]
   end
 
   private
 
   def set_team
     @team = Team.find(params[:id])
-  end
-
-  def set_member
-    @member = @team.members.find_by(user_id: current_user.id)
   end
 end

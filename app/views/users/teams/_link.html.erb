@@ -1,0 +1,3 @@
+<%= link_to 'メンバー一覧', { controller: "users/#{role}/members", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+<%= link_to 'シフト希望一覧', { controller: "users/#{role}/shift_submissions", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+<%= link_to 'シフト調整一覧', { controller: "users/#{role}/shift_adjustments", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>

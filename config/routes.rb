@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+# Devise
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
   }
@@ -18,10 +19,12 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+# LINE CALLBACK
   namespace :line do
     post '/callback', to: 'webhook#callback'
   end
 
+# WEB
   namespace :admins do
     resources :home, only: [:index]
     resources :line_connections, only: [:new, :create]
@@ -46,12 +49,12 @@ Rails.application.routes.draw do
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
     resources :teams, except: [:update], shallow: true do
-      patch :update_identifier, on: :member
-      resources :members, except: [:new, :create] do
-        resources :shift_submissions, only: [:new]
-      end
       namespace :members do
         resources :unapprovals
+      end
+      patch :update_identifier, on: :member
+      resources :members, except: [:new, :create, :update] do
+        resources :shift_submissions, only: [:new]
       end
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:new, :create, :update] do
@@ -61,18 +64,57 @@ Rails.application.routes.draw do
   end
 
   namespace :users do
+    namespace :members do
+      resources :unapprovals, only: [:index, :show, :new, :destroy]
+    end
+    namespace :managers do
+      resources :teams, only: [], shallow: true do
+        patch :update_identifier, on: :member
+        resources :members, only: [:index, :show, :edit] do
+          resources :shift_registrations, only: [:new, :edit]
+          resources :shift_submissions, only: [:show] do
+            resources :shift_adjustments, only: [:new, :edit, :destroy]
+          end
+        end
+        resources :shift_submissions, only: [:index]
+        resources :shift_adjustments, only: [:index]
+      end
+    end
+    namespace :full_timers do
+      resources :teams, only: [], shallow: true do
+        resources :members, only: [:index, :show, :edit] do
+          resources :shift_registrations, only: [:new, :edit]
+          resources :shift_submissions, only: [:show] do
+            resources :shift_adjustments, only: [:new, :edit, :destroy]
+          end
+        end
+        resources :shift_submissions, only: [:index]
+        resources :shift_adjustments, only: [:index]
+      end
+    end
+    namespace :part_timers do
+      resources :teams, only: [], shallow: true do
+        resources :members, only: [:index, :show, :edit] do
+          resources :shift_registrations, only: [:new, :edit]
+          resources :shift_submissions, only: [:show] do
+            resources :shift_adjustments, only: [:new, :edit, :destroy]
+          end
+        end
+        resources :shift_submissions, only: [:index]
+        resources :shift_adjustments, only: [:index]
+      end
+    end
     resources :home, only: [:index]
     resources :users, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
-      resources :shift_submissions, except: [:create, :update] do
-        resources :shift_adjustments, except: [:index, :create, :update]
-      end
+      resources :shift_submissions, except: [:create, :update]
     end
-    resources :members, except: [:index]
+    resources :members, except: [:index, :new, :create, :show]
     resources :line_connections, only: [:new, :create]
   end
 
+# API
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
@@ -88,6 +130,8 @@ Rails.application.routes.draw do
 
       namespace :owners do
         resources :teams, only: [:show, :create, :edit, :update], shallow: true do
+          resources :shift_tables, only: [:index]
+          resources :members, only: [:edit, :update]
           resources :shift_submissions, except: [:index, :new, :create, :destroy] do
             resources :shift_adjustments, except: [:index, :destroy]
           end
@@ -98,16 +142,49 @@ Rails.application.routes.draw do
       end
 
       namespace :users do
-        resources :home, only: [:index]
-        resources :teams, only: [:show], shallow: true do
-          resources :shift_submissions, except: [:index, :destroy] do
-            resources :shift_adjustments, except: [:index, :destroy]
+
+        namespace :members do
+          resources :unapprovals, only: [:create]
+        end
+
+        namespace :managers do
+          resources :members, only: [:edit, :update]
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
           end
         end
-        resources :members, only: [:edit, :update]
-      end
 
+        namespace :full_timers do
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
+          end
+        end
+
+        namespace :part_timers do
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
+          end
+        end
+
+        resources :home, only: [:index]
+        resources :teams, only: [:show], shallow: true do
+          scope module: :teams do
+            resources :calendars, only: [:index]
+          end
+          resources :members, only: [:edit, :update] do
+            resources :shift_registrations, only: [:show, :create, :update]
+          end
+          resources :shift_submissions, except: [:index, :destroy], shallow: true do
+            resources :shift_adjustments, only: [:show, :create, :update]
+          end
+        end
+      end
     end
   end
-
 end

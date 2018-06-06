@@ -6,7 +6,6 @@ class CreateShiftAdjustments < ActiveRecord::Migration[5.0]
       t.string :end_time, null: false
       t.string :account_type
       t.integer :account_id
-      t.boolean :myself, null: false, default: true
 
       t.timestamps
     end

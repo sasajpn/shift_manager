@@ -1,5 +1,5 @@
 class Owners::MembersController < Owners::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :destroy]
   before_action :set_team, only: [:index, :new, :create]
 
   def index
@@ -13,26 +13,12 @@ class Owners::MembersController < Owners::ApplicationController
   def edit
   end
 
-  def update
-    if @member.update(member_params)
-      redirect_to owners_member_url(@member)
-    else
-      render :edit
-    end
-  end
-
   def destroy
     @member.destroy
     redirect_to owners_team_members_url(@member.team)
   end
 
   private
-
-  def member_params
-    params.fetch(:member, {}).permit(
-      :role
-    )
-  end
 
   def set_member
     @member = Member.find(params[:id])

@@ -1,6 +1,14 @@
 <%= stylesheet_link_tag 'owners/fullcalendar' %>
 <%= javascript_include_tag 'owners/teams/show' %>
+<%= javascript_pack_tag 'owners/shift_tables/app' %>
+<%= stylesheet_pack_tag 'owners/shift_tables/app' %>
 
+
+<div class="box">
+  <div class="box-body">
+    <div id="shift_tables" data-team_id="<%= @team.id %>"></div>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-4">
     <div class="box box-primary">

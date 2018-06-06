@@ -16,13 +16,13 @@
           <li class="list-group-item">
             <b>調整時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
           </li>
-          <% if @shift_adjustment.myself %>
+          <% if @shift_adjustment.account %>
             <li class="list-group-item">
-              <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+              <b>作成者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
             </li>
           <% else %>
             <li class="list-group-item">
-              <b>作成者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
+              <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
             </li>
           <% end %>
 

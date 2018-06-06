@@ -12,10 +12,11 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
         account_type: current_owner.model_name.name,
         account_id: current_owner.id
       )
-      render :create
+      @success_message = 'シフトを登録しました。'
+      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
     else
       @error_messages = @shift_submission.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
     end
   end
 
@@ -24,7 +25,7 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
   def shift_submission_params
     params.fetch(:shift_submission, {}).permit(
       :submitted_date, :start_time, :end_time,
-      shift_adjustment_attributes: [:start_time, :end_time, :myself]
+      shift_adjustment_attributes: [:start_time, :end_time]
     )
   end
 

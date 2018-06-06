@@ -1,6 +1,6 @@
 class Users::TeamsController < Users::ApplicationController
   before_action :set_team, only: [:show]
-  before_action :set_member, only: [:show]
+  before_action :set_current_member, only: [:show]
 
   def index
     @teams = current_user.teams.order(created_at: :desc).page(params[:page]).per(15)

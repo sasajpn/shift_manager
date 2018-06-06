@@ -59,7 +59,7 @@
           id: document.getElementById('teams_edit').dataset.team_id,
           name: '',
           openTime: '',
-          endTime: ''
+          closeTime: ''
         },
         form: {
           errorMessages: []

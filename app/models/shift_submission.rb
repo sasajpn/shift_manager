@@ -1,9 +1,13 @@
 class ShiftSubmission < ApplicationRecord
+  include TimeParser
+
   belongs_to :member
 
   has_one :team, through: :member
   has_one :user, through: :member
-  has_one :shift_adjustment, dependent: :destroy, inverse_of: :shift_submission
+  has_one :shift_adjustment, class_name: 'Shift::Adjustment',
+    dependent: :destroy,
+    inverse_of: :shift_submission
 
   accepts_nested_attributes_for :shift_adjustment
 
@@ -22,6 +26,8 @@ class ShiftSubmission < ApplicationRecord
     time_format: true,
     outside_business_hours: true
 
+  validates_with OverlapShiftSubmissionValidator
+
   scope :unapprovals, -> {
     where(approve: false)
   }
@@ -32,5 +38,29 @@ class ShiftSubmission < ApplicationRecord
 
   def is_unapproved
     self.update(approve: false)
+  end
+
+  def start_time_parse
+    time_parse(submitted_date, start_time)
+  end
+
+  def end_time_parse
+    time_parse(submitted_date, end_time)
+  end
+
+  def start_time_format
+    time_format(submitted_date, start_time)
+  end
+
+  def end_time_format
+    time_format(submitted_date, end_time)
+  end
+
+  def start_min_of_day
+    min_of_day(start_time)
+  end
+
+  def end_min_of_day
+    min_of_day(end_time)
   end
 end
