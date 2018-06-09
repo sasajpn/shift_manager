@@ -1,5 +1,10 @@
 class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::ApplicationController
+  before_action :set_shift_registration, only: [:show, :update]
   before_action :set_member, only: [:create]
+
+  def show
+    render json: @shift_registration, only: [:registered_date, :start_time, :end_time]
+  end
 
   def create
     @shift_registration = @member.shift_registrations.build(shift_registration_params)
@@ -16,12 +21,26 @@ class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::Applicati
     end
   end
 
+  def update
+    if @shift_registration.update(shift_registration_params)
+      @success_message = 'シフトの登録内容を更新しました。'
+      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+    else
+      @error_messages = @shift_registration.errors.full_messages
+      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+    end
+  end
+
   private
 
   def shift_registration_params
     params.fetch(:shift_registration, {}).permit(
       :registered_date, :start_time, :end_time
     )
+  end
+
+  def set_shift_registration
+    @shift_registration = Shift::Registration.find(params[:id])
   end
 
   def set_member

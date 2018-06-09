@@ -60,7 +60,7 @@ Rails.application.routes.draw do
       end
       patch :update_identifier, on: :member
       resources :members, except: [:new, :create, :update] do
-        resources :shift_registrations, only: [:new, :edit]
+        resources :shift_registrations, only: [:show, :new, :edit]
       end
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:new, :create, :update] do

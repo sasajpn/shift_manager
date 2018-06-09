@@ -1,4 +1,5 @@
 class Owners::ShiftRegistrationsController < Owners::ApplicationController
+  before_action :set_shift_registration, only: [:edit]
   before_action :set_member, only: [:new]
   before_action :set_team, only: [:new]
 
@@ -6,9 +7,15 @@ class Owners::ShiftRegistrationsController < Owners::ApplicationController
   end
 
   def edit
+    @member = @shift_registration.member
+    @team = @member.team
   end
 
   private
+
+  def set_shift_registration
+    @shift_registration = Shift::Registration.find(params[:id])
+  end
 
   def set_member
     @member = Member.find(params[:member_id])
@@ -16,6 +23,6 @@ class Owners::ShiftRegistrationsController < Owners::ApplicationController
 
   def set_team
     super
-    @team ||= @member.team
+    @team ||= @member&.team
   end
 end
