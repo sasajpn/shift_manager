@@ -121,6 +121,7 @@ Rails.application.routes.draw do
     # User共通
     resources :home, only: [:index]
     resource :user, only: [:edit, :update] do
+      get :destroy_unconfirmed_email, on: :collection
       patch :destroy_unconfirmed_email, on: :collection
     end
     resources :teams, only: [:index, :show], shallow: true do
