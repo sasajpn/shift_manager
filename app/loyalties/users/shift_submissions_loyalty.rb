@@ -6,4 +6,8 @@ class Users::ShiftSubmissionsLoyalty < ApplicationLoyalty
   def show?
     user == member.user
   end
+
+  def edit?
+    user == member.user
+  end
 end

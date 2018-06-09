@@ -3,7 +3,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_shift_adjustment, only: [:show]
   before_action :set_team, only: [:index, :show, :new, :edit]
   before_action :set_current_member, only: [:index, :show, :new]
-  before_action :set_member, only: [:show]
+  before_action :set_member, only: [:show, :edit]
   before_action -> { authorize! @current_member }, only: [:index]
 
   def index
@@ -17,6 +17,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   end
 
   def edit
+    authorize! @member
   end
 
   def destroy
