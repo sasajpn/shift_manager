@@ -1,6 +1,10 @@
 class Users::ShiftSubmissionsLoyalty < ApplicationLoyalty
   def index?
-    user == member.user
+    member
+  end
+
+  def new?
+    member
   end
 
   def show?

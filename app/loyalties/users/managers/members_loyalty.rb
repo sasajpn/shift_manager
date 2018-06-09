@@ -1,13 +1,13 @@
 class Users::Managers::MembersLoyalty < ApplicationLoyalty
   def index?
-    member.manager?
+    member&.manager?
   end
 
   def show?
-    member.manager?
+    member&.manager?
   end
 
   def edit?
-    member.manager?
+    member&.manager?
   end
 end

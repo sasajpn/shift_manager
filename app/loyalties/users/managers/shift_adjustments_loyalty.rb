@@ -1,14 +1,14 @@
 class Users::Managers::ShiftAdjustmentsLoyalty < ApplicationLoyalty
   def index?
-    member.manager?
+    member&.manager?
   end
 
   def new?
-    member.manager?
+    member&.manager?
   end
 
   def edit?
-    member.manager?
+    member&.manager?
   end
 
   def destroy?
