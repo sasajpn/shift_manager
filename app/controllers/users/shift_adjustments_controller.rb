@@ -5,10 +5,6 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   before_action :set_current_member, only: [:index, :new, :edit, :destroy]
   before_action -> { authorize! @current_member }
 
-
-  def index
-  end
-
   def new
   end
 
