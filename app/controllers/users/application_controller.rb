@@ -1,7 +1,8 @@
 class Users::ApplicationController < ApplicationController
+  include Banken
   layout 'users/application'
-  before_action :authenticate_user!
   rescue_from Banken::NotAuthorizedError, with: :user_not_authorized
+  before_action :authenticate_user!
 
   def current_user
     ActiveDecorator::Decorator.instance.decorate(super) if super.present?

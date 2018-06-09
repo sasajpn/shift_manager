@@ -1,7 +1,9 @@
 class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationController
-  before_action :set_submission, only: [:show, :edit, :update]
+  before_action :set_shift_submission, only: [:show, :edit, :update]
   before_action :set_team, only: [:index, :new, :create]
   before_action :set_current_member, only: [:index, :create]
+  before_action :set_member, only: [:update]
+  before_action -> { authorize! @member }, only: [:update]
 
   def index
     @shift_submissions = @current_member.shift_submissions
@@ -45,7 +47,11 @@ class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationCo
     )
   end
 
-  def set_submission
+  def set_shift_submission
     @shift_submission = ShiftSubmission.find(params[:id])
+  end
+
+  def set_member
+    @member = @shift_submission.member
   end
 end
