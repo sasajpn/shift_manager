@@ -18,6 +18,14 @@
       <%= render 'users/shared/sidebar' %>
       <div class="content-wrapper" style="min-height: 1080px;">
         <section class="content">
+          <% if current_user.pending_reconfirmation? %>
+            <div class="alert alert-warning">
+              <p>メールアドレスの変更が確認されていません</p>
+              <p><%= current_user.unconfirmed_email %>に送られたメールを確認してください</p>
+              <p><%= link_to '取り消す', destroy_unconfirmed_email_users_user_path, method: :patch,
+                data: { confirm: 'メールアドレスの変更を取り消してもよろしいですか？' } %></p>
+            </div>
+          <% end %>
           <% if flash.present? %>
             <% flash.each do |key, value| %>
             <div class="callout callout-<%= key %>">

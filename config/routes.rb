@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   end
 
 # WEB
+
+  # 管理者
   namespace :admins do
     resources :home, only: [:index]
     resources :line_connections, only: [:new, :create]
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  # オーナー
   namespace :owners do
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
@@ -63,6 +66,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # ユーザー
   namespace :users do
 
     namespace :members do
@@ -116,7 +120,9 @@ Rails.application.routes.draw do
 
     # User共通
     resources :home, only: [:index]
-    resource :user, only: [:edit, :update]
+    resource :user, only: [:edit, :update] do
+      patch :destroy_unconfirmed_email, on: :collection
+    end
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update]
