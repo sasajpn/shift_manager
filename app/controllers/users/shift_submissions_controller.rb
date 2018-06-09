@@ -1,21 +1,23 @@
 class Users::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_shift_submission, only: [:show, :edit, :destroy]
-  before_action :set_team, only: [:index, :show, :new]
-  before_action :set_current_member, only: [:index, :show]
+  before_action :set_shift_adjustment, only: [:show]
+  before_action :set_team, only: [:index, :show, :new, :edit]
+  before_action :set_current_member, only: [:index, :show, :new]
+  before_action :set_member, only: [:show, :edit]
+  before_action -> { authorize! @current_member }, only: [:index, :new]
 
   def index
   end
 
   def show
-    @member = @shift_submission.member
-    @shift_adjustment = @shift_submission.shift_adjustment
+    authorize! @member
   end
 
   def new
   end
 
   def edit
-    @team = @shift_submission.team
+    authorize! @member
   end
 
   def destroy
@@ -35,8 +37,16 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
     @shift_submission = ShiftSubmission.find(params[:id])
   end
 
+  def set_shift_adjustment
+    @shift_adjustment = @shift_submission.shift_adjustment
+  end
+
   def set_team
     super
     @team ||= @shift_submission.team
+  end
+
+  def set_member
+    @member = @shift_submission.member
   end
 end

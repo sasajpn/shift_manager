@@ -1,19 +1,23 @@
 class Users::MembersController < Users::ApplicationController
   before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :set_team, only: [:index]
+  before_action :set_team, only: [:index, :show, :edit, :update]
+  before_action :set_current_member, only: [:index, :show]
+  before_action -> { authorize! @current_member }, except: [:edit]
+  before_action -> { authorize! @member }, only: [:edit]
+
+  def index
+  end
 
   def show
   end
 
   def edit
-    @team = @member.team
   end
 
   def update
     if @member.update(member_params)
       redirect_to users_team_url(@member.team)
     else
-      @team = @member.team
       render :edit
     end
   end
@@ -34,6 +38,7 @@ class Users::MembersController < Users::ApplicationController
   end
 
   def set_team
-    @team = Team.find(params[:team_id])
+    super
+    @team ||= @member.team
   end
 end

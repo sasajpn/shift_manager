@@ -4,11 +4,13 @@ class Users::ShiftRegistrationsController < Users::ApplicationController
 
   def new
     @team = @member.team
+    authorize! @team
   end
 
   def edit
     @member = @shift_registration.member
     @team = @member.team
+    authorize! @team
   end
 
   private

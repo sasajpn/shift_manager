@@ -20,9 +20,7 @@
             <b>カレンダー表示色</b> <span class="pull-right"><span style="color: <%= @member.calendar_color %>"><i class="fa fa-square"></i></span></span>
           </li>
         </ul>
-        <%= link_to 'シフトカレンダー', users_team_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'キャンセル', users_team_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

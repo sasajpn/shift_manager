@@ -1,5 +1,6 @@
 class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
   before_action :set_member, only: [:show, :edit, :update]
+  before_action -> { authorize! @member }, only: [:update]
 
   def show
     @shift_submissions = @member.shift_submissions.unapprovals

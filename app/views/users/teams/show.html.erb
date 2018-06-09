@@ -24,16 +24,46 @@
         </ul>
         <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
         <hr>
-        <% case @current_member.role %>
-        <% when 'manager' %>
-          <%= render 'link', role: 'managers' %>
-        <% when 'full_timer' %>
-          <%= render 'link', role: 'full_timers' %>
-        <% when 'part_timer' %>
-          <%= render 'link', role: 'part_timers' %>
-        <% end %>
+        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
         <hr>
         <%= link_to '設定変更', edit_users_member_path(@current_member), class: 'btn btn-success btn-block' %>
+      </div>
+    </div>
+    <% if @current_member.shift_coordinator? %>
+      <div class="box box-danger">
+        <div class="box-header with-border">
+          <h3 class="box-title">シフト管理者用メニュー</h3>
+        </div>
+        <div class="box-body box-profile">
+          <% case @current_member.role %>
+          <% when 'manager' %>
+            <%= render 'link', role: 'managers' %>
+          <% when 'full_timer' %>
+            <%= render 'link', role: 'full_timers' %>
+          <% when 'part_timer' %>
+            <%= render 'link', role: 'part_timers' %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <div class="box">
+      <div class="box-body no-padding">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td>未調整のシフト希望</td>
+              <td><span style="color: #3a87ad; opacity: 0.6;"><i class="fa fa-square"></i></span></td>
+            </tr>
+            <tr>
+              <td>調整済みのシフト</td>
+              <td><span style="color: #3a87ad;"><i class="fa fa-square"></i></span></td>
+            </tr>
+            <tr>
+              <td>登録されたシフト</td>
+              <td><span style="color: #FA3932"><i class="fa fa-square"></i></span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

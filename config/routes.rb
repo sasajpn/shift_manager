@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   end
 
 # WEB
+
+  # 管理者
   namespace :admins do
     resources :home, only: [:index]
     resources :line_connections, only: [:new, :create]
@@ -45,6 +47,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  # オーナー
   namespace :owners do
     resources :home, only: [:index]
     resources :owners, only: [:edit, :update]
@@ -63,10 +66,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # ユーザー
   namespace :users do
+
     namespace :members do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
+
+    # UserのRole別
+
+    # Manager
     namespace :managers do
       resources :teams, only: [], shallow: true do
         patch :update_identifier, on: :member
@@ -80,6 +89,8 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
+
+    # FullTimer
     namespace :full_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
@@ -92,6 +103,8 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
+
+    # PartTimer
     namespace :part_timers do
       resources :teams, only: [], shallow: true do
         resources :members, only: [:index, :show, :edit] do
@@ -104,8 +117,13 @@ Rails.application.routes.draw do
         resources :shift_adjustments, only: [:index]
       end
     end
+
+    # User共通
     resources :home, only: [:index]
-    resources :users, only: [:edit, :update]
+    resource :user, only: [:edit, :update] do
+      get :destroy_unconfirmed_email, on: :collection
+      patch :destroy_unconfirmed_email, on: :collection
+    end
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update]
@@ -114,7 +132,9 @@ Rails.application.routes.draw do
     resources :line_connections, only: [:new, :create]
   end
 
-# API
+
+  # API
+
   namespace :api, { format: 'json' } do
     namespace :v1 do
       namespace :admins do
@@ -180,7 +200,7 @@ Rails.application.routes.draw do
           resources :members, only: [:edit, :update] do
             resources :shift_registrations, only: [:show, :create, :update]
           end
-          resources :shift_submissions, except: [:index, :destroy], shallow: true do
+          resources :shift_submissions, except: [:destroy], shallow: true do
             resources :shift_adjustments, only: [:show, :create, :update]
           end
         end
