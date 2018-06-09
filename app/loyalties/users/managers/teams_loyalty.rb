@@ -1,5 +1,5 @@
 class Users::Managers::TeamsLoyalty < ApplicationLoyalty
   def update_identifier?
-    current_member.manager?
+    member.manager?
   end
 end

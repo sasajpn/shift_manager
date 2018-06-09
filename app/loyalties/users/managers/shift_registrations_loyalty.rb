@@ -1,9 +1,9 @@
 class Users::Managers::ShiftRegistrationsLoyalty < ApplicationLoyalty
   def new?
-    current_member.manager?
+    member.manager?
   end
 
   def edit?
-    current_member.manager?
+    member.manager?
   end
 end
