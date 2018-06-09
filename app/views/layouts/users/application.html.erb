@@ -28,7 +28,7 @@
           <% end %>
           <% if flash.present? %>
             <% flash.each do |key, value| %>
-            <div class="callout callout-<%= key %>">
+            <div class="alert alert-<%= key %>">
               <p><%= value %></p>
             </div>
             <% end %>
