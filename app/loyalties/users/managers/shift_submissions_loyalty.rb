@@ -1,9 +1,9 @@
 class Users::Managers::ShiftSubmissionsLoyalty < ApplicationLoyalty
   def index?
-    record.manager?
+    current_member.manager?
   end
 
   def show?
-    record.manager?
+    current_member.manager?
   end
 end

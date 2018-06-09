@@ -1,9 +1,9 @@
 class ApplicationLoyalty
-  attr_reader :user, :record
+  attr_reader :user, :current_member
 
-  def initialize(user, record)
+  def initialize(user, current_member)
     @user = user
-    @record = record
+    @current_member = current_member
   end
 
   def index?
@@ -32,11 +32,5 @@ class ApplicationLoyalty
 
   def destroy?
     false
-  end
-
-  private
-
-  def current_member
-    user.approval_members.find_by(team_id: record.id)
   end
 end

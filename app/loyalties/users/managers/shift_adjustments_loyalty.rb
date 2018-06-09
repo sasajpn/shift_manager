@@ -1,6 +1,6 @@
 class Users::Managers::ShiftAdjustmentsLoyalty < ApplicationLoyalty
   def index?
-    record.manager?
+    current_member.manager?
   end
 
   def new?
