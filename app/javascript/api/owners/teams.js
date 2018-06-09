@@ -1,5 +1,11 @@
 import apiClient from 'helpers/owners/api_client'
 
+export function getTeam (teamId) {
+  return apiClient({
+    url: 'teams/' + teamId
+  })
+}
+
 export function createTeam (team) {
   return apiClient({
     method: 'post',

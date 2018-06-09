@@ -6,4 +6,10 @@ class Owners::ApplicationController < ApplicationController
     ActiveDecorator::Decorator.instance.decorate(super) if super.present?
     super
   end
+
+  private
+
+  def set_team
+    @team = Team.find_by(id: params[:team_id])
+  end
 end

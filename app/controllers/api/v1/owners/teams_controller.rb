@@ -2,8 +2,7 @@ class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update]
 
   def show
-    @shift_submissions = @team.shift_submissions.unapprovals
-    @shift_adjustments = @team.shift_adjustments
+    render json: @team, only: [:open_time, :close_time]
   end
 
   def create

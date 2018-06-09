@@ -60,7 +60,7 @@ Rails.application.routes.draw do
       end
       patch :update_identifier, on: :member
       resources :members, except: [:new, :create, :update] do
-        resources :shift_submissions, only: [:new]
+        resources :shift_registrations, only: [:new, :edit]
       end
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:new, :create, :update] do
@@ -140,6 +140,8 @@ Rails.application.routes.draw do
 
   namespace :api, { format: 'json' } do
     namespace :v1 do
+
+      # 管理者
       namespace :admins do
         resources :teams, only: [:edit], shallow: true do
           resources :members do
@@ -151,10 +153,13 @@ Rails.application.routes.draw do
         end
       end
 
+      # オーナー
       namespace :owners do
         resources :teams, only: [:show, :create, :edit, :update], shallow: true do
           resources :shift_tables, only: [:index]
-          resources :members, only: [:edit, :update]
+          resources :members, only: [:edit, :update] do
+            resources :shift_registrations, only: [:show, :create, :update]
+          end
           resources :shift_submissions, except: [:index, :new, :create, :destroy] do
             resources :shift_adjustments, except: [:index, :destroy]
           end
@@ -164,12 +169,14 @@ Rails.application.routes.draw do
         end
       end
 
+      # ユーザー
       namespace :users do
 
         namespace :members do
           resources :unapprovals, only: [:create]
         end
 
+        # Manager
         namespace :managers do
           resources :members, only: [:edit, :update]
           resources :teams, only: [], shallow: true do
@@ -179,6 +186,7 @@ Rails.application.routes.draw do
           end
         end
 
+        # FullTimer
         namespace :full_timers do
           resources :teams, only: [], shallow: true do
             resources :members, only: [:show]
@@ -187,6 +195,7 @@ Rails.application.routes.draw do
           end
         end
 
+        # PartTimer
         namespace :part_timers do
           resources :teams, only: [], shallow: true do
             resources :members, only: [:show]
@@ -195,6 +204,7 @@ Rails.application.routes.draw do
           end
         end
 
+        # User共通
         resources :home, only: [:index]
         resources :teams, only: [:show], shallow: true do
           scope module: :teams do
