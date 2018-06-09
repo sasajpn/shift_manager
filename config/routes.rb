@@ -116,7 +116,7 @@ Rails.application.routes.draw do
 
     # User共通
     resources :home, only: [:index]
-    resources :users, only: [:edit, :update]
+    resource :user, only: [:edit, :update]
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update]
