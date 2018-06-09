@@ -50,7 +50,10 @@ Rails.application.routes.draw do
   # オーナー
   namespace :owners do
     resources :home, only: [:index]
-    resources :owners, only: [:edit, :update]
+    resource :owner, only: [:edit, :update] do
+      get :destroy_unconfirmed_email, on: :collection
+      patch :destroy_unconfirmed_email, on: :collection
+    end
     resources :teams, except: [:update], shallow: true do
       namespace :members do
         resources :unapprovals

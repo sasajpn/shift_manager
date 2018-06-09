@@ -12,7 +12,7 @@
       <% if current_owner.teams.count < current_owner.max_team_count %>
         <li><%= link_to 'チーム登録', new_owners_team_path %></li>
       <% end %>
-      <li><%= link_to '登録内容変更', edit_owners_owner_path(current_owner) %></li>
+      <li><%= link_to '登録内容変更', edit_owners_owner_path %></li>
       <li><%= link_to 'パスワード変更', edit_owner_registration_path %></li>
     </ul>
   </section>

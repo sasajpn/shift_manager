@@ -1,0 +1,22 @@
+<p><%= @owner.email %>さん</p>
+
+<p>メールアドレスの変更リクエストを受け付けました。</p>
+
+<p><%= @email %>へ変更する場合はの以下のリンクをクリックしてください</p>
+
+<p>
+  <%= link_to 'メールアドレスの変更を完了させる',
+  controller: 'owners/confirmations',
+  action: 'create',
+  confirmation_token: @token %>
+</p>
+
+<hr>
+
+<p>変更を取り消す場合は、以下のリンクをクリックしてください</p>
+
+<p>
+  <%= link_to 'メールアドレスの変更を取り消す',
+  controller: 'owners/owners',
+  action: 'destroy_unconfirmed_email' %>
+</p>
