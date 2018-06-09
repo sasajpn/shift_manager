@@ -18,10 +18,12 @@
       <%= render 'users/shared/sidebar' %>
       <div class="content-wrapper" style="min-height: 1080px;">
         <section class="content">
-          <% if flash[:error] %>
-          <div class="callout callout-danger">
-            <p><%= flash[:error] %></p>
-          </div>
+          <% if flash.present? %>
+            <% flash.each do |key, value| %>
+            <div class="callout callout-<%= key %>">
+              <p><%= value %></p>
+            </div>
+            <% end %>
           <% end %>
           <%= yield %>
         </section>

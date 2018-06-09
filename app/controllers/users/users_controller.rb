@@ -4,7 +4,8 @@ class Users::UsersController < Users::ApplicationController
 
   def update
     if current_user.update(user_params)
-      redirect_to edit_users_user_url
+      flash[:success] = '登録内容を変更しました'
+      redirect_to users_home_index_url
     else
       render :edit
     end
