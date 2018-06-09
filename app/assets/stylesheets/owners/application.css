@@ -3,7 +3,7 @@
  *= require AdminLTE/bootstrap.min
  *= require AdminLTE/AdminLTE.min
  *= require AdminLTE/AdminLTE-fullcalendar
- *= require AdminLTE/fullcalendar.min.css
+ *= require AdminLTE/fullcalendar.min
  *= require AdminLTE/_all-skins.min
  *= require font-awesome
  *= require rails_bootstrap_forms

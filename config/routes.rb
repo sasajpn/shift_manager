@@ -157,7 +157,7 @@ Rails.application.routes.draw do
       namespace :owners do
         resources :teams, only: [:show, :create, :edit, :update], shallow: true do
           resources :shift_tables, only: [:index]
-          resources :members, only: [:edit, :update] do
+          resources :members, only: [:show, :edit, :update] do
             resources :shift_registrations, only: [:show, :create, :update]
           end
           resources :shift_submissions, except: [:index, :new, :create, :destroy] do

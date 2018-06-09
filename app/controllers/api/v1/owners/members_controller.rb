@@ -1,5 +1,11 @@
 class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationController
-  before_action :set_member, only: [:edit, :update]
+  before_action :set_member, only: [:show, :edit, :update]
+
+  def show
+    @shift_submissions = @member.shift_submissions.unapprovals
+    @shift_adjustments = @member.shift_adjustments
+    @shift_registrations = @member.shift_registrations
+  end
 
   def edit
   end
