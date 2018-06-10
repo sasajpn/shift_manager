@@ -27,7 +27,8 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
       account_id: current_owner.id
     }
     if @shift_adjustment.update(shift_adjustment_params)
-      render :update
+      @success_message = 'シフトの調整内容を変更しました'
+      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
     else
       @error_messages = @shift_adjustment.errors.full_messages
       render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
