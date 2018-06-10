@@ -136,6 +136,8 @@ Rails.application.routes.draw do
   end
 
 
+
+
   # API
 
   namespace :api, { format: 'json' } do
@@ -160,13 +162,11 @@ Rails.application.routes.draw do
           resources :members, only: [:show, :edit, :update] do
             resources :shift_registrations, only: [:show, :create, :update]
           end
-          resources :shift_submissions, except: [:new, :create, :destroy] do
-            resources :shift_adjustments, except: [:index, :destroy]
+          resources :shift_submissions, only: [:index, :show] do
+            resources :shift_adjustments, only: [:show, :create, :update]
           end
         end
-        resources :members, only: [:edit, :update], shallow: true do
-          resources :shift_submissions, only: [:new, :create]
-        end
+        resources :members, only: [:edit, :update]
       end
 
       # ユーザー
