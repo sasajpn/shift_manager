@@ -1,4 +1,4 @@
-class Users::Managers::ShiftSubmissionsLoyalty < ApplicationLoyalty
+class Users::Managers::ShiftSubmissionsLoyalty < Users::ApplicationLoyalty
   def index?
     member&.manager?
   end

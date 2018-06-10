@@ -1,4 +1,4 @@
-class Users::Managers::ShiftRegistrationsLoyalty < ApplicationLoyalty
+class Users::Managers::ShiftRegistrationsLoyalty < Users::ApplicationLoyalty
   def new?
     member&.manager?
   end

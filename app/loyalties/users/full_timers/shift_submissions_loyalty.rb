@@ -1,4 +1,4 @@
-class Users::FullTimers::ShiftSubmissionsLoyalty < ApplicationLoyalty
+class Users::FullTimers::ShiftSubmissionsLoyalty < Users::ApplicationLoyalty
   def index?
     member&.full_timer?
   end

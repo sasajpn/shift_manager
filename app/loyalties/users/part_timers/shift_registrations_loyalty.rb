@@ -1,4 +1,4 @@
-class Users::PartTimers::ShiftRegistrationsLoyalty < ApplicationLoyalty
+class Users::PartTimers::ShiftRegistrationsLoyalty < Users::ApplicationLoyalty
   def new?
     member&.part_timer?
   end

@@ -16,7 +16,7 @@
       </thead>
       <tbody v-for="member in members">
         <tr>
-          <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
+          <th rowspan="2" style="white-space: nowrap">{{ member.name }}</th>
           <template v-for="(min_of_days, hour) in team.business_hours">
             <template v-for="min_of_day in min_of_days">
               <td

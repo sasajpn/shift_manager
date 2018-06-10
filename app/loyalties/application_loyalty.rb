@@ -1,9 +1,9 @@
 class ApplicationLoyalty
-  attr_reader :user, :member
+  attr_reader :account, :record
 
-  def initialize(user, member)
-    @user = user
-    @member = member
+  def initialize(account, record)
+    @account = account
+    @record = record
   end
 
   def index?

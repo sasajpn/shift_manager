@@ -1,4 +1,4 @@
-class Users::Managers::TeamsLoyalty < ApplicationLoyalty
+class Users::Managers::TeamsLoyalty < Users::ApplicationLoyalty
   def update_identifier?
     member&.manager?
   end

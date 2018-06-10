@@ -1,4 +1,4 @@
-class Users::PartTimers::ShiftAdjustmentsLoyalty < ApplicationLoyalty
+class Users::PartTimers::ShiftAdjustmentsLoyalty < Users::ApplicationLoyalty
   def index?
     member&.part_timer?
   end
