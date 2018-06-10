@@ -1,5 +1,10 @@
 class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::ApplicationController
+  before_action :set_team, only: [:index]
   before_action :set_member, only: [:new, :create]
+
+  def index
+    @shift_submissions = @team.shift_submissions
+  end
 
   def new
     @team = @member.team

@@ -5,7 +5,6 @@ class Owners::ShiftSubmissionsController < Owners::ApplicationController
 
 
   def index
-    @shift_submissions = @team.shift_submissions.unapprovals.order(submitted_date: :asc).page(params[:page]).per(15)
   end
 
   def show

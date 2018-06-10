@@ -160,7 +160,7 @@ Rails.application.routes.draw do
           resources :members, only: [:show, :edit, :update] do
             resources :shift_registrations, only: [:show, :create, :update]
           end
-          resources :shift_submissions, except: [:index, :new, :create, :destroy] do
+          resources :shift_submissions, except: [:new, :create, :destroy] do
             resources :shift_adjustments, except: [:index, :destroy]
           end
         end
