@@ -21,10 +21,6 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
     end
   end
 
-  def edit
-    @shift_submission = @shift_adjustment.shift_submission
-  end
-
   def update
     @shift_adjustment.attributes = {
       account_type: current_owner.model_name.name,

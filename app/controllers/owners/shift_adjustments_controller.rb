@@ -28,8 +28,4 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
   def set_shift_submission
     @shift_submission = ShiftSubmission.find(params[:shift_submission_id])
   end
-
-  def set_team
-    @team = Team.find(params[:team_id])
-  end
 end
