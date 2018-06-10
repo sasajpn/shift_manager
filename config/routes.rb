@@ -158,6 +158,9 @@ Rails.application.routes.draw do
       # オーナー
       namespace :owners do
         resources :teams, only: [:show, :create, :edit, :update], shallow: true do
+          scope module: :teams do
+            resources :calendars, only: [:index]
+          end
           resources :shift_tables, only: [:index]
           resources :members, only: [:show, :edit, :update] do
             resources :shift_registrations, only: [:show, :create, :update]

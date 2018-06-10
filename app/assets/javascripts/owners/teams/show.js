@@ -10,7 +10,7 @@ $(function() {
     displayEventTime: false,
     eventSources: [
       {
-        url: "/api/v1/owners/teams/" + team_id
+        url: '/api/v1/owners/teams/' + team_id + '/calendars'
       }
     ]
   })
