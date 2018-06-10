@@ -46,7 +46,7 @@
 </template>
 
 <script>
-  import { editTeam, updateTeam } from 'api/owners/teams.js'
+  import { getTeam, updateTeam } from 'api/owners/teams.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -81,7 +81,7 @@
       }
     },
     created () {
-      editTeam(this.team.id).then((res) => {
+      getTeam(this.team.id).then((res) => {
         this.team.name = res.name
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time

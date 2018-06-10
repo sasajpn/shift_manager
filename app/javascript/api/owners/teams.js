@@ -20,12 +20,6 @@ export function createTeam (team) {
   })
 }
 
-export function editTeam (teamId) {
-  return apiClient({
-    url: 'teams/' + teamId + '/edit'
-  })
-}
-
 export function updateTeam (team) {
   return apiClient({
     method: 'patch',
