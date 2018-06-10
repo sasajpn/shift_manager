@@ -14,28 +14,28 @@
           </template>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="member in members">
+      <tbody v-for="member in members">
+        <tr>
           <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
           <template v-for="(min_of_days, hour) in team.business_hours">
             <template v-for="min_of_day in min_of_days">
               <td
-                v-if="findBy(member.shift_adjustments, min_of_day)"
+                v-if="findBy(member.shifts, min_of_day)"
                 v-bind:style="{ backgroundColor: '#303133' }"
-                colspan="1" rowspan="1"></td>
-              <td
-                v-else
-                colspan="1" rowspan="1"></td>
+                colspan="1" rowspan="1">
+              </td>
+              <td v-else colspan="1" rowspan="1"></td>
             </template>
           </template>
         </tr>
-        <tr v-for="member in members">
+        <tr>
           <template v-for="(min_of_days, hour) in team.business_hours">
             <template v-for="min_of_day in min_of_days">
               <td
                 v-if="findBy(member.shift_submissions, min_of_day)"
                 v-bind:style="{ backgroundColor: '#909399', opacity: '0.6' }"
-                colspan="1" rowspan="1"></td>
+                colspan="1" rowspan="1">
+              </td>
               <td v-else colspan="1" rowspan="1"></td>
             </template>
           </template>
@@ -109,5 +109,9 @@
     vertical-align: middle;
     height: 30px;
     width: 30px;
+  }
+
+  .table>tbody+tbody {
+    border-top: 2px solid #000000;
   }
 </style>
