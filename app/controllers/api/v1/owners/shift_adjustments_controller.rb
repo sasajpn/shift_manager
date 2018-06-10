@@ -1,6 +1,11 @@
 class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::ApplicationController
   before_action :set_shift_adjustment, only: [:show, :update]
   before_action :set_shift_submission, only: [:create]
+  before_action :set_team, only: [:index]
+
+  def index
+    @shift_adjustments = @team.shift_adjustments
+  end
 
   def show
     render json: @shift_adjustment, only: [:start_time, :end_time]

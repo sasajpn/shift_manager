@@ -165,6 +165,7 @@ Rails.application.routes.draw do
           resources :shift_submissions, only: [:index, :show] do
             resources :shift_adjustments, only: [:show, :create, :update]
           end
+          resources :shift_adjustments, only: [:index]
         end
         resources :members, only: [:edit, :update]
       end
