@@ -26,7 +26,7 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
   private
 
   def set_shift_adjustment
-    @shift_adjustment = ShiftAdjustment.find(params[:id])
+    @shift_adjustment = Shift::Adjustment.find(params[:id])
   end
 
   def set_shift_submission

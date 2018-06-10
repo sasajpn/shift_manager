@@ -11,21 +11,17 @@
             <b>勤務者</b> <span class="pull-right"><%= @shift_submission.user.name %></span>
           </li>
           <li class="list-group-item">
-            <b>調整日</b> <span class="pull-right"><%= @shift_submission.submitted_date %></span>
+            <b>勤務日</b> <span class="pull-right"><%= @shift_submission.submitted_date %></span>
           </li>
           <li class="list-group-item">
-            <b>調整時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
+            <b>勤務時間</b> <span class="pull-right"><%= @shift_adjustment.adjusted_time %></span>
           </li>
-          <% if @shift_adjustment.account %>
-            <li class="list-group-item">
-              <b>作成者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
-            </li>
-          <% else %>
-            <li class="list-group-item">
-              <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
-            </li>
-          <% end %>
-
+          <li class="list-group-item">
+            <b>調整者</b> <span class="pull-right"><%= @shift_adjustment.account.name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
+          </li>
         </ul>
         <%= link_to 'キャンセル', owners_shift_adjustment_path(@shift_adjustment), class: 'btn btn-default btn-block' %>
         <hr>
@@ -40,7 +36,10 @@
         <h3 class="box-title">シフト調整変更</h3>
       </div>
       <div class="box-body">
-        <div id="shift_adjustments_edit" data-shift_adjustment_id="<%= @shift_adjustment.id %>"></div>
+        <div id="shift_adjustments_edit"
+          data-shift_adjustment_id="<%= @shift_adjustment.id %>"
+          data-shift_submission_id="<%= @shift_submission.id %>">
+        </div>
       </div>
     </div>
   </div>

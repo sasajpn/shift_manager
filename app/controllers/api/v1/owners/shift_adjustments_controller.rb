@@ -26,6 +26,10 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
   end
 
   def update
+    @shift_adjustment.attributes = {
+      account_type: current_owner.model_name.name,
+      account_id: current_owner.id
+    }
     if @shift_adjustment.update(shift_adjustment_params)
       render :update
     else
@@ -43,7 +47,7 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
   end
 
   def set_shift_adjustment
-    @shift_adjustment = ShiftAdjustment.find(params[:id])
+    @shift_adjustment = Shift::Adjustment.find(params[:id])
   end
 
   def set_shift_submission
