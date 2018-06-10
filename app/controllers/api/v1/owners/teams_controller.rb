@@ -1,8 +1,9 @@
 class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update]
+  before_action -> { authorize! @team }, only: [:show, :update]
 
   def show
-    render json: @team, only: [:open_time, :close_time]
+    render json: @team, only: [:name, :open_time, :close_time]
   end
 
   def create

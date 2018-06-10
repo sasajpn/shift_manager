@@ -1,6 +1,6 @@
 class Owners::TeamsController < Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update_identifier]
-  before_action -> { authorize! @team }, only: [:show]
+  before_action -> { authorize! @team }, only: [:show, :edit, :update_identifier]
 
   def index
     @teams = current_owner.teams.order(created_at: :desc).page(params[:page]).per(15)
