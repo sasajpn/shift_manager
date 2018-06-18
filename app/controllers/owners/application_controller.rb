@@ -17,6 +17,10 @@ class Owners::ApplicationController < ApplicationController
     @team = Team.find_by(id: params[:team_id])
   end
 
+  def set_member
+    @member = Member.find_by(id: params[:member_id])
+  end
+
   def account_not_authorized(exception)
     super
     redirect_to(request.referrer || owners_home_index_url)
