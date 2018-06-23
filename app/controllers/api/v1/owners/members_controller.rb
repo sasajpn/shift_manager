@@ -2,9 +2,7 @@ class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationControlle
   before_action :set_member, only: [:show, :edit, :update]
 
   def show
-    @shift_submissions = @member.shift_submissions.unapprovals
-    @shift_adjustments = @member.shift_adjustments
-    @shift_registrations = @member.shift_registrations
+    render json: @member, only: [:role, :shift_coordinator]
   end
 
   def edit
