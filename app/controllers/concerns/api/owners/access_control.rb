@@ -1,0 +1,29 @@
+module Api
+  module Owners
+    module AccessControl
+      extend ActiveSupport::Concern
+
+      included do
+        before_action :check_valid_permisson
+      end
+
+      def check_valid_permisson
+        unless have_valid_permission?
+          render json: { message: 'アクセス権限がありません' }, status: 404
+        end
+      end
+
+      def have_valid_permission?
+        team.owner == current_owner
+      end
+
+      def team
+        if controller_name == 'teams'
+          eval "@#{controller_name.singularize}"
+        else
+          (eval "@#{controller_name.singularize}&.team") || @team
+        end
+      end
+    end
+  end
+end

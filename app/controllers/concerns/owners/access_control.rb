@@ -14,7 +14,15 @@ module Owners
     end
 
     def have_valid_permission?
-      (eval "@#{controller_name.singularize}.team.owner") == current_owner
+      team.owner == current_owner
+    end
+
+    def team
+      if controller_name == 'teams'
+        eval "@#{controller_name.singularize}"
+      else
+        eval "@#{controller_name.singularize}&.team"
+      end
     end
   end
 end

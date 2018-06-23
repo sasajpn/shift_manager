@@ -1,6 +1,8 @@
 class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationController
   before_action :set_member, only: [:show, :update]
 
+  include Api::Owners::AccessControl
+
   def show
     render json: @member, only: [:role, :shift_coordinator]
   end

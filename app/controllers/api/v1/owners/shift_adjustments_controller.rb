@@ -3,6 +3,8 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
   before_action :set_shift_submission, only: [:create]
   before_action :set_team, only: [:index]
 
+  include Api::Owners::AccessControl
+
   def index
     @shift_adjustments = @team.shift_adjustments
   end

@@ -2,6 +2,8 @@ class Api::V1::Owners::ShiftSubmissionsController < Api::V1::Owners::Application
   before_action :set_shift_submission, only: [:show]
   before_action :set_team, only: [:index]
 
+  include Api::Owners::AccessControl
+
   def index
     @shift_submissions = @team.shift_submissions
   end

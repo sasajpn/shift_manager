@@ -2,6 +2,8 @@ class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::Applicati
   before_action :set_shift_registration, only: [:show, :update]
   before_action :set_member, only: [:create]
 
+  include Api::Owners::AccessControl
+
   def show
     render json: @shift_registration, only: [:registered_date, :start_time, :end_time]
   end
