@@ -16,7 +16,7 @@ $(function() {
     displayEventTime: false,
     eventSources: [
       {
-        url: '/api/v1/owners/members/' + member_id
+        url: '/api/v1/owners/members/' + member_id + '/calendars'
       }
     ],
     select: function(start, end, jsEvent, view) {

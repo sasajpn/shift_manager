@@ -163,6 +163,9 @@ Rails.application.routes.draw do
           end
           resources :shift_tables, only: [:index]
           resources :members, only: [:show, :edit, :update] do
+            scope module: :members do
+              resources :calendars, only: [:index]
+            end
             resources :shift_registrations, only: [:show, :create, :update]
           end
           resources :shift_submissions, only: [:index, :show] do
