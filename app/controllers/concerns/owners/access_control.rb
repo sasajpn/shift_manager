@@ -3,7 +3,7 @@ module Owners
     extend ActiveSupport::Concern
 
     included do
-      before_action :check_valid_permisson, only: [:edit, :update, :destroy]
+      before_action :check_valid_permisson
     end
 
     def check_valid_permisson
@@ -18,8 +18,8 @@ module Owners
     end
 
     def team
-      if controller_name == 'teams'
-        eval "@#{controller_name.singularize}"
+      if controller_name == 'teams' || action_name == 'index'
+        @team
       else
         eval "@#{controller_name.singularize}&.team"
       end

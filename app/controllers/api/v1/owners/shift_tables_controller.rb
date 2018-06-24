@@ -7,10 +7,4 @@ class Api::V1::Owners::ShiftTablesController < Api::V1::Owners::ApplicationContr
     @members = @team.members
     @date = params[:date]
   end
-
-  private
-
-  def set_team
-    @team = Team.find(params[:team_id])
-  end
 end

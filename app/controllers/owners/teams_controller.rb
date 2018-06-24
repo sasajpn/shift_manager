@@ -1,6 +1,8 @@
 class Owners::TeamsController < Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update_identifier]
-  before_action -> { authorize! @team }, only: [:show, :edit, :update_identifier]
+
+  include Owners::AccessControl
+  skip_before_action :check_valid_permisson, only: [:index]
 
   def index
     @teams = current_owner.teams.order(created_at: :desc).page(params[:page]).per(15)
@@ -24,11 +26,5 @@ class Owners::TeamsController < Owners::ApplicationController
     else
       render :show
     end
-  end
-
-  private
-
-  def set_team
-    @team = Team.find(params[:id])
   end
 end

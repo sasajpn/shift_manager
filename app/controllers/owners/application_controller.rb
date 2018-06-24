@@ -14,7 +14,7 @@ class Owners::ApplicationController < ApplicationController
   private
 
   def set_team
-    @team = Team.find_by(id: params[:team_id])
+    @team = Team.find_by(id: params[:id] || params[:team_id])
   end
 
   def set_member
