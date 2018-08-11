@@ -18,7 +18,7 @@
         </el-color-picker>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">参加する</el-button>
+        <el-button type="primary" @click="onSubmit">参加申請</el-button>
       </el-form-item>
     </el-form>
   </div>

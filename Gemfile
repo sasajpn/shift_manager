@@ -54,6 +54,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'shoulda-matchers'
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -78,6 +79,10 @@ group :development do
   gem 'rubocop', require: false
   gem 'letter_opener'
   gem 'letter_opener_web'
+end
+
+group :test do
+  gem 'rails-controller-testing'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

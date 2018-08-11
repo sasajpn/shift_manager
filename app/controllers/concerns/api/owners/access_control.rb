@@ -4,7 +4,7 @@ module Api
       extend ActiveSupport::Concern
 
       included do
-        before_action :check_valid_permisson
+        before_action :check_valid_permisson, only: [:update]
       end
 
       def check_valid_permisson
@@ -17,9 +17,11 @@ module Api
         team.owner == current_owner
       end
 
+      private
+
       def team
         if controller_name == 'teams'
-          eval "@#{controller_name.singularize}"
+          @team
         else
           (eval "@#{controller_name.singularize}&.team") || @team
         end

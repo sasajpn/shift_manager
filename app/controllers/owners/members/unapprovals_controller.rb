@@ -1,8 +1,8 @@
-class Owners::Members::UnapprovalsController < Owners::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :set_team, only: [:index]
-  before_action -> { authorize! @team }, only: [:index]
-  before_action -> { authorize! @member.team }, only: [:show, :edit, :update, :destroy]
+class Owners::Members::UnapprovalsController < Owners::MembersController
+  # before_action -> { authorize! @team }, only: [:index]
+  # before_action -> { authorize! @member.team }, only: [:show, :edit, :update, :destroy]
+
+  include Owners::AccessControl
 
   def index
     @members = @team.members.unapprovals.order(created_at: :desc).page(params[:page]).per(15)
@@ -33,13 +33,5 @@ class Owners::Members::UnapprovalsController < Owners::ApplicationController
     params.fetch(:member, {}).permit(
       :role, :approve
     )
-  end
-
-  def set_member
-    @member = Member.find(params[:id])
-  end
-
-  def set_team
-    @team = Team.find(params[:team_id])
   end
 end

@@ -1,7 +1,7 @@
 class Owners::MembersController < Owners::ApplicationController
-  before_action :set_member, only: [:show, :edit, :destroy]
-  before_action :set_team, only: [:index, :show, :edit, :destroy]
-  before_action -> { authorize! @team }
+  before_action :set_member, except: [:index]
+  before_action :set_team
+  # before_action -> { authorize! @team }
 
   def index
     @members = @team.members.approvals.order(created_at: :desc).page(params[:page]).per(15)
