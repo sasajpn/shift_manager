@@ -28,6 +28,10 @@ class Member < ApplicationRecord
   before_save :set_calendar_font_color
   before_save :become_shift_coordinator
 
+  def owner
+    team.owner
+  end
+
   def is_approved
     self.update(approve: true)
   end

@@ -1,5 +1,7 @@
 class Owners::TeamsController < Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update_identifier]
+
+  include Owners::AccessControl
   before_action :check_valid_permisson, only: [:show, :edit, :update_identifier]
 
   def index
@@ -24,18 +26,5 @@ class Owners::TeamsController < Owners::ApplicationController
     else
       render :show
     end
-  end
-
-  private
-
-  def check_valid_permisson
-    unless have_valid_permission?
-      flash[:error] = 'リクエストされたページへのアクセス権限がありません'
-      return redirect_to owners_home_index_url
-    end
-  end
-
-  def have_valid_permission?
-    @team.owner == current_owner
   end
 end
