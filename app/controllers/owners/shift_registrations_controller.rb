@@ -2,7 +2,9 @@ class Owners::ShiftRegistrationsController < Owners::ApplicationController
   before_action :set_shift_registration, only: [:edit]
   before_action :set_member, only: [:new, :edit]
   before_action :set_team, only: [:new, :edit]
-  before_action -> { authorize! @team }
+
+  include Owners::AccessControl
+  before_action :check_valid_permisson, only: [:new]
 
   def new
   end
