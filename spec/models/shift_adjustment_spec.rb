@@ -5,7 +5,7 @@ RSpec.describe ShiftAdjustment, type: :model do
     travel_to('2018-3-30') { e.run }
   end
   let!(:shift_submission) { create(:shift_submission, :april_first, :eight_am_to_three_pm) }
-  let!(:shift_adjustment) { create(:shift_adjustment, :eight_am_to_three_pm, shift_submission: shift_submission) }
+  # let!(:shift_adjustment) { create(:shift_adjustment, :eight_am_to_three_pm, shift_submission: shift_submission) }
 
 
   describe 'scope' do

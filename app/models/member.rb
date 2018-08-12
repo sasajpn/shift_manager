@@ -28,7 +28,7 @@ class Member < ApplicationRecord
   before_save :set_calendar_font_color
   before_save :become_shift_coordinator
 
-  def owner
+  def team_owner
     team.owner
   end
 

@@ -3,6 +3,10 @@ FactoryBot.define do
     member { create(:member) }
     approve false
 
+    trait :tomorrow do
+      submitted_date Date.tomorrow
+    end
+
     trait :april_first do
       submitted_date Date.new(2018, 4, 1)
     end

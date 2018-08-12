@@ -12,10 +12,10 @@ module Owners
     private
 
     def have_valid_permission?
-      if controller_name == 'teams' || action_name == 'index'
+      if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
         @team.owner == current_owner
       else
-        (eval "@#{controller_name.singularize}.owner") == current_owner
+        (eval "@#{controller_name.singularize}.team_owner") == current_owner
       end
     end
   end

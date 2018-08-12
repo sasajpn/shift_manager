@@ -24,6 +24,10 @@ class Shift::Adjustment < Shift
     joins(:shift_submission).where("shift_submissions.submitted_date = ?", date)
   }
 
+  def team_owner
+    team.owner
+  end
+
   def end_time_parse
     time_parse(shift_submission.submitted_date, end_time)
   end
