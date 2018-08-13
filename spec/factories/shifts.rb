@@ -20,8 +20,8 @@ FactoryBot.define do
   factory :shift_adjustment, parent: :shift, class: 'Shift::Adjustment' do
     shift_submission { create(:shift_submission) }
   end
-  #
-  # factory :shift_registration, parent: :shift, class: 'Shift::Registration' do
-  #   member { create(:member) }
-  # end
+  
+  factory :shift_registration, parent: :shift, class: 'Shift::Registration' do
+    member { create(:member) }
+  end
 end

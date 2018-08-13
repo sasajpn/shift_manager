@@ -8,6 +8,10 @@ class Shift < ApplicationRecord
   validates :start_time, :end_time,
     presence: true
 
+  def team_owner
+    team.owner
+  end
+
   def start_min_of_day
     min_of_day(start_time)
   end
