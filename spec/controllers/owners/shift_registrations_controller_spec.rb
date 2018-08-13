@@ -49,13 +49,13 @@ RSpec.describe Owners::ShiftRegistrationsController, type: :controller do
       end
     end
     context 'ログインしている場合' do
-      context 'メンバーがログイン済みのオーナーのチームのものである場合' do
+      context 'シフト登録がログイン済みのオーナーのチームのものである場合' do
         it 'editテンプレートがレンダリングされる' do
           get :edit, params: { id: shift_registration.id }
           expect(response).to render_template :edit
         end
       end
-      context 'メンバーがログイン済みのオーナーのチームのものでない場合' do
+      context 'シフト登録がログイン済みのオーナーのチームのものでない場合' do
         it 'オーナー用のホーム画面にリダイレクトする' do
           get :edit, params: { id: other_shift_registration.id }
           expect(response).to redirect_to owners_home_index_url

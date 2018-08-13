@@ -32,6 +32,10 @@ class ShiftSubmission < ApplicationRecord
     where(approve: false)
   }
 
+  def team_owner
+    team.owner
+  end
+
   def is_approved
     self.update(approve: true)
   end
