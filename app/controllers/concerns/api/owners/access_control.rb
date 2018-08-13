@@ -3,10 +3,6 @@ module Api
     module AccessControl
       extend ActiveSupport::Concern
 
-      included do
-        before_action :check_valid_permisson, only: [:update]
-      end
-
       def check_valid_permisson
         unless have_valid_permission?
           render json: { message: 'アクセス権限がありません' }, status: 404

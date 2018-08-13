@@ -2,6 +2,7 @@ class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationControlle
   before_action :set_member, only: [:show, :update]
 
   include Api::Owners::AccessControl
+  before_action :check_valid_permisson, only: [:show, :update]
 
   def show
     render json: @member, only: [:role, :shift_coordinator]
