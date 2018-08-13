@@ -7,7 +7,7 @@ RSpec.describe Owners::MembersController, type: :controller do
   let!(:other_team) { create(:team) }
 
   let!(:member) { create(:member, team: team) }
-  let!(:other_member) { create(:member, team: other_team) }
+  let!(:other_member) { create(:member) }
 
   describe 'GET #index' do
     context 'ログインしていない場合' do

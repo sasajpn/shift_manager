@@ -1,8 +1,7 @@
 class Owners::Members::UnapprovalsController < Owners::MembersController
-  # before_action -> { authorize! @team }, only: [:index]
-  # before_action -> { authorize! @member.team }, only: [:show, :edit, :update, :destroy]
 
   include Owners::AccessControl
+  before_action :check_valid_permisson, only: [:index, :show, :edit, :update, :destroy]
 
   def index
     @members = @team.members.unapprovals.order(created_at: :desc).page(params[:page]).per(15)
@@ -28,6 +27,14 @@ class Owners::Members::UnapprovalsController < Owners::MembersController
   end
 
   private
+
+  def have_valid_permission?
+    if ['index', 'new', 'create'].include?(action_name)
+      @team.owner == current_owner
+    else
+      @member.team_owner == current_owner
+    end
+  end
 
   def member_params
     params.fetch(:member, {}).permit(
