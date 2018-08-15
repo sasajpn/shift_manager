@@ -5,7 +5,7 @@ class Users::Managers::TeamsController < Users::TeamsController
 
   def update_identifier
     if @team.update(identifier: SecureRandom.hex(5))
-      redirect_to users_team_url(@team)
+      redirect_to users_member_url(@member)
     else
       render :show
     end

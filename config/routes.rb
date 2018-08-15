@@ -127,11 +127,9 @@ Rails.application.routes.draw do
       get :destroy_unconfirmed_email, on: :collection
       patch :destroy_unconfirmed_email, on: :collection
     end
-    resources :teams, only: [:index, :show], shallow: true do
-      resources :shift_adjustments, only: [:index]
-    end
-    resources :members, only: [:edit, :destroy], shallow: true do
+    resources :members, only: [:index, :show, :edit, :destroy], shallow: true do
       resources :shift_submissions, except: [:create, :update]
+      resources :shift_adjustments, only: [:index]
     end
     resources :line_connections, only: [:new, :create]
   end

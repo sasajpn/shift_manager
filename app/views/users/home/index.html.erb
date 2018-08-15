@@ -25,7 +25,7 @@
             <tbody>
               <% current_user.approval_members.each do |member| %>
                 <tr>
-                  <td><%= link_to member.team.name, users_team_path(member.team) %></td>
+                  <td><%= link_to member.team.name, users_member_path(member) %></td>
                   <td><span style="color: <%= member.calendar_color %>"><i class="fa fa-square"></i></span></td>
                 </tr>
               <% end %>
