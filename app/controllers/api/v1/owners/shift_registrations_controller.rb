@@ -1,8 +1,10 @@
 class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::ApplicationController
   before_action :set_shift_registration, only: [:show, :update]
   before_action :set_member, only: [:create]
+  before_action :set_team, only: [:create]
 
   include Api::Owners::AccessControl
+  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_registration, only: [:registered_date, :start_time, :end_time]
@@ -48,4 +50,10 @@ class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::Applicati
   def set_member
     @member = Member.find(params[:member_id])
   end
+
+  def set_team
+    super
+    @team ||= @member.team
+  end
+
 end
