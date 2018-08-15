@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Owners::TeamsController, type: :controller do
   login_owner
+  
   let!(:team) { create(:team, owner: subject.current_owner) }
   let!(:other_team) { create(:team) }
 

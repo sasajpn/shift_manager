@@ -1,25 +1,12 @@
 class Users::MembersController < Users::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :set_team, only: [:index, :show, :edit, :update]
+  before_action :set_member, only: [:show, :edit, :destroy]
+  before_action :set_team, only: [:index, :show, :edit]
   before_action :set_current_member, only: [:index, :show]
-  before_action -> { authorize! @current_member }, except: [:edit]
-  before_action -> { authorize! @member }, only: [:edit]
 
-  def index
-  end
-
-  def show
-  end
+  include Users::AccessControl
+  before_action :check_valid_permisson, only: [:edit]
 
   def edit
-  end
-
-  def update
-    if @member.update(member_params)
-      redirect_to users_team_url(@member.team)
-    else
-      render :edit
-    end
   end
 
   def destroy

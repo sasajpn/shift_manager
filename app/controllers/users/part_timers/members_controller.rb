@@ -8,4 +8,7 @@ class Users::PartTimers::MembersController < Users::MembersController
       .order(created_at: :desc)
       .page(params[:page]).per(15)
   end
+
+  def show
+  end
 end

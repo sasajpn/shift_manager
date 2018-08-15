@@ -131,7 +131,7 @@ Rails.application.routes.draw do
       resources :shift_adjustments, only: [:index]
       resources :shift_submissions, except: [:create, :update]
     end
-    resources :members, except: [:index, :new, :create, :show]
+    resources :members, only: [:edit, :destroy]
     resources :line_connections, only: [:new, :create]
   end
 
