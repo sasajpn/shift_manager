@@ -11,7 +11,7 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
           <li class="list-group-item">
-            <b>役職</b> <span class="pull-right"><%= @current_member.role_i18n %></span>
+            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
         </ul>
         <%= link_to 'シフトカレンダー', users_team_path(@team), class: 'btn btn-default btn-block' %>

@@ -22,9 +22,9 @@
             <b>役職</b> <span class="pull-right"><%= @current_member.role_i18n %></span>
           </li>
         </ul>
-        <%= link_to 'シフト希望の提出', new_users_team_shift_submission_path(@team), class: 'btn btn-primary btn-block' %>
+        <%= link_to 'シフト希望の提出', new_users_member_shift_submission_path(@current_member), class: 'btn btn-primary btn-block' %>
         <hr>
-        <%= link_to 'シフト希望一覧', users_team_shift_submissions_path(@team), class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト希望一覧', users_member_shift_submissions_path(@current_member), class: 'btn btn-default btn-block' %>
         <hr>
         <%= link_to '設定変更', edit_users_member_path(@current_member), class: 'btn btn-success btn-block' %>
       </div>

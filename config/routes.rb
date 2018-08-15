@@ -129,13 +129,12 @@ Rails.application.routes.draw do
     end
     resources :teams, only: [:index, :show], shallow: true do
       resources :shift_adjustments, only: [:index]
+    end
+    resources :members, only: [:edit, :destroy], shallow: true do
       resources :shift_submissions, except: [:create, :update]
     end
-    resources :members, only: [:edit, :destroy]
     resources :line_connections, only: [:new, :create]
   end
-
-
 
 
   # API
