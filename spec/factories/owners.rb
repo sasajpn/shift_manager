@@ -7,7 +7,7 @@ FactoryBot.define do
     first_name_kana 'タロウ'
     last_name '支配人'
     first_name '太郎'
-    max_team_count 1
+    max_team_count 2
     confirmed_at Date.today
   end
 end
