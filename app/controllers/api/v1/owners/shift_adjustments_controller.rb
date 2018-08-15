@@ -1,12 +1,14 @@
 class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::ApplicationController
   before_action :set_shift_adjustment, only: [:show, :update]
   before_action :set_shift_submission, only: [:create]
-  before_action :set_team, only: [:index]
+  before_action :set_team, only: [:index, :create]
 
   include Api::Owners::AccessControl
+  before_action :check_valid_permisson, only: [:index, :show, :create, :update]
 
   def index
     @shift_adjustments = @team.shift_adjustments
+    render 'index', formats: [:json], handlers: [:jbuilder]
   end
 
   def show
@@ -48,6 +50,11 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
     params.fetch(:shift_adjustment, {}).permit(
       :start_time, :end_time
     )
+  end
+
+  def set_team
+    super
+    @team ||= @shift_submission.team
   end
 
   def set_shift_adjustment
