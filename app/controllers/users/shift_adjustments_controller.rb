@@ -3,19 +3,6 @@ class Users::ShiftAdjustmentsController < Users::ApplicationController
   before_action :set_shift_submission, only: [:new]
   before_action :set_team, only: [:index, :new, :edit, :destroy]
   before_action :set_current_member, only: [:index, :new, :edit, :destroy]
-  
-  before_action -> { authorize! @current_member }
-
-  def new
-  end
-
-  def edit
-    @shift_submission = @shift_adjustment.shift_submission
-  end
-
-  def destroy
-    @shift_adjustment.destroy
-  end
 
   private
 

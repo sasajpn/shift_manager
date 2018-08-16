@@ -13,13 +13,7 @@ module Users
       private
 
       def have_valid_permission?
-        if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
-          @team.manager?(current_user)
-        elsif controller_name == 'members'
-          @member.manager?
-        else
-          (eval "@#{controller_name.singularize}.member") == current_user
-        end
+        @team.manager?(current_user)
       end
     end
   end

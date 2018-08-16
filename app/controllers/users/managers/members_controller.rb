@@ -1,6 +1,6 @@
 class Users::Managers::MembersController < Users::ApplicationController
-  before_action :set_team, only: [:index]
   before_action :set_member, only: [:show, :edit]
+  before_action :set_team, only: [:index, :show, :edit]
 
   include Users::Managers::AccessControl
   before_action :check_valid_permisson, only: [:index, :show, :edit]
@@ -19,5 +19,10 @@ class Users::Managers::MembersController < Users::ApplicationController
 
   def set_member
     @member = Member.find_by(id: params[:id])
+  end
+
+  def set_team
+    super
+    @team ||= @member.team
   end
 end
