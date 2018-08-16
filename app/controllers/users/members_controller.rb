@@ -3,7 +3,7 @@ class Users::MembersController < Users::ApplicationController
   before_action :set_team, only: [:show, :edit]
 
   include Users::AccessControl
-  before_action :check_valid_permisson, only: [:edit]
+  before_action :check_valid_permisson, only: [:show, :edit]
 
   def index
     @members = current_user.approval_members.order(created_at: :desc).page(params[:page]).per(15)

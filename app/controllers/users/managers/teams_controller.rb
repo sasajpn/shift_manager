@@ -1,4 +1,4 @@
-class Users::Managers::TeamsController < Users::TeamsController
+class Users::Managers::TeamsController < Users::ApplicationController
   before_action :set_team, only: [:update_identifier]
   before_action :set_current_member, only: [:update_identifier]
   before_action -> { authorize! @current_member }
