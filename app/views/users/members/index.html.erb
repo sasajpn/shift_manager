@@ -1,9 +1,9 @@
-<% if @teams.any? %>
+<% if @members.any? %>
   <div class="box">
     <div class="box-header">
-      <h3 class="box-title">チーム一覧</h3>
+      <h3 class="box-title">所属チーム一覧</h3>
       <div class="box-tools">
-        <%= paginate @teams, theme: 'users' %>
+        <%= paginate @members, theme: 'users' %>
       </div>
     </div>
     <div class="box-body no-padding">
@@ -11,16 +11,14 @@
         <tbody>
           <tr>
             <th>名前</th>
-            <th>従業員数</th>
             <th>営業開始時間</th>
             <th>営業終了時間</th>
           </tr>
-          <% @teams.each do |team| %>
+          <% @members.each do |member| %>
             <tr>
-              <td><%= link_to team.name, users_member_path(member) %></td>
-              <td><%= team.members.count %></td>
-              <td><%= team.open_time %></td>
-              <td><%= team.close_time %></td>
+              <td><%= link_to member.team_name, users_member_path(member) %></td>
+              <td><%= member.team_open_time %></td>
+              <td><%= member.team_close_time %></td>
             </tr>
           <% end %>
         </tbody>
@@ -29,6 +27,6 @@
   </div>
 <% else %>
   <div class="callout callout-danger">
-    <p>チームに参加していません</p>
+    <p>所属しているチームがありません</p>
   </div>
 <% end %>

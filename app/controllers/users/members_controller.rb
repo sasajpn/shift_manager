@@ -1,7 +1,6 @@
 class Users::MembersController < Users::ApplicationController
   before_action :set_member, only: [:show, :edit, :destroy]
-  before_action :set_team, only: [:index, :show, :edit]
-  before_action :set_current_member, only: [:index, :show]
+  before_action :set_team, only: [:show, :edit]
 
   include Users::AccessControl
   before_action :check_valid_permisson, only: [:edit]

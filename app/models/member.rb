@@ -8,6 +8,8 @@ class Member < ApplicationRecord
   has_many :shift_registrations, class_name: 'Shift::Registration'
   has_many :shift_adjustments, through: :shift_submissions, class_name: 'Shift::Adjustment'
 
+  delegate :name, :open_time, :close_time, :identifier, to: :team, prefix: :team, allow_nil: true
+
   validates :user_id, :role, :calendar_color,
     presence: true
   validates :user_id,
