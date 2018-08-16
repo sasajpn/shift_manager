@@ -1,2 +1,2 @@
-class Users::PartTimers::ShiftRegistrationsController < Users::ShiftRegistrationsController
+class Users::PartTimers::ShiftRegistrationsController < Users::ApplicationController
 end
