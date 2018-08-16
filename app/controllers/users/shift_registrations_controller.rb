@@ -2,8 +2,6 @@ class Users::ShiftRegistrationsController < Users::ApplicationController
   before_action :set_shift_registration, only: [:edit]
   before_action :set_member, only: [:new, :edit]
   before_action :set_team, only: [:new, :edit]
-  before_action :set_current_member, only: [:new, :edit]
-  before_action -> { authorize! @current_member }
 
   def new
   end
@@ -18,7 +16,8 @@ class Users::ShiftRegistrationsController < Users::ApplicationController
   end
 
   def set_member
-    @member = Member.find_by(id: params[:member_id]) || @shift_registration.member
+    super
+    @member ||= @shift_registration.member
   end
 
   def set_team
