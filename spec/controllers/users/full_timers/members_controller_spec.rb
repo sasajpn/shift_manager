@@ -6,6 +6,7 @@ RSpec.describe Users::FullTimers::MembersController, type: :controller do
   let!(:team) { create(:team) }
 
   let!(:member) { create(:member, team: team) }
+  let!(:manager) { create(:member, :manager, team: team) }
 
 
   describe 'GET #index' do
@@ -56,9 +57,17 @@ RSpec.describe Users::FullTimers::MembersController, type: :controller do
     context 'ログインしている場合' do
       context 'ログイン済みユーザーが正社員である場合' do
         let!(:full_timer) { create(:member, :full_timer, team: team, user: subject.current_user) }
-        it 'showテンプレートがレンダリングされる' do
-          get :show, params: { id: member.id }
-          expect(response).to render_template :show
+        context 'アクセス先のメンバーが正社員またはアルバイトの場合' do
+          it 'showテンプレートがレンダリングされる' do
+            get :show, params: { id: member.id }
+            expect(response).to render_template :show
+          end
+        end
+        context 'アクセス先のメンバーがマネージャーの場合' do
+          it 'ユーザー用のホーム画面にリダイレクトする' do
+            get :show, params: { id: manager.id }
+            expect(response).to redirect_to users_home_index_url
+          end
         end
       end
       context 'ログイン済みユーザーが正社員でない場合' do

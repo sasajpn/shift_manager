@@ -13,7 +13,11 @@ module Users
       private
 
       def have_valid_permission?
-        @team.full_timer?(current_user)
+        if action_name == 'index'
+          @team.full_timer?(current_user)
+        else
+          @team.full_timer?(current_user) && !@member.manager?
+        end
       end
     end
   end
