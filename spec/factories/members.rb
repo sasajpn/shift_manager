@@ -9,5 +9,10 @@ FactoryBot.define do
       approve true
       role 'manager'
     end
+
+    trait :full_timer do
+      approve true
+      role 'full_timer'
+    end
   end
 end

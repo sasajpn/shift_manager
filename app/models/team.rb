@@ -16,9 +16,16 @@ class Team < ApplicationRecord
 
   before_create :create_identifier
 
+  def member(user)
+    members.find_by(user_id: user.id)
+  end
 
   def manager?(user)
-    members.find_by(user_id: user.id)&.manager?
+    member(user)&.manager?
+  end
+
+  def full_timer?(user)
+    member(user)&.full_timer?
   end
 
   def open_min_of_day
