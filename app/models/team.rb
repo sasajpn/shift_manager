@@ -20,12 +20,16 @@ class Team < ApplicationRecord
     members.find_by(user_id: user.id)
   end
 
+  def shift_coordinator?(user)
+    member(user)&.shift_coordinator
+  end
+
   def manager?(user)
     member(user)&.manager?
   end
 
-  def full_timer?(user)
-    member(user)&.full_timer?
+  def full_time_coordinator?(user)
+    member(user)&.full_timer? && shift_coordinator?(user)
   end
 
   def open_min_of_day

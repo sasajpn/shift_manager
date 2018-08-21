@@ -14,9 +14,9 @@ module Users
 
       def have_valid_permission?
         if action_name == 'index'
-          @team.full_timer?(current_user)
+          @team.full_time_coordinator?(current_user)
         else
-          @team.full_timer?(current_user) && !@member.manager?
+          @team.full_time_coordinator?(current_user) && !@member.manager?
         end
       end
     end

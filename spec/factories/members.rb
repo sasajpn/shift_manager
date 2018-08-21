@@ -14,5 +14,14 @@ FactoryBot.define do
       approve true
       role 'full_timer'
     end
+
+    trait :part_timer do
+      approve true
+      role 'part_timer'
+    end
+
+    trait :shift_coordinator do
+      shift_coordinator true
+    end
   end
 end
