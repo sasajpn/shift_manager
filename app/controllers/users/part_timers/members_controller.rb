@@ -1,4 +1,9 @@
 class Users::PartTimers::MembersController < Users::MembersController
+  before_action :set_member, only: [:show]
+  before_action :set_team, only: [:index, :show]
+
+  include Users::PartTimers::AccessControl
+  before_action :check_valid_permisson, only: [:index, :show]
 
   def index
     @members = @team
@@ -10,5 +15,16 @@ class Users::PartTimers::MembersController < Users::MembersController
   end
 
   def show
+  end
+
+  private
+
+  def set_member
+    @member = Member.find_by(id: params[:id])
+  end
+
+  def set_team
+    super
+    @team ||= @member.team
   end
 end
