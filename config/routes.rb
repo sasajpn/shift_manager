@@ -76,7 +76,20 @@ Rails.application.routes.draw do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
 
-    # UserのRole別
+    # シフト調整者用
+    namespace :shift_coordinators do
+      resources :teams, only: [], shallow: true do
+        patch :update_identifier, on: :member
+        resources :members, only: [:index, :show, :edit] do
+          resources :shift_registrations, only: [:new, :edit]
+          resources :shift_submissions, only: [:show] do
+            resources :shift_adjustments, only: [:new, :edit, :destroy]
+          end
+        end
+        resources :shift_submissions, only: [:index]
+        resources :shift_adjustments, only: [:index]
+      end
+    end
 
     # Manager
     namespace :managers do

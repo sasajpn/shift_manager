@@ -32,10 +32,6 @@ class Team < ApplicationRecord
     member(user)&.full_timer? && shift_coordinator?(user)
   end
 
-  def part_time_coordinator?(user)
-    member(user)&.part_timer? && shift_coordinator?(user)
-  end
-
   def open_min_of_day
     min_of_day(open_time)
   end

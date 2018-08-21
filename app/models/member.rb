@@ -27,8 +27,30 @@ class Member < ApplicationRecord
     where(approve: false)
   }
 
+  scope :full_and_part_timers, -> {
+    approvals.where(role: [:full_timer, :part_timer])
+  }
+
+  scope :part_timers, -> {
+    approvals.part_timer
+  }
+
+
   before_save :set_calendar_font_color
   before_save :become_shift_coordinator
+
+  def self.access_members(role)
+    case role
+    when 'part_timer'
+      part_timers
+    when 'full_timer'
+      full_and_part_timers
+    when 'manager'
+      approvals
+    else
+      []
+    end
+  end
 
   def team_owner
     team.owner

@@ -1,8 +1,8 @@
 class Users::ApplicationLoyalty < ApplicationLoyalty
   attr_reader :user, :member
 
-  def initialize(user, member)
+  def initialize(user,team)
     @user = user
-    @member = member
+    @team = team
   end
 end
