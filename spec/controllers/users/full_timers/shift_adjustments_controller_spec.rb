@@ -71,12 +71,12 @@ RSpec.describe Users::FullTimers::ShiftAdjustmentsController, type: :controller 
       context 'ログイン済みユーザーが正社員である場合' do
         let!(:full_timer) { create(:member, :full_timer, team: team, user: subject.current_user) }
         context 'アクセス先のシフト調整のシフト希望が正社員またはアルバイトのものである場合' do
-          it 'showテンプレートがレンダリングされる' do
+          it 'editテンプレートがレンダリングされる' do
             get :edit, params: { id: shift_adjustment.id }
             expect(response).to render_template :edit
           end
         end
-        context 'アクセス先のシフト調整のシフト希望マネージャーのものである場合' do
+        context 'アクセス先のシフト調整のシフト希望がマネージャーのものである場合' do
           it 'ユーザー用のホーム画面にリダイレクトする' do
             get :edit, params: { id: manager_shift_adjustment.id }
             expect(response).to redirect_to users_home_index_url
