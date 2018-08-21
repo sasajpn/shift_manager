@@ -99,7 +99,7 @@ RSpec.describe Users::Managers::ShiftAdjustmentsController, type: :controller do
             delete :destroy, params: { id: shift_adjustment.id }
           }.to change(Shift::Adjustment, :count).by(-1)
         end
-        it 'シフト提出のshowページにリダイレクトされる' do
+        it 'シフト希望のshowページにリダイレクトされる' do
           delete :destroy, params: { id: shift_adjustment.id }
           expect(response).to redirect_to users_managers_shift_submission_url(shift_adjustment.shift_submission)
         end
