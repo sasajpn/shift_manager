@@ -19,8 +19,10 @@ FactoryBot.define do
 
   factory :shift_adjustment, parent: :shift, class: 'Shift::Adjustment' do
     shift_submission { create(:shift_submission) }
+    start_time '08:00'
+    end_time '15:00'
   end
-  
+
   factory :shift_registration, parent: :shift, class: 'Shift::Registration' do
     member { create(:member) }
   end

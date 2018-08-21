@@ -61,8 +61,8 @@ RSpec.describe Users::ShiftCoordinators::MembersController, type: :controller do
     end
     context 'ログインしている場合' do
       context '自チームのメンバーである場合' do
-        let!(:my_member) { create(:member, :shift_coordinator, role: role, team: team, user: subject.current_user) }
         context 'シフト調整権限がある場合' do
+          let!(:my_member) { create(:member, :shift_coordinator, role: role, team: team, user: subject.current_user) }
           context 'マネージャーの場合' do
             let!(:role) { 'manager' }
             context 'アクセス先のメンバーがマネージャーの場合' do
