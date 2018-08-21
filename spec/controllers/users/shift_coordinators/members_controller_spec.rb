@@ -144,4 +144,39 @@ RSpec.describe Users::ShiftCoordinators::MembersController, type: :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    context 'ログインしていない場合' do
+      before do
+        sign_out subject.current_user
+      end
+      it 'ログイン画面にリダイレクトする' do
+        get :edit, params: { id: member.id }
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+    context 'ログインしている場合' do
+      context '自チームのマネージャーである場合' do
+        let!(:my_member) { create(:member, :manager, team: team, user: subject.current_user) }
+        it 'editテンプレートがレンダリングされる' do
+          get :edit, params: { id: member.id }
+          expect(response).to render_template :edit
+        end
+      end
+      context '自チームのマネージャーでない場合' do
+        let!(:my_member) { create(:member, :shift_coordinator, team: team, user: subject.current_user) }
+        it 'ユーザー用のホーム画面にリダイレクトする' do
+          get :edit, params: { id: member.id }
+          expect(response).to redirect_to users_home_index_url
+        end
+      end
+      context '他チームのマネージャーである場合' do
+        let!(:other_member) { create(:member, :manager, :shift_coordinator, user: subject.current_user) }
+        it 'ユーザー用のホーム画面にリダイレクトする' do
+          get :edit, params: { id: member.id }
+          expect(response).to redirect_to users_home_index_url
+        end
+      end
+    end
+  end
 end

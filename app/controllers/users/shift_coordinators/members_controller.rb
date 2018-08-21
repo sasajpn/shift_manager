@@ -14,6 +14,7 @@ class Users::ShiftCoordinators::MembersController < Users::ApplicationController
   end
 
   def edit
+    authorize! @team
   end
 
   private
