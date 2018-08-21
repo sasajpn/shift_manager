@@ -10,7 +10,6 @@ class Users::FullTimers::ShiftRegistrationsController < Users::ApplicationContro
   end
 
   def edit
-    @member = @shift_registration.member
   end
 
   private
