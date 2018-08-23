@@ -206,7 +206,7 @@ RSpec.describe Users::ShiftCoordinators::ShiftAdjustmentsController, type: :cont
       context '他チームのメンバーである場合' do
         let!(:other_member) { create(:member, :shift_coordinator, user: subject.current_user) }
         it 'ユーザー用のホーム画面にリダイレクトする' do
-          get :edit, params: { id: shift_submission.id }
+          get :edit, params: { id: shift_adjustment.id }
           expect(response).to redirect_to users_home_index_url
         end
       end
