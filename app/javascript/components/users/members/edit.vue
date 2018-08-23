@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import { editMember, updateMember } from 'api/users/members.js'
+  import { getMember, updateMember } from 'api/users/members.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -64,7 +64,7 @@
       }
     },
     created () {
-      editMember(this.member.id).then((res) => {
+      getMember(this.member.id).then((res) => {
         this.member.calendarColor = res.calendar_color
         this.team.id = res.team_id
       })

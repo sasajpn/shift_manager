@@ -1,8 +1,8 @@
 import apiClient from 'helpers/users/api_client'
 
-export function editMember (memberId) {
+export function getMember (memberId) {
   return apiClient({
-    url: '/members/' + memberId + '/edit'
+    url: '/members/' + memberId
   })
 }
 

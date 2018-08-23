@@ -227,7 +227,8 @@ Rails.application.routes.draw do
           scope module: :teams do
             resources :calendars, only: [:index]
           end
-          resources :members, only: [:edit, :update] do
+          resources :members, only: [:show, edit, :update] do
+            resources :calendars, only: [:index]
             resources :shift_registrations, only: [:show, :create, :update]
           end
           resources :shift_submissions, except: [:destroy], shallow: true do
