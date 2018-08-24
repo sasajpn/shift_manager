@@ -1,8 +1,11 @@
 class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
   before_action :set_member, only: [:show, :update]
-  before_action -> { authorize! @member }, only: [:update]
+
+  include Api::Users::AccessControl
+  before_action :check_valid_permisson, only: [:show, :update]
 
   def show
+    render 'show', formats: [:json], handlers: [:jbuilder]
   end
 
   def update
