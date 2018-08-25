@@ -189,10 +189,6 @@ Rails.application.routes.draw do
       # ユーザー
       namespace :users do
 
-        namespace :members do
-          resources :unapprovals, only: [:create]
-        end
-
         # Manager
         namespace :managers do
           resources :members, only: [:edit, :update]
@@ -223,6 +219,9 @@ Rails.application.routes.draw do
 
         # User共通
         resources :home, only: [:index]
+        namespace :members do
+          resources :unapprovals, only: [:create]
+        end
         resources :teams, only: [:show], shallow: true do
           scope module: :teams do
             resources :calendars, only: [:index]
