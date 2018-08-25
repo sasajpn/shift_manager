@@ -228,7 +228,9 @@ Rails.application.routes.draw do
             resources :calendars, only: [:index]
           end
           resources :members, only: [:show, :update] do
-            resources :calendars, only: [:index]
+            scope module: :members do
+              resources :calendars, only: [:index]
+            end
             resources :shift_submissions, except: [:destroy], shallow: true do
               resources :shift_adjustments, only: [:show, :create, :update]
             end
