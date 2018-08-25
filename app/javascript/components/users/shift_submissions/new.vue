@@ -49,7 +49,7 @@
 </template>
 
 <script>
-  import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_submissions.js'
+  import { getTeam, createShiftSubmission } from 'api/users/shift_submissions.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -93,7 +93,7 @@
       }
     },
     created () {
-      newShiftSubmission(this.team.id).then((res) => {
+      getTeam(this.team.id).then((res) => {
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
       })

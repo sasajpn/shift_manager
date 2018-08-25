@@ -53,7 +53,7 @@
 </template>
 
 <script>
-  import { editShiftSubmission, updateShiftSubmission } from 'api/users/shift_submissions.js'
+  import { getTeam, getShiftSubmission, updateShiftSubmission } from 'api/users/shift_submissions.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -68,6 +68,7 @@
           }
         },
         team: {
+          id: document.getElementById('shift_submissions_edit').dataset.team_id,
           openTime: '',
           closeTime: ''
         },
@@ -98,9 +99,11 @@
       }
     },
     created () {
-      editShiftSubmission(this.shiftSubmission.id).then((res) => {
+      getTeam(this.team_id).then((res) => {
         this.team.openTime = res.team.open_time
         this.team.closeTime = res.team.close_time
+      })
+      getShiftSubmission(this.shiftSubmission.id).then((res) => {
         this.shiftSubmission.submittedDate = res.shift_submission.submitted_date
         this.shiftSubmission.startTime = res.shift_submission.start_time
         this.shiftSubmission.endTime = res.shift_submission.end_time
