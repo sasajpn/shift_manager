@@ -13,7 +13,7 @@ module Users
       private
 
       def have_valid_permission?
-        if action_name == 'index'
+        if controller_name == 'teams' || action_name == 'index'
           @team.shift_coordinator?(current_user)
         else
           case @member.role
