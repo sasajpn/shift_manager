@@ -24,6 +24,27 @@ class Shift::Adjustment < Shift
     joins(:shift_submission).where("shift_submissions.submitted_date = ?", date)
   }
 
+  scope :full_and_part_timers, -> {
+    joins(:member).merge(Member.full_and_part_timers)
+  }
+
+  scope :part_timers, -> {
+    joins(:member).merge(Member.part_timer)
+  }
+
+  def self.access_adjustments(role)
+    case role
+    when 'part_timer'
+      part_timers
+    when 'full_timer'
+      full_and_part_timers
+    when 'manager'
+      all
+    else
+      []
+    end
+  end
+
   def end_time_parse
     time_parse(shift_submission.submitted_date, end_time)
   end
