@@ -81,7 +81,7 @@ Rails.application.routes.draw do
       resources :teams, only: [:show], shallow: true do
         patch :update_identifier, on: :member
         resources :members, only: [:index, :show, :edit] do
-          resources :shift_registrations, only: [:new, :edit]
+          resources :shift_registrations, only: [:new, :edit, :destroy]
           resources :shift_submissions, only: [:show] do
             resources :shift_adjustments, only: [:new, :edit, :destroy]
           end

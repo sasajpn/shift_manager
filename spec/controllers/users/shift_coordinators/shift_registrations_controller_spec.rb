@@ -150,7 +150,7 @@ RSpec.describe Users::ShiftCoordinators::ShiftRegistrationsController, type: :co
           context '正社員の場合' do
             let!(:role) { 'full_timer' }
             context 'アクセス先のシフト登録がマネージャーのものである場合' do
-              it 'editテンプレートがレンダリングされる' do
+              it 'ユーザー用のホーム画面にリダイレクトする' do
                 get :edit, params: { id: manager_shift_registration.id }
                 expect(response).to redirect_to users_home_index_url
               end
@@ -171,13 +171,13 @@ RSpec.describe Users::ShiftCoordinators::ShiftRegistrationsController, type: :co
           context 'パートタイマーの場合' do
             let!(:role) { 'part_timer' }
             context 'アクセス先のシフト登録がマネージャーのものである場合' do
-              it 'editテンプレートがレンダリングされる' do
+              it 'ユーザー用のホーム画面にリダイレクトする' do
                 get :edit, params: { id: manager_shift_registration.id }
                 expect(response).to redirect_to users_home_index_url
               end
             end
             context 'アクセス先のシフト登録が正社員のものである場合' do
-              it 'editテンプレートがレンダリングされる' do
+              it 'ユーザー用のホーム画面にリダイレクトする' do
                 get :edit, params: { id: full_timer_shift_registration.id }
                 expect(response).to redirect_to users_home_index_url
               end
@@ -202,6 +202,158 @@ RSpec.describe Users::ShiftCoordinators::ShiftRegistrationsController, type: :co
         let!(:other_member) { create(:member, :shift_coordinator, user: subject.current_user) }
         it 'ユーザー用のホーム画面にリダイレクトする' do
           get :edit, params: { id: shift_registration.id }
+          expect(response).to redirect_to users_home_index_url
+        end
+      end
+    end
+  end
+
+
+  describe 'DELETE #destroy' do
+    context 'ログインしていない場合' do
+      before do
+        sign_out subject.current_user
+      end
+      it 'ログイン画面にリダイレクトする' do
+        delete :destroy, params: { id: shift_registration.id }
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+    context 'ログインしている場合' do
+      context '自チームのメンバーである場合' do
+        context 'シフト調整権限がある場合' do
+          let!(:my_member) { create(:member, :shift_coordinator, role: role, team: team, user: subject.current_user) }
+          context 'マネージャーの場合' do
+            let!(:role) { 'manager' }
+            context 'アクセス先のシフト登録がマネージャーのものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: manager_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: manager_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(manager_shift_registration.member)
+              end
+            end
+            context 'アクセス先のシフト登録が正社員のものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: full_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: full_timer_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(full_timer_shift_registration.member)
+              end
+            end
+            context 'アクセス先のシフト登録がパートタイマーのものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: part_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: part_timer_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(part_timer_shift_registration.member)
+              end
+            end
+          end
+          context '正社員の場合' do
+            let!(:role) { 'full_timer' }
+            context 'アクセス先のシフト登録がマネージャーのものである場合' do
+              it 'シフト登録が削除されない' do
+                expect {
+                  delete :destroy, params: { id: manager_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(0)
+              end
+              it 'ユーザーのホーム画面にリダイレクトされる' do
+                delete :destroy, params: { id: manager_shift_registration.id }
+                expect(response).to redirect_to users_home_index_url
+              end
+            end
+            context 'アクセス先のシフト登録が正社員のものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: full_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: full_timer_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(full_timer_shift_registration.member)
+              end
+            end
+            context 'アクセス先のシフト登録がパートタイマーのものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: part_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: part_timer_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(part_timer_shift_registration.member)
+              end
+            end
+          end
+          context 'パートタイマーの場合' do
+            let!(:role) { 'part_timer' }
+            context 'アクセス先のシフト登録がマネージャーのものである場合' do
+              it 'シフト登録が削除されない' do
+                expect {
+                  delete :destroy, params: { id: manager_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(0)
+              end
+              it 'ユーザーのホーム画面にリダイレクトされる' do
+                delete :destroy, params: { id: manager_shift_registration.id }
+                expect(response).to redirect_to users_home_index_url
+              end
+            end
+            context 'アクセス先のシフト登録が正社員のものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: full_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(0)
+              end
+              it 'ユーザーのホーム画面にリダイレクトされる' do
+                delete :destroy, params: { id: full_timer_shift_registration.id }
+                expect(response).to redirect_to users_home_index_url
+              end
+            end
+            context 'アクセス先のシフト登録がパートタイマーのものである場合' do
+              it 'シフト登録が削除される' do
+                expect {
+                  delete :destroy, params: { id: part_timer_shift_registration.id }
+                }.to change(Shift::Registration, :count).by(-1)
+              end
+              it 'メンバーのshowページにリダイレクトされる' do
+                delete :destroy, params: { id: part_timer_shift_registration.id }
+                expect(response).to redirect_to users_shift_coordinators_member_url(part_timer_shift_registration.member)
+              end
+            end
+          end
+        end
+        context 'シフト調整権限がない場合' do
+          let!(:my_member) { create(:member, team: team, user: subject.current_user) }
+          it 'シフト登録が削除されない' do
+            expect {
+              delete :destroy, params: { id: shift_registration.id }
+            }.to change(Shift::Registration, :count).by(0)
+          end
+          it 'ユーザーのホーム画面にリダイレクトされる' do
+            delete :destroy, params: { id: part_timer_shift_registration.id }
+            expect(response).to redirect_to users_home_index_url
+          end
+        end
+      end
+      context '他チームのメンバーである場合' do
+        let!(:other_member) { create(:member, :shift_coordinator, user: subject.current_user) }
+        it 'シフト登録が削除されない' do
+          expect {
+            delete :destroy, params: { id: shift_registration.id }
+          }.to change(Shift::Registration, :count).by(0)
+        end
+        it 'ユーザーのホーム画面にリダイレクトされる' do
+          delete :destroy, params: { id: part_timer_shift_registration.id }
           expect(response).to redirect_to users_home_index_url
         end
       end
