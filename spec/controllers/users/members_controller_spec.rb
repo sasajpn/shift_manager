@@ -36,17 +36,15 @@ RSpec.describe Users::MembersController, type: :controller do
     end
     context 'ログインしている場合' do
       context 'メンバーがログイン済みのユーザーのものである場合' do
-        it '200が返ってくる' do
+        it 'showテンプレートがレンダリングされる' do
           get :show, params: { id: member.id }
-          expect(response).to be_success
-          expect(response.status).to eq 200
+          expect(response).to render_template :show
         end
       end
       context 'メンバーがログイン済みのユーザーのものでない場合' do
-        it '404が返ってくる' do
+        it 'ユーザー用のホーム画面にリダイレクトする' do
           get :show, params: { id: other_member.id }
-          expect(response).not_to be_success
-          expect(response.status).to eq 404
+          expect(response).to redirect_to users_home_index_url
         end
       end
     end
