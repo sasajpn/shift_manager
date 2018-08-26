@@ -72,14 +72,13 @@ Rails.application.routes.draw do
   # ユーザー
   namespace :users do
 
-    namespace :members do
-      resources :unapprovals, only: [:index, :show, :new, :destroy]
-    end
-
     # シフト調整者用
     namespace :shift_coordinators do
       resources :teams, only: [:show], shallow: true do
         patch :update_identifier, on: :member
+        namespace :members do
+          resources :unapprovals, except: [:new, :create]
+        end
         resources :members, only: [:index, :show, :edit] do
           resources :shift_registrations, only: [:new, :edit, :destroy]
           resources :shift_submissions, only: [:show] do
@@ -139,6 +138,9 @@ Rails.application.routes.draw do
     resource :user, only: [:edit, :update] do
       get :destroy_unconfirmed_email, on: :collection
       patch :destroy_unconfirmed_email, on: :collection
+    end
+    namespace :members do
+      resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
     resources :members, only: [:index, :show, :edit, :destroy], shallow: true do
       resources :shift_submissions, except: [:create, :update]
