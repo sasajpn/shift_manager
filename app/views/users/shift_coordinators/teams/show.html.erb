@@ -19,11 +19,12 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
-        <%= link_to users_shift_coordinators_team_members_unapprovals_path(@team), class: 'btn btn-default btn-block' do %>
-          未承認の従業員一覧
-          <small class="label pull-right bg-red"><%= @unapprovals.count %></small>
+        <% if @member.manager? %>
+          <%= link_to users_shift_coordinators_team_members_unapprovals_path(@team), class: 'btn btn-default btn-block' do %>
+            未承認の従業員一覧
+            <small class="label pull-right bg-red"><%= @unapprovals.count %></small>
+          <% end %>
         <% end %>
-        <hr>
         <%= link_to 'メンバー一覧', { controller: "users/shift_coordinators/members", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
       </div>
     </div>
