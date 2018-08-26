@@ -192,7 +192,11 @@ Rails.application.routes.draw do
         # ShiftCoordinator
         namespace :shift_coordinators do
           resources :teams, only: [], shallow: true do
-            resources :members, only: [:show, :update]
+            resources :members, only: [:show, :update] do
+              resources :shift_submissions, only: [], shallow: true do
+                resources :shift_adjustments, only: [:show, :create, :update]
+              end
+            end
             resources :shift_submissions, only: [:index]
             resources :shift_adjustments, only: [:index]
           end

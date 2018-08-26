@@ -5,7 +5,7 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
   before_action :set_team, only: [:index, :show, :create, :update]
 
   include Api::Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:index]
+  before_action :check_valid_permisson, only: [:index, :show, :create, :update]
 
   def index
     member = @team.member(current_user)
@@ -43,6 +43,20 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
   end
 
   private
+
+  def shift_adjustment_params
+    params.fetch(:shift_adjustment, {}).permit(
+      :start_time, :end_time
+    )
+  end
+
+  def set_shift_adjustment
+    @shift_adjustment = Shift::Adjustment.find(params[:id])
+  end
+
+  def set_shift_submission
+    @shift_submission = ShiftSubmission.find(params[:shift_submission_id])
+  end
 
   def set_member
     @member ||= @shift_adjustment&.member
