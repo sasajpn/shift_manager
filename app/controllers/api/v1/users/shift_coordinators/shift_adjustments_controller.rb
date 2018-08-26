@@ -9,7 +9,7 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
 
   def index
     member = @team.member(current_user)
-    @shift_adjustments = @team.shift_adjustments.access_adjustments(member.role)
+    @shift_adjustments = @team.shift_adjustments.access_shifts(member.role)
     render 'index', formats: [:json], handlers: [:jbuilder]
   end
 

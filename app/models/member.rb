@@ -56,6 +56,10 @@ class Member < ApplicationRecord
     full_timer? && shift_coordinator?
   end
 
+  def name
+    user.name
+  end
+
   def team_owner
     team.owner
   end

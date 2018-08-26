@@ -36,8 +36,7 @@
         </div>
         <div class="box-body box-profile">
           <%= link_to 'メンバー一覧', { controller: "users/shift_coordinators/members", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
-          <%= link_to 'シフト希望一覧', { controller: "users/shift_coordinators/shift_submissions", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
-          <%= link_to 'シフト調整一覧', { controller: "users/shift_coordinators/shift_adjustments", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+          <%= link_to 'シフト一覧', { controller: "users/shift_coordinators/teams", action: 'show', id: @team.id }, class: 'btn btn-default btn-block' %>
         </div>
       </div>
     <% end %>

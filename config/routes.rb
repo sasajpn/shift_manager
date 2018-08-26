@@ -78,7 +78,7 @@ Rails.application.routes.draw do
 
     # シフト調整者用
     namespace :shift_coordinators do
-      resources :teams, only: [], shallow: true do
+      resources :teams, only: [:show], shallow: true do
         patch :update_identifier, on: :member
         resources :members, only: [:index, :show, :edit] do
           resources :shift_registrations, only: [:new, :edit]
@@ -192,6 +192,9 @@ Rails.application.routes.draw do
         # ShiftCoordinator
         namespace :shift_coordinators do
           resources :teams, only: [], shallow: true do
+            scope module: :teams do
+              resources :calendars, only: [:index]
+            end
             resources :members, only: [:show, :update] do
               scope module: :members do
                 resources :calendars, only: [:index]
@@ -200,6 +203,9 @@ Rails.application.routes.draw do
                 resources :shift_adjustments, only: [:show, :create, :update]
               end
               resources :shift_registrations, only: [:show, :create, :update]
+            end
+            namespace :shift_submissions do
+              resources :calendars, only: [:index]
             end
             resources :shift_submissions, only: [:index]
             resources :shift_adjustments, only: [:index]

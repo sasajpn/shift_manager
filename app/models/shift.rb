@@ -8,6 +8,27 @@ class Shift < ApplicationRecord
   validates :start_time, :end_time,
     presence: true
 
+  scope :full_and_part_timers, -> {
+    joins(:member).merge(Member.full_and_part_timers)
+  }
+
+  scope :part_timers, -> {
+    joins(:member).merge(Member.part_timer)
+  }
+
+  def self.access_shifts(role)
+    case role
+    when 'part_timer'
+      part_timers
+    when 'full_timer'
+      full_and_part_timers
+    when 'manager'
+      all
+    else
+      []
+    end
+  end
+
   def team_owner
     team.owner
   end
