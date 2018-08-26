@@ -35,14 +35,9 @@
           <h3 class="box-title">シフト管理者用メニュー</h3>
         </div>
         <div class="box-body box-profile">
-          <% case @member.role %>
-          <% when 'manager' %>
-            <%= render 'link', role: 'managers' %>
-          <% when 'full_timer' %>
-            <%= render 'link', role: 'full_timers' %>
-          <% when 'part_timer' %>
-            <%= render 'link', role: 'part_timers' %>
-          <% end %>
+          <%= link_to 'メンバー一覧', { controller: "users/shift_coordinators/members", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+          <%= link_to 'シフト希望一覧', { controller: "users/shift_coordinators/shift_submissions", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+          <%= link_to 'シフト調整一覧', { controller: "users/shift_coordinators/shift_adjustments", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
         </div>
       </div>
     <% end %>
