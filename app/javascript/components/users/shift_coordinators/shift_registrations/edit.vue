@@ -4,7 +4,7 @@
 
 <script>
   import shiftRegistrationForm from 'components/users/shift_registrations/Form.vue'
-  import { updateShiftRegistration } from 'api/users/shift_registrations.js'
+  import { updateShiftRegistration } from 'api/users/shift_coordinators/shift_registrations.js'
 
   export default {
     components: {
@@ -20,7 +20,7 @@
         updateShiftRegistration(shiftRegistration).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/managers/members/' + memberId
+              window.location.href = '/users/shift_coordinators/members/' + memberId
               break;
             case '400':
               this.$store.dispatch('ShiftRegistration/setErrorMessages', res.error_messages)

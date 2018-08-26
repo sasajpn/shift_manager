@@ -1,4 +1,4 @@
-import { getShiftRegistration } from 'api/users/shift_registrations.js'
+import { getShiftRegistration } from 'api/users/shift_coordinators/shift_registrations.js'
 
 const state = {
   id: '',

@@ -4,7 +4,7 @@
 
 <script>
   import shiftRegistrationForm from 'components/users/shift_registrations/Form.vue'
-  import { createShiftRegistration } from 'api/users/shift_registrations.js'
+  import { createShiftRegistration } from 'api/users/shift_coordinators/shift_registrations.js'
 
   export default {
     components: {

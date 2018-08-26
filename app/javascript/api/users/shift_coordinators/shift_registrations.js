@@ -2,7 +2,7 @@ import apiClient from 'helpers/users/api_client'
 
 export function getShiftRegistration (shiftRegistrationId) {
   return apiClient({
-    url: 'shift_registrations/' + shiftRegistrationId
+    url: 'shift_coordinators/shift_registrations/' + shiftRegistrationId
   })
 }
 
@@ -16,7 +16,7 @@ export function createShiftRegistration (memberId, shiftRegistration) {
         end_time: shiftRegistration.endTime
       }
     },
-    url: 'members/' + memberId + '/shift_registrations'
+    url: 'shift_coordinators/members/' + memberId + '/shift_registrations'
   })
 }
 
@@ -30,6 +30,6 @@ export function updateShiftRegistration (shiftRegistration) {
         end_time: shiftRegistration.endTime
       }
     },
-    url: 'shift_registrations/' + shiftRegistration.id
+    url: 'shift_coordinators/shift_registrations/' + shiftRegistration.id
   })
 }
