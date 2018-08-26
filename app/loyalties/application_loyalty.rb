@@ -1,8 +1,8 @@
 class ApplicationLoyalty
-  attr_reader :account, :record
+  attr_reader :user, :record
 
-  def initialize(account, record)
-    @account = account
+  def initialize(user, record)
+    @user = user
     @record = record
   end
 

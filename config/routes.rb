@@ -189,6 +189,15 @@ Rails.application.routes.draw do
       # ユーザー
       namespace :users do
 
+        # ShiftCoordinator
+        namespace :shift_coordinators do
+          resources :teams, only: [], shallow: true do
+            resources :members, only: [:show, :update]
+            resources :shift_submissions, only: [:index]
+            resources :shift_adjustments, only: [:index]
+          end
+        end
+
         # Manager
         namespace :managers do
           resources :members, only: [:edit, :update]

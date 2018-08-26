@@ -1,5 +1,5 @@
-class Users::ShiftCoordinators::MembersLoyalty < Users::ApplicationLoyalty
+class Users::ShiftCoordinators::MembersLoyalty < ApplicationLoyalty
   def edit?
-    team.manager?(user)
+    record.manager?(user)
   end
 end
