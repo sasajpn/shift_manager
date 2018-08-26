@@ -4,7 +4,7 @@
 
 <script>
   import shiftAdjustmentsForm from 'components/users/shift_adjustments/Form.vue'
-  import { updateShiftAdjustment } from 'api/users/shift_adjustments.js'
+  import { updateShiftAdjustment } from 'api/users/shift_coordinators/shift_adjustments.js'
 
   export default {
     components: {
@@ -20,7 +20,7 @@
         updateShiftAdjustment(shiftAdjustment).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/part_timers/shift_submissions/' + shiftSubmissionId
+              window.location.href = '/users/shift_coordinators/shift_submissions/' + shiftSubmissionId
               break;
             case '400':
               this.$store.dispatch('ShiftAdjustment/setErrorMessages', res.error_messages)

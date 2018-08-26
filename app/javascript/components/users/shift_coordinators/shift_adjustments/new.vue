@@ -4,7 +4,7 @@
 
 <script>
   import shiftAdjustmentsForm from 'components/users/shift_adjustments/Form.vue'
-  import { updateShiftAdjustment } from 'api/users/shift_adjustments.js'
+  import { createShiftAdjustment } from 'api/users/shift_coordinators/shift_adjustments.js'
 
   export default {
     components: {
@@ -12,15 +12,15 @@
     },
     data() {
       return {
-        btnName: '更新'
+        btnName: '登録'
       }
     },
     methods: {
       onSubmit(shiftSubmissionId, shiftAdjustment) {
-        updateShiftAdjustment(shiftAdjustment).then((res) => {
+        createShiftAdjustment(shiftSubmissionId, shiftAdjustment).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/full_timers/shift_submissions/' + shiftSubmissionId
+              window.location.href = '/users/shift_coordinators/shift_submissions/' + shiftSubmissionId
               break;
             case '400':
               this.$store.dispatch('ShiftAdjustment/setErrorMessages', res.error_messages)
@@ -30,10 +30,8 @@
       }
     },
     created () {
-      let shiftSubmissionId = document.getElementById('shift_adjustments_edit').dataset.shift_submission_id
-      let shiftAdjustmentId = document.getElementById('shift_adjustments_edit').dataset.shift_adjustment_id
+      let shiftSubmissionId = document.getElementById('shift_adjustments_new').dataset.shift_submission_id
       this.$store.dispatch('ShiftSubmission/loadShiftSubmission', shiftSubmissionId)
-      this.$store.dispatch('ShiftAdjustment/loadShiftAdjustment', shiftAdjustmentId)
     }
   }
 </script>

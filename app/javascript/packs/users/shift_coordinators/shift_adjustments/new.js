@@ -1,4 +1,4 @@
-import ShiftAdjustmentsNew from 'components/users/managers/shift_adjustments/new.vue'
+import ShiftAdjustmentsNew from 'components/users/shift_coordinators/shift_adjustments/new.vue'
 import store from '../../../../store/users/shift_adjustments/'
 
 Vue.use(ElementUI, { locale })

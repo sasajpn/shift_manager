@@ -16,7 +16,7 @@ class Users::ShiftCoordinators::ShiftAdjustmentsController < Users::ApplicationC
 
   def destroy
     @shift_adjustment.destroy
-    redirect_to users_full_timers_shift_submission_url(@shift_adjustment.shift_submission)
+    redirect_to users_shift_coordinators_shift_submission_url(@shift_adjustment.shift_submission)
   end
 
   private
