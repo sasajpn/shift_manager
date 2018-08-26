@@ -199,6 +199,7 @@ Rails.application.routes.draw do
               resources :shift_submissions, only: [], shallow: true do
                 resources :shift_adjustments, only: [:show, :create, :update]
               end
+              resources :shift_registrations, only: [:show, :create, :update]
             end
             resources :shift_submissions, only: [:index]
             resources :shift_adjustments, only: [:index]
@@ -252,7 +253,6 @@ Rails.application.routes.draw do
             resources :shift_submissions, except: [:index, :destroy], shallow: true do
               resources :shift_adjustments, only: [:show, :create, :update]
             end
-            resources :shift_registrations, only: [:show, :create, :update]
           end
         end
       end

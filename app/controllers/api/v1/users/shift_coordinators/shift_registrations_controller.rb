@@ -1,10 +1,10 @@
 class Api::V1::Users::ShiftCoordinators::ShiftRegistrationsController < Api::V1::Users::ApplicationController
   before_action :set_shift_registration, only: [:show, :update]
-  before_action :set_member, only: [:create]
-  before_action :set_team, only: [:show, :creatr, :update]
+  before_action :set_member, only: [:show, :create, :update]
+  before_action :set_team, only: [:show, :create, :update]
 
   include Api::Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:index]
+  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_registration, only: [:registered_date, :start_time, :end_time]
@@ -52,7 +52,8 @@ class Api::V1::Users::ShiftCoordinators::ShiftRegistrationsController < Api::V1:
   end
 
   def set_member
-    @member = Member.find_by(id: params[:member_id])
+    super
+    @member ||= @shift_registration&.member
   end
 
   def set_team
