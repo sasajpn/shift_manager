@@ -32,6 +32,27 @@ class ShiftSubmission < ApplicationRecord
     where(approve: false)
   }
 
+  scope :full_and_part_timers, -> {
+    joins(:member).merge(Member.full_and_part_timers)
+  }
+
+  scope :part_timers, -> {
+    joins(:member).merge(Member.part_timer)
+  }
+
+  def self.access_submissions(role)
+    case role
+    when 'part_timer'
+      part_timers
+    when 'full_timer'
+      full_and_part_timers
+    when 'manager'
+      all
+    else
+      []
+    end
+  end
+
   def team_owner
     team.owner
   end
