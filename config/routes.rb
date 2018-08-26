@@ -90,49 +90,6 @@ Rails.application.routes.draw do
       end
     end
 
-    # Manager
-    namespace :managers do
-      resources :teams, only: [], shallow: true do
-        patch :update_identifier, on: :member
-        resources :members, only: [:index, :show, :edit] do
-          resources :shift_registrations, only: [:new, :edit]
-          resources :shift_submissions, only: [:show] do
-            resources :shift_adjustments, only: [:new, :edit, :destroy]
-          end
-        end
-        resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
-      end
-    end
-
-    # FullTimer
-    namespace :full_timers do
-      resources :teams, only: [], shallow: true do
-        resources :members, only: [:index, :show, :edit] do
-          resources :shift_registrations, only: [:new, :edit]
-          resources :shift_submissions, only: [:show] do
-            resources :shift_adjustments, only: [:new, :edit, :destroy]
-          end
-        end
-        resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
-      end
-    end
-
-    # PartTimer
-    namespace :part_timers do
-      resources :teams, only: [], shallow: true do
-        resources :members, only: [:index, :show, :edit] do
-          resources :shift_registrations, only: [:new, :edit]
-          resources :shift_submissions, only: [:show] do
-            resources :shift_adjustments, only: [:new, :edit, :destroy]
-          end
-        end
-        resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
-      end
-    end
-
     # User共通
     resources :home, only: [:index]
     resource :user, only: [:edit, :update] do
@@ -209,34 +166,6 @@ Rails.application.routes.draw do
             namespace :shift_submissions do
               resources :calendars, only: [:index]
             end
-            resources :shift_submissions, only: [:index]
-            resources :shift_adjustments, only: [:index]
-          end
-        end
-
-        # Manager
-        namespace :managers do
-          resources :members, only: [:edit, :update]
-          resources :teams, only: [], shallow: true do
-            resources :members, only: [:show]
-            resources :shift_submissions, only: [:index]
-            resources :shift_adjustments, only: [:index]
-          end
-        end
-
-        # FullTimer
-        namespace :full_timers do
-          resources :teams, only: [], shallow: true do
-            resources :members, only: [:show]
-            resources :shift_submissions, only: [:index]
-            resources :shift_adjustments, only: [:index]
-          end
-        end
-
-        # PartTimer
-        namespace :part_timers do
-          resources :teams, only: [], shallow: true do
-            resources :members, only: [:show]
             resources :shift_submissions, only: [:index]
             resources :shift_adjustments, only: [:index]
           end
