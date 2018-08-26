@@ -33,6 +33,10 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
   end
 
   def update
+    @shift_adjustment.attributes = {
+      account_type: current_user.model_name.name,
+      account_id: current_user.id
+    }
     if @shift_adjustment.update(shift_adjustment_params)
       @success_message = 'シフトの調整内容を変更しました。'
       render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
