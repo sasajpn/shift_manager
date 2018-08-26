@@ -243,7 +243,10 @@ Rails.application.routes.draw do
             scope module: :members do
               resources :calendars, only: [:index]
             end
-            resources :shift_submissions, except: [:destroy], shallow: true do
+            namespace :shift_submissions do
+              resources :calendars, only: [:index]
+            end
+            resources :shift_submissions, except: [:index, :destroy], shallow: true do
               resources :shift_adjustments, only: [:show, :create, :update]
             end
             resources :shift_registrations, only: [:show, :create, :update]

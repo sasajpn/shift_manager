@@ -1,6 +1,5 @@
 class Api::V1::Users::TeamsController < Api::V1::Users::ApplicationController
   before_action :set_team, only: [:show]
-  before_action :set_member, only: [:show]
 
   include Api::Users::AccessControl
   before_action :check_valid_permisson, only: [:show]
@@ -16,6 +15,6 @@ class Api::V1::Users::TeamsController < Api::V1::Users::ApplicationController
   end
 
   def set_team
-    @team = Team.find(params[:id])
+    @team = Team.find_by(id: params[:id])
   end
 end

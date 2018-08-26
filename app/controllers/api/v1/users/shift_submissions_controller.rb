@@ -1,14 +1,10 @@
 class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationController
   before_action :set_shift_submission, only: [:show, :update]
-  before_action :set_member, only: [:index, :create, :update]
-  before_action :set_team, only: [:index, :create]
+  before_action :set_member, only: [:create, :update]
+  before_action :set_team, only: [:create]
 
   include Api::Users::AccessControl
   before_action :check_valid_permisson, only: [:show, :create, :update]
-
-  def index
-    @shift_submissions = @member.shift_submissions
-  end
 
   def show
     render json: @shift_submission, only: [:submitted_date, :start_time, :end_time]

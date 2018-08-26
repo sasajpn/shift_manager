@@ -19,7 +19,6 @@
         </ul>
         <%= link_to 'シフトカレンダー', users_member_path(@member), class: 'btn btn-default btn-block' %>
         <%= link_to 'シフト希望一覧', users_member_shift_submissions_path(@member), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整済一覧', users_team_shift_adjustments_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>
@@ -29,7 +28,9 @@
         <h3 class="box-title">シフト希望の提出</h3>
       </div>
       <div class="box-body">
-        <div id="shift_submissions_new" data-team_id="<%= @team.id %>">
+        <div id="shift_submissions_new"
+          data-team_id="<%= @team.id %>"
+          data-member_id="<%= @member.id %>">
         </div>
       </div>
     </div>

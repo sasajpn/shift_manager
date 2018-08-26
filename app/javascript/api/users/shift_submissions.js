@@ -12,7 +12,7 @@ export function newShiftSubmission (teamId) {
   })
 }
 
-export function createShiftSubmission (teamId, shiftSubmission) {
+export function createShiftSubmission (memberId, shiftSubmission) {
   return apiClient({
     method: 'post',
     data: {
@@ -22,7 +22,7 @@ export function createShiftSubmission (teamId, shiftSubmission) {
         end_time: shiftSubmission.endTime
       }
     },
-    url: 'teams/' + teamId + '/shift_submissions'
+    url: 'members/' + memberId + '/shift_submissions'
   })
 }
 

@@ -3,7 +3,7 @@
 //= require AdminLTE/fullcalendar/ja
 
 $(function() {
-  var team_id = document.getElementById('shift_submissions_calendar').dataset.team_id
+  var member_id = document.getElementById('shift_submissions_calendar').dataset.member_id
 
   $('#shift_submissions_calendar').fullCalendar({
     header: {
@@ -16,7 +16,7 @@ $(function() {
     displayEventTime: false,
     eventSources: [
       {
-        url: '/api/v1/users/teams/' + team_id + '/shift_submissions'
+        url: '/api/v1/users/members/' + member_id + '/shift_submissions/calendars'
       }
     ],
     select: function(start, end, jsEvent, view) {
