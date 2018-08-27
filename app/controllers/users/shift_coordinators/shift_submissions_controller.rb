@@ -1,13 +1,10 @@
 class Users::ShiftCoordinators::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_shift_submission, only: [:show]
   before_action :set_member, only: [:show]
-  before_action :set_team, only: [:index, :show]
+  before_action :set_team, only: [:show]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show]
-
-  def index
-  end
+  before_action :check_valid_permisson, only: [:show]
 
   def show
     @shift_adjustment = @shift_submission.shift_adjustment
@@ -24,7 +21,6 @@ class Users::ShiftCoordinators::ShiftSubmissionsController < Users::ApplicationC
   end
 
   def set_team
-    super
-    @team ||= @member.team
+    @team = @member.team
   end
 end

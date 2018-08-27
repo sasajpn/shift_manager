@@ -14,7 +14,7 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
-        <%= link_to 'シフト一覧', { controller: "users/shift_coordinators/teams", action: 'show', id: @team.id }, class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフトカレンダー', { controller: "users/shift_coordinators/teams", action: 'show', id: @team.id }, class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

@@ -25,9 +25,9 @@ $(function() {
     eventClick: function(event, jsEvent, view) {
       if (view.type === 'listDay') {
         if (event.shift_submission_id) {
-          window.location.href = '/users/shift_coordinators/shift_submissions/' + event.shift_submission_id
+          window.location.href = '/users/shift_coordinators/shift_submissions/' + event.shift_submission_id + '?referrer=members_shift_calendar'
         } else if (event.shift_registration_id) {
-          window.location.href = '/users/shift_coordinators/shift_registrations/' + event.shift_registration_id + '/edit'
+          window.location.href = '/users/shift_coordinators/shift_registrations/' + event.shift_registration_id + '/edit?referrer=members_shift_calendar'
         }
       }
     }
