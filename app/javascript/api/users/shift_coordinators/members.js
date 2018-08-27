@@ -1,8 +1,8 @@
 import apiClient from 'helpers/users/api_client'
 
-export function editMember (memberId) {
+export function getMember (memberId) {
   return apiClient({
-    url: 'managers/members/' + memberId + '/edit'
+    url: 'shift_coordinators/members/' + memberId
   })
 }
 
@@ -15,6 +15,6 @@ export function updateMember (member) {
         shift_coordinator: member.shift_coordinator
       }
     },
-    url: 'managers/members/' + member.id
+    url: 'shift_coordinators/members/' + member.id
   })
 }

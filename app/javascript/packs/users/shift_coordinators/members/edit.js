@@ -1,4 +1,4 @@
-import MembersEdit from 'components/users/managers/members/edit.vue'
+import MembersEdit from 'components/users/shift_coordinators/members/edit.vue'
 
 Vue.use(ElementUI, { locale })
 

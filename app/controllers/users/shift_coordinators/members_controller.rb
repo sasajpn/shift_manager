@@ -1,6 +1,6 @@
 class Users::ShiftCoordinators::MembersController < Users::ApplicationController
-  before_action :set_member, only: [:index, :show, :edit]
-  before_action :set_team, only: [:index, :show, :edit]
+  before_action :set_member, only: [:index, :show, :edit, :destroy]
+  before_action :set_team, only: [:index, :show, :edit, :destroy]
 
   include Users::ShiftCoordinators::AccessControl
   before_action :check_valid_permisson, only: [:index, :show]
@@ -15,6 +15,12 @@ class Users::ShiftCoordinators::MembersController < Users::ApplicationController
 
   def edit
     authorize! @team
+  end
+
+  def destroy
+    authorize! @team
+    @member.destroy
+    redirect_to users_shift_coordinators_team_members_url(@member.team)
   end
 
   private

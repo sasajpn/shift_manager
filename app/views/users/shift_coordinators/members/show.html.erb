@@ -12,9 +12,16 @@
           <li class="list-group-item">
             <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
+          <li class="list-group-item">
+            <b>シフト調整権限</b> <span class="pull-right"><%= @member.shift_coordinator ? 'あり' : 'なし' %></span>
+          </li>
         </ul>
         <%= link_to 'シフトの登録', { controller: 'users/shift_coordinators/shift_registrations', action: 'new', member_id: @member.id }, class: "btn btn-primary btn-block" %>
         <hr>
+        <% if @team.manager?(current_user) %>
+          <%= link_to '役職変更', edit_users_shift_coordinators_member_path(@member), class: "btn btn-success btn-block" %>
+          <hr>
+        <% end %>
         <%= link_to 'メンバー一覧', { controller: 'users/shift_coordinators/members', action: 'index', team_id: @member.team.id }, class: 'btn btn-default btn-block' %>
       </div>
     </div>

@@ -145,6 +145,7 @@ RSpec.describe Users::ShiftCoordinators::MembersController, type: :controller do
     end
   end
 
+
   describe 'GET #edit' do
     context 'ログインしていない場合' do
       before do
@@ -172,6 +173,57 @@ RSpec.describe Users::ShiftCoordinators::MembersController, type: :controller do
       end
       context '他チームのマネージャーである場合' do
         let!(:other_member) { create(:member, :manager, :shift_coordinator, user: subject.current_user) }
+        it 'ユーザー用のホーム画面にリダイレクトする' do
+          get :edit, params: { id: member.id }
+          expect(response).to redirect_to users_home_index_url
+        end
+      end
+    end
+  end
+
+
+  describe 'DELETE #destroy' do
+    context 'ログインしていない場合' do
+      before do
+        sign_out subject.current_user
+      end
+      it 'ログイン画面にリダイレクトする' do
+        delete :destroy, params: { id: member.id }
+        expect(response).to redirect_to new_user_session_url
+      end
+    end
+    context 'ログインしている場合' do
+      context '自チームのマネージャーである場合' do
+        let!(:my_member) { create(:member, :manager, team: team, user: subject.current_user) }
+        it 'メンバーが削除される' do
+          expect {
+            delete :destroy, params: { id: member.id }
+          }.to change(Member, :count).by(-1)
+        end
+        it 'メンバーのindexページにリダイレクトされる' do
+          delete :destroy, params: { id: member.id }
+          expect(response).to redirect_to users_shift_coordinators_team_members_url(member.team)
+        end
+      end
+      context '自チームのマネージャーでない場合' do
+        let!(:my_member) { create(:member, :shift_coordinator, team: team, user: subject.current_user) }
+        it 'メンバーが削除されない' do
+          expect {
+            delete :destroy, params: { id: member.id }
+          }.to change(Member, :count).by(0)
+        end
+        it 'ユーザー用のホーム画面にリダイレクトする' do
+          get :edit, params: { id: member.id }
+          expect(response).to redirect_to users_home_index_url
+        end
+      end
+      context '他チームのマネージャーである場合' do
+        let!(:other_member) { create(:member, :manager, :shift_coordinator, user: subject.current_user) }
+        it 'メンバーが削除されない' do
+          expect {
+            delete :destroy, params: { id: member.id }
+          }.to change(Member, :count).by(0)
+        end
         it 'ユーザー用のホーム画面にリダイレクトする' do
           get :edit, params: { id: member.id }
           expect(response).to redirect_to users_home_index_url

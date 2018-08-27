@@ -6,7 +6,7 @@ class Api::V1::Users::ShiftCoordinators::MembersController < Api::V1::Users::App
   before_action :check_valid_permisson, only: [:show]
 
   def show
-    render json: @member, only: [:team_id, :calendar_color]
+    render json: @member, only: [:team_id, :calendar_color, :role, :shift_coordinator]
   end
 
   def update

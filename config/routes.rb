@@ -79,7 +79,7 @@ Rails.application.routes.draw do
         namespace :members do
           resources :unapprovals, except: [:new, :create]
         end
-        resources :members, only: [:index, :show, :edit] do
+        resources :members, only: [:index, :show, :edit, :destroy] do
           resources :shift_registrations, only: [:new, :edit, :destroy]
           resources :shift_submissions, only: [:show] do
             resources :shift_adjustments, only: [:new, :edit, :destroy]

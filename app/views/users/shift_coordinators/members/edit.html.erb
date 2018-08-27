@@ -1,5 +1,5 @@
-<%= javascript_pack_tag 'users/managers/members/edit' %>
-<%= stylesheet_pack_tag 'users/managers/members/edit' %>
+<%= javascript_pack_tag 'users/shift_coordinators/members/edit' %>
+<%= stylesheet_pack_tag 'users/shift_coordinators/members/edit' %>
 
 <div class="row">
   <div class="col-md-3">
@@ -16,9 +16,9 @@
             <b>シフト調整権限</b> <span class="pull-right"><%= @member.adjustment_ability %></span>
           </li>
         </ul>
-        <%= link_to '戻る', users_managers_member_path(@member), class: 'btn btn-default btn-block' %>
+        <%= link_to 'キャンセル', users_shift_coordinators_member_path(@member), class: 'btn btn-default btn-block' %>
         <hr>
-        <%= link_to '削除', users_managers_member_path(@member), method: :delete,
+        <%= link_to '削除', users_shift_coordinators_member_path(@member), method: :delete,
           data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
       </div>
     </div>
