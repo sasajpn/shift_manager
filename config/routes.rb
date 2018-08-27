@@ -102,6 +102,7 @@ Rails.application.routes.draw do
     resources :members, only: [:index, :show, :edit, :destroy], shallow: true do
       resources :shift_submissions, except: [:create, :update]
       resources :shift_adjustments, only: [:index]
+      resources :shift_registrations, only: [:show]
     end
     resources :line_connections, only: [:new, :create]
   end
@@ -180,7 +181,7 @@ Rails.application.routes.draw do
           scope module: :teams do
             resources :calendars, only: [:index]
           end
-          resources :members, only: [:show, :update] do
+          resources :members, only: [:show, :update], shallow: true do
             scope module: :members do
               resources :calendars, only: [:index]
             end

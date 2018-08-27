@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @member.team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>登録者</b> <span class="pull-right"><%= @shift_registration.account_name %></span>
+          </li>
+          <li class="list-group-item">
+            <b>勤務日</b> <span class="pull-right"><%= @shift_registration.registered_date_format %></span>
+          </li>
+          <li class="list-group-item">
+            <b>出勤時間</b> <span class="pull-right"><%= @shift_registration.registered_time %></span>
+          </li>
+        </ul>
+        <%= link_to 'シフトカレンダー', users_member_path(@member), class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
+  </div>
+</div>

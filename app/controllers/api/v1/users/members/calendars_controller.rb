@@ -10,4 +10,10 @@ class Api::V1::Users::Members::CalendarsController < Api::V1::Users::Application
     @shift_registrations = @member.shift_registrations
     render 'index', formats: [:json], handlers: [:jbuilder]
   end
+
+  private
+
+  def have_valid_permission?
+    @member.user == current_user
+  end
 end

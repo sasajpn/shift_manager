@@ -5,7 +5,8 @@ class Api::V1::Users::ShiftSubmissions::CalendarsController < Api::V1::Users::Ap
   before_action :check_valid_permisson, only: [:index]
 
   def index
-    @shift_submissions = @member.shift_submissions
+    @shift_submissions = @member.shift_submissions.unapprovals
+    @shift_adjustments = @member.shift_adjustments
     render 'index', formats: [:json], handlers: [:jbuilder]
   end
 

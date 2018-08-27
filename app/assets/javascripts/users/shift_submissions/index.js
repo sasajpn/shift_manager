@@ -24,7 +24,7 @@ $(function() {
     },
     eventClick: function(event, jsEvent, view) {
       if (view.type === 'listDay') {
-        window.location.href = '/users/shift_submissions/' + event.id
+        window.location.href = '/users/shift_submissions/' + event.shift_submission_id
       }
     }
   })

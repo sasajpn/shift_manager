@@ -17,14 +17,14 @@ RSpec.describe Api::V1::Users::Members::CalendarsController, type: :controller d
       end
     end
     context 'ログインしている場合' do
-      context 'ログイン済みのユーザーがチームに所属している場合' do
+      context 'メンバーがログイン済みのユーザーのものである場合' do
         it '200が返ってくる' do
           get :index, params: { member_id: member.id }
           expect(response).to be_success
           expect(response.status).to eq 200
         end
       end
-      context 'ログイン済みのユーザーがチームに所属していない場合' do
+      context 'メンバーがログイン済みのユーザーのものでない場合' do
         it '404が返ってくる' do
           get :index, params: { member_id: other_member.id }
           expect(response).not_to be_success

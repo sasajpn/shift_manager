@@ -33,6 +33,10 @@ class Shift < ApplicationRecord
     team.owner
   end
 
+  def account_name
+    account.name
+  end
+
   def start_min_of_day
     min_of_day(start_time)
   end

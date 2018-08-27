@@ -37,9 +37,6 @@
           '#1e90ff',
           '#c71585',
         ],
-        team: {
-          id: ''
-        },
         member: {
           id: document.getElementById('members_edit').dataset.member_id,
           calendarColor: ''
@@ -54,7 +51,7 @@
         updateMember(this.member).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/teams/' + this.team.id
+              window.location.href = '/users/members/' + this.member.id
               break;
             case '400':
               this.form.errorMessages = res.error_messages
@@ -66,7 +63,6 @@
     created () {
       getMember(this.member.id).then((res) => {
         this.member.calendarColor = res.calendar_color
-        this.team.id = res.team_id
       })
     }
   }
