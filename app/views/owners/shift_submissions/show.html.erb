@@ -22,8 +22,11 @@
             class: "btn btn-primary btn-block" %>
         <% end %>
         <hr>
-        <%= link_to 'シフト希望一覧', owners_team_shift_submissions_path(@member.team), class: 'btn btn-default btn-block' %>
-        <%= link_to 'シフト調整一覧', owners_team_shift_adjustments_path(@member.team), class: 'btn btn-default btn-block' %>
+        <% if params[:referrer] == 'members_shift_calendar' %>
+          <%= link_to '戻る', owners_member_path(@member), class: 'btn btn-default btn-block' %>
+        <% else %>
+          <%= link_to 'シフトカレンダー', owners_team_path(@member.team), class: 'btn btn-default btn-block' %>
+        <% end %>
       </div>
     </div>
   </div>

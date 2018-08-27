@@ -9,12 +9,7 @@ class Owners::TeamsController < Owners::ApplicationController
   end
 
   def show
-    @unapproved_members = @team.members.unapprovals
-    @members = @team.members.approvals.order(created_at: :asc).page(params[:page]).per(10)
-    respond_to do |format|
-      format.html
-      format.js
-    end
+    @unapprovals = @team.members.unapprovals
   end
 
   def edit

@@ -20,7 +20,14 @@
             <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
           </li>
         </ul>
-        <%= link_to "#{@member.user.name}のページ", owners_member_path(@member), class: 'btn btn-default btn-block' %>
+        <% if params[:referrer] == 'members_shift_calendar' %>
+          <%= link_to '戻る', owners_member_path(@member), class: 'btn btn-default btn-block' %>
+        <% else %>
+          <%= link_to 'シフトカレンダー', owners_team_path(@member.team), class: 'btn btn-default btn-block' %>
+        <% end %>
+        <hr>
+        <%= link_to '削除', owners_shift_registration_path(@shift_registration), method: :delete,
+          data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-danger btn-block' %>
       </div>
     </div>
   </div>

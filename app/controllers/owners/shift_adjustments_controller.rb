@@ -14,6 +14,7 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
   end
 
   def edit
+    @shift_submission = @shift_adjustment.shift_submission
   end
 
   def destroy

@@ -12,34 +12,30 @@
         </el-date-picker>
       </el-form-item>
       <el-form-item label="時刻" required>
-        <el-col :span="11">
-          <el-form-item>
-            <el-time-select
-              placeholder="開始時刻"
-              name="shift_adjustment[start_time]"
-              v-model="adjustmentStartTime"
-              :picker-options="{
-                start: submissionStartTime,
-                step: '00:10',
-                end: submissionEndTime
-              }">
-            </el-time-select>
-          </el-form-item>
+        <el-col>
+          <el-time-select
+            placeholder="開始時刻"
+            name="shift_adjustment[start_time]"
+            v-model="adjustmentStartTime"
+            :picker-options="{
+              start: submissionStartTime,
+              step: '00:10',
+              end: submissionEndTime
+            }">
+          </el-time-select>
         </el-col>
-        <el-col :span="11">
-          <el-form-item>
-            <el-time-select
-              placeholder="終了時刻"
-              name="shift_adjustment[end_time]"
-              v-model="adjustmentEndTime"
-              :picker-options="{
-                start: submissionStartTime,
-                step: '00:10',
-                end: submissionEndTime,
-                minTime: adjustmentStartTime
-              }">
-            </el-time-select>
-          </el-form-item>
+        <el-col>
+          <el-time-select
+            placeholder="終了時刻"
+            name="shift_adjustment[end_time]"
+            v-model="adjustmentEndTime"
+            :picker-options="{
+              start: submissionStartTime,
+              step: '00:10',
+              end: submissionEndTime,
+              minTime: adjustmentStartTime
+            }">
+          </el-time-select>
         </el-col>
       </el-form-item>
       <el-form-item>
