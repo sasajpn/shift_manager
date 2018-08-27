@@ -14,9 +14,6 @@
             <b>希望時間</b> <span class="pull-right"><%= @shift_submission.submitted_time %></span>
           </li>
         </ul>
-        <% if @shift_submission.user == current_user && !@shift_adjustment %>
-          <%= link_to '希望日時変更', edit_users_shift_submission_path(@shift_submission), class: "btn btn-success btn-block" %>
-        <% end %>
         <% if @shift_adjustment %>
           <%= link_to 'シフト調整内容変更', { controller: 'users/shift_coordinators/shift_adjustments', action: 'edit', id: @shift_adjustment.id },
             class: "btn btn-success btn-block" %>
