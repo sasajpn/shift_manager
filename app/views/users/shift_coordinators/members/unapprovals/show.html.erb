@@ -11,6 +11,8 @@
         <hr>
         <%= link_to '否認する', users_shift_coordinators_members_unapproval_path(@member), method: :delete,
           data: { confirm: 'この操作は取り消すことができません。本当に否認してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+        <hr>
+        <%= link_to '戻る', users_shift_coordinators_team_members_unapprovals_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
   </div>

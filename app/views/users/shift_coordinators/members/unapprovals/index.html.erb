@@ -5,7 +5,7 @@
         <h3 class="profile-username text-center"><%= @team.name %></h3>
         <ul class="list-group list-group-unbordered">
           <li class="list-group-item">
-            <b>従業員数</b> <span class="pull-right"><%= @team.members.count %></span>
+            <b>従業員数</b> <span class="pull-right"><%= @team.members.approvals.count %></span>
           </li>
           <li class="list-group-item">
             <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>

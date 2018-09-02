@@ -158,6 +158,7 @@ Rails.application.routes.draw do
             resources :members, only: [:show, :update] do
               scope module: :members do
                 resources :calendars, only: [:index]
+                resources :unapprovals, only: [:update]
               end
               resources :shift_submissions, only: [], shallow: true do
                 resources :shift_adjustments, only: [:show, :create, :update]
