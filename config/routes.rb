@@ -77,7 +77,7 @@ Rails.application.routes.draw do
       resources :teams, only: [:show], shallow: true do
         patch :update_identifier, on: :member
         namespace :members do
-          resources :unapprovals, except: [:new, :create]
+          resources :unapprovals, except: [:new, :create, :update]
         end
         resources :members, only: [:index, :show, :edit, :destroy] do
           resources :shift_registrations, only: [:new, :edit, :destroy]

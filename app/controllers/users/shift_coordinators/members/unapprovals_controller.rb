@@ -1,6 +1,6 @@
 class Users::ShiftCoordinators::Members::UnapprovalsController < Users::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update, :destroy]
-  before_action :set_team, only: [:index, :show, :edit, :update, :destroy]
+  before_action :set_member, only: [:show, :edit, :destroy]
+  before_action :set_team, only: [:index, :show, :edit, :destroy]
 
   include Users::ShiftCoordinators::AccessControl
   before_action :check_valid_permisson
@@ -13,14 +13,6 @@ class Users::ShiftCoordinators::Members::UnapprovalsController < Users::Applicat
   end
 
   def edit
-  end
-
-  def update
-    if @member.update(member_params)
-      redirect_to users_shift_coordinators_team_members_unapprovals_url(@member.team)
-    else
-      render :edit
-    end
   end
 
   def destroy
