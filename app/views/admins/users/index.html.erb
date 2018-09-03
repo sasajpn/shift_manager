@@ -16,7 +16,7 @@
           <% @users.each do |user| %>
             <tr>
               <td><%= link_to user.name, admins_user_path(user) %></td>
-              <td><%= user.members.count %></td>
+              <td><%= user.teams.count %></td>
             </tr>
           <% end %>
         </tbody>
