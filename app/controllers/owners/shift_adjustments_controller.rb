@@ -19,7 +19,7 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
 
   def destroy
     @shift_adjustment.destroy
-    redirect_to owners_team_shift_adjustments_url(@shift_adjustment.team)
+    redirect_to owners_team_url(@shift_adjustment.team)
   end
 
   private

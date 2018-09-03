@@ -11,8 +11,8 @@ json.array! @shift_adjustments do |shift_adjustment|
   shift_submission = shift_adjustment.shift_submission
   json.shift_submission_id shift_submission.id
   json.title "#{shift_adjustment.start_time}~#{shift_adjustment.end_time} #{shift_submission.member.name}"
-  json.start Chronic.parse("#{shift_adjustment.shift_submission.submitted_date} #{shift_adjustment.start_time}")
-  json.end Chronic.parse("#{shift_adjustment.shift_submission.submitted_date} #{shift_adjustment.end_time}")
+  json.start Chronic.parse("#{shift_submission.submitted_date} #{shift_adjustment.start_time}")
+  json.end Chronic.parse("#{shift_submission.submitted_date} #{shift_adjustment.end_time}")
   json.editable false
 end
 
