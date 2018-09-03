@@ -70,7 +70,7 @@
     },
     methods: {
       onSubmit() {
-        createTeam(this.owner).then((res) => {
+        createTeam(this.owner.id, this.team).then((res) => {
           switch (res.status) {
             case '200':
               window.location.href = '/admins/owners/' + this.owner.id
