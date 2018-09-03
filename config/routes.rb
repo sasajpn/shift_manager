@@ -115,7 +115,10 @@ Rails.application.routes.draw do
 
       # 管理者
       namespace :admins do
-        resources :teams, only: [:edit], shallow: true do
+        resources :owners, only: [], shallow: true do
+          resources :teams, only: [:create]
+        end
+        resources :teams, only: [:show, :edit], shallow: true do
           resources :members do
             resources :shift_submissions, only: [:new, :edit]
           end
