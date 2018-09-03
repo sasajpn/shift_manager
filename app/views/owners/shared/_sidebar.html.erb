@@ -5,9 +5,7 @@
     <ul class="sidebar-menu tree" data-widget="tree">
       <li class="header"><%= current_owner.name %></li>
       </li>
-      <% if current_owner.teams.any? %>
-        <li><%= link_to 'チーム一覧', owners_teams_path %></li>
-      <% end %>
+      <li><%= link_to 'ホーム', owners_home_index_path %></li>
       <% if current_owner.teams.count < current_owner.max_team_count %>
         <li><%= link_to 'チーム登録', new_owners_team_path %></li>
       <% end %>

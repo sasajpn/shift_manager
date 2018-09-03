@@ -4,10 +4,6 @@ class Owners::TeamsController < Owners::ApplicationController
   include Owners::AccessControl
   before_action :check_valid_permisson, only: [:show, :edit, :update_identifier]
 
-  def index
-    @teams = current_owner.teams.order(created_at: :desc).page(params[:page]).per(15)
-  end
-
   def show
     @unapprovals = @team.members.unapprovals
   end
