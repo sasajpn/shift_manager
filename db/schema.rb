@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20180531121947) do
     t.string   "open_time",                        null: false
     t.string   "close_time",                       null: false
     t.boolean  "all_day",          default: false, null: false
+    t.boolean  "active",           default: true,  null: false
     t.integer  "max_member_count", default: 0,     null: false
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
