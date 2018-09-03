@@ -35,7 +35,6 @@ Rails.application.routes.draw do
       resources :teams, except: [:index], shallow: true do
         patch :update_identifier, on: :member
         resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
         resources :members do
           resources :shift_submissions, except: [:index] do
             resources :shift_adjustments, except: [:index]
@@ -139,10 +138,9 @@ Rails.application.routes.draw do
             end
             resources :shift_registrations, only: [:show, :create, :update]
           end
-          resources :shift_submissions, only: [:index, :show] do
+          resources :shift_submissions, only: [:show] do
             resources :shift_adjustments, only: [:show, :create, :update]
           end
-          resources :shift_adjustments, only: [:index]
         end
         resources :members, only: [:edit, :update]
       end

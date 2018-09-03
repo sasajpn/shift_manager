@@ -1,15 +1,10 @@
 class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::ApplicationController
   before_action :set_shift_adjustment, only: [:show, :update]
   before_action :set_shift_submission, only: [:create]
-  before_action :set_team, only: [:index, :create]
+  before_action :set_team, only: [:create]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show, :create, :update]
-
-  def index
-    @shift_adjustments = @team.shift_adjustments
-    render 'index', formats: [:json], handlers: [:jbuilder]
-  end
+  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_adjustment, only: [:start_time, :end_time]
