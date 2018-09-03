@@ -115,6 +115,7 @@ Rails.application.routes.draw do
 
       # 管理者
       namespace :admins do
+        resources :users, only: [:index]
         resources :owners, only: [], shallow: true do
           resources :teams, only: [:show, :create, :update] do
             resources :members, only: [:create]
