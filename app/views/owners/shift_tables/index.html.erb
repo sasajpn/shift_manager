@@ -1,0 +1,12 @@
+<%= javascript_pack_tag 'owners/shift_tables/app' %>
+<%= stylesheet_pack_tag 'owners/shift_tables/app' %>
+
+<div>
+  <%= link_to '戻る', owners_team_path(@team), class: 'btn btn-primary' %>
+</div>
+<br>
+<div class="box">
+   <div class="box-body">
+    <div id="shift_tables" data-team_id="<%= @team.id %>"></div>
+  </div>
+</div>

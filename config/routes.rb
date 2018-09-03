@@ -66,6 +66,7 @@ Rails.application.routes.draw do
       resources :shift_submissions, except: [:new, :create, :update] do
         resources :shift_adjustments, except: [:index, :create, :update]
       end
+      resources :shift_tables, only: [:index]
     end
   end
 

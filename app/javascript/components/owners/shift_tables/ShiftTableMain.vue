@@ -43,7 +43,7 @@
       </tbody>
     </table>
     <div v-else class="callout callout-danger" v-cloak>
-      <p>データがありません</p>
+      <p>シフトの希望、または調整されたシフトがありません</p>
     </div>
   </div>
 </template>
