@@ -118,7 +118,7 @@ Rails.application.routes.draw do
         resources :users, only: [:index]
         resources :owners, only: [], shallow: true do
           resources :teams, only: [:show, :create, :update] do
-            resources :members, only: [:create]
+            resources :members, only: [:show, :create, :update]
           end
         end
         resources :teams, only: [], shallow: true do
