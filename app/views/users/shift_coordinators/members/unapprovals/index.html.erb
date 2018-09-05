@@ -13,7 +13,12 @@
           <li class="list-group-item">
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
+          <li class="list-group-item">
+            <b>登録可能従業員残数</b> <span class="pull-right"><%= @team.registerable_count %></span>
+          </li>
         </ul>
+        <input class="btn btn-success btn-block" type="button" value="登録可能従業員数追加" onclick="alert('管理者にお問い合わせください');">
+        <hr>
         <%= link_to 'シフト一覧', users_shift_coordinators_team_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
