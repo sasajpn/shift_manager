@@ -15,7 +15,7 @@ class Member < ApplicationRecord
   validates :user_id,
     uniqueness: { scope: [:team_id], message: 'は既に従業員に登録されています' }
 
-  validates_with MemberMaxCountValidator, on: :update, if: :is_approved?
+  validates_with MemberMaxCountValidator, if: :is_approved?
 
   enum role: { part_timer: 0, full_timer: 1, manager: 2 }
 

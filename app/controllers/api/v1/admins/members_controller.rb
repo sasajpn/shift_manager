@@ -31,7 +31,7 @@ class Api::V1::Admins::MembersController < Api::V1::Admins::ApplicationControlle
 
   def member_params
     params.fetch(:member, {}).permit(
-      :user_id, :role, :shift_coordinator, :calendar_color
+      :user_id, :role, :shift_coordinator, :calendar_color, :approve
     )
   end
 

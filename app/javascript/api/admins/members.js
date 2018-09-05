@@ -14,7 +14,8 @@ export function createMember (teamId, member) {
         user_id: member.userId,
         role: member.role,
         shift_coordinator: member.shiftCoordinator,
-        calendar_color: member.calendarColor
+        calendar_color: member.calendarColor,
+        approve: true
       }
     },
     url: 'teams/' + teamId + '/members'
