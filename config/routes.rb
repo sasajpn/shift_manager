@@ -64,9 +64,8 @@ Rails.application.routes.draw do
       resources :members, except: [:new, :create, :update] do
         resources :shift_registrations, only: [:show, :new, :edit, :destroy]
       end
-      resources :shift_adjustments, only: [:index]
-      resources :shift_submissions, except: [:new, :create, :update] do
-        resources :shift_adjustments, except: [:index, :create, :update]
+      resources :shift_submissions, only: [:show] do
+        resources :shift_adjustments, only: [:new, :edit, :destroy]
       end
       resources :shift_tables, only: [:index]
     end
@@ -138,7 +137,7 @@ Rails.application.routes.draw do
 
       # オーナー
       namespace :owners do
-        resources :teams, only: [:show, :create, :edit, :update], shallow: true do
+        resources :teams, only: [:show, :create, :update], shallow: true do
           scope module: :teams do
             resources :calendars, only: [:index]
           end
@@ -146,7 +145,7 @@ Rails.application.routes.draw do
           namespace :members do
             resources :unapprovals, only: [:update]
           end
-          resources :members, only: [:show, :edit, :update] do
+          resources :members, only: [:show, :update] do
             scope module: :members do
               resources :calendars, only: [:index]
             end
@@ -156,7 +155,6 @@ Rails.application.routes.draw do
             resources :shift_adjustments, only: [:show, :create, :update]
           end
         end
-        resources :members, only: [:edit, :update]
       end
 
       # ユーザー
@@ -178,9 +176,6 @@ Rails.application.routes.draw do
               end
               resources :shift_registrations, only: [:show, :create, :update]
             end
-            namespace :shift_submissions do
-              resources :calendars, only: [:index]
-            end
             resources :shift_tables, only: [:index]
           end
         end
@@ -198,10 +193,7 @@ Rails.application.routes.draw do
             scope module: :members do
               resources :calendars, only: [:index]
             end
-            resources :shift_submissions, except: [:index, :destroy]
-            namespace :shift_submissions do
-              resources :calendars, only: [:index]
-            end
+            resources :shift_submissions, only: [:show, :create, :update]
           end
         end
       end
