@@ -144,6 +144,9 @@ Rails.application.routes.draw do
             resources :calendars, only: [:index]
           end
           resources :shift_tables, only: [:index]
+          namespace :members do
+            resources :unapprovals, only: [:update]
+          end
           resources :members, only: [:show, :edit, :update] do
             scope module: :members do
               resources :calendars, only: [:index]
