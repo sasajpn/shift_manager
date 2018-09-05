@@ -26,8 +26,8 @@
           <% end %>
         <% end %>
         <hr>
-        <%= link_to 'シフト表', users_shift_coordinators_team_shift_tables_path(@team), class: 'btn btn-default btn-block' %>
         <%= link_to 'メンバー一覧', { controller: "users/shift_coordinators/members", action: 'index', team_id: @team.id }, class: 'btn btn-default btn-block' %>
+        <%= link_to 'シフト表', users_shift_coordinators_team_shift_tables_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>
     <div class="box">

@@ -1,6 +1,9 @@
 class Users::ShiftCoordinators::ShiftTablesController < Users::ApplicationController
   before_action :set_team, only: [:index]
 
+  include Users::ShiftCoordinators::AccessControl
+  before_action :check_valid_permisson, only: [:index]
+
   def index
 
   end

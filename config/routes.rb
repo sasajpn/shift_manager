@@ -181,8 +181,7 @@ Rails.application.routes.draw do
             namespace :shift_submissions do
               resources :calendars, only: [:index]
             end
-            resources :shift_submissions, only: [:index]
-            resources :shift_adjustments, only: [:index]
+            resources :shift_tables, only: [:index]
           end
         end
 
