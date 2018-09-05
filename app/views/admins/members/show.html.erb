@@ -17,6 +17,7 @@
           </li>
         </ul>
         <%= link_to '登録内容変更', edit_admins_member_path(@member), class: "btn btn-success btn-block" %>
+        <%= link_to '従業員一覧', admins_team_path(@member.team), class: "btn btn-default btn-block" %>
       </div>
     </div>
   </div>

@@ -20,6 +20,10 @@
             <b>登録可能従業員残数</b> <span class="pull-right"><%= @team.registerable_count %></span>
           </li>
         </ul>
+        <%= link_to admins_team_members_unapprovals_path(@team), class: 'btn btn-default btn-block' do %>
+          未承認の従業員一覧
+          <small class="label pull-right bg-red"><%= @unapprovals.count %></small>
+        <% end %>
         <%= link_to '登録内容変更', edit_admins_team_path(@team), class: "btn btn-success btn-block" %>
         <%= link_to '従業員登録', new_admins_team_member_path(@team), class: "btn btn-primary btn-block" %>
       </div>

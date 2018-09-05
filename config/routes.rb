@@ -35,6 +35,9 @@ Rails.application.routes.draw do
       resources :teams, except: [:index], shallow: true do
         patch :update_identifier, on: :member
         resources :shift_submissions, only: [:index]
+        namespace :members do
+          resources :unapprovals, except: [:new, :create]
+        end
         resources :members do
           resources :shift_submissions, except: [:index] do
             resources :shift_adjustments, except: [:index]
@@ -122,6 +125,9 @@ Rails.application.routes.draw do
           end
         end
         resources :teams, only: [], shallow: true do
+          namespace :members do
+            resources :unapprovals, only: [:update]
+          end
           resources :members do
             resources :shift_submissions, only: [:new, :edit]
           end

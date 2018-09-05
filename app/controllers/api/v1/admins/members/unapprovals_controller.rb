@@ -1,9 +1,5 @@
-class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V1::Users::ApplicationController
+class Api::V1::Admins::Members::UnapprovalsController < Api::V1::Admins::ApplicationController
   before_action :set_member, only: [:update]
-  before_action :set_team, only: [:update]
-
-  include Api::Users::AccessControl
-  before_action :check_valid_permisson
 
   def update
     if @member.update(member_params)
@@ -17,17 +13,13 @@ class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V
 
   private
 
-  def have_valid_permission?
-    @team.manager?(current_user) && !@member.approve
-  end
-
   def member_params
     params.fetch(:member, {}).permit(
-      :approve, :role, :shift_coordinator
+        :approve, :role, :shift_coordinator
     )
   end
 
-  def set_team
-    @team ||= @member.team
+  def set_member
+    @member = Member.find_by(id: params[:id])
   end
 end

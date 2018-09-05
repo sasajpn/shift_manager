@@ -1,7 +1,9 @@
-class Owners::Members::UnapprovalsController < Owners::MembersController
+class Owners::Members::UnapprovalsController < Owners::ApplicationController
+  before_action :set_member, except: [:index]
+  before_action :set_team
 
   include Owners::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show, :edit, :update, :destroy]
+  before_action :check_valid_permisson
 
   def index
     @members = @team.members.unapprovals.order(created_at: :desc).page(params[:page]).per(15)

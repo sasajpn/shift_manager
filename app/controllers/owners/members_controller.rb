@@ -22,10 +22,6 @@ class Owners::MembersController < Owners::ApplicationController
 
   private
 
-  def set_member
-    @member = Member.find(params[:id])
-  end
-
   def set_team
     super
     @team ||= @member.team
