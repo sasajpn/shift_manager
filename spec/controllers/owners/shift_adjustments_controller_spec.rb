@@ -86,7 +86,7 @@ RSpec.describe Owners::ShiftAdjustmentsController, type: :controller do
         end
         it 'シフト調整のindexページにリダイレクトされる' do
           delete :destroy, params: { id: shift_adjustment.id }
-          expect(response).to redirect_to owners_team_shift_adjustments_url(shift_adjustment.team)
+          expect(response).to redirect_to owners_team_url(shift_adjustment.team)
         end
       end
       context 'シフト調整がログイン済みのオーナーのチームのものでない場合' do
