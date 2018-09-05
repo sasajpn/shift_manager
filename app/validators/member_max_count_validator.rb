@@ -1,7 +1,7 @@
 class MemberMaxCountValidator < ActiveModel::Validator
   def validate(record)
     team = record.team
-    member_count = team.members.count
+    member_count = team.members.approvals.count
     max_member_count = team.max_member_count
 
     if member_count > max_member_count
