@@ -87,43 +87,6 @@ RSpec.describe Owners::Members::UnapprovalsController, type: :controller do
     end
   end
 
-  describe 'PATCH #update' do
-    context 'ログインしていない場合' do
-      before do
-        sign_out subject.current_owner
-      end
-      it 'ログイン画面にリダイレクトする' do
-        patch :update, params: { id: member.id }
-        expect(response).to redirect_to new_owner_session_url
-      end
-    end
-    context 'ログインしている場合' do
-      context 'メンバーがログイン済みのオーナーのものである場合' do
-        it 'メンバーの登録内容が更新される' do
-          patch :update, params: { id: member.id, member: { role: 'manager', approve: true } }
-          member.reload
-          expect(member.role).to eq 'manager'
-          expect(member.approve).to eq true
-        end
-        it 'メンバーのindexページにリダイレクトされる' do
-          patch :update, params: { id: member.id }
-          expect(response).to redirect_to owners_team_members_url(member.team)
-        end
-      end
-      context 'メンバーがログイン済みのオーナーのものでない場合' do
-        it  'メンバーの登録内容が更新されない' do
-          patch :update, params: { id: other_member.id, member: { approve: true } }
-          other_member.reload
-          expect(member.approve).to eq false
-        end
-        it 'オーナー用のホーム画面にリダイレクトする' do
-          patch :update, params: { id: other_member.id }
-          expect(response).to redirect_to owners_home_index_url
-        end
-      end
-    end
-  end
-
   describe 'DELETE #destroy' do
     context 'ログインしていない場合' do
       before do
