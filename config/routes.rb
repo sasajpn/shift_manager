@@ -88,8 +88,7 @@ Rails.application.routes.draw do
             resources :shift_adjustments, only: [:new, :edit, :destroy]
           end
         end
-        resources :shift_submissions, only: [:index]
-        resources :shift_adjustments, only: [:index]
+        resources :shift_tables, only: [:index]
       end
     end
 
