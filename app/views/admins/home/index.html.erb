@@ -14,20 +14,6 @@
     </div>
   </div>
   <div class="col-lg-3 col-xs-6">
-    <div class="small-box bg-green">
-      <div class="inner">
-        <h3><%= Team.count %></h3>
-        <p>全チーム数</p>
-      </div>
-      <div class="icon">
-        <span class="ion-home"></span>
-      </div>
-      <%= link_to admins_teams_path, class: 'small-box-footer' do %>
-        チーム一覧 <i class="fa fa-arrow-circle-right"></i>
-      <% end %>
-    </div>
-  </div>
-  <div class="col-lg-3 col-xs-6">
     <div class="small-box bg-red">
       <div class="inner">
         <h3><%= User.count %></h3>
@@ -38,6 +24,20 @@
       </div>
       <%= link_to admins_users_path, class: 'small-box-footer' do %>
         ユーザー一覧 <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3><%= Team.count %></h3>
+        <p>全チーム数</p>
+      </div>
+      <div class="icon">
+        <span class="ion-home"></span>
+      </div>
+      <%= link_to admins_teams_path, class: 'small-box-footer' do %>
+        チーム一覧 <i class="fa fa-arrow-circle-right"></i>
       <% end %>
     </div>
   </div>
