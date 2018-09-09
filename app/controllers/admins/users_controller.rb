@@ -1,12 +1,12 @@
 class Admins::UsersController < Admins::ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
     @users = User.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
-    @members = @user.members.order(created_at: :desc).page(params[:page]).per(15)
+    @members = @user.approval_members.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def new
@@ -34,6 +34,8 @@ class Admins::UsersController < Admins::ApplicationController
   end
 
   def destroy
+    @user.destroy
+    redirect_to admins_users_url
   end
 
   private
@@ -52,6 +54,6 @@ class Admins::UsersController < Admins::ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:id])
+    @user = User.find_by(id: params[:id])
   end
 end

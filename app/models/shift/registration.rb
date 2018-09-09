@@ -5,4 +5,8 @@ class Shift::Registration < Shift
 
   validates :registered_date,
     presence: true
+
+  def end_time_parse
+    time_parse(registered_date, end_time)
+  end
 end

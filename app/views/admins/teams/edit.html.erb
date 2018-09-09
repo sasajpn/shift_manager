@@ -15,6 +15,9 @@
           </li>
         </ul>
         <%= link_to 'キャンセル', admins_team_path(@team), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '削除', admins_team_path(@team), method: :delete,
+                    data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
       </div>
     </div>
   </div>

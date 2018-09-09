@@ -16,20 +16,12 @@ class Shift::Adjustment < Shift
   after_create :submission_is_approved
   after_destroy :submission_is_unapproved
 
-  scope :futures, -> {
-    all.select(&:future?)
-  }
-
   scope :adjusted_date, -> date {
     joins(:shift_submission).where("shift_submissions.submitted_date = ?", date)
   }
 
   def end_time_parse
     time_parse(shift_submission.submitted_date, end_time)
-  end
-
-  def future?
-    end_time_parse > Time.current
   end
 
   private

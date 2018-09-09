@@ -16,6 +16,10 @@ class Shift < ApplicationRecord
     joins(:member).merge(Member.part_timer)
   }
 
+  scope :futures, -> {
+    all.select(&:future?)
+  }
+
   def self.access_shifts(role)
     case role
     when 'part_timer'
@@ -35,6 +39,10 @@ class Shift < ApplicationRecord
 
   def account_name
     account.name
+  end
+
+  def future?
+    end_time_parse > Time.current
   end
 
   def start_min_of_day
