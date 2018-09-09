@@ -19,4 +19,14 @@
     json.borderColor shift_adjustment.member.calendar_color
     json.editable false
   end
+
+  json.array! member.shift_registrations do |shift_registration|
+    json.title "#{shift_registration.start_time}~#{shift_registration.end_time}"
+    json.start Chronic.parse("#{shift_registration.registered_date} #{shift_registration.start_time}")
+    json.end Chronic.parse("#{shift_registration.registered_date} #{shift_registration.end_time}")
+    json.textColor shift_registration.member.calendar_font_color
+    json.backgroundColor shift_registration.member.calendar_color
+    json.borderColor shift_registration.member.calendar_color
+    json.editable false
+  end
 end
