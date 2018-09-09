@@ -6,7 +6,7 @@ class OverlapShiftRegistrationValidator < ActiveModel::Validator
                                        .select {|registration| registration.start_time_parse < record.end_time_parse}
                                        .select {|registration| registration.end_time_parse > record.start_time_parse}
 
-      overlap_shift_adjustment = record.memmber.shift_adjustments
+      overlap_shift_adjustment = record.member.shift_adjustments
                                      .select {|adjustment| adjustment.start_time_parse < record.end_time_parse}
                                      .select {|adjustment| adjustment.end_time_parse > record.start_time_parse}
 
