@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get :destroy_unconfirmed_email, on: :collection
       patch :destroy_unconfirmed_email, on: :collection
     end
+    resource :deactivation, only: [:show, :destroy]
     resources :teams, except: [:index, :update], shallow: true do
       namespace :members do
         resources :unapprovals, only: [:index, :show, :edit, :destroy]
