@@ -103,8 +103,7 @@ Rails.application.routes.draw do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
     end
     resources :members, only: [:index, :show, :edit, :destroy], shallow: true do
-      resources :shift_submissions, except: [:create, :update]
-      resources :shift_adjustments, only: [:index]
+      resources :shift_submissions, except: [:index, :create, :update]
       resources :shift_registrations, only: [:show]
     end
     resources :line_connections, only: [:new, :create]

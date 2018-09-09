@@ -19,6 +19,10 @@ class User < ApplicationRecord
 
   before_destroy :remain_future_shift_adjustment, prepend: true
 
+  def name
+    last_name + ' ' + first_name
+  end
+
   private
 
   def remain_future_shift_adjustment
