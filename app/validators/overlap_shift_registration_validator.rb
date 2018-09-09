@@ -6,21 +6,21 @@ class OverlapShiftRegistrationValidator < ActiveModel::Validator
                                        .select {|registration| registration.start_time_parse < record.end_time_parse}
                                        .select {|registration| registration.end_time_parse > record.start_time_parse}
 
-      overlap_shift_submission = record.member.shift_submissions
-                                     .select {|submission| submission.start_time_parse < record.end_time_parse}
-                                     .select {|submission| submission.end_time_parse > record.start_time_parse}
+      overlap_shift_adjustment = record.memmber.shift_adjustments
+                                     .select {|adjustment| adjustment.start_time_parse < record.end_time_parse}
+                                     .select {|adjustment| adjustment.end_time_parse > record.start_time_parse}
 
-      if overlap_shift_submission.any? || overlap_shift_registration.any?
+      if overlap_shift_registration.any? || overlap_shift_adjustment.any?
         overlap_shift_registration.each do |registration|
           record.errors.add(
               :base,
               "#{registration.start_time_format}〜#{registration.end_time_format}ですでにシフトの登録がされています"
           )
         end
-        overlap_shift_submission.each do |submission|
+        overlap_shift_adjustment.each do |adjustment|
           record.errors.add(
               :base,
-              "#{submission.start_time_format}〜#{submission.end_time_format}ですでにシフトの希望がされています"
+              "#{adjustment.start_time_format}〜#{adjustment.end_time_format}ですでにシフトが調整されています"
           )
         end
       end
