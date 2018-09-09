@@ -6,25 +6,25 @@ class ShiftSubmission < ApplicationRecord
   has_one :team, through: :member
   has_one :user, through: :member
   has_one :shift_adjustment, class_name: 'Shift::Adjustment',
-    dependent: :destroy,
-    inverse_of: :shift_submission
+          dependent: :destroy,
+          inverse_of: :shift_submission
 
   accepts_nested_attributes_for :shift_adjustment
 
   validates :submitted_date, :start_time, :end_time,
-    presence: true
+            presence: true
 
   validates :submitted_date,
-    only_after_today: true
+            only_after_today: true
 
   validates :start_time,
-    time_format: true,
-    time_order: { attr: 'end_time' },
-    outside_business_hours: true
+            time_format: true,
+            time_order: {attr: 'end_time'},
+            outside_business_hours: true
 
   validates :end_time,
-    time_format: true,
-    outside_business_hours: true
+            time_format: true,
+            outside_business_hours: true
 
   validates_with OverlapShiftSubmissionValidator
 
