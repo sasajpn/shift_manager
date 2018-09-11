@@ -3,7 +3,6 @@ class Api::V1::Owners::Members::CalendarsController < Api::V1::Owners::Applicati
   before_action :set_team, only: [:index]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:index]
 
   def index
     @shift_submissions = @member.shift_submissions.unapprovals

@@ -2,7 +2,7 @@ class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   before_action :set_team, only: [:show, :update]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:show, :update]
+  before_action :check_valid_permisson, except: [:create]
 
   def show
     render json: @team, only: [:name, :open_time, :close_time]

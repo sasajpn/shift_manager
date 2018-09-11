@@ -2,7 +2,6 @@ class Api::V1::Owners::Members::UnapprovalsController < Api::V1::Owners::Applica
   before_action :set_member, only: [:update]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:update]
 
   def update
     if @member.update(member_params)
@@ -17,7 +16,8 @@ class Api::V1::Owners::Members::UnapprovalsController < Api::V1::Owners::Applica
   private
 
   def have_valid_permission?
-    @member.team_owner == current_owner && !@member.approve? && @member.team.active?
+    team = @member.team
+    team.owner == current_owner && !@member.approve? && team.active?
   end
 
   def member_params

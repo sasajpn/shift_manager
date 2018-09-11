@@ -2,7 +2,6 @@ class Api::V1::Owners::Teams::CalendarsController < Api::V1::Owners::Application
   before_action :set_team, only: [:index]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:index]
 
   def index
     @shift_submissions = @team.shift_submissions.unapprovals

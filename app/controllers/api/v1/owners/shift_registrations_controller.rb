@@ -4,7 +4,6 @@ class Api::V1::Owners::ShiftRegistrationsController < Api::V1::Owners::Applicati
   before_action :set_team, only: [:create]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_registration, only: [:registered_date, :start_time, :end_time]

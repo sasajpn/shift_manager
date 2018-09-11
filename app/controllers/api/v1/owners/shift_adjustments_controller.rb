@@ -4,7 +4,6 @@ class Api::V1::Owners::ShiftAdjustmentsController < Api::V1::Owners::Application
   before_action :set_team, only: [:create]
 
   include Api::Owners::AccessControl
-  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_adjustment, only: [:start_time, :end_time]
