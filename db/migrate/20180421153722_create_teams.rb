@@ -7,7 +7,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
       t.string :open_time, null: false
       t.string :close_time, null: false
       t.boolean :all_day, default: false, null: false
-      t.boolean :active, default: true, null: false
+      t.datetime :active_until, null: false
       t.integer :max_member_count, null: false, default: 0
 
       t.timestamps
