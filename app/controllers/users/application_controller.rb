@@ -14,7 +14,7 @@ class Users::ApplicationController < ApplicationController
   end
 
   def set_member
-    @member = Member.find_by(id: params[:member_id])
+    @member = Member.find_by(id: params[:id] || params[:member_id])
   end
 
   def set_current_member

@@ -4,7 +4,6 @@ class Users::ShiftCoordinators::ShiftRegistrationsController < Users::Applicatio
   before_action :set_team, only: [:new, :edit, :destroy]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:new, :edit, :destroy]
 
   def new
   end

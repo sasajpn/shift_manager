@@ -5,7 +5,6 @@ class Users::ShiftCoordinators::ShiftAdjustmentsController < Users::ApplicationC
   before_action :set_member, only: [:new, :edit, :destroy]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:new, :edit, :destroy]
 
   def new
   end

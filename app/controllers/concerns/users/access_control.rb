@@ -2,6 +2,10 @@ module Users
   module AccessControl
     extend ActiveSupport::Concern
 
+    included do
+      before_action :check_valid_permisson
+    end
+
     def check_valid_permisson
       unless have_valid_permission?
         flash[:error] = 'リクエストされたページへのアクセス権限がありません'
@@ -11,12 +15,17 @@ module Users
 
     private
 
+    def access_member
+      @member || (eval "@#{controller_name.singularize}")
+    end
+
     def have_valid_permission?
-      if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
-        @member.user == current_user
-      else
-        (eval "@#{controller_name.singularize}.user") == current_user
-      end
+      access_member.user == current_user && access_member.team.active?
+      # if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
+      #   @member.user == current_user
+      # else
+      #   (eval "@#{controller_name.singularize}.user") == current_user
+      # end
     end
   end
 end

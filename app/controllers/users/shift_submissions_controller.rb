@@ -4,7 +4,6 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
   before_action :set_team, only: [:index, :show, :new, :edit]
 
   include Users::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show, :new, :edit, :destroy]
 
   def index
   end

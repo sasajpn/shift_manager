@@ -3,7 +3,7 @@ class Users::ShiftCoordinators::MembersController < Users::ApplicationController
   before_action :set_team, only: [:index, :show, :edit, :destroy]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show]
+  before_action :check_valid_permisson, except: [:edit, :destroy]
 
   def index
     member = @team.member(current_user)

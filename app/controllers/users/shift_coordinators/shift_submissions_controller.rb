@@ -4,7 +4,6 @@ class Users::ShiftCoordinators::ShiftSubmissionsController < Users::ApplicationC
   before_action :set_team, only: [:show]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:show]
 
   def show
     @shift_adjustment = @shift_submission.shift_adjustment

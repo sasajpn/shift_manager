@@ -3,7 +3,7 @@ class Users::ShiftCoordinators::TeamsController < Users::ApplicationController
   before_action :set_member, only: [:show, :update_identifier]
 
   include Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:show]
+  before_action :check_valid_permisson, except: [:update_identifier]
 
   def show
     @members = @team.members.access_members(@member.role).order(created_at: :desc).page(params[:page]).per(15)

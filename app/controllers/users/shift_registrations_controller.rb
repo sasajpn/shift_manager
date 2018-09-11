@@ -3,15 +3,8 @@ class Users::ShiftRegistrationsController < Users::ApplicationController
   before_action :set_member, only: [:show]
 
   include Users::AccessControl
-  before_action :check_valid_permisson, only: [:show]
 
   def show
-  end
-
-  private
-
-  def have_valid_permission?
-    @member.user == current_user
   end
 
   def set_shift_registration

@@ -24,9 +24,9 @@ class Users::ShiftCoordinators::Members::UnapprovalsController < Users::Applicat
 
   def have_valid_permission?
     if action_name == 'index'
-      @team.manager?(current_user)
+      @team.manager?(current_user) && @team.active?
     else
-      @team.manager?(current_user) && !@member.approve
+      @team.manager?(current_user) && !@member.approve && @team.active?
     end
   end
 

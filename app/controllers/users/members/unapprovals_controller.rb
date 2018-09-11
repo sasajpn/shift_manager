@@ -2,7 +2,7 @@ class Users::Members::UnapprovalsController < Users::ApplicationController
   before_action :set_member, only: [:show, :destroy]
 
   include Users::AccessControl
-  before_action :check_valid_permisson, only: [:show, :destroy]
+  before_action :check_valid_permisson, except: [:index, :new]
 
   def index
     @members = current_user.unapproval_members.order(created_at: :asc).page(params[:page]).per(15)
@@ -23,10 +23,6 @@ class Users::Members::UnapprovalsController < Users::ApplicationController
   private
 
   def have_valid_permission?
-    @member.user == current_user
-  end
-
-  def set_member
-    @member = Member.find(params[:id])
+    @member.user == current_user && @member.team.active? && !@member.approve
   end
 end
