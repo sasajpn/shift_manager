@@ -34,12 +34,14 @@
                 <th>名前</th>
                 <th>従業員数</th>
                 <th>認証コード</th>
+                <th>有効期限</th>
               </tr>
               <% @teams.each do |team| %>
                 <tr>
                   <td><%= link_to team.name, admins_team_path(team) %></td>
                   <td><%= team.members.count %></td>
                   <td><%= team.identifier %></td>
+                  <td><%= team.active_until_format %></td>
                 </tr>
               <% end %>
             </tbody>

@@ -37,6 +37,14 @@
             }">
           </el-time-select>
         </el-form-item>
+        <el-form-item label="有効期限">
+          <el-date-picker
+            v-model="team.active_until"
+            type="date"
+            placeholder="有効期限を選択してください"
+            :picker-options="pickerOptions">
+          </el-date-picker>
+        </el-form-item>
       </el-form-item>
       <el-form-item label="登録可能従業員数">
         <el-input-number
@@ -52,7 +60,7 @@
 </template>
 
 <script>
-  import { getTeam, updateTeam } from 'api/admins/teams.js'
+  import {getTeam, updateTeam} from 'api/admins/teams.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -61,11 +69,25 @@
     },
     data() {
       return {
+        pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() < Date.now();
+          },
+          shortcuts: [{
+            text: '1ヵ月後',
+            onClick(picker) {
+              const date = new Date();
+              date.setMonth(date.getMonth() + 1);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
         team: {
           id: document.getElementById('teams_edit').dataset.team_id,
           name: '',
           openTime: '',
           closeTime: '',
+          active_until: null,
           maxMemberCount: ''
         },
         form: {
@@ -87,11 +109,12 @@
         })
       }
     },
-    created () {
+    created() {
       getTeam(this.team.id).then((res) => {
         this.team.name = res.name
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
+        this.team.active_until = res.active_until
         this.team.maxMemberCount = res.max_member_count
       })
     }

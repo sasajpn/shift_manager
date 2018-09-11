@@ -17,6 +17,9 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
           <li class="list-group-item">
+            <b>有効期限</b> <span class="pull-right"><%= @team.active_until_format %></span>
+          </li>
+          <li class="list-group-item">
             <b>登録可能従業員残数</b> <span class="pull-right"><%= @team.registerable_count %></span>
           </li>
         </ul>

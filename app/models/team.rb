@@ -15,6 +15,12 @@ class Team < ApplicationRecord
   validates_with TeamMaxCountValidator, on: :create
 
   before_create :create_identifier
+  before_create :active_until_is_next_month
+  before_create :max_member_count_is_five
+
+  def active?
+    active_until >= Time.current
+  end
 
   def member(user)
     members.find_by(user_id: user.id)
@@ -54,5 +60,13 @@ class Team < ApplicationRecord
 
   def create_identifier
     self.identifier = SecureRandom.hex(5)
+  end
+
+  def active_until_is_next_month
+    self.active_until = Time.current.next_month
+  end
+
+  def max_member_count_is_five
+    self.max_member_count = 5
   end
 end

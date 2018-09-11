@@ -3,11 +3,11 @@ class Api::V1::Admins::TeamsController < Api::V1::Admins::ApplicationController
   before_action :set_owner, only: [:create]
 
   def show
-    render json: @team, only: [:name, :open_time, :close_time, :max_member_count]
+    render json: @team, only: [:name, :open_time, :close_time, :active_until, :max_member_count]
   end
 
   def create
-    @team = @owner.teams.build(team_params)
+    @team = @owner.teams.build(create_params)
     if @team.save
       @success_message = 'チームを作成しました。'
       render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
@@ -18,7 +18,7 @@ class Api::V1::Admins::TeamsController < Api::V1::Admins::ApplicationController
   end
 
   def update
-    if @team.update(team_params)
+    if @team.update(update_params)
       @success_message = 'チームの登録内容を変更しました。'
       render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
     else
@@ -29,9 +29,15 @@ class Api::V1::Admins::TeamsController < Api::V1::Admins::ApplicationController
 
   private
 
-  def team_params
+  def create_params
     params.fetch(:team, {}).permit(
-      :name, :open_time, :close_time, :max_member_count
+      :name, :open_time, :close_time
+    )
+  end
+
+  def update_params
+    params.fetch(:team, {}).permit(
+      :name, :open_time, :close_time, :active_until, :max_member_count
     )
   end
 

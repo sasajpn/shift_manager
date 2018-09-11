@@ -13,8 +13,7 @@ export function createTeam (ownerId, team) {
       team: {
         name: team.name,
         open_time: team.openTime,
-        close_time: team.closeTime,
-        max_member_count: team.maxMemberCount
+        close_time: team.closeTime
       }
     },
     url: 'owners/' + ownerId + '/teams'
@@ -29,6 +28,7 @@ export function updateTeam (team) {
         name: team.name,
         open_time: team.openTime,
         close_time: team.closeTime,
+        active_until: team.active_until,
         max_member_count: team.maxMemberCount
       }
     },
