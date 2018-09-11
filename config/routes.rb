@@ -26,6 +26,9 @@ Rails.application.routes.draw do
 
 # WEB
 
+  # トップページ
+  root 'home#index'
+
   # 管理者
   namespace :admins do
     resources :home, only: [:index]
