@@ -4,7 +4,6 @@ class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationCo
   before_action :set_team, only: [:create]
 
   include Api::Users::AccessControl
-  before_action :check_valid_permisson, only: [:show, :create, :update]
 
   def show
     render json: @shift_submission, only: [:submitted_date, :start_time, :end_time]

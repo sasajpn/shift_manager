@@ -2,7 +2,7 @@ class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V
   before_action :set_member, only: [:update]
   before_action :set_team, only: [:update]
 
-  include Api::Users::AccessControl
+  include Api::Users::ShiftCoordinators::AccessControl
   before_action :check_valid_permisson
 
   def update
@@ -18,7 +18,7 @@ class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V
   private
 
   def have_valid_permission?
-    @team.manager?(current_user) && !@member.approve
+    @team.manager?(current_user) && !@member.approve && @team.active?
   end
 
   def member_params

@@ -2,7 +2,6 @@ class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
   before_action :set_member, only: [:show, :update]
 
   include Api::Users::AccessControl
-  before_action :check_valid_permisson, only: [:show, :update]
 
   def show
     render json: @member, only: [:team_id, :calendar_color]
@@ -24,9 +23,5 @@ class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
     params.fetch(:member, {}).permit(
       :calendar_color
     )
-  end
-
-  def set_member
-    @member = Member.find(params[:id])
   end
 end

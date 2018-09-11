@@ -2,21 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be9ff708-93dd-46f6-aaa1-c22f066b186a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/members/calendars_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/members/calendars_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/members_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/members_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/calendars_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/calendars_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/unapprovals_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/unapprovals_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_adjustments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_adjustments_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_registrations_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_tables_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_tables_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/teams/calendars_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/teams/calendars_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_submissions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/shift_submissions_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/v1/users/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/v1/users/teams_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/api/users/access_control.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/api/users/access_control.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/api/users/shift_coordinators/access_control.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/api/users/shift_coordinators/access_control.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/application_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/members/deactivations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/members/deactivations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/members/unapprovals_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/members/unapprovals_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/members_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/members_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_adjustments_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_adjustments_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_registrations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_submissions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_submissions_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/teams_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_coordinators/teams_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_registrations_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_registrations_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/users/shift_submissions_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/users/shift_submissions_controller.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -55,7 +56,7 @@
           <entry key="jbuilder" value="4" />
           <entry key="js" value="28" />
           <entry key="pid" value="1" />
-          <entry key="rb" value="213" />
+          <entry key="rb" value="235" />
           <entry key="vue" value="10" />
           <entry key="yml" value="2" />
         </counts>
@@ -65,7 +66,7 @@
           <entry key="JavaScript" value="28" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="RHTML" value="71" />
-          <entry key="Ruby" value="217" />
+          <entry key="Ruby" value="239" />
           <entry key="Vue.js" value="9" />
           <entry key="YAML" value="2" />
         </counts>
@@ -75,7 +76,7 @@
           <entry key="erb" value="1222" />
           <entry key="jbuilder" value="57" />
           <entry key="js" value="126" />
-          <entry key="rb" value="4783" />
+          <entry key="rb" value="4809" />
           <entry key="txt" value="12" />
           <entry key="vue" value="238" />
           <entry key="yml" value="112" />
@@ -86,7 +87,7 @@
           <entry key="JavaScript" value="126" />
           <entry key="PLAIN_TEXT" value="12" />
           <entry key="RHTML" value="1222" />
-          <entry key="Ruby" value="4840" />
+          <entry key="Ruby" value="4866" />
           <entry key="Vue.js" value="238" />
           <entry key="YAML" value="112" />
         </counts>
@@ -99,37 +100,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/calendars_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/teams_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+            <state relative-caret-position="60">
+              <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_tables_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
+            <state relative-caret-position="45">
+              <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/unapprovals_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -149,20 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spec/factories/teams.rb" />
-        <option value="$PROJECT_DIR$/app/views/admins/owners/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/javascript/components/admins/teams/edit.vue" />
-        <option value="$PROJECT_DIR$/app/views/admins/teams/show.html.erb" />
-        <option value="$PROJECT_DIR$/app/decorators/team_decorator.rb" />
-        <option value="$PROJECT_DIR$/app/javascript/api/admins/teams.js" />
-        <option value="$PROJECT_DIR$/app/controllers/api/v1/admins/teams_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/team.rb" />
-        <option value="$PROJECT_DIR$/db/seeds.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/owners/deactivations_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/owners/shift_tables_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/owners/teams_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/owners/members/unapprovals_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/owners/members_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/owners/shift_adjustments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/owners/shift_registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/owners/shift_submissions_controller.rb" />
@@ -191,15 +178,29 @@
         <option value="$PROJECT_DIR$/app/controllers/users/members/deactivations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/members/unapprovals_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_adjustments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_registrations_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_submissions_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/teams_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/members/calendars_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/members_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_submissions_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/application_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/teams_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/concerns/api/users/access_control.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/concerns/api/users/shift_coordinators/access_control.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/teams/calendars_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_adjustments_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_registrations_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/unapprovals_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/calendars_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_tables_controller.rb" />
       </list>
     </option>
   </component>
@@ -274,6 +275,51 @@
               <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="shift_coordinators" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="v1" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="shift_coordinators" type="462c0819:PsiDirectoryNode" />
+              <item name="members" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
               <item name="concerns" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -282,7 +328,26 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
               <item name="concerns" type="462c0819:PsiDirectoryNode" />
-              <item name="owners" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="concerns" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="shift_manager" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="concerns" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="shift_coordinators" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="shift_manager" type="b2602c69:ProjectViewProjectNode" />
@@ -712,12 +777,12 @@
       <workItem from="1536226109524" duration="1281000" />
       <workItem from="1536395476920" duration="1495000" />
       <workItem from="1536455167794" duration="10222000" />
-      <workItem from="1536669344915" duration="11567000" />
+      <workItem from="1536669344915" duration="12345000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37472000" />
+    <option name="totallyTimeSpent" value="38250000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="813" extended-state="6" />
@@ -774,110 +839,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/owners/shift_adjustments_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/owners/shift_registrations_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/owners/shift_submissions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/owners/members/unapprovals_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="148" column="43" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/owners/members/calendars_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/members/calendars_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/teams/calendars_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/api/owners/access_control.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/members_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/shift_adjustments_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/shift_tables_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/teams_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/members/unapprovals_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/owners/shift_submissions_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/api/v1/owners/shift_submissions_controller_spec.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="40" lean-forward="true" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/spec/factories/shift_submissions.rb">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/users/shift_coordinators/teams_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-110">
@@ -1058,13 +1019,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/members_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1093,13 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/teams_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1107,17 +1054,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
+        <state relative-caret-position="225">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/members/unapprovals_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/users/shift_coordinators/shift_tables_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
+        <state relative-caret-position="15">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/members/calendars_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/members/unapprovals_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="30" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="67" lean-forward="true" selection-start-column="67" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/users/access_control.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="6" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_submissions_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" column="5" lean-forward="true" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/members_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/teams/calendars_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_registrations_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-285">
+          <caret line="5" column="54" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_adjustments_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/api/users/access_control.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="32" lean-forward="true" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/users/shift_coordinators/access_control.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/concerns/api/users/shift_coordinators/access_control.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="3" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="2" lean-forward="true" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/calendars_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="54" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/members/unapprovals_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/api/v1/users/shift_coordinators/shift_tables_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="54" selection-start-line="3" selection-start-column="54" selection-end-line="3" selection-end-column="54" />
         </state>
       </provider>
     </entry>

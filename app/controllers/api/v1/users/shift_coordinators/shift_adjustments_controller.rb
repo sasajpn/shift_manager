@@ -5,7 +5,6 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
   before_action :set_team, only: [:index, :show, :create, :update]
 
   include Api::Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:index, :show, :create, :update]
 
   def index
     member = @team.member(current_user)

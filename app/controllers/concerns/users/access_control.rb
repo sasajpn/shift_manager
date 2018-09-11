@@ -21,11 +21,6 @@ module Users
 
     def have_valid_permission?
       access_member.user == current_user && access_member.team.active?
-      # if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
-      #   @member.user == current_user
-      # else
-      #   (eval "@#{controller_name.singularize}.user") == current_user
-      # end
     end
   end
 end

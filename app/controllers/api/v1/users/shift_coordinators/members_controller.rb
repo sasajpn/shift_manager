@@ -3,7 +3,7 @@ class Api::V1::Users::ShiftCoordinators::MembersController < Api::V1::Users::App
   before_action :set_team, only: [:show, :update]
 
   include Api::Users::ShiftCoordinators::AccessControl
-  before_action :check_valid_permisson, only: [:show]
+  before_action :check_valid_permisson, except: [:update]
 
   def show
     render json: @member, only: [:team_id, :calendar_color, :role, :shift_coordinator]
