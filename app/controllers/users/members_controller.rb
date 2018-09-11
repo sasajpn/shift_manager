@@ -15,9 +15,6 @@ class Users::MembersController < Users::ApplicationController
   def edit
   end
 
-  def destroy
-  end
-
   private
 
   def member_params

@@ -101,8 +101,9 @@ Rails.application.routes.draw do
     resource :deactivation, only: [:show, :destroy]
     namespace :members do
       resources :unapprovals, only: [:index, :show, :new, :destroy]
+      resources :deactivations, only: [:show, :destroy], param: :member_id
     end
-    resources :members, only: [:index, :show, :edit, :destroy], shallow: true do
+    resources :members, only: [:index, :show, :edit], shallow: true do
       resources :shift_submissions, except: [:index, :create, :update]
       resources :shift_registrations, only: [:show]
     end

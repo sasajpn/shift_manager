@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">脱退処理はいかなる理由でも取り消すことができません</h3>
+      </div>
+      <div class="box-body">
+        <ul>
+          <li>脱退した場合、そのチームに登録していたすべてのシフト情報は削除されます。</li>
+        </ul>
+      </div>
+      <div class="box-footer">
+        <%= link_to 'キャンセル', users_member_path(@member), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '脱退する', users_members_deactivation_path(@member), method: :delete,
+                    data: { confirm: '本当によろしいですか？' }, class: 'btn btn-danger btn-block' %>
+      </div>
+    </div>
+  </div>
+</div>

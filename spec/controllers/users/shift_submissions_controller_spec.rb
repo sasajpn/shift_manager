@@ -9,31 +9,6 @@ RSpec.describe Users::ShiftSubmissionsController, type: :controller do
   let!(:shift_submission) { create(:shift_submission, :tomorrow, :eight_am_to_three_pm, member: member) }
   let!(:other_shift_submission) { create(:shift_submission, :tomorrow, :eight_am_to_three_pm) }
 
-  describe 'GET #index' do
-    context 'ログインしていない場合' do
-      before do
-        sign_out subject.current_user
-      end
-      it 'ログイン画面にリダイレクトする' do
-        get :index, params: { member_id: member.id }
-        expect(response).to redirect_to new_user_session_url
-      end
-    end
-    context 'ログインしている場合' do
-      context 'メンバーがログイン済みのユーザーのものである場合' do
-        it 'indexテンプレートがレンダリングされる' do
-          get :index, params: { member_id: member.id }
-          expect(response).to render_template :index
-        end
-      end
-      context 'メンバーがログイン済みのユーザーのものでない場合' do
-        it 'ユーザー用のホーム画面にリダイレクトする' do
-          get :index, params: { member_id: other_member.id }
-          expect(response).to redirect_to users_home_index_url
-        end
-      end
-    end
-  end
 
   describe 'GET #show' do
     context 'ログインしていない場合' do
@@ -132,7 +107,7 @@ RSpec.describe Users::ShiftSubmissionsController, type: :controller do
         end
         it 'シフト希望のindexページにリダイレクトされる' do
           delete :destroy, params: { id: shift_submission.id }
-          expect(response).to redirect_to users_member_shift_submissions_url(shift_submission.member)
+          expect(response).to redirect_to users_member_url(shift_submission.member)
         end
       end
       context 'シフト希望がログイン済みのユーザーのものでない場合' do

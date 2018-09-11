@@ -85,4 +85,10 @@ class Member < ApplicationRecord
       self.shift_coordinator = true
     end
   end
+
+  def remain_future_shift_adjustment
+    if self.shift_adjustments.futures.any? || self.shift_registrations.futures.any?
+      throw :abort
+    end
+  end
 end

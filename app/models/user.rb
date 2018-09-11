@@ -27,7 +27,6 @@ class User < ApplicationRecord
 
   def remain_future_shift_adjustment
     if self.shift_adjustments.futures.any? || self.shift_registrations.futures.any?
-      errors.add(:base, '未来に調整済みのシフトが残っているため、退会できません')
       throw :abort
     end
   end
