@@ -2,6 +2,10 @@ module Owners
   module AccessControl
     extend ActiveSupport::Concern
 
+    included do
+      before_action :check_valid_permisson
+    end
+
     def check_valid_permisson
       unless have_valid_permission?
         flash[:error] = 'リクエストされたページへのアクセス権限がありません'
@@ -11,12 +15,12 @@ module Owners
 
     private
 
+    def access_team
+      @team || (eval "@#{controller_name.singularize}.team")
+    end
+
     def have_valid_permission?
-      if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
-        @team.owner == current_owner
-      else
-        (eval "@#{controller_name.singularize}.team_owner") == current_owner
-      end
+      access_team.owner == current_owner && access_team.active?
     end
   end
 end

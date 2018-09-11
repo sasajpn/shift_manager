@@ -21,9 +21,18 @@ RSpec.describe Owners::Members::UnapprovalsController, type: :controller do
     end
     context 'ログインしている場合' do
       context 'チームがログイン済みのオーナーのものである場合' do
-        it 'indexテンプレートがレンダリングされる' do
-          get :index, params: { team_id: team.id }
-          expect(response).to render_template :index
+        context 'チームの有効期限がきれていない場合' do
+          it 'indexテンプレートがレンダリングされる' do
+            get :index, params: { team_id: team.id }
+            expect(response).to render_template :index
+          end
+        end
+        context 'チームの有効期限が切れている場合' do
+          it 'オーナー用のホーム画面にリダイレクトする' do
+            team.update(active_until: Time.current.yesterday)
+            get :index, params: { team_id: team.id }
+            expect(response).to redirect_to owners_home_index_url
+          end
         end
       end
       context 'チームがログイン済みのオーナーのものでない場合' do
@@ -47,9 +56,18 @@ RSpec.describe Owners::Members::UnapprovalsController, type: :controller do
     end
     context 'ログインしている場合' do
       context 'メンバーがログイン済みのオーナーのものである場合' do
-        it 'indexテンプレートがレンダリングされる' do
-          get :show, params: { id: member.id }
-          expect(response).to render_template :show
+        context 'チームの有効期限が切れていない場合' do
+          it 'showテンプレートがレンダリングされる' do
+            get :show, params: { id: member.id }
+            expect(response).to render_template :show
+          end
+        end
+        context 'チームの有効期限が切れている場合' do
+          it 'オーナー用のホーム画面にリダイレクトする' do
+            team.update(active_until: Time.current.yesterday)
+            get :show, params: { id: member.id }
+            expect(response).to redirect_to owners_home_index_url
+          end
         end
       end
       context 'メンバーがログイン済みのオーナーのものでない場合' do
@@ -73,9 +91,18 @@ RSpec.describe Owners::Members::UnapprovalsController, type: :controller do
     end
     context 'ログインしている場合' do
       context 'メンバーがログイン済みのオーナーのものである場合' do
-        it 'editテンプレートがレンダリングされる' do
-          get :edit, params: { id: member.id }
-          expect(response).to render_template :edit
+        context 'チームの有効期限が切れていない場合' do
+          it 'editテンプレートがレンダリングされる' do
+            get :edit, params: { id: member.id }
+            expect(response).to render_template :edit
+          end
+        end
+        context 'チームの有効期限が切れている場合' do
+          it 'オーナー用のホーム画面にリダイレクトする' do
+            team.update(active_until: Time.current.yesterday)
+            get :edit, params: { id: member.id }
+            expect(response).to redirect_to owners_home_index_url
+          end
         end
       end
       context 'メンバーがログイン済みのオーナーのものでない場合' do
@@ -99,14 +126,29 @@ RSpec.describe Owners::Members::UnapprovalsController, type: :controller do
     end
     context 'ログインしている場合' do
       context 'メンバーがログイン済みのオーナーのものである場合' do
-        it 'メンバーが削除される' do
-          expect {
+        context 'チームの有効期限が切れていない場合' do
+          it 'メンバーが削除される' do
+            expect {
+              delete :destroy, params: { id: member.id }
+            }.to change(Member, :count).by(-1)
+          end
+          it 'チームのshowページにリダイレクトされる' do
             delete :destroy, params: { id: member.id }
-          }.to change(Member, :count).by(-1)
+            expect(response).to redirect_to owners_team_url(member.team)
+          end
         end
-        it 'チームのshowページにリダイレクトされる' do
-          delete :destroy, params: { id: member.id }
-          expect(response).to redirect_to owners_team_url(member.team)
+        context 'チームの有効期限が切れている場合' do
+          it 'メンバーが削除されない' do
+            team.update(active_until: Time.current.yesterday)
+            expect {
+              delete :destroy, params: { id: member.id }
+            }.to change(Member, :count).by(0)
+          end
+          it 'オーナー用のホーム画面にリダイレクトする' do
+            team.update(active_until: Time.current.yesterday)
+            delete :destroy, params: { id: member.id }
+            expect(response).to redirect_to owners_home_index_url
+          end
         end
       end
       context 'メンバーがログイン済みのオーナーのものでない場合' do

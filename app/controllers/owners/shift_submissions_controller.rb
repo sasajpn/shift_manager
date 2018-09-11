@@ -2,7 +2,6 @@ class Owners::ShiftSubmissionsController < Owners::ApplicationController
   before_action :set_shift_submission, only: [:show]
 
   include Owners::AccessControl
-  before_action :check_valid_permisson, only: [:show]
 
   def show
     @member = @shift_submission.member

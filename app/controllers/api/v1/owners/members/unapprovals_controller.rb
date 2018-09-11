@@ -17,7 +17,7 @@ class Api::V1::Owners::Members::UnapprovalsController < Api::V1::Owners::Applica
   private
 
   def have_valid_permission?
-    @member.team_owner == current_owner && !@member.approve?
+    @member.team_owner == current_owner && !@member.approve? && @member.team.active?
   end
 
   def member_params

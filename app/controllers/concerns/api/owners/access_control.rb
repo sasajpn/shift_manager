@@ -11,12 +11,18 @@ module Api
 
       private
 
+      def access_team
+        @team || (eval "@#{controller_name.singularize}.team")
+      end
+
       def have_valid_permission?
-        if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
-          @team.owner == current_owner
-        else
-          (eval "@#{controller_name.singularize}.team_owner") == current_owner
-        end
+        access_team.owner == current_owner && access_team.active?
+        # if controller_name == 'teams' || ['index', 'new', 'create'].include?(action_name)
+        #   @team.owner == current_owner && @team.active?
+        # else
+        #   team = (eval "@#{controller_name.singularize}.team")
+        #   team.owner == current_owner && team.active?
+        # end
       end
     end
   end

@@ -4,7 +4,6 @@ class Owners::ShiftRegistrationsController < Owners::ApplicationController
   before_action :set_team, only: [:new, :edit]
 
   include Owners::AccessControl
-  before_action :check_valid_permisson, only: [:new, :edit, :destroy]
 
   def new
   end

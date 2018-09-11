@@ -2,7 +2,6 @@ class Owners::TeamsController < Owners::ApplicationController
   before_action :set_team, only: [:show, :edit, :update_identifier]
 
   include Owners::AccessControl
-  before_action :check_valid_permisson, only: [:show, :edit, :update_identifier]
 
   def show
     @unapprovals = @team.members.unapprovals

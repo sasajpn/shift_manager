@@ -58,5 +58,7 @@ shift_submission = Member.first.shift_submissions.create(
 )
 shift_submission.create_shift_adjustment(
   start_time: '12:00',
-  end_time: '15:00'
+  end_time: '15:00',
+  account_type: 'Owner',
+  account_id: team.first.owner.id
 )
