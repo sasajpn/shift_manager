@@ -66,4 +66,6 @@ config/deploy/*
 config/deploy.rb
 config/unicorn.rb
 
+.idea/*
+
 dump.rdb
