@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: root
   password: password
-  socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: shift_manager_production
-  username: shift_manager
-  password: <%= ENV['SHIFT_MANAGER_DATABASE_PASSWORD'] %>
