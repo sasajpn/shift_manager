@@ -42,6 +42,9 @@ gem 'dotenv-rails'
 # LINE
 gem 'line-bot-api'
 
+# Application Server
+gem 'unicorn'
+
 gem 'webpacker', github: 'rails/webpacker'
 
 group :development, :test do
