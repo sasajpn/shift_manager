@@ -1,4 +1,4 @@
-import { getShiftAdjustment } from 'api/users/shift_adjustments.js'
+import { getShiftAdjustment } from 'api/users/shift_coordinators/shift_adjustments.js'
 
 const state = {
   id: '',

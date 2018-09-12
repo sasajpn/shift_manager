@@ -2,14 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   layout 'users/register'
   before_action :configure_sign_up_params, only: [:create]
 
-  def destroy
-    if current_user.destroy
-      super
-    else
-      render 'users/users/edit', layout: 'users/application'
-    end
-  end
-
   protected
 
   def configure_sign_up_params

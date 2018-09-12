@@ -6,6 +6,12 @@ export function editMember (memberId) {
   })
 }
 
+export function getMember (memberId) {
+  return apiClient({
+    url: '/members/' + memberId
+  })
+}
+
 export function updateMember (member) {
   return apiClient({
     method: 'patch',

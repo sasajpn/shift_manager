@@ -9,12 +9,15 @@ import * as _ from 'lodash'
 import ElementUI from 'element-ui'
 import locale from 'element-ui/lib/locale/lang/ja'
 
+import moment from 'moment'
+
 const library = {
   Vue: Vue,
   Vuex: Vuex,
   '_': _,
   ElementUI: ElementUI,
-  locale: locale
+  locale: locale,
+  moment: moment
 }
 
 _.each(library, function(plugin, namespace) {

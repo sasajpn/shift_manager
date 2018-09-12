@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShiftManager</title>
+    <title><%= Settings.title %></title>
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
     <%= stylesheet_link_tag    'admins/application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag 'admins/application' %>
+    <%= javascript_pack_tag 'admins/application' %>
   </head>
 
   <body class="skin-blue wysihtml5-supported">
@@ -21,6 +22,5 @@
         </section>
       </div>
     </div>
-    <%= javascript_pack_tag 'admins/application' %>
   </body>
 </html>

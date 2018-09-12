@@ -1,14 +1,10 @@
 class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
-  before_action :set_member, only: [:show, :edit, :update]
-  before_action -> { authorize! @member }, only: [:update]
+  before_action :set_member, only: [:show, :update]
+
+  include Api::Users::AccessControl
 
   def show
-    @shift_submissions = @member.shift_submissions.unapprovals
-    @shift_adjustments = @member.shift_adjustments
-    @shift_registrations = @member.shift_registrations
-  end
-
-  def edit
+    render json: @member, only: [:team_id, :calendar_color]
   end
 
   def update
@@ -27,9 +23,5 @@ class Api::V1::Users::MembersController < Api::V1::Users::ApplicationController
     params.fetch(:member, {}).permit(
       :calendar_color
     )
-  end
-
-  def set_member
-    @member = Member.find(params[:id])
   end
 end

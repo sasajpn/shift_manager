@@ -1,5 +1,5 @@
 class Admins::TeamsController < Admins::ApplicationController
-  before_action :set_team, only: [:show, :edit, :update, :update_identifier]
+  before_action :set_team, only: [:show, :edit, :update, :destroy, :update_identifier]
   before_action :set_owner, only: [:new, :create]
 
   def index
@@ -7,7 +7,8 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def show
-    @members = @team.members.order(created_at: :desc).page(params[:page]).per(15)
+    @members = @team.members.approvals.order(created_at: :desc).page(params[:page]).per(15)
+    @unapprovals = @team.members.unapprovals
   end
 
   def new
@@ -35,6 +36,8 @@ class Admins::TeamsController < Admins::ApplicationController
   end
 
   def destroy
+    @team.destroy
+    redirect_to admins_teams_url(@team)
   end
 
   def update_identifier

@@ -1,19 +1,37 @@
+<%= javascript_pack_tag 'admins/members/new' %>
+<%= stylesheet_pack_tag 'admins/members/new' %>
+
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>従業員数</b> <span class="pull-right"><%= @team.members.count %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>登録可能従業員残数</b> <span class="pull-right"><%= @team.registerable_count %></span>
+          </li>
+        </ul>
+        <%= link_to 'キャンセル', admins_team_path(@team), class: "btn btn-default btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
     <div class="box box-default">
-      <%= bootstrap_form_for [:admins, @team, @member] do |f| %>
-        <div class="box-header with-border">
-          <h3 class="box-title">従業員登録</h3>
-        </div>
-        <div class="box-body">
-          <%= f.alert_message "以下のエラー内容を修正してください" %>
-          <%= f.collection_select :user_id, User.all, :id, :email %>
-          <%= f.select :role, Member.roles_i18n.invert %>
-        </div>
-        <div class="box-footer">
-          <%= f.submit '登録', class: 'btn btn-primary btn-block' %>
-        </div>
-      <% end %>
+      <div class="box-header with-border">
+        <h3 class="box-title">メンバー登録</h3>
+      </div>
+      <div class="box-body">
+        <div id="members_new" data-team_id="<%= @team.id %>"></div>
+      </div>
     </div>
   </div>
 </div>

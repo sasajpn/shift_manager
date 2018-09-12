@@ -2,7 +2,26 @@
 <%= stylesheet_pack_tag 'admins/teams/edit' %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @team.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>営業開始時間</b> <span class="pull-right"><%= @team.open_time %></span>
+          </li>
+          <li class="list-group-item">
+            <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
+          </li>
+        </ul>
+        <%= link_to 'キャンセル', admins_team_path(@team), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '削除', admins_team_path(@team), method: :delete,
+                    data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
     <div class="box box-default">
       <div class="box-header with-border">
         <h3 class="box-title">チーム登録内容変更</h3>

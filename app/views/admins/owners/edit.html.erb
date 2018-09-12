@@ -12,9 +12,11 @@
           <%= f.text_field :first_name_kana %>
           <%= f.text_field :last_name %>
           <%= f.text_field :first_name %>
+          <%= f.number_field :max_team_count, min: 0 %>
         </div>
         <div class="box-footer">
           <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
+          <%= link_to 'キャンセル', admins_owner_path(@owner), class: 'btn btn-default btn-block' %>
         </div>
       <% end %>
     </div>

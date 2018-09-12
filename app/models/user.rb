@@ -8,8 +8,9 @@ class User < ApplicationRecord
   has_many :approval_members, -> { where(approve: true) }, dependent: :destroy, class_name: 'Member'
   has_many :unapproval_members, -> { where(approve: false) }, dependent: :destroy, class_name: 'Member'
   has_many :teams, through: :approval_members
-  has_many :shift_submissions, through: :members
-  has_many :shift_adjustments, through: :shift_submissions
+  has_many :shift_submissions, through: :approval_members
+  has_many :shift_registrations, through: :approval_members, :class_name => 'Shift::Registration'
+  has_many :shift_adjustments, through: :shift_submissions, class_name: 'Shift::Adjustment'
 
   validates :last_name_kana, :first_name_kana, :last_name, :first_name,
     presence: true
@@ -25,8 +26,7 @@ class User < ApplicationRecord
   private
 
   def remain_future_shift_adjustment
-    if self.shift_adjustments.futures.any?
-      errors.add(:base, '未来に調整済みのシフトが残っているため、退会できません')
+    if self.shift_adjustments.futures.any? || self.shift_registrations.futures.any?
       throw :abort
     end
   end

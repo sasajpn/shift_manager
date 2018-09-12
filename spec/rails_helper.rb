@@ -8,6 +8,9 @@ require 'rspec/rails'
 
 ActiveRecord::Migration.maintain_test_schema!
 
+require 'devise'
+require File.expand_path("spec/support/controller_macros.rb")
+
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
@@ -15,4 +18,6 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
 end

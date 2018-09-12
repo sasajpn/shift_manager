@@ -1,7 +1,5 @@
 class Users::ApplicationController < ApplicationController
-  include Banken
   layout 'users/application'
-  rescue_from Banken::NotAuthorizedError, with: :user_not_authorized
   before_action :authenticate_user!
 
   def current_user
@@ -15,14 +13,16 @@ class Users::ApplicationController < ApplicationController
     @team = Team.find_by(id: params[:team_id])
   end
 
+  def set_member
+    @member = Member.find_by(id: params[:id] || params[:member_id])
+  end
+
   def set_current_member
     @current_member = current_user.approval_members.find_by(team_id: @team.id)
   end
 
-  def user_not_authorized(exception)
-    loyalty_name = exception.loyalty.class.to_s.underscore
-
-    flash[:error] = t "#{loyalty_name}.#{exception.query}", scope: "banken", default: :default
+  def account_not_authorized(exception)
+    super
     redirect_to(request.referrer || users_home_index_url)
   end
 end

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import { editMember, updateMember } from 'api/owners/members.js'
+  import { getMember, updateMember } from 'api/owners/members.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -73,7 +73,7 @@
       }
     },
     created () {
-      editMember(this.member.id).then((res) => {
+      getMember(this.member.id).then((res) => {
         this.member.role = res.role
         this.member.shift_coordinator = res.shift_coordinator
       })

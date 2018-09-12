@@ -1,13 +1,14 @@
 class Owners::MembersController < Owners::ApplicationController
-  before_action :set_member, only: [:show, :edit, :destroy]
-  before_action :set_team, only: [:index, :new, :create]
+  before_action :set_member, except: [:index]
+  before_action :set_team
+
+  include Owners::AccessControl
 
   def index
     @members = @team.members.approvals.order(created_at: :desc).page(params[:page]).per(15)
   end
 
   def show
-    @shift_submissions = @member.shift_submissions.unapprovals.order(submitted_date: :desc).page(params[:page]).per(15)
   end
 
   def edit
@@ -20,11 +21,8 @@ class Owners::MembersController < Owners::ApplicationController
 
   private
 
-  def set_member
-    @member = Member.find(params[:id])
-  end
-
   def set_team
-    @team = Team.find(params[:team_id])
+    super
+    @team ||= @member.team
   end
 end

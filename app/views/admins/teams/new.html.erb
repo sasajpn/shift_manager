@@ -2,7 +2,23 @@
 <%= stylesheet_pack_tag 'admins/teams/new' %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <h3 class="profile-username text-center"><%= @owner.name %></h3>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>登録チーム数</b> <span class="pull-right"><%= @owner.teams.count %></span>
+          </li>
+          <li class="list-group-item">
+            <b>登録可能チーム残数</b> <span class="pull-right"><%= @owner.registerable_count %></span>
+          </li>
+        </ul>
+        <%= link_to 'キャンセル', admins_owner_path(@owner), class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9">
     <div class="box box-default">
       <div class="box-header with-border">
         <h3 class="box-title">チーム登録</h3>

@@ -14,28 +14,28 @@
           </template>
         </tr>
       </thead>
-      <tbody>
-        <tr v-for="member in members">
-          <td rowspan="2" style="white-space: nowrap">{{ member.name }}</td>
+      <tbody v-for="member in members">
+        <tr>
+          <th rowspan="2" style="white-space: nowrap">{{ member.name }}</th>
           <template v-for="(min_of_days, hour) in team.business_hours">
             <template v-for="min_of_day in min_of_days">
               <td
-                v-if="findBy(member.shift_adjustments, min_of_day)"
+                v-if="findBy(member.shifts, min_of_day)"
                 v-bind:style="{ backgroundColor: '#303133' }"
-                colspan="1" rowspan="1"></td>
-              <td
-                v-else
-                colspan="1" rowspan="1"></td>
+                colspan="1" rowspan="1">
+              </td>
+              <td v-else colspan="1" rowspan="1"></td>
             </template>
           </template>
         </tr>
-        <tr v-for="member in members">
+        <tr>
           <template v-for="(min_of_days, hour) in team.business_hours">
             <template v-for="min_of_day in min_of_days">
               <td
                 v-if="findBy(member.shift_submissions, min_of_day)"
                 v-bind:style="{ backgroundColor: '#909399', opacity: '0.6' }"
-                colspan="1" rowspan="1"></td>
+                colspan="1" rowspan="1">
+              </td>
               <td v-else colspan="1" rowspan="1"></td>
             </template>
           </template>
@@ -43,16 +43,16 @@
       </tbody>
     </table>
     <div v-else class="callout callout-danger" v-cloak>
-      <p>データがありません</p>
+      <p>シフトの希望、または調整されたシフトがありません</p>
     </div>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import { indexShiftTable } from 'api/owners/shift_tables.js'
+  import { getShiftTable } from 'api/owners/shift_tables.js'
   import { find, padStart } from 'lodash'
-  
+
   export default {
     computed: {
       ...mapGetters(['currentDate', 'formattedDate'])
@@ -79,13 +79,13 @@
     },
     watch: {
       formattedDate: function (newFormattedDate) {
-        indexShiftTable(this.team.id, this.formattedDate).then((res) => {
+        getShiftTable(this.team.id, this.formattedDate).then((res) => {
           this.members = res.members
         })
       }
     },
     created () {
-      indexShiftTable(this.team.id, this.formattedDate).then((res) => {
+      getShiftTable(this.team.id, this.formattedDate).then((res) => {
         this.team.business_hours = res.team.business_hours
         this.team.shiftInCounts = res.team.shift_in_counts
         this.members = res.members
@@ -109,5 +109,9 @@
     vertical-align: middle;
     height: 30px;
     width: 30px;
+  }
+
+  .table>tbody+tbody {
+    border-top: 2px solid #000000;
   }
 </style>

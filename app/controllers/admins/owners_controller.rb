@@ -47,7 +47,8 @@ class Admins::OwnersController < Admins::ApplicationController
 
   def update_params
     params.fetch(:owner, {}).permit(
-      :first_name_kana, :last_name_kana, :first_name, :last_name, :email
+      :first_name_kana, :last_name_kana, :first_name, :last_name, :email,
+      :max_team_count
     )
   end
 

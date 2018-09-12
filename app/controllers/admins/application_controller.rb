@@ -5,6 +5,6 @@ class Admins::ApplicationController < ApplicationController
   private
 
   def set_team
-    @team = Team.find(params[:team_id])
+    @team = Team.find_by(id: params[:team_id])
   end
 end

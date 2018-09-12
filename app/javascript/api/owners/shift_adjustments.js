@@ -1,12 +1,12 @@
 import apiClient from 'helpers/owners/api_client'
 
-export function newShiftAdjustment (shiftSubmissionId) {
+export function getShiftAdjustment (shiftAdjustmentId) {
   return apiClient({
-    url: '/shift_submissions/' + shiftSubmissionId + '/shift_adjustments/new'
+    url: 'shift_adjustments/' + shiftAdjustmentId
   })
 }
 
-export function createShiftAdjustment (shiftSubmission, shiftAdjustment) {
+export function createShiftAdjustment (shiftSubmissionId, shiftAdjustment) {
   return apiClient({
     method: 'post',
     data: {
@@ -15,13 +15,7 @@ export function createShiftAdjustment (shiftSubmission, shiftAdjustment) {
         end_time: shiftAdjustment.endTime
       }
     },
-    url: 'shift_submissions/' + shiftSubmission.id + '/shift_adjustments'
-  })
-}
-
-export function editShiftAdjustment (shiftAdjustmentId) {
-  return apiClient({
-    url: '/shift_adjustments/' + shiftAdjustmentId + '/edit'
+    url: 'shift_submissions/' + shiftSubmissionId + '/shift_adjustments'
   })
 }
 

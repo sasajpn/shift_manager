@@ -7,6 +7,7 @@ class Team < ApplicationRecord
   has_many :users, through: :member
   has_many :shift_submissions, through: :members
   has_many :shift_adjustments, through: :shift_submissions, class_name: 'Shift::Adjustment'
+  has_many :shift_registrations, through: :members, class_name: 'Shift::Registration'
 
   validates :name, :open_time, :close_time,
     presence: true
@@ -14,6 +15,28 @@ class Team < ApplicationRecord
   validates_with TeamMaxCountValidator, on: :create
 
   before_create :create_identifier
+  before_create :active_until_is_next_month
+  before_create :max_member_count_is_five
+
+  def active?
+    active_until >= Time.current
+  end
+
+  def member(user)
+    members.find_by(user_id: user.id)
+  end
+
+  def shift_coordinator?(user)
+    member(user)&.shift_coordinator
+  end
+
+  def manager?(user)
+    member(user)&.manager?
+  end
+
+  def full_time_coordinator?(user)
+    member(user)&.full_timer? && shift_coordinator?(user)
+  end
 
   def open_min_of_day
     min_of_day(open_time)
@@ -37,5 +60,13 @@ class Team < ApplicationRecord
 
   def create_identifier
     self.identifier = SecureRandom.hex(5)
+  end
+
+  def active_until_is_next_month
+    self.active_until = Time.current.next_month
+  end
+
+  def max_member_count_is_five
+    self.max_member_count = 5
   end
 end

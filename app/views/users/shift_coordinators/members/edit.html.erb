@@ -1,0 +1,36 @@
+<%= javascript_pack_tag 'users/shift_coordinators/members/edit' %>
+<%= stylesheet_pack_tag 'users/shift_coordinators/members/edit' %>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <p class="text-muted text-center"><%= @member.user.name_kana %></p>
+        <h3 class="profile-username text-center"><%= @member.user.name %></h3>
+        <p class="text-muted text-center"><%= @member.user.email %></p>
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>役職</b> <span class="pull-right"><%= @member.role_i18n %></span>
+          </li>
+          <li class="list-group-item">
+            <b>シフト調整権限</b> <span class="pull-right"><%= @member.adjustment_ability %></span>
+          </li>
+        </ul>
+        <%= link_to 'キャンセル', users_shift_coordinators_member_path(@member), class: 'btn btn-default btn-block' %>
+        <hr>
+        <%= link_to '削除', users_shift_coordinators_member_path(@member), method: :delete,
+          data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger btn-block" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">メンバーの登録内容変更</h3>
+      </div>
+      <div class="box-body">
+        <div id="members_edit" data-member_id="<%= @member.id %>"></div>
+      </div>
+    </div>
+  </div>
+</div>

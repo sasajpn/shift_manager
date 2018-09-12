@@ -49,7 +49,8 @@
 </template>
 
 <script>
-  import { newShiftSubmission, createShiftSubmission } from 'api/users/shift_submissions.js'
+  import { getTeam } from 'api/users/teams.js'
+  import { createShiftSubmission } from 'api/users/shift_submissions.js'
   import ErrorMessages from 'components/shared/error_messages.vue'
 
   export default {
@@ -68,6 +69,9 @@
           openTime: '',
           closeTime: ''
         },
+        member: {
+          id: document.getElementById('shift_submissions_new').dataset.member_id
+        },
         shiftSubmission: {
           submittedDate: '',
           startTime: '',
@@ -80,10 +84,10 @@
     },
     methods: {
       onSubmit() {
-        createShiftSubmission(this.team.id, this.shiftSubmission).then((res) => {
+        createShiftSubmission(this.member.id, this.shiftSubmission).then((res) => {
           switch (res.status) {
             case '200':
-              window.location.href = '/users/teams/' + this.team.id
+              window.location.href = '/users/members/' + this.member.id
               break;
             case '400':
               this.form.errorMessages = res.error_messages
@@ -93,7 +97,7 @@
       }
     },
     created () {
-      newShiftSubmission(this.team.id).then((res) => {
+      getTeam(this.team.id).then((res) => {
         this.team.openTime = res.open_time
         this.team.closeTime = res.close_time
       })
