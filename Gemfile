@@ -44,6 +44,7 @@ gem 'line-bot-api'
 
 # Application Server
 gem 'unicorn'
+gem 'unicorn-worker-killer'
 
 gem 'webpacker', github: 'rails/webpacker'
 
