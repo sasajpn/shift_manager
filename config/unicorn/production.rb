@@ -6,8 +6,8 @@ timeout 30
 worker_processes 2
 working_directory "#{current_path}"
 
-listen "#{shared_path}/var/run/sockets/unicorn.sock"
-pid "#{shared_path}/var/run/pids/unicorn.pid"
+listen "#{shared_path}/tmp/sockets/unicorn.sock"
+pid "#{shared_path}/tmp/pids/unicorn.pid"
 
 stderr_path "#{shared_path}/log/unicorn.stderr.log"
 stdout_path "#{shared_path}/log/unicorn.stdout.log"
