@@ -14,10 +14,6 @@ stdout_path "#{shared_path}/log/unicorn.stdout.log"
 
 preload_app true
 
-before_exec do |server|
-  ENV['BUNDLE_GEMFILE'] = "#{current_path}/Gemfile"
-end
-
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!
   old_pid = "#{server.config[:pid]}.oldbin"
