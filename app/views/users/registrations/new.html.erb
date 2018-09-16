@@ -1,11 +1,13 @@
 <div class="register-box">
   <div class="register-logo">
-    <b><%= Settings.title %></b>
+    <%= link_to root_path do %>
+      <b><%= Settings.title %></b>
+    <% end %>
   </div>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), inline_errors: false) do |f| %>
     <%= f.alert_message "以下のエラー内容を修正してください" %>
     <div class="register-box-body">
-    <p class="login-box-msg">アカウント作成</p>
+    <h4 class="login-box-msg"><b>アカウント作成</b></h4>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'メールアドレス' %>
     <div class="row">
       <div class="col-md-6">
