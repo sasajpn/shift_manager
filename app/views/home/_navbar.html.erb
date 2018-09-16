@@ -2,9 +2,16 @@
   <div class="menu-wrap">
     <h1 class="logo"><%= link_to "#{Settings.title}", root_path %></a></h1>
     <i class="fa fa-arrow-right menu-close"></i>
-    <%= link_to '新規登録', new_user_registration_path %>
-    <%= link_to 'ログイン', new_user_session_path %>
-    <%= link_to 'オーナー様はこちら', new_owner_session_path %>
+
+    <% if current_owner %>
+      <%= link_to 'ログアウト', destroy_owner_session_path, method: :delete %>
+    <% elsif  current_user %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to '新規登録', new_user_registration_path %>
+      <%= link_to 'ログイン', new_user_session_path %>
+      <%= link_to 'オーナー様はこちら', new_owner_session_path %>
+    <% end %>
   </div>
 
   <div id="menuToggle"><i class="fa fa-bars"></i></div>
