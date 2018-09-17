@@ -14,7 +14,7 @@ class Owners::ShiftAdjustmentsController < Owners::ApplicationController
 
   def destroy
     @shift_adjustment.destroy
-    redirect_to owners_team_url(@shift_adjustment.team)
+    redirect_to owners_team_url(@shift_adjustment.team), flash: { success: 'シフトの調整を削除しました' }
   end
 
   private

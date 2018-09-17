@@ -15,7 +15,7 @@ class Users::ShiftCoordinators::ShiftAdjustmentsController < Users::ApplicationC
 
   def destroy
     @shift_adjustment.destroy
-    redirect_to users_shift_coordinators_shift_submission_url(@shift_adjustment.shift_submission)
+    redirect_to users_shift_coordinators_shift_submission_url(@shift_adjustment.shift_submission), flash: { success: 'シフトの調整を削除しました' }
   end
 
   private

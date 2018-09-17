@@ -17,7 +17,7 @@ class Users::Members::UnapprovalsController < Users::ApplicationController
 
   def destroy
     @member.destroy
-    redirect_to users_members_unapprovals_url
+    redirect_to users_members_unapprovals_url, flash: { success: 'チームの参加申請を取り消しました' }
   end
 
   private

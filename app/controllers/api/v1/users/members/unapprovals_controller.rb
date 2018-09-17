@@ -3,11 +3,11 @@ class Api::V1::Users::Members::UnapprovalsController < Api::V1::Users::Applicati
   def create
     @join_team_form = JoinTeamForm.new(join_team_form_params)
     if @join_team_form.save(current_user)
-      @success_message = 'チームに参加申請をしました'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = '参加を申請しました'
+      render json: { status: 200 }
     else
       @error_messages = @join_team_form.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

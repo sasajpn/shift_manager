@@ -1,16 +1,14 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+<div class="register-box">
+  <div class="register-logo">
+    <b>登録確認メール再送</b>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+  <%= bootstrap_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }, inline_errors: false) do |f| %>
+    <%= f.alert_message "以下のエラー内容を修正してください" %>
+    <div class="register-box-body">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      <%= f.submit "確認メールを再送する", class: 'btn btn-primary btn-block' %>
+      <br>
+      <p><%= link_to 'ログインする', new_user_session_path %></p>
+    </div>
+  <% end %>
+</div>

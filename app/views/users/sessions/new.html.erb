@@ -1,9 +1,11 @@
 <div class="login-box">
   <div class="login-logo">
-    <b><%= Settings.title %></b>
+    <%= link_to root_path do %>
+      <b><%= Settings.title %></b>
+    <% end %>
   </div>
   <div class="login-box-body">
-    <p class="login-box-msg">ログイン画面</p>
+    <h4 class="login-box-msg"><b>ログイン画面</b></h4>
     <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), inline_errors: false) do |f| %>
     <% if alert %>
       <p class="alert alert-error"><%= alert %></p>

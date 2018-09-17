@@ -20,7 +20,7 @@ class Users::ShiftCoordinators::MembersController < Users::ApplicationController
   def destroy
     authorize! @team
     @member.destroy
-    redirect_to users_shift_coordinators_team_members_url(@member.team)
+    redirect_to users_shift_coordinators_team_members_url(@member.team), flash: { success: 'メンバーをチームから脱退させました' }
   end
 
   private

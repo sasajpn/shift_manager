@@ -13,7 +13,7 @@ class Users::ShiftCoordinators::ShiftRegistrationsController < Users::Applicatio
 
   def destroy
     @shift_registration.destroy
-    redirect_to users_shift_coordinators_member_url(@shift_registration.member)
+    redirect_to users_shift_coordinators_member_url(@shift_registration.member), flash: { success: 'シフトの登録を削除しました' }
   end
 
   private

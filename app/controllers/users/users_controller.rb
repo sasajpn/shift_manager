@@ -5,8 +5,7 @@ class Users::UsersController < Users::ApplicationController
 
   def update
     if current_user.update(user_params)
-      flash[:success] = '登録内容を変更しました'
-      redirect_to edit_users_user_url
+      redirect_to edit_users_user_url, flash: { success: '登録内容を変更しました' }
     else
       render :edit
     end
@@ -14,8 +13,7 @@ class Users::UsersController < Users::ApplicationController
 
   def destroy_unconfirmed_email
     current_user.update(unconfirmed_email: '')
-    flash[:success] = 'メールアドレスの変更を取り消しました'
-    redirect_to edit_users_user_url
+    redirect_to edit_users_user_url, flash: { success: 'メールアドレスの変更を取り消しました' }
   end
 
   private

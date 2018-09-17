@@ -16,7 +16,7 @@ class Owners::Members::UnapprovalsController < Owners::ApplicationController
 
   def destroy
     @member.destroy
-    redirect_to owners_team_url(@member.team)
+    redirect_to owners_team_url(@member.team), flash: { success: 'チームへの参加申請を拒否しました' }
   end
 
   private

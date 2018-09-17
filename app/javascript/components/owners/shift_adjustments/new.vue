@@ -19,10 +19,10 @@
       onSubmit(shiftSubmissionId, shiftAdjustment) {
         createShiftAdjustment(shiftSubmissionId, shiftAdjustment).then((res) => {
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/owners/shift_submissions/' + shiftSubmissionId
               break;
-            case '400':
+            case 400:
               this.$store.dispatch('ShiftAdjustment/setErrorMessages', res.error_messages)
               break;
           }

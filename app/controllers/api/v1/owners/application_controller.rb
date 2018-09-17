@@ -1,4 +1,5 @@
 class Api::V1::Owners::ApplicationController < ActionController::API
+  include ActionController::Flash
   before_action :authenticate_owner!
 
   private
