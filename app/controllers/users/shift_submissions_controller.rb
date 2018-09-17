@@ -20,7 +20,7 @@ class Users::ShiftSubmissionsController < Users::ApplicationController
 
   def destroy
     @shift_submission.destroy
-    redirect_to users_member_url(@shift_submission.member)
+    redirect_to users_member_url(@shift_submission.member), flash: { success: 'シフトの希望を削除しました' }
   end
 
   private

@@ -58,9 +58,6 @@ ja:
         part_timer: パートタイマー
   banken:
     default: 'リクエストされたページへのアクセス権限がありません'
-    users:
-      managers:
-        shift_adjustments_loyalty:
   date:
     abbr_day_names:
     - 日

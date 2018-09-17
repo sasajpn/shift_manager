@@ -19,6 +19,6 @@ class Api::V1::Users::ApplicationController < ActionController::API
   end
 
   def user_not_authorized
-    render json: { message: 'Access denied' }, status: 404
+    render json: { message: 'アクセス権限がありません' }, status: 404
   end
 end

@@ -13,7 +13,7 @@ class Users::ShiftCoordinators::TeamsController < Users::ApplicationController
   def update_identifier
     authorize! @team
     if @team.update(identifier: SecureRandom.hex(5))
-      redirect_to users_shift_coordinators_team_url(@team)
+      redirect_to users_shift_coordinators_team_url(@team), flash: { success: 'チームの認証コードを更新しました' }
     else
       render :show
     end

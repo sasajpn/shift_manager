@@ -70,10 +70,10 @@
       onSubmit() {
         updateTeam(this.team).then((res) => {
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/owners/teams/' + this.team.id
               break;
-            case '400':
+            case 400:
               this.form.errorMessages = res.error_messages
               break;
           }

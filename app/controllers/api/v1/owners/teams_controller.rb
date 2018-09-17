@@ -11,21 +11,21 @@ class Api::V1::Owners::TeamsController < Api::V1::Owners::ApplicationController
   def create
     @team = current_owner.teams.build(team_params)
     if @team.save
-      @success_message = 'チームを作成しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'チームを作成しました'
+      render json: { status: 200 }
     else
       @error_messages = @team.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 
   def update
     if @team.update(team_params)
-      @success_message = 'チームの登録内容を変更しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'チームの登録内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @team.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

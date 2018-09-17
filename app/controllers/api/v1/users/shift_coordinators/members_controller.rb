@@ -12,11 +12,11 @@ class Api::V1::Users::ShiftCoordinators::MembersController < Api::V1::Users::App
   def update
     authorize! @team
     if @member.update(member_params)
-      @success_message = 'メンバーの設定内容を変更しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'メンバーの設定内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @member.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 
