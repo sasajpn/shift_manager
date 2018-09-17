@@ -1,4 +1,5 @@
 class Api::V1::Users::ApplicationController < ActionController::API
+  include ActionController::Flash
   include Banken
   rescue_from Banken::NotAuthorizedError, with: :user_not_authorized
   before_action :authenticate_user!

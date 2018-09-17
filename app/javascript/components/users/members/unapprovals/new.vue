@@ -55,11 +55,12 @@
     methods: {
       onSubmit() {
         createUnapprovalMember(this.joinTeamForm).then((res) => {
+          console.log(res)
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/users/members/unapprovals'
               break;
-            case '400':
+            case 400:
               this.form.errorMessages = res.error_messages
               break;
           }
