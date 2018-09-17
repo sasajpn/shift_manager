@@ -9,11 +9,11 @@ class Api::V1::Owners::MembersController < Api::V1::Owners::ApplicationControlle
 
   def update
     if @member.update(member_params)
-      @success_message = 'メンバーの設定内容を変更しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'メンバーの登録内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @member.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

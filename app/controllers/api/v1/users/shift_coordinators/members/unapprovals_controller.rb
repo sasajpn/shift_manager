@@ -7,11 +7,11 @@ class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V
 
   def update
     if @member.update(member_params)
-      @success_message = 'メンバーの参加を承認しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'メンバーの参加を承認しました'
+      render json: { status: 200 }
     else
       @error_messages = @member.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

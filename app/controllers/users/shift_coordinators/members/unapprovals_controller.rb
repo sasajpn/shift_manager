@@ -17,7 +17,7 @@ class Users::ShiftCoordinators::Members::UnapprovalsController < Users::Applicat
 
   def destroy
     @member.destroy
-    redirect_to users_shift_coordinators_team_members_unapprovals_url(@member.team)
+    redirect_to users_shift_coordinators_team_members_unapprovals_url(@member.team), flash: { success: 'チームへの参加申請を拒否しました' }
   end
 
   private

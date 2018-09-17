@@ -16,11 +16,11 @@ class Api::V1::Users::ShiftCoordinators::ShiftRegistrationsController < Api::V1:
       account_id: current_user.id
     }
     if @shift_registration.save
-      @success_message = 'シフトを登録しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフトを登録しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_registration.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 
@@ -30,11 +30,11 @@ class Api::V1::Users::ShiftCoordinators::ShiftRegistrationsController < Api::V1:
       account_id: current_user.id
     }
     if @shift_registration.update(shift_registration_params)
-      @success_message = 'シフトの登録内容を更新しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフトの登録内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_registration.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

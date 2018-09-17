@@ -3,7 +3,7 @@
 </template>
 
 <script>
-  import shiftRegistrationForm from 'components/users/shift_registrations/Form.vue'
+  import shiftRegistrationForm from 'components/users/shift_coordinators/shift_registrations/Form.vue'
   import { createShiftRegistration } from 'api/users/shift_coordinators/shift_registrations.js'
 
   export default {
@@ -19,10 +19,10 @@
       onSubmit(memberId, shiftRegistration) {
         createShiftRegistration(memberId, shiftRegistration).then((res) => {
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/users/shift_coordinators/members/' + memberId
               break;
-            case '400':
+            case 400:
               this.$store.dispatch('ShiftRegistration/setErrorMessages', res.error_messages)
               break;
           }

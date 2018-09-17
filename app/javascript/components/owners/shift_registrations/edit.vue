@@ -19,10 +19,10 @@
       onSubmit(memberId, shiftRegistration) {
         updateShiftRegistration(shiftRegistration).then((res) => {
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/owners/members/' + memberId
               break;
-            case '400':
+            case 400:
               this.$store.dispatch('ShiftRegistration/setErrorMessages', res.error_messages)
               break;
           }

@@ -23,11 +23,11 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
       account_id: current_user.id
     }
     if @shift_adjustment.save
-      @success_message = 'シフトを調整しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフトを調整しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_adjustment.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 
@@ -37,11 +37,11 @@ class Api::V1::Users::ShiftCoordinators::ShiftAdjustmentsController < Api::V1::U
       account_id: current_user.id
     }
     if @shift_adjustment.update(shift_adjustment_params)
-      @success_message = 'シフトの調整内容を変更しました。'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフトの調整内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_adjustment.errors.full_messages
-      render "api/v1/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

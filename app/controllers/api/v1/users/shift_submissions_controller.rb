@@ -12,21 +12,21 @@ class Api::V1::Users::ShiftSubmissionsController < Api::V1::Users::ApplicationCo
   def create
     @shift_submission = @member.shift_submissions.build(shift_submission_params)
     if @shift_submission.save
-      @success_message = 'シフト希望を作成しました'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフト希望を提出しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_submission.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 
   def update
     if @shift_submission.update(shift_submission_params)
-      @success_message = 'シフト希望を更新しました'
-      render 'api/v1/shared/success', formats: [:json], handlers: [:jbuilder]
+      flash[:notice] = 'シフトの提出内容を変更しました'
+      render json: { status: 200 }
     else
       @error_messages = @shift_submission.errors.full_messages
-      render "api/v1/users/shared/error_messages", formats: [:json], handlers: [:jbuilder]
+      render json: { error_messages: @error_messages, status: 400 }
     end
   end
 

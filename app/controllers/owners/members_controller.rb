@@ -16,7 +16,7 @@ class Owners::MembersController < Owners::ApplicationController
 
   def destroy
     @member.destroy
-    redirect_to owners_team_members_url(@member.team)
+    redirect_to owners_team_members_url(@member.team), flash: { success: 'メンバーをチームから削除しました' }
   end
 
   private

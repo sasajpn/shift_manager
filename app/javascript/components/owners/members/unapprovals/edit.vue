@@ -63,10 +63,10 @@
       onSubmit() {
         updateUnapproveMember(this.member).then((res) => {
           switch (res.status) {
-            case '200':
+            case 200:
               window.location.href = '/owners/members/' + this.member.id
               break;
-            case '400':
+            case 400:
               this.form.errorMessages = res.error_messages
               break;
           }
