@@ -13,7 +13,7 @@ ja:
       not_found_in_database: "メールアドレスまたはパスワードが無効です。"
       timeout: "一定時間が経過したため、再度ログインが必要です"
       unauthenticated: "ログインまたは登録が必要です。"
-      unconfirmed: "本登録を行ってください。"
+      unconfirmed: "確認メールから登録を完了させてください"
     mailer:
       confirmation_instructions:
         subject: "アカウントの登録方法"
