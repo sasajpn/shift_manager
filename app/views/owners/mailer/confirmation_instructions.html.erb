@@ -1,6 +1,6 @@
 <p><%= @email %>さん</p>
 
-<p>シフトマネージャーにご登録いただきありがとうございます</p>
+<p><%= Settings.title %>にご登録いただきありがとうございます</p>
 
 <p>以下のリンクをクリックすることで登録が完了します</p>
 
@@ -10,3 +10,8 @@
   action: 'create',
   confirmation_token: @token %>
 </p>
+
+<br>
+<hr>
+<p><%= Settings.title %>運営事務局</p>
+<p>メールアドレス: <a href="mailto:<%= Settings.support_address %>"><%= Settings.support_address %></a></p>
