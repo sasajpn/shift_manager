@@ -8,7 +8,7 @@ set :branch, ENV['BRANCH'] || 'master'
 
 set :deploy_to, '/var/www/shift_manager'
 
-set :linked_files, %w{.env config/secrets.yml config/database.yml}
+set :linked_files, %w{config/secrets.yml config/database.yml config/application.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads}
 
 set :keep_releases, 5
