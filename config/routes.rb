@@ -28,6 +28,13 @@ Rails.application.routes.draw do
 
   # トップページ
   root 'home#index'
+  resource :plans, only: [] do
+    collection do
+      get :free
+      get :premium
+    end
+  end
+
 
   # 管理者
   namespace :admins do
