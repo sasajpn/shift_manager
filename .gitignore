@@ -65,3 +65,6 @@ config/environments/*.local.yml
 .idea/*
 
 dump.rdb
+
+# Ignore application configuration
+/config/application.yml

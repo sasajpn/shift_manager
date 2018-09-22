@@ -38,6 +38,7 @@ gem 'chronic'
 # Setting
 gem 'config'
 gem 'dotenv-rails'
+gem "figaro"
 
 # LINE
 gem 'line-bot-api'
