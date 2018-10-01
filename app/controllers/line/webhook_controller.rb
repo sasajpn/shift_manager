@@ -104,7 +104,7 @@ class Line::WebhookController < ApplicationController
           tf.write(response.body)
         end
       end
-      "OK"
+      head :ok
     end
   end
 end
