@@ -36,7 +36,7 @@ end
   user.save
 end
 
-Owner.first.teams.create(
+team = Owner.first.teams.create(
     name: 'ABC株式会社',
     open_time: '08:00', close_time: '18:00',
     active_until: Time.current.next_month,
@@ -60,5 +60,5 @@ shift_submission.create_shift_adjustment(
   start_time: '12:00',
   end_time: '15:00',
   account_type: 'Owner',
-  account_id: team.first.owner.id
+  account_id: team.owner.id
 )
