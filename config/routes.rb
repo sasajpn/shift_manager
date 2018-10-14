@@ -72,6 +72,7 @@ Rails.application.routes.draw do
         resources :unapprovals, only: [:index, :show, :edit, :destroy]
       end
       patch :update_identifier, on: :member
+      resources :payments, only: [:new, :create]
       resources :members, except: [:new, :create, :update] do
         resources :shift_registrations, only: [:show, :new, :edit, :destroy]
       end

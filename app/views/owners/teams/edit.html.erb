@@ -17,6 +17,8 @@
             <b>営業終了時間</b> <span class="pull-right"><%= @team.close_time %></span>
           </li>
         </ul>
+        <%= link_to 'お支払い方法の登録', new_owners_team_payment_path(@team), class: 'btn bg-navy btn-block' %>
+        <hr>
         <%= link_to 'キャンセル', owners_team_path(@team), class: 'btn btn-default btn-block' %>
       </div>
     </div>

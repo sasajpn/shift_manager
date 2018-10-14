@@ -50,6 +50,23 @@ class Team < ApplicationRecord
     business_hours_every_ten_minutes.group_by { |time| time.divmod(60)[0] }
   end
 
+  def update_stripe_customer(token)
+    stripe_customer = Stripe::Customer.retrieve(stripe_customer_id)
+    stripe_customer.source = token
+    stripe_customer.save
+  end
+
+  def create_stripe_subscription
+    stripe_subscription = Stripe::Subscription.create(
+      customer: self.stripe_customer_id,
+      plan: ENV['STRIPE_NORMAL_PLAN_ID'],
+      tax_percent: 8.0
+    )
+    self.stripe_subscription_id = stripe_subscription.id
+    self.active_until = Time.zone.at(stripe_subscription.current_period_end)
+    self.save
+  end
+
   private
 
   def create_identifier
