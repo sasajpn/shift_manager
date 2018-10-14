@@ -60,6 +60,7 @@ class Team < ApplicationRecord
     stripe_customer = Stripe::Customer.create(
       email: self.owner.email
     )
+    self.stripe_customer_id = stripe_customer.id
   end
 
   def active_until_is_next_month
