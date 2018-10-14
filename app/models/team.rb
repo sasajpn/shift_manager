@@ -13,6 +13,7 @@ class Team < ApplicationRecord
     presence: true
 
   before_create :create_identifier
+  before_create :create_stripe_customer
   before_create :active_until_is_next_month
 
   def member(user)
@@ -53,6 +54,12 @@ class Team < ApplicationRecord
 
   def create_identifier
     self.identifier = SecureRandom.hex(5)
+  end
+
+  def create_stripe_customer
+    stripe_customer = Stripe::Customer.create(
+      email: self.owner.email
+    )
   end
 
   def active_until_is_next_month

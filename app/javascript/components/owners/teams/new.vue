@@ -70,7 +70,7 @@
         createTeam(this.team).then((res) => {
           switch (res.status) {
             case 200:
-              window.location.href = '/owners/teams'
+              window.location.href = '/owners/home'
               break;
             case 400:
               this.form.errorMessages = res.error_messages
