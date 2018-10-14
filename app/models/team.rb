@@ -13,6 +13,7 @@ class Team < ApplicationRecord
     presence: true
 
   before_create :create_identifier
+  before_create :active_until_is_next_month
 
   def member(user)
     members.find_by(user_id: user.id)
@@ -52,5 +53,9 @@ class Team < ApplicationRecord
 
   def create_identifier
     self.identifier = SecureRandom.hex(5)
+  end
+
+  def active_until_is_next_month
+    self.active_until = Time.current.next_month.beginning_of_month
   end
 end
