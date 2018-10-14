@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180531121947) do
+ActiveRecord::Schema.define(version: 20181014141253) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -119,13 +119,16 @@ ActiveRecord::Schema.define(version: 20180531121947) do
     t.integer  "owner_id"
     t.string   "name"
     t.string   "identifier"
-    t.string   "open_time",                        null: false
-    t.string   "close_time",                       null: false
-    t.boolean  "all_day",          default: false, null: false
-    t.datetime "active_until",                     null: false
-    t.integer  "max_member_count", default: 0,     null: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.string   "open_time",                              null: false
+    t.string   "close_time",                             null: false
+    t.boolean  "all_day",                default: false, null: false
+    t.datetime "active_until",                           null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "stripe_plan_id"
+    t.string   "stripe_card_id"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_subscription_id"
     t.index ["owner_id"], name: "index_teams_on_owner_id", using: :btree
   end
 
