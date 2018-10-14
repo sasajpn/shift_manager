@@ -20,7 +20,7 @@ module Users
     end
 
     def have_valid_permission?
-      access_member.user == current_user && access_member.team.active?
+      access_member.user == current_user
     end
   end
 end

@@ -20,7 +20,7 @@ module Api
       end
 
       def have_valid_permission?
-        access_team.owner == current_owner && access_team.active?
+        access_team.owner == current_owner
       end
     end
   end

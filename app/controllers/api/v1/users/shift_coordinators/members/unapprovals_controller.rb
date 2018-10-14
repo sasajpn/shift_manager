@@ -18,7 +18,7 @@ class Api::V1::Users::ShiftCoordinators::Members::UnapprovalsController < Api::V
   private
 
   def have_valid_permission?
-    @team.manager?(current_user) && !@member.approve && @team.active?
+    @team.manager?(current_user) && !@member.approve
   end
 
   def member_params

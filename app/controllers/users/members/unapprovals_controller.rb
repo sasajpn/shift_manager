@@ -23,6 +23,6 @@ class Users::Members::UnapprovalsController < Users::ApplicationController
   private
 
   def have_valid_permission?
-    @member.user == current_user && @member.team.active? && !@member.approve
+    @member.user == current_user && !@member.approve
   end
 end

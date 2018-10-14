@@ -18,15 +18,15 @@ module Api
 
         def have_valid_permission?
           if action_name == 'index'
-            @team.shift_coordinator?(current_user) && @team.active?
+            @team.shift_coordinator?(current_user)
           else
             case @member.role
             when 'part_timer'
-              @team.shift_coordinator?(current_user) && @team.active?
+              @team.shift_coordinator?(current_user)
             when 'full_timer'
-              @team.manager?(current_user) || @team.full_time_coordinator?(current_user) && @team.active?
+              @team.manager?(current_user) || @team.full_time_coordinator?(current_user)
             when 'manager'
-              @team.manager?(current_user) && @team.active?
+              @team.manager?(current_user)
             end
           end
         end
