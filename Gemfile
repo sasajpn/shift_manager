@@ -43,6 +43,9 @@ gem "figaro"
 # LINE
 gem 'line-bot-api'
 
+# Payment
+gem 'stripe'
+
 # Application Server
 gem 'unicorn'
 gem 'unicorn-worker-killer'
