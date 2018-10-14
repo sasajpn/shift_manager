@@ -15,8 +15,6 @@ class Member < ApplicationRecord
   validates :user_id,
     uniqueness: { scope: [:team_id], message: 'は既に従業員に登録されています' }
 
-  validates_with MemberMaxCountValidator, if: :is_approved?
-
   enum role: { part_timer: 0, full_timer: 1, manager: 2 }
 
   scope :approvals, -> {
@@ -34,7 +32,6 @@ class Member < ApplicationRecord
   scope :part_timers, -> {
     approvals.part_timer
   }
-
 
   before_save :set_calendar_font_color
   before_save :become_shift_coordinator

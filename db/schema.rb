@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181014141253) do
+ActiveRecord::Schema.define(version: 20181014144249) do
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20181014141253) do
     t.integer  "team_id"
     t.integer  "user_id"
     t.integer  "role",                default: 0,     null: false
-    t.string   "calendar_color",                      null: false
-    t.string   "calendar_font_color",                 null: false
+    t.string   "calendar_color"
+    t.string   "calendar_font_color"
     t.boolean  "shift_coordinator",   default: false, null: false
     t.boolean  "approve",             default: false, null: false
     t.datetime "created_at",                          null: false
