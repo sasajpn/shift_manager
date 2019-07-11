@@ -8,11 +8,6 @@
         <p class="text-muted text-center"><%= @member.user.name_kana %></p>
         <h3 class="profile-username text-center"><%= @member.user.name %></h3>
         <p class="text-muted text-center"><%= @member.user.email %></p>
-        <ul class="list-group list-group-unbordered">
-          <li class="list-group-item">
-            <b>登録可能従業員残数</b> <span class="pull-right"><%= @member.team.registerable_count %></span>
-          </li>
-        </ul>
         <%= link_to 'キャンセル', owners_members_unapproval_path(@member), class: 'btn btn-default btn-block' %>
       </div>
     </div>

@@ -22,7 +22,6 @@ class Owners::Members::UnapprovalsController < Owners::ApplicationController
   private
 
   def set_team
-    super
-    @team ||= @member.team
+    @team = @member&.team || super
   end
 end

@@ -5,6 +5,7 @@ class Api::V1::Owners::Members::UnapprovalsController < Api::V1::Owners::Applica
 
   def update
     if @member.update(member_params)
+      @member.team.increase_stripe_quantity
       flash[:notice] = 'メンバーの参加を承認しました'
       render json: { status: 200 }
     else

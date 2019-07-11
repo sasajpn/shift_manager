@@ -60,11 +60,18 @@ class Team < ApplicationRecord
     stripe_subscription = Stripe::Subscription.create(
       customer: self.stripe_customer_id,
       plan: ENV['STRIPE_NORMAL_PLAN_ID'],
+      quantity: 0,
       tax_percent: 8.0
     )
     self.stripe_subscription_id = stripe_subscription.id
     self.active_until = Time.zone.at(stripe_subscription.current_period_end)
     self.save
+  end
+
+  def increase_stripe_quantity
+    stripe_subscription = Stripe::Subscription.retrieve(stripe_subscription_id)
+    stripe_subscription.quantity += 1
+    stripe_subscription.save
   end
 
   private
