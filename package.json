@@ -3,7 +3,7 @@
     "@rails/webpacker": "^3.4.1",
     "axios": "^0.18.0",
     "element-ui": "^2.3.4",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "moment": "^2.22.1",
     "rails-ujs": "^5.2.0",
     "vue": "^2.5.16",
