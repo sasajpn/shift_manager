@@ -7,7 +7,7 @@ end
 
 # Core
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'puma', '~> 3.0'
+gem 'puma', '~> 4.3'
 
 # Views/Presentation
 gem 'sass-rails', '~> 5.0'
